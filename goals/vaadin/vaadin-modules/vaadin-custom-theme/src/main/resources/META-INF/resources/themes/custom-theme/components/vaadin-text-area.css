@@ -1,0 +1,26 @@
+
+/*[part="input-field"]:hover {*/
+/*    background: #e4f0ff;*/
+/*}*/
+
+[part="input-field"] {
+    background-color: #e4f0ff;
+}
+[part="input-field"]:hover {
+    background-color: #e4f0ff;
+    border-color: #e4f0ff;
+}
+[part="input-field"]::slotted(textarea) {
+    background-color: #e4f0ff;
+}
+textarea{
+    background-color: #e4f0ff;
+}
+/*:host([focused]) [part="input-field"] {*/
+/*    background-color: #e4f0ff;*/
+/*}*/
+
+
+
+
+

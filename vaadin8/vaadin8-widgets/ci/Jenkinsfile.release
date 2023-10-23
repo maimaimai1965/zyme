@@ -1,0 +1,75 @@
+try {
+    node {
+        properties([
+                parameters([
+                        string(
+                                defaultValue: '',
+                                description: 'You can set the next development version in the format x.x.x.x-SNAPSHOT',
+                                name: 'DEVELOPMENT_VERSION'
+                        )
+                ])
+        ])
+        dir('build') {
+            // TODO move to a shared library
+            stage('Preparing') {
+                if (params.DEVELOPMENT_VERSION) {
+                    echo "DEVELOPMENT_VERSION is changed to ${params.DEVELOPMENT_VERSION}"
+                    if (params.DEVELOPMENT_VERSION =~ /[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}-SNAPSHOT/) {
+                        echo "DEVELOPMENT_VERSION is valid ${params.DEVELOPMENT_VERSION}"
+                    } else {
+                        echo "DEVELOPMENT_VERSION version isn't correct ${params.DEVELOPMENT_VERSION}"
+                        throw new Exception("DEVELOPMENT_VERSION version isn't correct ${params.DEVELOPMENT_VERSION}")
+                    }
+                }
+            }
+            stage('Git Checkout') {
+                checkout scm
+            }
+            stage('Build/Unit Test/Deploy Release') {
+                withCredentials([usernamePassword(credentialsId: 'jenkins-rbt', passwordVariable: 'pass', usernameVariable: 'user')]) {
+                    sh "git config user.email test@automatingguy.com && git config user.name Jenkins"
+                    if (params.DEVELOPMENT_VERSION) {
+                        sh "JAVA_HOME=/usr/local/openjdk-11.0.8_10 && mvn release:clean release:prepare release:perform -DdevelopmentVersion=${params.DEVELOPMENT_VERSION} -B -V -Dpassword=$pass -Dusername=$user"
+                    } else {
+                        sh "JAVA_HOME=/usr/local/openjdk-11.0.8_10 && mvn release:clean release:prepare release:perform -B -V -Dpassword=$pass -Dusername=$user"
+                    }
+                }
+            }
+            stage('Clean') {
+                deleteDir()
+            }
+        }
+    }
+// JENKINS-34376 seems to make it hard to detect the aborted builds
+} catch (org.jenkinsci.plugins.workflow.steps.FlowInterruptedException e) {
+    echo "[FAILURE-002] FlowInterruptedException ${e}"
+    // this ambiguous condition means a user probably aborted
+    if (e.causes.size() == 0) {
+        currentBuild.result = "ABORTED"
+    } else {
+        currentBuild.result = "FAILURE"
+    }
+    throw e as Throwable
+} catch (hudson.AbortException e) {
+    echo "[FAILURE-003] AbortException ${e}"
+    // this ambiguous condition means during a shell step, user probably aborted
+    if (e.getMessage().contains('script returned exit code 143')) {
+        currentBuild.result = "ABORTED"
+    } else {
+        currentBuild.result = "FAILURE"
+    }
+    throw e as Throwable
+} catch (InterruptedException e) {
+    echo "[FAILURE-004] ${e}"
+    currentBuild.result = "ABORTED"
+    throw e
+} catch (Throwable e) {
+    echo "[FAILURE-001] ${e}"
+    currentBuild.result = "FAILURE"
+    throw e
+} finally {
+    // notify completion
+    stage("Notifications") {
+//        jenkinsNotify()
+    }
+}

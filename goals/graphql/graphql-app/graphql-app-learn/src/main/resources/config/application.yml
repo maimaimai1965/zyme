@@ -1,0 +1,90 @@
+logging:
+    level:
+        ROOT: INFO
+        org.jooq: INFO
+#        org.apache.cxf.services: ERROR
+#        ua.telesens.o320.pgw: INFO
+#        BssHttp: INFO
+#        CpaHttp: INFO
+#        RoutineLogger: ERROR
+#        ServiceLogger: ERROR
+#        MobipayAdapter: INFO
+#        ScoringJobs : INFO
+#        PerformSubsTransactionJob: INFO
+#        ua.telesens.o320.pgw.subs_trans.services.PerformTransactionTask: DEBUG
+#        ua.telesens.o320.pgw.message_cpa_job.CpaSendingTask: INFO
+        rest.zoo.auth: INFO
+        rest.zoo.controller: INFO
+        rest.zoo.Service: INFO
+
+        zoo.ZooService: INFO
+server:
+    port: 8202
+    address: localhost
+spring:
+    graphql.graphiql.enabled: true
+    main.banner-mode: off
+    main:
+        allow-bean-definition-overriding: true
+    lifecycle.timeout-per-shutdown-phase: 9s
+    application:
+        name: Zyme REST Zoo
+    messages:
+        basename: i18n/messages
+    datasource:
+        hikari:
+            pool-name: "DefaultDataSource"
+            auto-commit: true
+            maximum-pool-size: 50
+            idle-timeout: 30000
+            connection-timeout: 1000
+            max-lifetime: 2000000
+            validation-timeout: 1000
+            minimum-idle: 5
+            driver-class-name: "com.mysql.cj.jdbc.Driver"
+            jdbc-url: "jdbc:mysql://localhost:3309/zyme?autoReconnect=true&useSSL=false&serverTimezone=Europe/Kiev&maxReconnects=3&connectTimeout=10000"
+            username: "root"
+            password: "root"
+    jooq:
+        sqlDialect: MYSQL
+    db:
+        schema: zyme
+zyme:
+    rest-services:
+        zoo:
+            api-url: /zoo/v1
+#            roles: ROLE_VIEW_ZOO,ROLE_ADMIN_ZOO
+security:
+    jwt:
+        signing-key: ymLTU8rq83j4fmJZj60wh4OrMNuntIj4fmJ
+    authorization:
+        key: SD9cICjl1e
+
+#zyme02:
+#    datasource:
+#        hikari:
+#            pool-name: "Zyme02DataSource"
+#            auto-commit: true
+#            maximum-pool-size: 50
+#            idle-timeout: 30000
+#            connection-timeout: 10000
+#            max-lifetime: 2000000
+#            validation-timeout: 1000
+#            minimum-idle: 5
+#            driver-class-name: "com.mysql.cj.jdbc.Driver"
+#            jdbc-url: "jdbc:mysql://localhost:3309/zyme02?autoReconnect=true&useSSL=false&serverTimezone=Europe/Kiev&maxReconnects=3&connectTimeout=10000"
+#            username: "root"
+#            password: "root"
+#    jooq:
+#        sqlDialect: MYSQL
+#    db:
+#        schema: zyme02
+rest:
+    zoo:
+        base-url: zoo/api/v1
+#        book-service:
+#            url: "books"
+#            roles: ROLE_BOOK
+#        author-service:
+#            url: "authors"
+#            roles: ROLE_AUTHOR

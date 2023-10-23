@@ -1,0 +1,102 @@
+logging:
+    level:
+        ROOT: INFO
+        org.jooq: INFO
+        # Для реализации Security:
+        Authentication: INFO
+#        org.apache.cxf.services: ERROR
+#        ua.telesens.o320.pgw: INFO
+#        BssHttp: INFO
+#        CpaHttp: INFO
+#        RoutineLogger: ERROR
+#        ServiceLogger: ERROR
+#        MobipayAdapter: INFO
+#        ScoringJobs : INFO
+#        PerformSubsTransactionJob: INFO
+#        ua.telesens.o320.pgw.subs_trans.services.PerformTransactionTask: DEBUG
+#        ua.telesens.o320.pgw.message_cpa_job.CpaSendingTask: INFO
+server:
+    port: 8115
+    address: localhost
+spring:
+    main.banner-mode: off
+    main:
+        allow-bean-definition-overriding: true
+    lifecycle.timeout-per-shutdown-phase: 9s
+    application:
+        name: Zyme GWT Security
+    messages:
+        basename: i18n/messages
+# Настройки H2 (zyme03):
+    h2.console.enabled: true       # Позволяет использовать консоль для работы с БД - http://localhost:8114/h2-console.
+    jpa.hibernate.ddl-auto: none   # Инициализация на основе сценариев с использованием schema.sql и data.sql не будет выполняться.
+    sql.init:
+        mode: always               # Всегда инициализировать базу данных с помощью скриптов (не только для embedded).
+        # Скрипты по созданию БД
+        schema-locations: classpath:scripts/ddl1.sql, classpath:scripts/ddl2.sql
+        # Скрипты по наполнению данными БД
+        data-locations: classpath:scripts/data.sql
+    datasource:
+        hikari:
+            pool-name: "DefaultDataSource"
+            auto-commit: true
+            maximum-pool-size: 50
+            idle-timeout: 30000
+            connection-timeout: 1000
+            max-lifetime: 2000000
+            validation-timeout: 1000
+            minimum-idle: 2
+            driver-class-name: "org.h2.Driver"
+            jdbc-url: "jdbc:h2:mem:zyme03"
+            username: "root"
+            password: "root"
+    jooq:
+        sqlDialect: H2
+    db:
+        schema: zyme03
+
+# Настройки MySql (zyme)
+zyme:
+    datasource:
+        hikari:
+            pool-name: "ZymeDataSource"
+            auto-commit: true
+            maximum-pool-size: 50
+            idle-timeout: 30000
+            connection-timeout: 10000
+            max-lifetime: 2000000
+            validation-timeout: 1000
+            minimum-idle: 5
+            driver-class-name: "com.mysql.cj.jdbc.Driver"
+            jdbc-url: "jdbc:mysql://localhost:3309/zyme?autoReconnect=true&useSSL=false&serverTimezone=Europe/Kiev&maxReconnects=3&connectTimeout=10000"
+            username: "root"
+            password: "root"
+    jooq:
+        sqlDialect: MYSQL
+    db:
+        schema: zyme
+security:
+    jwt:
+        signing-key: ymLTU8rq83j4fmJZj60wh4OrMNuntIj4fmJ
+    authorization:
+        key: SD9cICjl1e
+
+#zyme02:
+#    datasource:
+#        hikari:
+#            pool-name: "Zyme02DataSource"
+#            auto-commit: true
+#            maximum-pool-size: 50
+#            idle-timeout: 30000
+#            connection-timeout: 10000
+#            max-lifetime: 2000000
+#            validation-timeout: 1000
+#            minimum-idle: 5
+#            driver-class-name: "com.mysql.cj.jdbc.Driver"
+#            jdbc-url: "jdbc:mysql://localhost:3309/zyme02?autoReconnect=true&useSSL=false&serverTimezone=Europe/Kiev&maxReconnects=3&connectTimeout=10000"
+#            username: "root"
+#            password: "root"
+#    jooq:
+#        sqlDialect: MYSQL
+#    db:
+#        schema: zyme02

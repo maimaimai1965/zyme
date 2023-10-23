@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>ua.mai.zyme.goals</groupId>
+        <artifactId>goals</artifactId>
+        <version>0.0.1.001-SNAPSHOT</version>
+        <relativePath>../../../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>aa-schema-gen</artifactId>
+    <packaging>jar</packaging>
+    <name>goals :: db :: modules :: aa-schema-gen</name>
+    <description>AA_* in Zyme schema Module</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>ua.mai.zyme.goals</groupId>
+            <artifactId>db-common</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax.annotation</groupId>
+            <artifactId>javax.annotation-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>commons-beanutils</groupId>
+            <artifactId>commons-beanutils</artifactId>
+            <version>${commons-beanutils.version}</version>
+        </dependency>
+        <dependency>
+<!--            <groupId>org.jooq.pro</groupId>-->
+            <groupId>org.jooq</groupId>
+            <artifactId>jooq</artifactId>
+            <version>${jooq.version}</version>
+            <scope>compile</scope>
+            <exclusions>
+                <exclusion>
+                    <artifactId>jaxb-api</artifactId>
+                    <groupId>javax.xml.bind</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>javax.activation-api</artifactId>
+                    <groupId>javax.activation</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>ua.telesens.o320.pgw</groupId>-->
+<!--            <artifactId>pgw-graphql-api</artifactId>-->
+<!--            <version>${project.version}</version>-->
+<!--        </dependency>-->
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.jooq</groupId>
+<!--                <groupId>org.jooq.pro</groupId>-->
+                <artifactId>jooq-codegen-maven</artifactId>
+                <version>${jooq.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <onError>FAIL</onError>
+                    <!-- Generator parameters -->
+                    <generator>
+                        <name>org.jooq.codegen.JavaGenerator</name>
+                        <database>
+                            <name>org.jooq.meta.xml.XMLDatabase</name>
+                            <properties>
+                                <property>
+                                    <key>dialect</key>
+                                    <value>MYSQL</value>
+                                </property>
+                                <property>
+                                    <key>xml-file</key>
+                                    <value>${project.basedir}/src/main/resources/ua/mai/zyme/db/aa/schema/information_schema.xml</value>
+<!--                                    <value>${project.basedir}/src/main/resources/ua/telesens/o320/pgw/schema/information_schema.xml</value>-->
+                                </property>
+                            </properties>
+                            <forcedTypes>
+                                <forcedType>
+                                    <userType>ua.mai.zyme.db.aa.schema.UserState</userType>
+                                    <converter>ua.mai.zyme.db.aa.schema.UserStateConverter</converter>
+                                    <includeExpression>.*(AA_USER\.STATE)</includeExpression>
+
+                                    <!-- All 'first_buy_date' fields in any 'customer' table, no matter the schema -->
+                                    <!-- <includeExpression>.*\.customer\.first_buy_date</includeExpression> -->
+
+                                    <!-- All 'first_buy_date' fields, no matter the schema and the table -->
+                                    <!-- <includeExpression>.*\.first_buy_date</includeExpression> -->
+
+                                    <!-- All fields containing 'first_buy_' -->
+                                    <!-- <includeExpression>.*\.first_buy_.*</includeExpression> -->
+
+                                    <!-- Case-insensitive expressions -->
+                                    <!-- <includeExpression>(?i:.*\.customer\.first_buy_date)</includeExpression> -->
+                                    <!-- <includeExpression>(?i:classicmodels\.customer\.first_buy_date)</includeExpression> -->
+
+                                </forcedType>
+<!--                                <forcedType>-->
+<!--                                    <userType>ua.telesens.o320.pgw.types.SubsIdentType</userType>-->
+<!--                                    <converter>ua.telesens.o320.pgw.schema.SubsIdentTypeConverter</converter>-->
+<!--                                    <includeExpression>.*(SUBS_IDENT_TYPE|SUBSCRIBER_IDENT_TYPE)</includeExpression>-->
+<!--                                </forcedType>-->
+<!--                                <forcedType>-->
+<!--                                    <userType>ua.telesens.o320.pgw.types.PartnerState</userType>-->
+<!--                                    <converter>ua.telesens.o320.pgw.schema.PartnerStateConverter</converter>-->
+<!--                                    <includeExpression>.*(PA_PARTNER\.STATE)</includeExpression>-->
+<!--                                </forcedType>-->
+<!--                                <forcedType>-->
+<!--                                    <userType>ua.telesens.o320.pgw.types.PartnerAccountState</userType>-->
+<!--                                    <converter>ua.telesens.o320.pgw.schema.PartnerAccountStateConverter</converter>-->
+<!--                                    <includeExpression>.*(PA_ACCOUNT\.STATE)</includeExpression>-->
+<!--                                </forcedType>-->
+<!--                                <forcedType>-->
+<!--                                    <userType>ua.telesens.o320.pgw.types.AccountType</userType>-->
+<!--                                    <converter>ua.telesens.o320.pgw.schema.AccountTypeConverter</converter>-->
+<!--                                    <includeExpression>.*(PA_ACCOUNT\.ACC_TYPE)</includeExpression>-->
+<!--                                </forcedType>-->
+<!--                                <forcedType>-->
+<!--                                    <userType>ua.telesens.o320.pgw.types.AccountKind</userType>-->
+<!--                                    <converter>ua.telesens.o320.pgw.schema.AccountKindConverter</converter>-->
+<!--                                    <includeExpression>.*(PA_ACCOUNT\.ACC_KIND)</includeExpression>-->
+<!--                                </forcedType>-->
+<!--                                <forcedType>-->
+<!--                                    <userType>ua.telesens.o320.pgw.types.ServiceState</userType>-->
+<!--                                    <converter>ua.telesens.o320.pgw.schema.ServiceStateConverter</converter>-->
+<!--                                    <includeExpression>.*(PD_SERVICE\.STATE)</includeExpression>-->
+<!--                                </forcedType>-->
+<!--                                <forcedType>-->
+<!--                                    <userType>ua.telesens.o320.pgw.types.MsisdnPoolType</userType>-->
+<!--                                    <converter>ua.telesens.o320.pgw.schema.MsisdnPoolTypeConverter</converter>-->
+<!--                                    <includeExpression>.*(OP_MSISDN_POOL\.POOL_TYPE)</includeExpression>-->
+<!--                                </forcedType>-->
+<!--                                <forcedType>-->
+<!--                                    <userType>ua.telesens.o320.pgw.types.PortedMsisdnState</userType>-->
+<!--                                    <converter>ua.telesens.o320.pgw.schema.PortedMsisdnStateConverter</converter>-->
+<!--                                    <includeExpression>.*(OP_PORTED_MSISDN\.STATE)</includeExpression>-->
+<!--                                </forcedType>-->
+<!--                                <forcedType>-->
+<!--                                    <userType>ua.telesens.o320.pgw.types.SubsTransactionState</userType>-->
+<!--                                    <converter>ua.telesens.o320.pgw.schema.SubsTransactionStateNoConverter</converter>-->
+<!--                                    <includeExpression>.*(\.STATE_NO|\.P_STATE_NO)</includeExpression>-->
+<!--                                </forcedType>-->
+<!--                                <forcedType>-->
+<!--                                    <userType>ua.telesens.o320.pgw.types.SubsType</userType>-->
+<!--                                    <converter>ua.telesens.o320.pgw.schema.SubsTypeConverter</converter>-->
+<!--                                    <includeExpression>.*(\.SUBS_TYPE|\.P_SUBS_TYPE)</includeExpression>-->
+<!--                                </forcedType>-->
+<!--                                <forcedType>-->
+<!--                                    <userType>ua.telesens.o320.pgw.types.SubsStatus</userType>-->
+<!--                                    <converter>ua.telesens.o320.pgw.schema.SubsStatusConverter</converter>-->
+<!--                                    <includeExpression>.*(\.SUBS_STATUS)</includeExpression>-->
+<!--                                </forcedType>-->
+<!--                                <forcedType>-->
+<!--                                    <userType>ua.telesens.o320.pgw.types.CurrencyCd</userType>-->
+<!--                                    <converter>ua.telesens.o320.pgw.schema.CurrencyCdConverter</converter>-->
+<!--                                    <includeExpression>.*(P_CURRENCY_CD|\.CURRENCY_CD)</includeExpression>-->
+<!--                                </forcedType>-->
+<!--                                <forcedType>-->
+<!--                                    <userType>java.lang.Boolean</userType>-->
+<!--                                    <converter>ua.telesens.o320.pgw.schema.BooleanYNConverter</converter>-->
+<!--                                    <includeExpression>.*(_ENABLED|P_IS_COMPANY|P_OWN_TRANS_ONLY|P_IS_BEFORE|QUOTED|QUOTABLE|P_BY_BSS)</includeExpression>-->
+<!--                                    <excludeExpression>.*MP_ENABLED</excludeExpression>-->
+<!--                                </forcedType>-->
+<!--                                <forcedType>-->
+<!--                                    <userType>ua.telesens.o320.pgw.types.UserType</userType>-->
+<!--                                    <converter>ua.telesens.o320.pgw.schema.UserTypeConverter</converter>-->
+<!--                                    <includeExpression>.*(AA_USER\.USER_TYPE)</includeExpression>-->
+<!--                                </forcedType>-->
+<!--                                <forcedType>-->
+<!--                                    <userType>ua.telesens.o320.pgw.types.UserAuthType</userType>-->
+<!--                                    <converter>ua.telesens.o320.pgw.schema.UserAuthTypeConverter</converter>-->
+<!--                                    <includeExpression>.*(AA_USER\.AUTH_TYPE)</includeExpression>-->
+<!--                                </forcedType>-->
+                            </forcedTypes>
+                        </database>
+                        <generate>
+                            <deprecated>false</deprecated>
+                            <instanceFields>true</instanceFields>
+                            <javaTimeTypes>true</javaTimeTypes>
+                            <pojos>false</pojos>
+                            <daos>false</daos>
+                            <validationAnnotations>false</validationAnnotations>
+                        </generate>
+                        <target>
+                            <packageName>ua.mai.zyme.db.aa.schema</packageName>
+                            <directory>${project.basedir}/target/generated-sources/jooq</directory>
+                        </target>
+                    </generator>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.sun.xml.bind</groupId>
+                        <artifactId>jaxb-impl</artifactId>
+                        <version>2.3.3</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>db-api</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.jooq</groupId>
+<!--                        <groupId>org.jooq.pro</groupId>-->
+                        <artifactId>jooq-codegen-maven</artifactId>
+                        <version>${jooq.version}</version>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>generate</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <jdbc>
+                                <driver>com.mysql.cj.jdbc.Driver</driver>
+                                <url>jdbc:mysql://localhost:3309/zyme?autoReconnect=true&amp;useSSL=false&amp;serverTimezone=Europe/Kiev&amp;maxReconnects=3&amp;connectTimeout=10000</url>
+                                <user>root</user>
+                                <password>root</password>
+                            </jdbc>
+
+                            <!-- Generator parameters -->
+                            <generator>
+                                <name>org.jooq.codegen.XMLGenerator</name>
+                                <database>
+                                    <name>org.jooq.meta.mysql.MySQLDatabase</name>
+                                    <includes>aa_.*</includes>
+<!--                                    <includes>aa_.*|rd_param.*|au_audit_log.*</includes>-->
+                                    <excludes />
+                                    <inputSchema>zyme</inputSchema>
+                                    <outputSchema>AA</outputSchema>
+                                </database>
+                                <generate>
+                                    <relations>true</relations>
+                                    <deprecated>false</deprecated>
+                                    <instanceFields>true</instanceFields>
+                                    <pojos>false</pojos>
+                                    <daos>false</daos>
+                                    <javaTimeTypes>false</javaTimeTypes>
+                                    <validationAnnotations>false</validationAnnotations>
+                                </generate>
+                                <target>
+                                    <packageName>ua.mai.zyme.db.aa.schema</packageName>
+                                    <directory>${project.basedir}/target/generated-sources/jooq</directory>
+                                </target>
+                            </generator>
+                        </configuration>
+                        <dependencies>
+                            <dependency>
+                                <groupId>mysql</groupId>
+                                <artifactId>mysql-connector-java</artifactId>
+                                <version>${mysql.version}</version>
+                            </dependency>
+                        </dependencies>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <version>3.0.0</version>
+                        <executions>
+                            <execution>
+                                <phase>generate-sources</phase>
+                                <configuration>
+                                    <target>
+<!--                                        <replace file="target/generated-sources/jooq/ua/telesens/o320/pgw/schema/information_schema.xml" token="&lt;constraint_name&gt;KEY_" value="&lt;constraint_name&gt;" />-->
+<!--                                        <replace file="target/generated-sources/jooq/ua/telesens/o320/pgw/schema/information_schema.xml" token="_PRIMARY&lt;/constraint_name&gt;" value="_PK&lt;/constraint_name&gt;" />-->
+                                        <move todir="src/main/resources">
+                                            <fileset dir="target/generated-sources/jooq" includes="**/*.xml" />
+                                        </move>
+                                    </target>
+                                </configuration>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+</project>

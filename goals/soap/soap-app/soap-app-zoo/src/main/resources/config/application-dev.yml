@@ -1,0 +1,63 @@
+# ===================================================================
+# Spring Boot configuration for the "dev" profile.
+#
+# This configuration overrides the application.yml file.
+#
+# ===================================================================
+
+logging:
+    level:
+        ROOT: INFO
+        org.jooq: INFO
+        org.jooq.tools.LoggerListener: DEBUG
+
+# Для отладки транзакций:
+        org.springframework.jdbc.support.JdbcTransactionManager: DEBUG
+        com.zaxxer.hikari: DEBUG
+
+        org.springframework.transaction: TRACE
+# Для отладки сервисов
+        ua.mai.zyme.db.transaction: DEBUG
+        ua.mai.zyme.db.jooq: DEBUG
+
+spring:
+    #profiles:
+    #        active: dev
+    #        include:
+    #            - tls
+    # Uncomment to activate TLS for the dev profile
+    #- swagger
+    devtools:
+        restart:
+            enabled: true
+        livereload:
+            enabled: false # we use Webpack dev server + BrowserSync for livereload
+    datasource:
+        hikari:
+            pool-name: "DefaultDataSource"
+            auto-commit: true
+            maximum-pool-size: 2
+            idle-timeout: 300000
+            connection-timeout: 50000
+            max-lifetime: 2000000
+            validation-timeout: 40000
+            minimum-idle: 2
+            driver-class-name: "com.mysql.cj.jdbc.Driver"
+            jdbc-url: "jdbc:mysql://localhost:3309/zyme?autoReconnect=true&useSSL=false&serverTimezone=Europe/Kiev&maxReconnects=3&connectTimeout=50000"
+            username: "root"
+            password: "root"
+#zyme02:
+#    datasource:
+#        hikari:
+#            pool-name: "Zyme02DataSource"
+#            auto-commit: true
+#            maximum-pool-size: 2
+#            idle-timeout: 300000
+#            connection-timeout: 50000
+#            max-lifetime: 2000000
+#            validation-timeout: 40000
+#            minimum-idle: 2
+#            driver-class-name: "com.mysql.cj.jdbc.Driver"
+#            jdbc-url: "jdbc:mysql://localhost:3309/zyme02?autoReconnect=true&useSSL=false&serverTimezone=Europe/Kiev&maxReconnects=3&connectTimeout=50000"
+#            username: "root"
+#            password: "root"

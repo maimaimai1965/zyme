@@ -1,0 +1,76 @@
+# ===================================================================
+# Spring Boot configuration for the "prod" profile.
+#
+# This configuration overrides the application.yml file.
+# ===================================================================
+
+logging:
+    level:
+        ROOT: INFO
+        org.jooq.tools.LoggerListener: INFO
+#        ImportMnp: DEBUG
+spring:
+    devtools:
+        restart:
+            enabled: false
+        livereload:
+            enabled: false
+    datasource:
+        hikari:
+            connection-timeout: 20000
+            password: "root"
+server:
+    port: 8081
+    compression:
+        enabled: true
+        mime-types: text/html,text/xml,text/plain,text/css, application/javascript, application/json
+        min-response-size: 1024
+
+
+pgw:
+    transaction:
+        datasource:
+            hikari:
+                connection-timeout: 20000
+                password: "root"
+        dbss:
+            password: "mobipay"
+    reconciliation:
+        ready-path: C:\work\pgw\_files_Reconciliation_IF36_1531\ready
+        archive-path: C:\work\pgw\_files_Reconciliation_IF36_1531\archive
+        err-path: C:\work\pgw\_files_Reconciliation_IF36_1531\err
+        tmp-path:
+        bulk-size: 2
+        report-path: C:\work\pgw\_files_Reconciliation_IF36_1531\report
+    smppclient:
+        requestTimeout: 800000
+        enquireLinkTimer: 800000
+    scoring:
+        act7:
+            insert-bulk-size: 100_000
+docker-secret:
+    bind-path: "/run/secrets"
+dwh:
+    db:
+        schema: "other_sources"
+    datasource:
+        hikari:
+            jdbc-url: "jdbc:oracle:thin:@//10.4.4.145:1521/ORCLPDB1"
+#            username: "other_sources"
+#            password: "other_sources"
+#for JOB 2100 (Scoring)
+#            username: "MP_DATA"
+#            password: "MP_DATA"
+#for JOB 2101 (Act7)
+            username: "tpgw2dwh"
+            password: "22dwh-44Tpgw"
+fcs:
+    url: http://localhost:6993
+    record-limit: 100
+    max-offset: 50
+email:
+    host: 10.4.4.70
+    port: 2525
+    user:
+    password:
+

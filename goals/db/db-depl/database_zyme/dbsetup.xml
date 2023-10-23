@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="zyme-ng-db" default="help">
+
+    <property environment="env"/>
+    <!--property name="app.schema" value="${env.APP_SCHEMA}"/-->
+<!--    <property file="../etc/ai.properties"/>-->
+<!--    <property file="../etc/dbsetup_.properties"/>-->
+
+    <!--  Установка свойств в файле:  -->
+    <property file="dbsetup_direct.properties"/>
+    <!--  Установка свойств по переменным окружения:  -->
+<!--    <property file="dbsetup_env.properties"/>-->
+
+    <property file="dbsetup_url.properties"/>
+    <property name="db.dir" value="/depl/database"/>
+	
+	<path id="jdbc">
+		<pathelement location = "${db.driver.cp}"/>
+	</path>	
+	
+    <target name="help">
+        <echo>
+            ZYME.DB000.SW (Database) DB Utils
+
+            Uses:
+            ant [properties] commands
+
+            Commands:
+            clean        - clean and create app schema
+            // jrs-clean    - clean and create jrs schema
+            install      - install and config app schema
+            install-test - install schema and test data
+            update       - update functions and views
+            patch        - patch db
+
+            Properties:
+            -Ddb.host=${db.host}
+            -Denv.not_prod=${env.not_prod}
+        </echo>
+    </target>
+
+    <target name="clean">
+        <sql classpathref="jdbc" driver="${db.driver}" encoding="${db.script.encoding}" url="${db.url.root}" userid="${db.user}" password="${db.pass}">
+			drop schema if exists ${db.database};
+			create schema if not exists ${db.database} default character set ${db.encoding} collate ${db.collation};
+		</sql>
+    </target>
+
+<!--    <target if="${env.not_prod}" name="jrs-clean">-->
+<!--        <sql classpathref="jdbc" driver="${db.driver}" encoding="${db.script.encoding}" url="${db.url.root}" userid="${db.user}" password="${db.pass}">-->
+<!--			drop schema if exists jrs;-->
+<!--			create schema if not exists jrs;-->
+<!--		</sql>-->
+<!--    </target>-->
+
+    <target name="users">
+        <sql classpathref="jdbc" driver="${db.driver}" encoding="${db.script.encoding}" url="${db.url.root}" userid="${db.user}" password="${db.pass}">
+            create user if not exists '${db.zyme.user}'@'%' identified by '${db.zyme.pass}';
+            grant select, insert, update, delete, execute on ${db.database}.* to '${db.zyme.user}'@'%';
+        </sql>
+    </target>
+<!--    <target if="${env.not_prod}" name="users">-->
+<!--        <sql classpathref="jdbc" driver="${db.driver}" encoding="${db.script.encoding}" url="${db.url.root}" userid="${db.user}" password="${db.pass}">-->
+<!--            create user if not exists '${db.zyme.user}'@'%' identified by '${db.zyme.pass}';-->
+<!--            grant select, insert, update, delete, execute on ${db.database}.* to '${db.zyme.user}'@'%';-->
+<!--            grant all on jrs.* to '${db.zyme.user}'@'%';-->
+<!--            &#45;&#45;-->
+<!--            create user if not exists 'repl'@'%' identified by '2master-4Repl';-->
+<!--            grant replication slave on *.* to 'repl'@'%';-->
+<!--            grant select on performance_schema.* to 'repl'@'%';-->
+<!--            &#45;&#45;-->
+<!--            create user if not exists 'zabb_monitor'@'%' identified by '2db-4ZAb';-->
+<!--            grant usage, replication client, process, show databases, show view on *.* to 'zabb_monitor'@'%';-->
+<!--            &#45;&#45;-->
+<!--            create user if not exists 'qradar'@'%' identified by '2au-QRadar';-->
+<!--            grant select on ${db.database}.v_au_audit_log to 'qradar'@'%';-->
+<!--            &#45;&#45;-->
+<!--            create user if not exists 'haproxy'@'%';-->
+<!--            flush privileges;-->
+<!--		</sql>-->
+<!--    </target>-->
+
+    <target name="ddl">
+        <sql classpathref="jdbc" driver="${db.driver}" encoding="${db.script.encoding}" url="${db.url}" userid="${db.user}" password="${db.pass}">
+            <transaction src="ddl_aa.sql"/>
+            <transaction src="ddl_zo.sql"/>
+        </sql>
+    </target>
+
+    <target name="initial-data">
+        <sql classpathref="jdbc" driver="${db.driver}" encoding="${db.script.encoding}" url="${db.url}" userid="${db.user}" password="${db.pass}">
+            <transaction src="initial_data_aa.sql"/>
+            <transaction src="initial_data_zo.sql"/>
+        </sql>
+    </target>
+
+<!--    <target if="${env.not_prod}" name="ddl-quartz">-->
+<!--        <sql classpathref="jdbc" driver="${db.driver}" encoding="${db.script.encoding}" url="${db.url}" userid="${db.user}" password="${db.pass}"-->
+<!--            src="ddl_quartz.sql"/>-->
+<!--    </target>-->
+
+<!--    <target name="import">-->
+<!--        <sql classpathref="jdbc" driver="${db.driver}" encoding="${db.script.encoding}" url="${db.url}" userid="${db.user}" password="${db.pass}" print="true"-->
+<!--            src="import.sql"/>-->
+<!--    </target>-->
+
+    <target name="fix-delimiter">
+		<replaceregexp
+			match="^delimiter"
+			replace="-- delimiter"
+			byline="true">
+			<fileset dir="" includes="*.sql"/>
+		</replaceregexp>
+    </target>
+
+    <target name="unfix-delimiter">
+		<replaceregexp
+			match="^-- delimiter"
+			replace="delimiter"
+			byline="true">
+			<fileset dir="" includes="*.sql"/>
+		</replaceregexp>
+    </target>
+
+    <target name="update" depends="fix-delimiter">
+        <sql classpathref="jdbc" driver="${db.driver}" encoding="${db.script.encoding}" url="${db.url}" userid="${db.user}" password="${db.pass}" delimiter="/*$$*/">
+<!--			<transaction src="sp_rd_param.sql"/>-->
+			<transaction src="views.sql"/>
+<!--			<transaction src="sp_om_send_msg.sql"/>-->
+		</sql>
+    </target>
+
+    <target name="config-data">
+<!--        <sql classpathref="jdbc" driver="${db.driver}" encoding="${db.script.encoding}" url="${db.url}" userid="${db.user}" password="${db.pass}">-->
+<!--            <transaction src="initial_data_check_config.sql"/>-->
+<!--		</sql>-->
+    </target>
+
+    <target if="${env.not_prod}" name="test-gen">
+<!--        <sql classpathref="jdbc" driver="${db.driver}" encoding="${db.script.encoding}" url="${db.url}" userid="${db.user}" password="${db.pass}" delimiter="/*$$*/">-->
+<!--            <transaction src="sp_test_gen.sql"/>-->
+<!--		</sql>-->
+    </target>
+
+    <target if="${env.not_prod}" name="test-data">
+<!--        <sql classpathref="jdbc" driver="${db.driver}" encoding="${db.script.encoding}" url="${db.url}" userid="${db.user}" password="${db.pass}"-->
+<!--            src="test_data.sql"/>-->
+    </target>
+
+    <target name="ks-data">
+<!--        <sql classpathref="jdbc" driver="${db.driver}" encoding="${db.script.encoding}" url="${db.url}" userid="${db.user}" password="${db.pass}">-->
+<!--            <transaction src="ks_data.sql"/>-->
+<!--            &lt;!&ndash;transaction src="mig_partners.sql"/&ndash;&gt;-->
+<!--		</sql>-->
+    </target>
+
+    <target name="ks-data-prod">
+<!--        <sql classpathref="jdbc" driver="${db.driver}" encoding="${db.script.encoding}" url="${db.url}" userid="${db.user}" password="${db.pass}">-->
+<!--            <transaction src="ks_data_prod.sql"/>-->
+<!--		</sql>-->
+    </target>
+
+    <target if="${env.not_prod}" name="testcase-data">
+<!--        <sql classpathref="jdbc" driver="${db.driver}" encoding="${db.script.encoding}" url="${db.url}" userid="${db.user}" password="${db.pass}">-->
+<!--            <transaction src="testcase_ddl.sql"/>-->
+<!--            <transaction src="testcase_data.sql"/>-->
+<!--		</sql>-->
+    </target>
+
+    <target if="${env.not_prod}" name="test-update" depends="fix-delimiter">
+<!--        <sql classpathref="jdbc" driver="${db.driver}" encoding="${db.script.encoding}" url="${db.url}" userid="${db.user}" password="${db.pass}" delimiter="/*$$*/">-->
+<!--			<transaction src="sp_tr_test_trans.sql"/>-->
+<!--			<transaction src="sp_tr_testcase_trans.sql"/>-->
+<!--			<transaction src="sp_mp_test_trans.sql"/>-->
+<!--		</sql>-->
+    </target>
+
+    <target if="${env.not_prod}" name="testcase-run">
+<!--        <sql classpathref="jdbc" driver="${db.driver}" encoding="${db.script.encoding}" url="${db.url}" userid="${db.user}" password="${db.pass}">-->
+<!--			call  tr_testcase_trans(${tc.from}, ${tc.till});-->
+<!--		</sql>-->
+    </target>
+
+    <target name="save-ai">
+<!--        <sql classpathref="jdbc" driver="${db.driver}" encoding="${db.script.encoding}" url="${db.url}" userid="${db.user}" password="${db.pass}"-->
+<!--			print="true" output="../etc/ai.properties" showheaders="false" showtrailers="false">-->
+<!--			select concat('db.next_trans_id=', if(max_oper > max_hist, max_oper, max_hist) + 1) as mm from-->
+<!--				(select ifnull(max((trans_id)), 1) as max_oper from tr_trans_oper) o,-->
+<!--				(select ifnull(max((trans_id)), 1) as max_hist from tr_trans_hist) h;-->
+<!--			select concat('db.next_receipt_id=', if(max_oper > max_hist, max_oper, max_hist) + 1) as mm from-->
+<!--				(select ifnull(max((receipt_id)), 1) as max_oper from tr_trans_oper) o,-->
+<!--				(select ifnull(max((receipt_id)), 1) as max_hist from tr_trans_hist) h;-->
+<!--		</sql>-->
+    </target>
+
+    <target name="fix-ai">
+<!--        <sql classpathref="jdbc" driver="${db.driver}" encoding="${db.script.encoding}" url="${db.url}" userid="${db.user}" password="${db.pass}">-->
+<!--			alter table tr_trans_oper auto_increment = ${db.next_trans_id};-->
+<!--			alter table tr_receipt_id_seq auto_increment = ${db.next_receipt_id};-->
+<!--		</sql>-->
+    </target>
+
+	<target if="${env.not_prod}" name="part-ddl">
+<!--		<sql classpathref="jdbc" driver="${db.driver}" encoding="${db.script.encoding}" url="${db.url}" userid="${db.user}" password="${db.pass}">-->
+<!--			<transaction src="ddl_part.sql"/>-->
+<!--		</sql>-->
+	</target>
+
+	<target name="part-add">
+<!--		<sql classpathref="jdbc" driver="${db.driver}" encoding="${db.script.encoding}" url="${db.url}" userid="${db.user}" password="${db.pass}" delimiter="/*$$*/">-->
+<!--			<transaction src="sp_om_tab_part_utils.sql"/>-->
+<!--		</sql>-->
+<!--        <sql classpathref="jdbc" driver="${db.driver}" encoding="${db.script.encoding}" url="${db.url}" userid="${db.user}" password="${db.pass}">-->
+<!--            call om_add_tab_parts();-->
+<!--		</sql>-->
+	</target>
+
+	<target name="part-ls">
+<!--		<sql classpathref="jdbc" driver="${db.driver}" encoding="${db.script.encoding}" url="${db.url}" userid="${db.user}" password="${db.pass}" print="true">-->
+<!--			select concat(table_schema,'.',table_name,'#p#',partition_name,' :',partition_ordinal_position,' less ',partition_description) as "Partitions list:"-->
+<!--			from information_schema.partitions where table_schema = database() and partition_name is not null;-->
+<!--		</sql>-->
+	</target>
+
+	<target name="patch">
+<!--		<sql classpathref="jdbc" driver="${db.driver}" encoding="${db.script.encoding}" url="${db.url}" userid="${db.user}" password="${db.pass}">-->
+<!--			<transaction src="patches/patch-after-4.0.1.${build}.sql"/>-->
+<!--		</sql>-->
+	</target>
+
+
+    <target if="${env.not_prod}" name="install" depends="clean, ddl, users, initial-data"/>
+
+<!--    <target if="${env.not_prod}" name="install" depends="clean,ddl,ddl-quartz,part-ddl,fix-ai,part-add,update,users,initial-data,config-data"/>-->
+<!--    <target if="${env.not_prod}" name="install-test" depends="install,test-gen,test-data,test-update"/>-->
+<!--    <target if="${env.not_prod}" name="install-ks" depends="install,ks-data"/>-->
+<!--	<target if="${env.not_prod}" name="testcase" depends="testcase-data,testcase-run"/>-->
+	
+</project>

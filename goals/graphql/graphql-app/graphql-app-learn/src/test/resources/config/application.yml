@@ -1,0 +1,458 @@
+logging:
+    level:
+        ROOT: INFO
+        org.jooq: INFO
+#        org.apache.cxf.services: ERROR
+#        ua.telesens.o320.pgw: INFO
+#        BssHttp: INFO
+#        CpaHttp: INFO
+#        RoutineLogger: ERROR
+#        ServiceLogger: ERROR
+#        MobipayAdapter: INFO
+#        ScoringJobs : INFO
+#        PerformSubsTransactionJob: INFO
+#        ua.telesens.o320.pgw.subs_trans.services.PerformTransactionTask: DEBUG
+#        ua.telesens.o320.pgw.message_cpa_job.CpaSendingTask: INFO
+server:
+    port: 8201
+    address: localhost
+spring:
+    main.banner-mode: off
+    main:
+        allow-bean-definition-overriding: true
+    lifecycle.timeout-per-shutdown-phase: 9s
+    application:
+        name: GraphQL Zoo Application
+    messages:
+        basename: i18n/messages
+    datasource:
+        hikari:
+            pool-name: "DefaultDataSource"
+            auto-commit: true
+            maximum-pool-size: 2
+            idle-timeout: 300000
+            connection-timeout: 50000
+            max-lifetime: 2000000
+            validation-timeout: 40000
+            minimum-idle: 2
+            driver-class-name: "com.mysql.cj.jdbc.Driver"
+            jdbc-url: "jdbc:mysql://localhost:3309/zyme?autoReconnect=true&useSSL=false&serverTimezone=Europe/Kiev&maxReconnects=3&connectTimeout=50000"
+            password: "root"
+    jooq:
+        sqlDialect: MYSQL
+#    ldap:
+#        urls:
+#            - ldaps://hqdc4.hq.telesens.lan:636
+#        username: buildmaster@hq.telesens.lan
+#        password: qazwsx
+
+
+#server:
+#    servlet:
+#        session:
+#            cookie:
+#                http-only: true
+#    forward-headers-strategy: FRAMEWORK
+#    tomcat:
+#        additional-tld-skip-patterns: "*"
+#management:
+#    endpoints:
+#        web:
+#            exposure:
+#                include: "*"
+#tif:
+#    message:
+#        template-cache-in-millis: 5000
+#    aa:
+#        use-external-auth: true
+#        cache-user-details-in-seconds: 14400
+#        ldap:
+#            search-base: "DC=hq,DC=telesens,DC=lan"
+#            search-filter: "(&(objectClass=person)(sAMAccountName={0}))"
+#            search-subtree: true
+#            user:
+#                email: mail
+#                account-name: sAMAccountName
+#                first-name: givenName
+#                full-name: cn
+#                filter-format: (&(objectClass=person)(objectCategory=Person){0})
+#    ws-client:
+#        authentication-manager-address: http://localhost:8081/cxf/AuthenticationManager/
+#        authentication-service-address: http://localhost:8081/cxf/AuthenticationService/
+##        identity-service-address: http://localhost:8081/cxf/IdentityService/
+##        refDataParamService-address: http://localhost:8081/cxf/ReferenceDataParamService/
+#        auditLogService-address: http://localhost:8081/cxf/AuditLogService/
+#        schedulerService-address: http://localhost:8081/cxf/SchedulerService/
+##        oam-monitoring-address: http://localhost:8081/cxf/MonitoringService/
+#    aa-ws-client:
+#        cache-user-details-in-seconds: 14400
+#        address: http://localhost:8081/services
+#    scheduler-ws-client:
+#        address: http://localhost:8081/services
+#    aa-ui:
+#        autologin:
+#            uname:
+#            password:
+#    scheduler:
+#        scheduler-name: "pgw"
+#        instance-id: "${hostname}"
+#        user-id: 3
+#        user-name: "exec1"
+#        password: "1"
+#        thread-count: 5
+#        update-progress-in-millis: 10000
+#        cluster-checkin-interval-in-millis: 1000
+#        misfire-threshold-in-millis: 1000
+#        driver-delegate-class: "org.quartz.impl.jdbcjobstore.StdJDBCDelegate"
+#        instance-address: "http://@instanceId@:8081/services/SchedulerService"
+#    email-job:
+#        load-batch-size: 10
+#        reschedule-interval-in-seconds: 120
+#        sending-timeout-in-seconds: 20
+pgw:
+#    db:
+#        schema: public
+#    refdata-ws-client:
+#        address: http://localhost:8081/services
+#    refdata-ws:
+#        url: https://localhost:7721
+#        user: PGW
+#        password: 1111
+#        readTimeout: 300000
+#        connectionTimeout: 10000
+#        maxTotalConnections: 100
+#        smsNotificationDisabled: true
+#    jasperServer:
+#        url: http://localhost:8100/jasperserver
+#        useAuthenticationTokens: true
+#        maxTotalConnections: 100
+#        rootElement: TRT
+#        i18n: /TRT/i18n
+#        execute: /TRT/Reports
+#        list: /TRT/Reports
+#    jasper:
+#        server:
+#            connectionTimeout: 10000
+#            readTimeout: 100000
+#    report:
+#        main-list: /TRT/Reports
+#        # show only in dev profile:
+#        subreports-list:
+#        folders:
+#            - folder-uri: /TRT/Reports
+#            - folder-uri: /TRT/Subreports
+#        reports:
+#            - report-id: TestParams
+#              params:
+#                - param-id: PROVIDER_ID
+#                  filter-type: PROVIDERS_FOR_USER
+#                - param-id: ROLES
+#                  filter-type: ROLES_FOR_USER
+#    smppclient:
+#        # SMSC host
+#        host: localhost
+#        # SMSC port
+#        port: 2775
+#        # Identifies the ESME system
+#        systemId: smppclient1
+#        # Specifies the password to use to log in to the SMSC.
+#        password: password
+#        # Maximum timeout to send pdu to SMSC (for requests only), in milliseconds
+#        sendPduTimeout: 30000
+#        # SMPP_Client length of time to wait for a bind response, in milliseconds
+#        connectTimeout: 15000
+#        # Maximum interval of inactivity channel between an ESME and an SMSC.
+#        # In milliseconds.
+#        incativityTimeout: 180000
+#        # The amount of time to wait for an endpoint to respond to a request before
+#        # it expires. Defaults to disabled (-1), in milliseconds.
+#        requestTimeout: 60000
+#        # Defines the interval in milliseconds between the confidence checks.
+#        # The confidence check is used to test the communication path between an ESME and an SMSC.
+#        # In milliseconds.
+#        enquireLinkTimer: 60000
+#        # Defines the time before first reconnect attempt, if the connection to the SMSC
+#        # was lost.
+#        initialReconnectDelay: 15000
+#        # Defines the interval in milliseconds between the reconnect attempts, if the connection to the SMSC
+#        # was lost and the previous was not succeed.
+#        reconnectDelay: 60000
+#        # Use TRX channel or use TX and RX channels
+#        useTrx: true
+#        # Defines the data coding according the SMPP 3.4 specification, section 5.2.19. Example data encodings are:
+#        #  0: SMSC Default Alphabet
+#        #  3: Latin 1 (ISO-8859-1)
+#        #  4: Octet unspecified (8-bit binary)
+#        #  8: UCS2 (ISO/IEC-10646)
+#        #  13: Extended Kanji JIS(X 0212-1990)
+#        defaultCoding: 4
+#        # Defines the data coding according the SMPP 3.4 specification, section 5.2.19. Example data encodings are:
+#        #  0: SMSC Default Alphabet
+#        #  3: Latin 1 (ISO-8859-1)
+#        #  4: Octet unspecified (8-bit binary)
+#        #  8: UCS2 (ISO/IEC-10646)
+#        #  13: Extended Kanji JIS(X 0212-1990)
+#        dataCoding: 0
+#        # Defines the type of number (TON) to be used in the SME destination address parameters. The following TON values are defined:
+#        #  0: Unknown
+#        #  1: International
+#        #  2: National
+#        #  3: Network Specific
+#        #  4: Subscriber Number
+#        #  5: Alphanumeric
+#        #  6: Abbreviated
+#        destAddrTon: 1
+#        #Defines the numeric plan indicator (NPI) to be used in the SME destination address parameters. The following NPI values are defined:
+#        #  0: Unknown
+#        #  1: ISDN (E163/E164)
+#        #  2: Data (X.121)
+#        #  3: Telex (F.69)
+#        #  6: Land Mobile (E.212)
+#        #  8: National
+#        #  9: Private
+#        #  10: ERMES
+#        #  13: Internet (IP)
+#        #  18: WAP Client Id (to be defined by WAP Forum)
+#        destAddrNpi: 1
+#        # Defines the type of number (TON) to be used in the SME originator address parameters. The following TON values are defined:
+#        #  0: Unknown
+#        #  1: International
+#        #  2: National
+#        #  3: Network Specific
+#        #  4: Subscriber Number
+#        #  5: Alphanumeric
+#        #  6: Abbreviated
+#        sourceAddrTon: 1
+#        #Defines the numeric plan indicator (NPI) to be used in the SME originator address parameters. The following NPI values are defined:
+#        #  0: Unknown
+#        #  1: ISDN (E163/E164)
+#        #  2: Data (X.121)
+#        #  3: Telex (F.69)
+#        #  6: Land Mobile (E.212)
+#        #  8: National
+#        #  9: Private
+#        #  10: ERMES
+#        #  13: Internet (IP)
+#        #  18: WAP Client Id (to be defined by WAP Forum)
+#        sourceAddrNpi: 1
+#        # 1 - short message with UDHI
+#        # 2 - message payload with TLV parameters
+#        # 3 - Without split, put message to payload message, trim if needed
+#        # 4 - short message with TLV parameters
+#        # default - 1
+#        splitMode: 1
+#        # For splitMode==3 max message size
+#        # default - 8192
+#        maxPayloadSize: 8192
+#        # Set total thread can process messages from downstream parallely.
+#        processorDegree: 5
+#        # Name of created session (for logging)
+#        sessionName: smsc
+#        # SMSC address range (parameter in bind requests)
+#        addressRange:
+#        # Host where ESME has installed
+#        localHost: localhost
+#        skipConnectAttemts: 3
+#        # This parameter is used to categorize the type of ESME (External Short Message Entity)
+#        # that is binding to the SMSC (max. 13 characters).
+#        systemType: comm
+#        throttleMaxAttempts: 3
+#        throttleMaxRequestsPerPeriod: 10
+#        throttlePeriodMillis: 1000
+#        # The amount of time between executions of monitoring the window for requests that expire.
+#        # It's recommended that this generally either matches or is half the value of requestExpiryTimeout.
+#        # Therefore, at worst a request would could take up 1.5X the requestExpiryTimeout to clear out.
+#        # Defaults to disabled (-1), in milliseconds.
+#        windowMonitorInterval: 0
+#        # The maximum number of requests permitted to be outstanding (unacknowledged)
+#        # at a given time per one session.
+#        windowSize: 20
+#        # SMPP_Client url with override host and port parameters
+#        url: smppclient:smppclient?host=${trt.smppclient.host}&port=${trt.smppclient.port}
+#        smppSimulator:
+#            aggregationTimeoutInMillis: 10000
+#        smpp:
+#            srcAddress: 5555
+#        queue:
+#            smsc_out.consumers: 2
+#            smsc_poolsize: 2
+#        smsReceive:
+#            hourFrom: 0
+#            hourTo: 23
+#        batchSizeLimit: 100
+#    template:
+#        queueName: "sms"
+#        queueMobileName: "sms_mo_at"
+#        defaultPriority: 0
+    transaction:
+#        database-retry-max-attempts: 3
+#        database-duration-in-millis: 200
+#        delay-before-request-in-millis: 1000
+#        country-msisdn-prefix: "380"
+#        country-msisdn-length: 12
+#        check-msisdn-in-pool: false
+#        executor-load-batch-size: 100
+#        cancel-timeout-in-seconds: 20
+#        nodata-waiting-in-millis: 500
+#        perform-concurrency: 500
+#        prp-channel-name: "Mobipay"
+#        pop-channel-name: "MOBIPAY"
+        datasource:
+            hikari:
+                pool-name: "TransactionDataSource"
+                auto-commit: true
+                minimum-idle: 5
+                maximum-pool-size: 50
+                idle-timeout: 30000
+                validation-timeout: 10000
+                max-lifetime: 2000000
+                connection-timeout: 10000
+                driver-class-name: "com.mysql.cj.jdbc.Driver"
+                jdbcUrl: "jdbc:mysql://localhost:3306/pgw?autoReconnect=true&useSSL=false&serverTimezone=Europe/Kiev&maxReconnects=2&connectTimeout=10000"
+                username: "root"
+#    transaction-export:
+#        temp-path: /opt/trt/sas/temp
+#        remote-path: /BSS/TPGW
+#        dest-path: /opt/trt/sas/dest
+#        sftp-host: hpsas-dwhcrm
+#        sftp-port: 22
+#        sftp-user: rbt
+#        sftp-password: 1
+#        seconds-to-past: 10
+#        days-window-shift: 1
+#    reconciliation:
+#        ready-path:
+#        archive-path:
+#        err-path:
+#        tmp-path:
+#        bulk-size: 1000
+#        report-path:
+#        day-report-file: dd-report.csv
+#        month-report-file: mm-report.csv
+#        port: 22
+#        attempts-load: 3
+#        key-path: /run/secrets/pa-sftp-rsa
+#        file-mask-reconciliation: "^[a-zA-Z0-9]+\\.src$ ^[a-zA-Z0-9]+\\.\\d{3,}$"
+#        file-mask-tradepoints: "^TP-(\\w+)-(\\d{2}\\d{2}\\d{2})\\.xlsx?$"
+#    rest-services:
+#        api-url: /api/v1
+#        partner-quota-refill:
+#            url: /api/v1/partner-refill
+#            roles: ROLE_REFILL_PARTNER_QUOTA
+#        transaction-history:
+#            url: /api/v1/client
+#            roles: ROLE_VIEW_ANY_TRANS,ROLE_VIEW_ALL_TRANS
+#        topup-notification:
+#            url: /api/v1/disable-topup-notif-list
+#            roles: ROLE_MANAGE_SUBS_NOTIF_BL
+#        partner-limit-management:
+#            url: /api/v1/partner-temp-limit
+#            roles: ROLE_SETUP_PARTNER_TMP_LIMIT
+#        partner-accounts-management:
+#             url: /api/v1/partner-accounts
+#             roles: ROLE_SETUP_PARTNER_TMP_LIMIT
+#        partner-mfs-service:
+#            url: /api/v1/partner-services
+#            roles: ROLE_MANAGE_PARTNER_MFS_SERVICE
+#    scoring:
+#        act7:
+#            insert-bulk-size: 100000
+#        gsm-charges:
+#            insert-bulk-size: 100000
+#dwh:
+#    db:
+#        schema: "other_sources"
+#    datasource:
+#        hikari:
+#            pool-name: "DwhDataSource"
+#            auto-commit: true
+#            maximum-pool-size: 2
+#            idle-timeout: 30000
+#            connection-timeout: 1000
+#            max-lifetime: 2000000
+#            validation-timeout: 1000
+#            minimum-idle: 2
+#            driver-class-name: "oracle.jdbc.driver.OracleDriver"
+#            jdbc-url: "jdbc:oracle:thin:@//10.4.4.145:1521/ORCLPDB1"
+#            username: "other_sources"
+#            password: "other_sources"
+#    jooq:
+#        sqlDialect: ORACLE
+#fcs-bss:
+#    db:
+#        schema: "other_sources"
+#    datasource:
+#        hikari:
+#            pool-name: "FcsBssDataSource"
+#            auto-commit: true
+#            maximum-pool-size: 2
+#            idle-timeout: 30000
+#            connection-timeout: 1000
+#            max-lifetime: 2000000
+#            validation-timeout: 1000
+#            minimum-idle: 2
+#            driver-class-name: "oracle.jdbc.driver.OracleDriver"
+#            jdbc-url: "jdbc:oracle:thin:@//10.4.4.145:1521/ORCLPDB1"
+#            username: "other_sources"
+#            password: "other_sources"
+#    jooq:
+#        sqlDialect: ORACLE
+#dbss:
+#    url: "http://localhost:6993"
+#    user: "mobipay"
+#    password: "dt8Adh7gTXnNZmzD"
+#    connect-timeout-in-millis: 500
+#    read-timeout-in-seconds: 50
+#    write-timeout-in-seconds: 50
+#    max-chunk-size-in-bytes: 65536
+#    max-connections: 5000
+#    retry-max-attempts: 3
+#    retry-backoff-duration-in-millis: 1000
+#fcs:
+##    url: "http://localhost:9102"
+#    url: "http://localhost:6993"
+#    user: "tpgw2jrs"
+#    password: "tpgw2jrs_test"
+#    connect-timeout-in-millis: 500
+#    read-timeout-in-seconds: 50
+#    write-timeout-in-seconds: 50
+#    max-chunk-size-in-bytes: 65536
+#    max-connections: 500
+#    retry-max-attempts: 3
+#    retry-backoff-duration-in-millis: 1000
+#    record-limit: 5000
+#    max-offset: 10
+#    max-log-body-length: 1000
+#    operations-uri:
+#        login: "/api/authenticate"
+#        report-info: "/api/jrs/mobipay/report/info"
+#        report-aggregate-info: "/api/jrs/mobipay/report/aggregate/info"
+#cpa:
+#    load-batch-size: 100
+#    reschedule-interval-in-seconds: 120
+#    sending-timeout-in-seconds: 20
+#    nodata-waiting-in-millis: 500
+#    concurrency: 100
+#    queues:
+#        cpa:
+#            url: http://localhost:6993/api/contents
+#            user: admin
+#            password: 1
+#            connect-timeout-in-millis: 5000
+#            read-timeout-in-seconds: 10
+#            write-timeout-in-seconds: 10
+#            max-chunk-size-in-bytes: 65536
+#            max-connections: 500
+#            retry-max-attempts: 3
+#            retry-backoff-duration-in-millis: 1000
+#            bearerType: "sms"
+#            contentType: "text/plain"
+#email:
+#    host: localhost
+#    port: 1025
+#    user:
+#    password:
+#    authentication-enabled: false
+#    tls-enabled: false
+#    tls-required: false
+#    log-enabled: false

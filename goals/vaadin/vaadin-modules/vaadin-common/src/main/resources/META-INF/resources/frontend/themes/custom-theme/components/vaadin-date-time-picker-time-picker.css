@@ -1,0 +1,13 @@
+[part='time'], .slot-container ::slotted([slot='time-picker']) {
+    pointer-events: all;
+    min-width: 0;
+    flex: 1 1.65 auto;
+    width: 100px;
+}
+
+[part="input"] {
+    width: 100px;
+}
+[part="input-field"] {
+    background-color: #e4f0ff;
+}

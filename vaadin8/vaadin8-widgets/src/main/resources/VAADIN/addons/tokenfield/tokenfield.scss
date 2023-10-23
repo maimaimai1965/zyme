@@ -1,0 +1,38 @@
+$token-bg-color: #00B4F0;
+$token-border-radius: 2px;
+$token-padding: 4px 7px;
+$token-text-color: #fff;
+$token-margin-horizontal: 1px;
+$token-margin-vertical: 1px;
+
+@mixin tokenfield ($tk-bg-color: $token-bg-color, $tk-border-radius: $token-border-radius, $tk-text-color: $token-text-color, $tk-padding: $token-padding) {
+    .tokenfield {
+        .v-button {
+            &.link,
+            &.link:focus {
+                background-color: $tk-bg-color;
+                border-radius: $tk-border-radius;
+                -moz-border-radius: $tk-border-radius;
+                -webkit-border-radius: $tk-border-radius;
+                padding: $tk-padding;
+            }
+            .v-button-caption {
+                color: $tk-text-color;
+                text-decoration: none;
+            }
+        }
+        /* CssLayout special treatment */
+        .v-csslayout {
+            div {
+                float: left;
+            }
+            .v-button-link {
+                margin: 0 $token-margin-horizontal $token-margin-vertical 0;
+			}
+		} 
+		/* Input field */
+        .v-filterselect {
+        	margin-bottom: $token-margin-vertical;
+        }
+    }
+}

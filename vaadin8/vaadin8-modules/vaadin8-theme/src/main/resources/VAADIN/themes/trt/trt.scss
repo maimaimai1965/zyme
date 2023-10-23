@@ -1,0 +1,428 @@
+@import "variables";
+@import "../valo/valo";
+
+@mixin trt {
+    @include valo;
+
+    %selection {
+        $_font-color: valo-font-color($v-selection-color, 0.9);
+        $bg-color: $v-selection-color;
+        background: $bg-color;
+        color: $_font-color;
+        @include valo-gradient($bg-color);
+        font-weight: $v-font-weight + 100;
+        text-shadow: valo-text-shadow($_font-color, $bg-color);
+    }
+    .clickable {
+        cursor: pointer;
+        &.v-layout {
+            &:hover {
+                @include valo-button-hover-style;
+            }
+        }
+    }
+    .v-layout {
+        &.view-header {
+            border-bottom: valo-border();
+            box-shadow: 0 2px 3px rgba(0, 0, 0, 0.05);
+        }
+        &.bordered {
+            border: valo-border();
+        }
+        &.table-footer {
+            $background-color: $v-table-background-color or valo-table-background-color();
+            $border-color: $v-table-border-color or first-color(valo-border($color: $background-color, $strength: 0.8));
+            $table-border-spec: $v-table-border-width solid $border-color;
+            border: {
+                right: $table-border-spec;
+                left: $table-border-spec;
+                bottom: $table-border-spec;
+            }
+            padding-left: $v-layout-spacing-horizontal;
+        }
+    }
+    .v-window-closebox,
+    .v-window-maximizebox,
+    .v-window-restorebox {
+        @extend %selection;
+        &:hover {
+            color: lighten(valo-font-color($v-selection-color, 0.9), 25%);
+        }
+    }
+    .v-window-outerheader,
+    .v-window-header {
+        @extend %selection;
+    }
+    .sidebar-menu {
+        color: $v-font-color;
+        .v-button {
+            white-space: normal;
+            border: none;
+            border-radius: 0;
+            background: transparent;
+            box-shadow: none;
+            &.selected {
+                @extend %selection;
+            }
+            &:after {
+                content: none;
+            }
+            &:hover {
+                background: lighten($v-selection-color, 25%);
+                color: $v-font-color;
+            }
+        }
+        &.v-accordion {
+            >.v-accordion-item {
+                >.v-accordion-item-content {
+                    background-color: $v-background-color;
+                }
+                >.v-accordion-item-caption {
+                    background-color: $v-panel-background-color;
+                    >.v-caption {
+                        padding-top: round($v-layout-margin-top / 3) !important;
+                        padding-bottom: round($v-layout-margin-bottom / 3) !important;
+                        >.v-caption-text {
+                            vertical-align: middle;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .one-button-bar {
+        &.v-menubar {
+            >.v-menubar-menuitem {
+                width: 100%;
+            }
+        }
+    }
+    .table-header {
+        &.v-horizontallayout {
+            height: $v-unit-size !important;
+        }
+    }
+    .v-inline-datefield {
+        &.time-only {
+            &.v-disabled {
+                opacity: $v-disabled-opacity;
+            }
+            .v-inline-datefield-calendarpanel {
+                background: transparent;
+                padding: 0;
+                .v-inline-datefield-calendarpanel-header {
+                    display: none;
+                }
+                .v-inline-datefield-calendarpanel-body {
+                    display: none;
+                }
+                .v-datefield-selecteddate {
+                    display: none;
+                }
+                .v-datefield-calendarpanel-header {
+                    display: none;
+                }
+                .v-datefield-calendarpanel-body {
+                    display: none;
+                }
+                .v-inline-datefield-calendarpanel-time {
+                    white-space: nowrap !important;
+                }
+            }
+        }
+    }
+    .v-caption {
+        padding-bottom: 0px!important;
+    }
+    .v-table {
+        .v-table-cell-content {
+            >.v-table-cell-wrapper {
+                >.v-horizontallayout {
+                    margin: 0 !important;
+                }
+            }
+        }
+    }
+    .v-table {
+        .v-table-cell-content {
+            >.v-table-cell-wrapper {
+                white-space: pre;
+            }
+        }
+    }
+    .v-select-optiongroup-horizontal {
+        /* Avoid wrapping if the layout is too tight */
+        white-space: nowrap !important;
+        .v-select-option {
+            display: inline-block;
+            &.v-radiobutton {
+                padding-right: $v-layout-spacing-horizontal;
+            }
+        }
+    }
+    .v-horizontallayout-sidebtn {
+        cursor: pointer !important;
+        border-top: valo-border();
+        &.selected {
+            @extend %selection;
+        }
+        &:hover {
+            background: lighten($v-selection-color, 25%);
+            color: $v-font-color;
+        }
+    }
+    .v-panel-caption-sidebar {
+        background: transparent !important;
+        font-size: $v-font-size !important;
+        font-weight: bold !important;
+    }
+    .period-picker {
+        .v-button {
+            $background-color: $v-textfield-background-color;
+            background: $background-color;
+            border-top-right-radius: 0 !important;
+            border-bottom-right-radius: 0 !important;
+            color: mix($background-color, valo-font-color($background-color));
+            &:hover {
+                color: valo-font-color($background-color);
+            }
+        }
+        .v-textfield {
+            border-left: none !important;
+            border-top-left-radius: 0 !important;
+            border-bottom-left-radius: 0 !important;
+        }
+    }
+
+    /* LOG TABLE ROW STYLES */
+    .v-table-row-warning {
+        background: $warn-color;
+    }
+    .v-table-row-minor {
+        background: $minor-color;
+    }
+    .v-table-row-average {
+        background: $average-color;
+    }
+    .v-table-row-debug {
+        background: $debug-color;
+    }
+    .v-table-row-major {
+        background: $major-color;
+    }
+    .v-table-row-critical {
+        background: $critical-color;
+    }
+
+    .v-button {
+        &.badge {
+            @extend .v-button-borderless;
+            font-weight: bold;
+            &.major {
+                background: $major-color;
+            }
+            &.critical {
+                background: $critical-color;
+            }
+        }
+    }
+
+    *,*:focus,*:hover{
+        outline:none;
+    }
+
+    .v-table .v-table-cell-content.v-table-cell-content-whiteSpaceNormal > .v-table-cell-wrapper{
+        white-space: normal !important;
+    }
+
+    .v-table-cell-content-red {
+        color: red;
+    }
+    .v-table-cell-content-gray {
+        color: gray;
+    }
+    .v-table-cell-content-blue {
+        color: blue;
+    }
+    .v-table-cell-content-orange {
+        color: orange;
+    }
+
+    .v-table-cell-content-bold {
+        color: green;
+        font-weight: bold;
+    }
+
+    .v-table-cell-content-parentBold {
+        color: #597bc1;
+        font-weight: 600;
+    }
+
+    .v-table-cell-content-childBold {
+        color: black;
+        font-weight: bold;
+    }
+
+    .v-table.unselected [class*="-row"].v-selected {
+        background: none;
+        background-origin: border-box;
+        color: #464646;
+        cursor: inherit;
+    }
+
+    .v-table.unselected [class*="-row"].v-selected .v-table-cell-content {
+        border-color: #d4d4d4;
+        cursor: inherit;
+    }
+
+    .v-table.unselected  > .v-table-row-odd {
+        background-color: #f5f5f5 !important;
+        cursor: inherit;
+    }
+
+    .v-table.unselected  > .v-table-row {
+        background-color: white !important;
+        cursor: inherit;
+    }
+
+    .marginTopIncrease{
+        margin-top: 19px;
+    }
+
+    .marginTopMediumDecrease{
+        margin-top: -25px;
+    }
+
+    .marginLeftDecrease {
+        margin-left: -8px;
+    }
+
+    .marginTopSmallDecrease{
+        margin-top: -12px;
+    }
+
+    .textCentered {
+        text-align: center;
+    }
+
+    .v-upload .v-button {
+        box-sizing: border-box;
+        display: inline-block;
+        vertical-align: top;
+        text-align: center;
+        white-space: normal;
+    }
+
+    .borderedLayout {
+        background: #f5f5f5;
+        border: 1px solid #d0d0d0;
+        width: 100%;
+    }
+
+    .aboutInfoLayout {
+        border-top: none;
+        margin-top: -7px;
+    }
+
+    .v-filterselect-suggestpopup .gwt-MenuItem .v-icon {
+        max-height: 20px;
+        margin-right: 0;
+        min-width: 1em;
+    }
+
+    .v-filterselect-comboboxInputWithIcon .v-icon + [class*="input"] {
+        padding-left: 22px;
+    }
+}
+
+.trt .labelInfo {
+    padding: 5px;
+    color: #5677bf
+}
+
+.blueicon .v-icon {
+    color: blue;
+}
+
+.redicon .v-icon {
+    color: red;
+}
+
+.orangeicon .v-icon {
+    color: orange;
+}
+
+.greenicon .v-icon {
+    color: green;
+}
+
+.blackicon .v-icon {
+    color: black;
+}
+
+.grayicon .v-icon {
+    color: gray;
+}
+
+.v-filterselect-item-redicon .v-icon {
+    color: red;
+}
+
+.v-filterselect-item-blueicon .v-icon {
+    color: blue;
+}
+
+.v-filterselect-item-greenicon .v-icon {
+    color: green;
+}
+
+.v-filterselect-item-grayicon .v-icon {
+    color: gray;
+}
+
+.v-filterselect-item-orangeicon .v-icon {
+    color: orange;
+}
+
+.v-filterselect-item-blackicon .v-icon {
+    color: black;
+}
+
+.v-filterselect-suggestpopup.v-filterselect-suggestpopup-nextPage > .popupContent > .v-filterselect-suggestmenu{
+    display: block;
+    width: auto;
+    overflow-y: scroll !important;
+}
+
+.v-filterselect-suggestpopup.v-filterselect-suggestpopup-nextPage > .popupContent > .v-filterselect-nextpage, .v-filterselect-suggestpopup.v-filterselect-suggestpopup-nextPage > .popupContent > .v-filterselect-prevpage   {
+    position: absolute;
+    z-index: 3;
+    right: 0;
+    opacity: 1;
+    filter: alpha(opacity=20);
+    cursor: pointer;
+    -webkit-transition: all 200ms;
+    -moz-transition: all 200ms;
+    transition: all 200ms;
+    width: 18px;
+    height: 18px;
+    line-height: 18px;
+    text-align: center;
+    font-family: ThemeIcons;
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+transform: scale(1);
+color: #464646;
+}
+
+.v-empty-vertical-padding {
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+}
+
+.v-empty-horizontal-padding {
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}

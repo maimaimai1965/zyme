@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>ua.mai.zyme.goals</groupId>
+        <artifactId>goals</artifactId>
+        <version>0.0.1.001-SNAPSHOT</version>
+        <relativePath>../../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>db-modules</artifactId>
+    <packaging>pom</packaging>
+    <name>goals :: db :: modules</name>
+    <description>DB Modules</description>
+
+
+    <modules>
+        <module>aa-schema-gen</module>
+        <module>aa-schema-gen02</module>
+        <module>zo-schema-gen</module>
+        <module>db-common</module>
+        <module>db-configuration</module>
+        <module>db-transaction</module>
+        <module>db-jooq</module>
+        <module>db-jdbc-template</module>
+    </modules>
+
+</project>

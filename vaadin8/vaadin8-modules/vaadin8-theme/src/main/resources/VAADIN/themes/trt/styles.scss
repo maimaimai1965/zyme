@@ -1,0 +1,7 @@
+@import "addons";
+@import "trt";
+
+.trt {
+  @include addons;
+  @include trt;
+}

@@ -1,0 +1,145 @@
+/******** GENERAL SETTINGS ********/
+
+//The background color is the main control parameter for the Valo theme and it is used for computing all other colors in the theme. If the color is dark (has low luminance), light foreground colors that give high contrast with the background are automatically used.
+$v-background-color: hsl(210, 0%, 98%);
+//Background color of the UI’s root element
+$v-app-background-color: $v-background-color;
+//A static text that is shown under the loading spinned while the client-side engine is being loaded and started
+$v-app-loading-text: "";
+//Base line height for all widgets. It must be given a unitless number
+$v-line-height: 1.55;
+$v-panel-background-color: darken($v-background-color, 2%);
+// $v-overlay-background-color: $v-background-color;
+// $v-overlay-shadow: 0 3px 8px v-shade, 0 0 0 1px (v-shade 0.7);
+// $v-overlay-border-width: 2px; // For IE8
+// $v-window-modality-curtain-background-color: $v-background-color;
+// $v-textfield-background-color: $v-background-color;
+// $v-selection-overlay-background-color: #fff;
+// $v-selection-overlay-padding-horizontal: 0;
+// $v-selection-overlay-padding-vertical: 6px;
+// $v-selection-item-height: 30px;
+// $v-selection-item-border-radius: 0;
+// $v-component-group-spacing: 6px;
+// $v-font-weight--header: 400;
+
+/******** FONT SETTINGS ********/
+
+//Base font size. It should be specified in pixels
+$v-font-size: 13px;
+//Font weight for normal fonts. The size should be given as a numeric value, not symbolic
+$v-font-weight: 400;
+//Foreground text color, specified as any CSS color value. The default is computed from the background color so that it gives a high contrast with the background
+$v-font-color: valo-font-color($v-app-background-color);
+//Font family and fallback fonts as a comma-separated list. Font names containing spaces must be quoted. The default font Open Sans is a web font included in the Valo theme. Other used Valo fonts must be specified in the list to enable them
+$v-font-family: Helvetica, Arial, 'lucida grande', tahoma, verdana, arial, sans-serif;
+//Font size for component captions. The value should be a pixel value
+$v-caption-font-size: round($v-font-size * 1);
+//Font weight for captions. It should be defined with a numeric value instead of symbolic
+$v-caption-font-weight: max(400, $v-font-weight);
+
+/******** LAYOUT SETTINGS ********/
+
+//This is the base size for various layout measures. It is directly used in some measures, such as button height and layout margins, while other measures are derived from it. The value must be specified in pixels, with a suitable range of 18-50
+$v-unit-size: round(2.1 * $v-font-size);
+//Layout margin sizes for all built-in layout components, when the margin is enabled with setMargin()
+$v-layout-margin-top: round($v-unit-size / 2);
+$v-layout-margin-right: round($v-unit-size / 2);
+$v-layout-margin-bottom: round($v-unit-size / 2);
+$v-layout-margin-left: round($v-unit-size / 2);
+//Amount of vertical or horizontal space when spacing is enabled for a layout with setSpacing()
+$v-layout-spacing-vertical: round($v-unit-size / 4);
+$v-layout-spacing-horizontal: round($v-unit-size / 4);
+
+/******** COMPONENT FEATURES ********/
+
+// Color specifications for $v-border, $v-bevel, and $v-shadow may use, in addition to CSS colors, the following keywords:
+// v-tint - lighter than the background color
+// v-shade - darker than the background color
+// v-tone - adaptive color specification: darker on light background and lighter on dark background. Not usable in $v-shadow
+// For example: $v-border: 1px solid (v-tone 0.5);
+//Border specification for the components that have a border. The thickness measure must be specified in pixels. For the border color, you can specify any CSS color or one of the v-tint, v-shade, and v-tone keywords
+$v-border: 1px solid (v-shade 0.7);
+//Corner radius for components that have a border. The measure must be specified in pixels
+$v-border-radius: 3px;
+//Color gradient style for components that have a gradient. The gradient style may use the following keywords: v-linear and v-linear-reverse. The opacity must be given as percentage between 0% and 100%
+$v-gradient: v-linear 8%;
+//Inset shadow style to define how some components are "raised" from the background. The value follows the syntax of CSS box-shadow, and should be a list of insets. For the bevel color, you can specify any CSS color or one of the v-tint, v-shade, and v-tone keywords
+$v-bevel: inset 0 1px 0 v-tint, inset 0 -1px 0 v-shade;
+//Specifies the "depth" of the bevel shadow, as applied to one of the color keywords for the bevel style. The actual amount of tint, shade, or tone is computed from the depth
+$v-bevel-depth: 30%;
+//Default shadow style for all components. As with $v-bevel, the value follows the syntax of CSS box-shadow, but without the inset. For the shadow color, you can specify any CSS color or one of the v-tint or v-shade keywords
+$v-shadow: 0 2px 3px v-shade;
+//Specifies the opacity of the shadow, as applied to one of the color keywords for the shadow style. The actual amount of tint or shade is computed from the depth
+$v-shadow-opacity: 5%;
+//Box-shadow specification for the field focus indicator. The space-separated values are the horizontal shadow position in pixels, vertical shadow position in pixels, blur distance in pixels, spread distance in pixels, and the color
+$v-focus-style: 0 0 1px 1px rgba($v-focus-color, .5);
+//Color for the field focus indicator. The valo-focus-color() function computes a high-contrast color from the context, which is usually the background color. The color can be any CSS color
+$v-focus-color: #5575bf;
+//Specifies whether various CSS animations are used
+$v-animations-enabled: true;
+//Specifies whether various :hover styles are used for indicating that mouse pointer hovers over an element
+$v-hover-styles-enabled: true;
+//Opacity of disabled components
+$v-disabled-opacity: .5;
+//Color for indicating selection in selection components
+$v-selection-color: $v-focus-color;
+//Default width of certain field components, unless overridden with setWidth()
+$v-default-field-width: $v-unit-size * 5;
+//Color of the component error indicator
+$v-error-indicator-color: #ed473b;
+//Color of the required indicator in field components
+$v-required-field-indicator-color: $v-error-indicator-color;
+//Color used for success states and to indicate safe actions
+$v-friendly-color: #2c9720;
+//Link style decoration
+$v-link-text-decoration: none;
+
+/******** TABLE SETTINGS********/
+
+ $v-table-row-height: $v-unit-size;
+ $v-table-border-width: first-number($v-border);
+ $v-table-border-color: null;
+ $v-table-border-radius: 0;
+ $v-table-cell-padding-horizontal: round($v-unit-size/3);
+ $v-table-resizer-width: round($v-unit-size/4.5);
+ $v-table-sort-indicator-width: round($v-unit-size/2);
+ $v-table-header-font-size: round($v-font-size * 1);
+ $v-table-background-color: null;
+
+/******** SCALING FACTORS ********/
+
+//The following variables control some common component styles
+$v-scaling-factor--tiny: 0.75;
+$v-scaling-factor--small: 0.85;
+$v-scaling-factor--large: 1.2;
+$v-scaling-factor--huge: 1.6;
+
+/******** MENU ********/
+
+$valo-menu-background-color: $v-app-background-color;
+
+/******** CUSTOM VARIABLES ********/
+
+$warn-color: #e99146;
+$minor-color: #ebebcd;
+$average-color: #d7e1cd;
+$debug-color: #ffebcd;
+$major-color: #ffd7cd;
+$critical-color: $v-error-indicator-color;
+
+/******** ADDONS ********/
+
+//Tokenfield
+$token-bg-color: $v-selection-color;
+$token-border-radius: $v-border-radius;
+$token-text-color: valo-font-color($token-bg-color, 0.9);
+$token-margin-horizontal: round($v-layout-spacing-horizontal / 2);
+$token-margin-vertical: round($v-layout-spacing-vertical / 2);
+
+/******** OTHER ********/
+
+// Use these variables for theme optimisation (to include only used components)
+// $v-included-components: verticallayout, textfield, button;
+// or
+// $v-included-components: remove($v-included-components, calendar);
+// Note that you need to give the statement after the @import statement for the Valo theme

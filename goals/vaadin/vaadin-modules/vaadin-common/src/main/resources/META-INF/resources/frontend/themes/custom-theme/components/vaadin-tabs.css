@@ -1,0 +1,4 @@
+:host([theme~='minimal'][orientation='horizontal']) [part='tabs'] {
+    margin: 0 0.75rem;
+    align-items: end;
+}

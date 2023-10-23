@@ -1,0 +1,118 @@
+
+scalar Long
+# accepts string values like 1996-12-19T16:39:57-08:00 and produces java.time.OffsetDateTime
+scalar DateTime @specifiedBy(url: "https://scalars.graphql.org/andimarek/date-time.html")
+# accepts string values like 1996-12-19 and produces java.time.LocalDate
+scalar Date     @specifiedBy(url: "https://tools.ietf.org/html/rfc3339")
+## accepts string values like 16:39:57-08:00 and produces java.time.OffsetTime objects at runtime.
+#scalar Time     @specifiedBy(url: "https://tools.ietf.org/html/rfc3339")
+## accepts string in the format hh:mm:ss.sss or hh:mm:ss if partial seconds is zero and produces java.time.LocalTime
+#scalar LocalTime
+scalar JSON
+#scalar NonNegativeInt
+
+
+type Animal {
+    animalId: Long!
+    nickname: String!
+    animalTypeId: Int!
+    gender: String!
+    birthDt: Date
+    deathDt: Date
+    descr: String
+    currTank: Tank   # Текущее место пребывание
+    tanks: [Tank!]!  # Все места пребывания
+}
+
+enum TankType {
+    AQUARIUM  # Аквариум
+    CAGE      # Клетка
+    PADDOCK   # Загон
+    TERRARIUM # Террариум
+}
+
+type Tank {
+    tankId: Int!
+    tankType: TankType!
+    numberCd: String!
+    descr: String
+    currAnimals: [Animal!]! # Животные, которые размещаются здесь сейчас.
+    animals: [Animal!]!     # Все животные, которые размещались здесь.
+}
+
+type TankAnimal {
+    tankId: Int!
+    animalId: Long!
+#    fromDt: DateTime
+#    toDt: DateTime
+    tank: Tank
+    animal: Animal
+}
+
+input AnimalFilter {
+    animalId: ID
+    likeNickname: String
+    animalTypeId: Int
+}
+
+input TankFilter {
+    tankId: Int
+    tankType: TankType
+    numberCd:String
+    likeNumberCd:String
+    likeDescr:String
+}
+
+type QueryResultForAnimal {
+    data: [Animal!]!
+    errors: [GraphQLError]
+}
+
+type GraphQLError {
+    message: String!
+    location: [SourceLocation]
+    errorType: String
+    path: [String]
+}
+
+type SourceLocation {
+    line: Int
+    column: Int
+    sourceName: String
+}
+
+type Query {
+    allAnimal: [Animal!]!
+    allAnimalWithErrors: QueryResultForAnimal
+#    animals(tankFilter: TankFilter): [Animal!]!
+    animals(animalId:Long  likeNickname:String  animalTypeId:Int): [Animal!]!
+    animalByAnimalId(animalId:Long): Animal
+    currAnimalsByTankId(tankId:Int): [Animal!]!
+    animalsByTankId(tankId:Int): [Animal!]!
+
+#    allTank: [Tank!]!
+#    tanks(tankFilter: TankFilter): [Tank!]!
+    tanks(tankId:Int  tankType:TankType  numberCd:String  likeNumberCd:String  likeDescr:String): [Tank!]!
+    tankById(tankId:Int): Tank
+    currTankByAnimalId(animalId:Long): Tank
+    tanksByAnimalId(animalId:Long): [Tank!]!
+
+    allTankAnimal: [TankAnimal!]!
+}
+
+#type Query {
+#    bookById(id: ID): Book
+#}
+#
+#type Book {
+#    id: ID
+#    name: String
+#    pageCount: Int
+#    author: Author
+#}
+#
+#type Author {
+#    id: ID
+#    firstName: String
+#    lastName: String
+#}

@@ -1,0 +1,26 @@
+# ===================================================================
+# Spring Boot configuration for the "prod" profile.
+#
+# This configuration overrides the application.yml file.
+# ===================================================================
+
+logging:
+    level:
+        ROOT: INFO
+        org.jooq.tools.LoggerListener: INFO
+spring:
+    devtools:
+        restart:
+            enabled: false
+        livereload:
+            enabled: false
+    datasource:
+        hikari:
+            connection-timeout: 20000
+            password: "root"
+server:
+    port: 8081
+    compression:
+        enabled: true
+        mime-types: text/html,text/xml,text/plain,text/css, application/javascript, application/json
+        min-response-size: 1024

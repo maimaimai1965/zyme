@@ -1,0 +1,62 @@
+logging:
+    level:
+        ROOT: INFO
+#        ua.telesens.o320.pgw: INFO
+spring:
+    main.banner-mode: off
+    main:
+        allow-bean-definition-overriding: true
+    lifecycle.timeout-per-shutdown-phase: 9s
+    application:
+        name: Simple
+    messages:
+        basename: i18n/messages
+server:
+    port: 8083
+    address: localhost
+    servlet:
+        session:
+            cookie:
+                secure: false
+                http-only: true
+    tomcat:
+        additional-tld-skip-patterns: "*"
+tif:
+    ui:
+        # Supported locales represented by language tags. First value is considered as default language.
+        locales:
+            - uk
+            - en
+            - ru
+        ui-class: ua.telesens.o320.tif.ui.platform.ApplicationUI
+        ui-bean-name: applicationUI
+        # Fully qualified class name of the base resource bundle
+        messages-base: ua.telesens.o320.pgw.ui.common.i18n.Messages
+        # Theme name. Default theme is "valo"
+        theme: pgw
+        # Either enable production mode or not. Default is false
+        prod-mode: false
+        # Heartbeat interval in seconds. Default is 300 (5 min)
+        heartbeat: 30000
+        # Either close idle sessions or not. Default is false
+        close-idle-sessions: false
+        # Widget set to use. Default is "TIFWidgetSet"
+        widgetset: TIFWidgetSet
+        # How long resources can be cached in browser in seconds. Default is 3600 (1 hour)
+        resources-cache-time: 3600
+        # UI servlet comma-separated url mappings (supports wildcards). Default is "/*"
+        servlet-mappings:
+            - /*
+            - /ui/*
+            - /VAADIN/*
+            - /css/*
+        # Whether servlet async features supported or not, defaults to true
+        servlet-async-supported: true
+        # !Currently only long-polling works
+        # Server push functionality. Valid values are: "MANUAL", "AUTOMATIC" or "DISABLED". Default is "DISABLED"
+        # Note that to use push, parameter "tif.ui.servlet-async-supported" must be set to "true"
+        push-mode: AUTOMATIC
+        # !Currently only long-polling works
+        # Server push transport. Valid values are: "websocket", "websocket-xhr" and "long-polling". Default is "websocket"
+        push-transport: long-polling
+        split-mode-enabled: false

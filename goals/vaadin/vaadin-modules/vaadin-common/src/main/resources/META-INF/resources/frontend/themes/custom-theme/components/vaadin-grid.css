@@ -1,0 +1,19 @@
+[part="cell header-cell"] {
+    background-color: #d5e5efff;
+}
+
+.valid {
+    background-color: #b1ffb7;
+}
+
+.invalid {
+    background-color: #ffd9d9;
+}
+
+.warning {
+    background-color: #e5ee98;
+}
+
+.font-weight-bold {
+    font-weight: bold;
+}

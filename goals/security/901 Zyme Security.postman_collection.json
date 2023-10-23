@@ -1,0 +1,1210 @@
+{
+	"info": {
+		"_postman_id": "e506d6c6-12e4-438b-bcf1-d840b3c3f903",
+		"name": "901 Zyme Security",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5994305"
+	},
+	"item": [
+		{
+			"name": "SecurityBasicOrKeyApplication",
+			"item": [
+				{
+					"name": "/hello",
+					"item": [
+						{
+							"name": "GET /hello ( username:exec1, Header:Not-Process)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"GET: Bad Request 400\", function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "1",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "exec1",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Not-Process",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8110/hello",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8110",
+									"path": [
+										"hello"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET /hello (username+password Basic Auth)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"GET: OK 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"    const responseStr = pm.response.text();\r",
+											"    pm.expect(responseStr).to.eq(\"hello() exec1 with roles [ROLE_EXEC_SYS]!\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "1",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "exec1",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8110/hello",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8110",
+									"path": [
+										"hello"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET /hello (username+bad password Basic Auth)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"GET: Unauthorized 401\", function () {\r",
+											"    pm.response.to.have.status(401);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "1266",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "exec1",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8110/hello",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8110",
+									"path": [
+										"hello"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET /hello (No Auth)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"GET: Unauthorized 401\", function () {\r",
+											"    pm.response.to.have.status(401);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8110/hello",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8110",
+									"path": [
+										"hello"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "/hiWithStaticKey",
+					"item": [
+						{
+							"name": "GET /hiWithStaticKey(No Auth, Authorization Key)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"GET: OK 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"    const responseStr = pm.response.text();\r",
+											"    pm.expect(responseStr).to.eq(\"hiWithStaticKey() UserWithAuthorizationKey with roles [ROLE_RD, ROLE_WR]!\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "SD9cICjl1e",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8110/hiWithStaticKey",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8110",
+									"path": [
+										"hiWithStaticKey"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET /hiWithStaticKey(No Auth, Bad Authorization Key)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"GET: 401 Unauthorized [No Auth, Bad Authorization Key]\", function () {\r",
+											"    pm.response.to.have.status(401);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "999",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8110/hiWithStaticKey",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8110",
+									"path": [
+										"hiWithStaticKey"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET /hiWithStaticKey(username+password Basic Auth)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"GET: Unauthorized 401\", function () {\r",
+											"    pm.response.to.have.status(401);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "1",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "exec1",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8110/hiWithStaticKey",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8110",
+									"path": [
+										"hiWithStaticKey"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET /hiWithStaticKey(No Auth)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"GET: Unauthorized 401\", function () {\r",
+											"    pm.response.to.have.status(401);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8110/hiWithStaticKey",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8110",
+									"path": [
+										"hiWithStaticKey"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "/",
+					"item": [
+						{
+							"name": "GET / (No Auth)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"GET: Unauthorized 401\", function () {\r",
+											"    pm.response.to.have.status(401);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8110/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8110",
+									"path": [
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "basic",
+				"basic": [
+					{
+						"key": "password",
+						"value": "12345",
+						"type": "string"
+					},
+					{
+						"key": "username",
+						"value": "john",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "SecurityGwtBasicApplication (8114)",
+			"item": [
+				{
+					"name": "Основной сценарий",
+					"item": [
+						{
+							"name": "GET /login (user john+password Basic Auth -> GWT token)",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"connection": true
+								}
+							},
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "12",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "john",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8114/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8114",
+									"path": [
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET /hello (JWT token for user john)",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJhdXRob3JpdGllcyI6IlJPTEVfREVMRVRFLFJPTEVfUkVBRCxST0xFX1dSSVRFIiwidXNlcm5hbWUiOiJqb2huIn0.dSlrSVYmTMQpBNioqoja3bUcCgOrUAK2gZbJNLgKEcg",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8114/hello",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8114",
+									"path": [
+										"hello"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET /helloWithReadOrWriteAuthority (JWT token for user john)",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJhdXRob3JpdGllcyI6IlJPTEVfREVMRVRFLFJPTEVfUkVBRCxST0xFX1dSSVRFIiwidXNlcm5hbWUiOiJqb2huIn0.dSlrSVYmTMQpBNioqoja3bUcCgOrUAK2gZbJNLgKEcg",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8114/helloWithReadOrWriteAuthority",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8114",
+									"path": [
+										"helloWithReadOrWriteAuthority"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET /helloWithDeleteAuthority (JWT token for user john)",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJhdXRob3JpdGllcyI6IlJPTEVfREVMRVRFLFJPTEVfUkVBRCxST0xFX1dSSVRFIiwidXNlcm5hbWUiOiJqb2huIn0.dSlrSVYmTMQpBNioqoja3bUcCgOrUAK2gZbJNLgKEcg",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8114/helloWithDeleteAuthority",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8114",
+									"path": [
+										"helloWithDeleteAuthority"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET /login (user ann+password Basic Auth -> GWT token)",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "username",
+											"value": "ann",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "12",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8114/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8114",
+									"path": [
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET /hello (JWT token for user ann)",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImFubiIsImF1dGhvcml0aWVzIjoiUk9MRV9SRUFEIn0.LSK39NKxo2Gfriv6b6T5wkkEPpg6J6TfJwiyppKus0c",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8114/hello",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8114",
+									"path": [
+										"hello"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET /helloWithReadOrWriteAuthority (JWT token for user ann)",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImFubiIsImF1dGhvcml0aWVzIjoiUk9MRV9SRUFEIn0.LSK39NKxo2Gfriv6b6T5wkkEPpg6J6TfJwiyppKus0c",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8114/helloWithReadOrWriteAuthority",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8114",
+									"path": [
+										"helloWithReadOrWriteAuthority"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET /helloWithDeleteAuthority (JWT token for user ann)",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJhdXRob3JpdGllcyI6IlJPTEVfUkVBRCIsInVzZXJuYW1lIjoiYW5uIn0.T0V4KfcUt8HefeGNm3Vv4dnyMAwx5SkRNE51kE41pWg",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8114/helloWithDeleteAuthority",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8114",
+									"path": [
+										"helloWithDeleteAuthority"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "basic",
+				"basic": [
+					{
+						"key": "password",
+						"value": "12345",
+						"type": "string"
+					},
+					{
+						"key": "username",
+						"value": "john",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "SecurityGwtCodeApplication  (8115)",
+			"item": [
+				{
+					"name": "Основной сценарий",
+					"item": [
+						{
+							"name": "GET /login (user ann+password Basic Auth -> code header)",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "username",
+											"value": "ann",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "12",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8115/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8115",
+									"path": [
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET /login (user ann+password Basic Auth + Code -> GWT token)",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "username",
+											"value": "ann",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "12",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "code",
+										"value": "1948",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8115/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8115",
+									"path": [
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET /hello (JWT token for user ann)",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJhdXRob3JpdGllcyI6IlJPTEVfUkVBRCIsInVzZXJuYW1lIjoiYW5uIn0.T0V4KfcUt8HefeGNm3Vv4dnyMAwx5SkRNE51kE41pWg",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8115/hello",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8115",
+									"path": [
+										"hello"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET /helloWithReadOrWriteAuthority (JWT token for user ann)",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJhdXRob3JpdGllcyI6IlJPTEVfUkVBRCIsInVzZXJuYW1lIjoiYW5uIn0.T0V4KfcUt8HefeGNm3Vv4dnyMAwx5SkRNE51kE41pWg",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8115/helloWithReadOrWriteAuthority",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8115",
+									"path": [
+										"helloWithReadOrWriteAuthority"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET /helloWithDeleteAuthority (JWT token for user ann)",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiJ9.eyJhdXRob3JpdGllcyI6IlJPTEVfUkVBRCIsInVzZXJuYW1lIjoiYW5uIn0.T0V4KfcUt8HefeGNm3Vv4dnyMAwx5SkRNE51kE41pWg",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8115/helloWithDeleteAuthority",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8115",
+									"path": [
+										"helloWithDeleteAuthority"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Errors",
+					"item": [
+						{
+							"name": "/",
+							"item": [
+								{
+									"name": "GET /: 401 Unauthorized [No Auth]",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"GET: Unauthorized 401\", function () {\r",
+													"    pm.response.to.have.status(401);\r",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "noauth"
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8115/",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8115",
+											"path": [
+												""
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "/login",
+							"item": [
+								{
+									"name": "GET /login: 401 Unauthorized [bad user]",
+									"request": {
+										"auth": {
+											"type": "basic",
+											"basic": [
+												{
+													"key": "username",
+													"value": "cat",
+													"type": "string"
+												},
+												{
+													"key": "password",
+													"value": "12",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8115/login",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8115",
+											"path": [
+												"login"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "GET /login: 401 Unauthorized [bad password]",
+									"request": {
+										"auth": {
+											"type": "basic",
+											"basic": [
+												{
+													"key": "password",
+													"value": "999",
+													"type": "string"
+												},
+												{
+													"key": "username",
+													"value": "ann",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8115/login",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8115",
+											"path": [
+												"login"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "GET /login: 401 Unauthorized [Basic Auth, bad code]",
+									"request": {
+										"auth": {
+											"type": "basic",
+											"basic": [
+												{
+													"key": "password",
+													"value": "12",
+													"type": "string"
+												},
+												{
+													"key": "username",
+													"value": "ann",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "code",
+												"value": "99999",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "http://localhost:8115/login",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8115",
+											"path": [
+												"login"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "/hello",
+							"item": [
+								{
+									"name": "GET /hello: 401 Unauthorized [bad user]",
+									"request": {
+										"auth": {
+											"type": "basic",
+											"basic": [
+												{
+													"key": "username",
+													"value": "cat",
+													"type": "string"
+												},
+												{
+													"key": "password",
+													"value": "12",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "eyJhbGciOiJIUzI1NiJ9.eyJhdXRob3JpdGllcyI6IlJPTEVfUkVBRCIsInVzZXJuYW1lIjoiYW5uIn0.T0V4KfcUt8HefeGN",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "http://localhost:8115/hello",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8115",
+											"path": [
+												"hello"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "GET /hello: 401 Unauthorized [Bad password]",
+									"request": {
+										"auth": {
+											"type": "basic",
+											"basic": [
+												{
+													"key": "password",
+													"value": "99999",
+													"type": "string"
+												},
+												{
+													"key": "username",
+													"value": "ann",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "eyJhbGciOiJIUzI1NiJ9.eyJhdXRob3JpdGllcyI6IlJPTEVfUkVBRCIsInVzZXJuYW1lIjoiYW5uIn0.T0V4KfcUt8HefeGN",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "http://localhost:8115/hello",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8115",
+											"path": [
+												"hello"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "GET /hello: 401 Unauthorized [Bad JWT token]",
+									"request": {
+										"auth": {
+											"type": "noauth"
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "eyJhbGciOiJIUzI1NiJ9.eyJhdXRob3JpdGllcyI6IlJPTEVfUkVBRCIsInVzZXJuYW1lIjoiYW5uIn0.T0V4KfcUt8HefeGN",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "http://localhost:8115/hello",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8115",
+											"path": [
+												"hello"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "basic",
+				"basic": [
+					{
+						"key": "password",
+						"value": "12345",
+						"type": "string"
+					},
+					{
+						"key": "username",
+						"value": "john",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	]
+}

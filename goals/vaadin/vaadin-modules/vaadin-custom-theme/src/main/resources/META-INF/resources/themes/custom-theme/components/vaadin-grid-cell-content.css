@@ -1,0 +1,13 @@
+/*[part~='cell']::slotted(vaadin-grid-cell-content) {*/
+/*    display: block;*/
+/*    width: 100%;*/
+/*    box-sizing: border-box;*/
+/*    overflow: hidden;*/
+/*    text-overflow: ellipsis;*/
+/*    !*text-align: right;*!*/
+/*}*/
+
+/* Align numeric columns right */
+.right {
+    text-align: right;
+}

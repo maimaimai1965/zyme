@@ -1,0 +1,25 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>ua.mai.zyme.goals.security</groupId>
+    <artifactId>security-oauth</artifactId>
+    <packaging>pom</packaging>
+    <name>goals :: security :: oauth</name>
+    <description>Spring Security OAuth</description>
+
+    <parent>
+        <groupId>ua.mai.zyme.goals</groupId>
+        <artifactId>goals</artifactId>
+        <version>0.0.1.001-SNAPSHOT</version>
+        <relativePath>../../pom.xml</relativePath>
+    </parent>
+
+    <modules>
+        <module>oauth-authorization-server</module>
+        <module>oauth-resource-server</module>
+        <module>oauth-resource-server-zoo</module>
+        <module>oauth-client</module>
+    </modules>
+
+</project>

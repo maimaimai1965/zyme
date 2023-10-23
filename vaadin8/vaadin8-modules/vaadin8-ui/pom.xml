@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>ua.mai.zyme.vaadin8</groupId>
+        <artifactId>vaadin8</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+        <relativePath>../../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>vaadin8-ui</artifactId>
+    <packaging>jar</packaging>
+    <name>vaadin8 :: modules :: vaadin-ui</name>
+    <description>Vaadin 8 UI Module</description>
+
+    <repositories>
+        <!-- Repository used by many Vaadin add-ons -->
+        <repository>
+            <id>Vaadin Directory</id>
+            <url>https://maven.vaadin.com/vaadin-addons</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <dependency>
+            <groupId>ua.mai.zyme.goals</groupId>
+            <artifactId>vaadin8-widgets</artifactId>
+            <version>${vaadin-widjets.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ua.mai.zyme.goals</groupId>
+            <artifactId>common</artifactId>
+            <version>${project.goals.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ua.telesens.o320.trt.be</groupId>
+            <artifactId>tif-common-api</artifactId>
+            <version>${project.tif.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ua.telesens.o320.trt.be</groupId>
+            <artifactId>trt-core-api</artifactId>
+            <version>${project.tif.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ua.telesens.o320.trt.be</groupId>
+            <artifactId>trt-schema-gen</artifactId>
+            <version>${project.tif.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin-client</artifactId>
+<!--            <version>8.10.3</version>-->
+            <version>${vaadin.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin-compatibility-server</artifactId>
+            <version>${vaadin.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin-spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jooq</groupId>
+<!--            <groupId>org.jooq.pro</groupId>-->
+            <artifactId>jooq</artifactId>
+            <version>${jooq.version}</version>
+        </dependency>
+    </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.vaadin</groupId>
+                <artifactId>vaadin-bom</artifactId>
+                <version>${vaadin.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <plugins>
+        </plugins>
+    </build>
+
+    <profiles>
+    </profiles>
+
+</project>

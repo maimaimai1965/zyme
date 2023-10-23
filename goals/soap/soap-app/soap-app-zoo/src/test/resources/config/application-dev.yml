@@ -1,0 +1,149 @@
+# ===================================================================
+# Spring Boot configuration for the "dev" profile.
+#
+# This configuration overrides the application.yml file.
+#
+# ===================================================================
+
+logging:
+    level:
+        ROOT: INFO
+        org.jooq: INFO
+        org.jooq.tools.LoggerListener: INFO
+#        ua.telesens.o320.pgw: DEBUG
+#        ua.telesens.o320.tif.jrs: DEBUG
+#        ua.telesens.o320.tif.ui.report: DEBUG
+#        ua.telesens.o320.tif.scheduler.impl: DEBUG
+#        ReconciliationLoad: DEBUG     # jobs: 1501
+#        ReconciliationReport: DEBUG   # jobs: 1502, 1504, 1505
+#        ScoringJobs: TRACE            # jobs: 2100, 2101, 2102, 2103
+#        org.springframework.web.method: TRACE
+#        org.springframework.security.web: TRACE
+#        ua.telesens.o320.pgw.fcs: DEBUG
+#feign:
+#    client:
+#        config:
+#            default:
+#                loggerLevel: full
+spring:
+    #profiles:
+    #        active: dev
+    #        include:
+    #            - tls
+    # Uncomment to activate TLS for the dev profile
+    #- swagger
+    devtools:
+        restart:
+            enabled: true
+        livereload:
+            enabled: false # we use Webpack dev server + BrowserSync for livereload
+    datasource:
+        hikari:
+            pool-name: "DefaultDataSource"
+            auto-commit: true
+            maximum-pool-size: 2
+            idle-timeout: 300000
+            connection-timeout: 50000
+            max-lifetime: 2000000
+            validation-timeout: 40000
+            minimum-idle: 2
+            driver-class-name: "com.mysql.cj.jdbc.Driver"
+            jdbc-url: "jdbc:mysql://localhost:3306/pgw?autoReconnect=true&useSSL=false&serverTimezone=Europe/Kiev&maxReconnects=3&connectTimeout=50000"
+            password: "root"
+#    mail:
+#        username: ketmarts105@gmail.com
+#        password: uhddhghkknacpwff
+#        provider:
+#            protocol: smtp
+#            class-name: com.sun.mail.smtp.SMTPTransport
+#            vendor: Oracle
+#            version: 1.6.2
+#        properties:
+#            mail.smtp.host: smtp.gmail.com
+#            mail.smtp.port: 587
+#            mail.smtp.auth: true
+#            mail.smtp.starttls.enable: true
+#        debug: true
+#pgw:
+#    report:
+#        subreports-list: /TRT/Subreports
+#    transaction:
+#        datasource:
+#            hikari:
+#                maximum-pool-size: 3
+#                minimum-idle: 2
+#                idle-timeout: 300000
+#                connection-timeout: 40000
+#                password: "root"
+#        dbss:
+#            password: "mobipay"
+#    reconciliation:
+#        ready-path: C:\work\idea_home\pgw\_files_Reconciliation_IF36_1502\ready
+#        archive-path: C:\work\idea_home\pgw\_files_Reconciliation_IF36_1502\archive
+#        err-path: C:\work\idea_home\pgw\_files_Reconciliation_IF36_1502\err
+#        tmp-path:
+#        bulk-size: 2
+#        report-path: C:\work\idea_home\pgw\_files_Reconciliation_IF36_1502\report
+#        day-report-file: dd-report.csv
+#        month-report-file: mm-report.csv
+#    smppclient:
+#        # Maximum timeout to send pdu to SMSC (for requests only), in milliseconds
+#        sendPduTimeout: 800000
+#        # SMPP_Client length of time to wait for a bind response, in milliseconds
+#        connectTimeout: 800000
+#        # Maximum interval of inactivity channel between an ESME and an SMSC.
+#        # In milliseconds.
+#        incativityTimeout: 800000
+#        # The amount of time to wait for an endpoint to respond to a request before
+#        # it expires. Defaults to disabled (-1), in milliseconds.
+#        requestTimeout: 800000
+#        # Defines the interval in milliseconds between the confidence checks.
+#        # The confidence check is used to test the communication path between an ESME and an SMSC.
+#        # In milliseconds.
+#        enquireLinkTimer: 800000
+#        # Defines the time before first reconnect attempt, if the connection to the SMSC
+#        # was lost.
+#        initialReconnectDelay: 800000
+#        # Defines the interval in milliseconds between reconnect attempts, if the connection to the SMSC
+#        # was lost and the previous was not succeed.
+#        reconnectDelay: 800000
+#    scoring:
+#        act7:
+##            insert-bulk-size: 4
+#            insert-bulk-size: 100000
+#        gsm-charges:
+##            insert-bulk-size: 4
+#            insert-bulk-size: 100000
+#dwh:
+#    db:
+#        schema: "other_sources"
+#    datasource:
+#        hikari:
+#            jdbc-url: "jdbc:oracle:thin:@//10.4.4.145:1521/ORCLPDB1"
+##            username: "other_sources"
+##            password: "other_sources"
+##for JOB 1502 (Reconciliation Report), JOB 1504 (SOX control)
+##for JOB 2100 (Scoring), 2101 (Act7), 2102 (TestMsisdn), 2103 (GsmCharges)
+#            username: "tpgw2dwh"
+#            password: "22dwh-44Tpgw"
+##for test no ORACLE
+##            username: "NO"
+##            password: "NO"
+#fcs-bss:
+#    db:
+#        schema: "other_sources"
+#    datasource:
+#        hikari:
+#            jdbc-url: "jdbc:oracle:thin:@//10.4.4.145:1521/ORCLPDB1"
+#            username: "other_sources"
+#            password: "other_sources"
+#fcs:
+#    url: http://localhost:6993
+#    record-limit: 100
+#    max-offset: 50
+#email:
+#    host: 10.4.4.70
+#    port: 2525
+#    user:
+#    password:
+#
