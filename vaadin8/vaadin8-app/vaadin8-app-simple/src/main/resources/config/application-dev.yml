@@ -1,0 +1,27 @@
+# ===================================================================
+# Spring Boot configuration for the "dev" profile.
+#
+# This configuration overrides the application.yml file.
+#
+# ===================================================================
+
+logging:
+    level:
+        ROOT: INFO
+        org.jooq: INFO
+        org.jooq.tools.LoggerListener: DEBUG
+spring:
+    profiles:
+#        active: dev
+#        include:
+#            - tls
+            # Uncomment to activate TLS for the dev profile
+            #- swagger
+    devtools:
+        restart:
+            enabled: true
+        livereload:
+            enabled: false # we use Webpack dev server + BrowserSync for livereload
+server:
+    port: 8088
+    address: localhost

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <statusListener class="ch.qos.logback.core.status.NopStatusListener"/>
+    <springProfile name="default,dev">
+        <include resource="org/springframework/boot/logging/logback/base.xml"/>
+    </springProfile>
+
+    <springProfile name="prod">
+        <appender name="JSON_CONSOLE_APPENDER" class="ch.qos.logback.core.ConsoleAppender">
+            <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+                <jsonFactoryDecorator class="ua.telesens.o320.pgw.subs_trans.services.LoggingJsonFactoryDecorator"/>
+            </encoder>
+        </appender>
+
+        <root level="INFO">
+            <appender-ref ref="JSON_CONSOLE_APPENDER"/>
+        </root>
+    </springProfile>
+</configuration>
