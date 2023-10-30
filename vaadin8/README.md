@@ -7,11 +7,11 @@
 * **vaadin8**  
   * **vaadin8-app** - Spring приложения для Vaadin 8.
     * **vaadin8-app-simple** - приложение.
-        * [***Vaadin8SimpleApplication***](#Vaadin8SimpleApplication).java
+        * [***Vaadin8SimpleApplication***](#vaadin8simpleapplication).java
     * **modules**
       * **[vaadin8-ui](#vaadin8-ui)** - модуль UI 
       * **[vaadin8-theme](#vaadin8-theme)** - модуль содержащий тему для приложения
-  * **[vaadin8-widgets](#vaadin8-widgets)** - модуль, содержащий widgetset использующийся в проекте.
+  * **[vaadin8-widgets](#vaadin8-widgets)** - модуль, содержащий widgetset, использующийся в проекте.
 
 
 ## Сборка и запуск проекта
@@ -26,7 +26,7 @@
 
 ## *Vaadin8SimpleApplication*
 
-В этом приложении реализован UI на Vaadin 8.
+В этом приложении реализован простой UI на Vaadin 8.
 
 ## *Модули*
 

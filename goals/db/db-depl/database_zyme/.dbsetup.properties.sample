@@ -1,11 +1,11 @@
 db.host=localhost
-db.port=3309
-db.database=zyme
+db.port=3316
+db.user=root
+db.pass=root
+db.schema=zyme
 db.serverTimezone=Europe/Kiev
 db.connectTimeout=10000
 db.maxReconnects=3
-db.user=root
-db.pass=root
 db.max_trans_id=1
 env.not_prod=true
 

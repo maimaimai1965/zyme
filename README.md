@@ -10,6 +10,7 @@
 * REST - [*RestLibApplication*](#restlibapplication)
 * Vaadin - [*VaadinSimpleApplication*](#vaadinsimpleapplication)
 * [Vaadin 8](vaadin8/README.md)
+* [Vaadin 23](vaadin23/README.md)
 
 ## Организация и структура проекта *zyme*
 

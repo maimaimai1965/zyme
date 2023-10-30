@@ -5,19 +5,40 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8f73b445-5201-4244-94c7-bed9e6b359c9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/vaadin8/vaadin8-app/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vaadin8/vaadin8-app/vaadin8-app-simple/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vaadin8/vaadin8-app/vaadin8-app-simple/src/main/java/ua/mai/zyme/vaadin8/boot/Vaadin8SimpleApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vaadin8/vaadin8-app/vaadin8-app-simple/src/main/java/ua/mai/zyme/vaadin8/boot/config/Vaadin8UiConfiguration.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vaadin8/vaadin8-app/vaadin8-app-simple/src/main/resources/config/application-dev.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vaadin8/vaadin8-app/vaadin8-app-simple/src/main/resources/config/application-prod.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vaadin8/vaadin8-app/vaadin8-app-simple/src/main/resources/config/application.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vaadin8/vaadin8-app/vaadin8-app-simple/src/main/resources/logback.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vaadin8/vaadin8-app/vaadin8-app-simple/src/test/resources/config/application-dev.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vaadin8/vaadin8-app/vaadin8-app-simple/src/test/resources/config/application-prod.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vaadin8/vaadin8-app/vaadin8-app-simple/src/test/resources/config/application.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vaadin8/vaadin8-app/vaadin8-app-simple/src/test/resources/logback.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/db/mysql/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/db/mysql/mysql8/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/db/mysql/mysql8/docker/docker-compose.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/goals/db/db-depl/database_zyme/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/goals/db/db-depl/database_zyme/_install_zyme02_with_env.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/goals/db/db-depl/database_zyme/_install_zyme_with_env.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/vaadin23/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/goals/db/db-depl/database_zyme/.dbsetup.properties.sample" beforeDir="false" afterPath="$PROJECT_DIR$/goals/db/db-depl/database_zyme/.dbsetup.properties.sample" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/goals/db/db-depl/database_zyme/_install.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/goals/db/db-depl/database_zyme/_install_with_env.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/goals/db/db-depl/database_zyme/dbsetup.xml" beforeDir="false" afterPath="$PROJECT_DIR$/goals/db/db-depl/database_zyme/dbsetup.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/goals/db/db-depl/database_zyme/dbsetup_direct.properties" beforeDir="false" afterPath="$PROJECT_DIR$/goals/db/db-depl/database_zyme/dbsetup_zyme.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/goals/db/db-depl/database_zyme/dbsetup_env.properties" beforeDir="false" afterPath="$PROJECT_DIR$/goals/db/db-depl/database_zyme/dbsetup_env.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/goals/db/db-depl/database_zyme/dbsetup_url.properties" beforeDir="false" afterPath="$PROJECT_DIR$/goals/db/db-depl/database_zyme/dbsetup_url.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/goals/db/db-depl/database_zyme/initial_data_zo.sql" beforeDir="false" afterPath="$PROJECT_DIR$/goals/db/db-depl/database_zyme/initial_data_zo.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/goals/db/db-depl/database_zyme/mysql_user.sql" beforeDir="false" afterPath="$PROJECT_DIR$/goals/db/db-depl/database_zyme/mysql_user.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/goals/db/db-depl/database_zyme02/.dbsetup.properties.sample" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/goals/db/db-depl/database_zyme02/_install.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/goals/db/db-depl/database_zyme02/_install_with_env.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/goals/db/db-depl/database_zyme02/dbsetup.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/goals/db/db-depl/database_zyme02/dbsetup_direct.properties" beforeDir="false" afterPath="$PROJECT_DIR$/goals/db/db-depl/database_zyme/dbsetup_zyme02.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/goals/db/db-depl/database_zyme02/dbsetup_env.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/goals/db/db-depl/database_zyme02/dbsetup_url.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/goals/db/db-depl/database_zyme02/ddl_aa.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/goals/db/db-depl/database_zyme02/initial_data_aa.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/goals/db/db-depl/database_zyme02/mysql_user.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/goals/db/db-modules/db-jooq/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/goals/db/db-modules/db-jooq/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/goals/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/goals/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vaadin8/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/vaadin8/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vaadin8/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/vaadin8/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vaadin8/vaadin8-modules/vaadin8-theme/src/main/resources/VAADIN/themes/trt/addons.scss" beforeDir="false" afterPath="$PROJECT_DIR$/vaadin8/vaadin8-modules/vaadin8-theme/src/main/resources/VAADIN/themes/trt/addons.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,12 +118,6 @@
         <option name="threads" value="8" />
       </MavenGeneralSettings>
     </option>
-    <option name="disabledProfiles">
-      <list>
-        <option value="nexus" />
-        <option value="prod" />
-      </list>
-    </option>
   </component>
   <component name="MavenRunner">
     <option name="skipTests" value="true" />
@@ -130,18 +145,18 @@
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
-    "jdk.selected.JAVA_MODULE": "temurin-20",
+    "jdk.selected.JAVA_MODULE": "temurin-21",
     "last_directory_selection": "C:/work/idea_home/zyme/goals/db/modules/transaction/src/main/java/ua/mai/zyme/db/transaction",
-    "last_opened_file_path": "C:/work/idea_home/zyme/pom.xml",
+    "last_opened_file_path": "C:/work/idea_home/zyme/goals/db/db-depl/database_zyme",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
+    "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.26035503",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "settings.editor.selected.configurable": "profiler.jvm",
     "spring.configuration.checksum": "11c74592a7cb64b5a61826c5c9ca31d3",
     "vue.rearranger.settings.migration": "true"
   },
@@ -160,11 +175,11 @@
       <recent name="ua.mai.zyme.security.config" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\work\idea_home\zyme\goals\db\db-depl\database_zyme" />
+      <recent name="C:\work\idea_home\zyme\db\mysql\mysql8" />
+      <recent name="C:\work\idea_home\zyme\db\mysql" />
+      <recent name="C:\work\idea_home\zyme\vaadin23" />
       <recent name="C:\work\idea_home\zyme" />
-      <recent name="C:\work\idea_home\zyme\vaadin8" />
-      <recent name="C:\work\idea_home\zyme\vaadin8\vaadin8-modules" />
-      <recent name="C:\work\idea_home\zyme\goals\vaadin8\vaadin8-modules\vaadin8-ui\src\main\java\ua\mai\zyme\vaadin8\ui\app" />
-      <recent name="C:\work\idea_home\zyme\goals" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\work\idea_home\zyme\goals\graphql\graphql-modules\graphql-zoo\src\main" />
@@ -194,7 +209,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.Vaadin23SimpleApplication (dev 8080)">
+  <component name="RunManager" selected="Docker.docker/docker-compose.yaml: Compose Deployment">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="goals" />
       <method v="2">
@@ -207,38 +222,6 @@
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
-    </configuration>
-    <configuration name="goals [clean:clean]" type="MavenRunConfiguration" factoryName="Maven" temporary="true">
-      <MavenSettings>
-        <option name="myGeneralSettings" />
-        <option name="myRunnerSettings" />
-        <option name="myRunnerParameters">
-          <MavenRunnerParameters>
-            <option name="cmdOptions" />
-            <option name="profiles">
-              <set />
-            </option>
-            <option name="goals">
-              <list>
-                <option value="clean:clean" />
-              </list>
-            </option>
-            <option name="pomFileName" value="pom.xml" />
-            <option name="profilesMap">
-              <map>
-                <entry key="nexus" value="true" />
-                <entry key="prod" value="false" />
-              </map>
-            </option>
-            <option name="projectsCmdOptionValues">
-              <list />
-            </option>
-            <option name="resolveToWorkspace" value="false" />
-            <option name="workingDirPath" value="$PROJECT_DIR$/goals/vaadin" />
-          </MavenRunnerParameters>
-        </option>
-      </MavenSettings>
-      <method v="2" />
     </configuration>
     <configuration name="vaadin8-widgets [clean:clean]" type="MavenRunConfiguration" factoryName="Maven" temporary="true">
       <MavenSettings>
@@ -524,9 +507,23 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
+      <deployment type="docker-compose.yml">
+        <settings />
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="docker/docker-compose.yaml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="sourceFilePath" value="db/mysql/mysql8/docker/docker-compose.yaml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
     <list>
+      <item itemvalue="Docker.docker/docker-compose.yaml: Compose Deployment" />
       <item itemvalue="Maven.vaadin8-widgets [vaadin:compile]" />
-      <item itemvalue="Maven.goals [clean:clean]" />
       <item itemvalue="Maven.vaadin8-widgets [clean:clean]" />
       <item itemvalue="Maven.vaadin8-widgets [compiler:help]" />
       <item itemvalue="Maven.vaadin8-widgets [jar:jar]" />
@@ -551,11 +548,11 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Docker.docker/docker-compose.yaml: Compose Deployment" />
         <item itemvalue="Maven.vaadin8-widgets [vaadin:compile]" />
         <item itemvalue="Maven.vaadin8-widgets [jar:jar]" />
         <item itemvalue="Maven.vaadin8-widgets [compiler:help]" />
         <item itemvalue="Maven.vaadin8-widgets [clean:clean]" />
-        <item itemvalue="Maven.goals [clean:clean]" />
       </list>
     </recent_temporary>
   </component>
@@ -674,6 +671,13 @@
       <workItem from="1697446207109" duration="3240000" />
       <workItem from="1698040817514" duration="2589000" />
       <workItem from="1698049985200" duration="3337000" />
+      <workItem from="1698053662103" duration="3334000" />
+      <workItem from="1698125605116" duration="697000" />
+      <workItem from="1698234911544" duration="3767000" />
+      <workItem from="1698298517774" duration="113000" />
+      <workItem from="1698312643355" duration="2958000" />
+      <workItem from="1698384841248" duration="598000" />
+      <workItem from="1698656559749" duration="13515000" />
     </task>
     <task id="LOCAL-00001" summary="add hikaryDefaultDatasource">
       <created>1671739261660</created>

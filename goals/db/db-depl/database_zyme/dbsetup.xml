@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="zyme-ng-db" default="help">
+<project name="zyme-db" default="help">
 
     <property environment="env"/>
     <!--property name="app.schema" value="${env.APP_SCHEMA}"/-->
 <!--    <property file="../etc/ai.properties"/>-->
 <!--    <property file="../etc/dbsetup_.properties"/>-->
 
-    <!--  Установка свойств в файле:  -->
-    <property file="dbsetup_direct.properties"/>
+
     <!--  Установка свойств по переменным окружения:  -->
-<!--    <property file="dbsetup_env.properties"/>-->
+    <property file="dbsetup_env.properties"/>
+    <!--  Установка свойств прямо в файле:  -->
+<!--    <property file="dbsetup_zyme.properties"/>-->
+<!--    <property file="dbsetup_zyme02.properties"/>-->
 
     <property file="dbsetup_url.properties"/>
-    <property name="db.dir" value="/depl/database"/>
+    <property name="db.dir" value="/depl/database_zyme"/>
 	
 	<path id="jdbc">
 		<pathelement location = "${db.driver.cp}"/>
@@ -20,8 +22,6 @@
 	
     <target name="help">
         <echo>
-            ZYME.DB000.SW (Database) DB Utils
-
             Uses:
             ant [properties] commands
 
@@ -40,9 +40,13 @@
     </target>
 
     <target name="clean">
+        <echo>
+            drop schema if exists ${db.schema};
+            create schema if not exists ${db.schema} default character set ${db.encoding} collate ${db.collation};
+        </echo>
         <sql classpathref="jdbc" driver="${db.driver}" encoding="${db.script.encoding}" url="${db.url.root}" userid="${db.user}" password="${db.pass}">
-			drop schema if exists ${db.database};
-			create schema if not exists ${db.database} default character set ${db.encoding} collate ${db.collation};
+			drop schema if exists ${db.schema};
+			create schema if not exists ${db.schema} default character set ${db.encoding} collate ${db.collation};
 		</sql>
     </target>
 
@@ -55,15 +59,15 @@
 
     <target name="users">
         <sql classpathref="jdbc" driver="${db.driver}" encoding="${db.script.encoding}" url="${db.url.root}" userid="${db.user}" password="${db.pass}">
-            create user if not exists '${db.zyme.user}'@'%' identified by '${db.zyme.pass}';
-            grant select, insert, update, delete, execute on ${db.database}.* to '${db.zyme.user}'@'%';
+            create user if not exists '${db.schema.user}'@'%' identified by '${db.schema.pass}';
+            grant select, insert, update, delete, execute on ${db.schema}.* to '${db.schema.user}'@'%';
         </sql>
     </target>
 <!--    <target if="${env.not_prod}" name="users">-->
 <!--        <sql classpathref="jdbc" driver="${db.driver}" encoding="${db.script.encoding}" url="${db.url.root}" userid="${db.user}" password="${db.pass}">-->
-<!--            create user if not exists '${db.zyme.user}'@'%' identified by '${db.zyme.pass}';-->
-<!--            grant select, insert, update, delete, execute on ${db.database}.* to '${db.zyme.user}'@'%';-->
-<!--            grant all on jrs.* to '${db.zyme.user}'@'%';-->
+<!--            create user if not exists '${db.schema.user}'@'%' identified by '${db.schema.pass}';-->
+<!--            grant select, insert, update, delete, execute on ${db.schema}.* to '${db.schema.user}'@'%';-->
+<!--            grant all on jrs.* to '${db.schema.user}'@'%';-->
 <!--            &#45;&#45;-->
 <!--            create user if not exists 'repl'@'%' identified by '2master-4Repl';-->
 <!--            grant replication slave on *.* to 'repl'@'%';-->
@@ -73,7 +77,7 @@
 <!--            grant usage, replication client, process, show databases, show view on *.* to 'zabb_monitor'@'%';-->
 <!--            &#45;&#45;-->
 <!--            create user if not exists 'qradar'@'%' identified by '2au-QRadar';-->
-<!--            grant select on ${db.database}.v_au_audit_log to 'qradar'@'%';-->
+<!--            grant select on ${db.schema}.v_au_audit_log to 'qradar'@'%';-->
 <!--            &#45;&#45;-->
 <!--            create user if not exists 'haproxy'@'%';-->
 <!--            flush privileges;-->

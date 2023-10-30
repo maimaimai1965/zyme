@@ -21,6 +21,7 @@
     <modules>
         <module>vaadin8-app</module>
         <module>vaadin8-modules</module>
+<!--        <module>vaadin8-widgets</module>-->
     </modules>
 
     <properties>

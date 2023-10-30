@@ -1,0 +1,26 @@
+version: '3.7'
+
+# Need to create network for work docker stack:
+# $ docker network create --attachable --driver overlay zyme-net
+
+services:
+  zyme-mysql8:
+    image: mysql:8
+    command: --default-authentication-plugin=mysql_native_password --secure-file-priv=/var/lib/mysql-files --lower-case-table-names=1 --binlog-expire-logs-seconds=86400
+    ports:
+      - 3316:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - TZ=Europe/Kiev
+    volumes:
+      - zyme-mysql8-data:/var/lib/mysql
+#      - ./zyme-mysql8-files:/var/lib/mysql-files
+    restart: always
+    networks:
+      - zyme-net
+
+volumes:
+  zyme-mysql8-data:
+networks:
+  zyme-net:
+    external: true
