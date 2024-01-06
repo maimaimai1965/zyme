@@ -10,7 +10,7 @@ public record Book (
         String name,
         List<Long> authorIds,
         List<Author> authors,
-        int pageCount,
+        Integer pageCount,
         Long publisherId,
         Publisher publisher,
         Locale lang
@@ -18,7 +18,7 @@ public record Book (
     static public Book fromDto(BookDto dto){
         return dto != null
               ? new Book(dto.id(), dto.name(), dto.authorIds(), null, dto.pageCount(), dto.publisherId(), null,
-                         Locale.of(dto.lang()))
+                         dto.lang() != null ? Locale.of(dto.lang()) : null)
               : null;
     }
 

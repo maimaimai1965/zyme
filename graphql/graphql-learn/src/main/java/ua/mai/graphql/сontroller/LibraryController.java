@@ -2,13 +2,12 @@ package ua.mai.graphql.сontroller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
+import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.graphql.data.method.annotation.SchemaMapping;
 import org.springframework.stereotype.Controller;
 import ua.mai.graphql.service.LibraryService;
-import ua.mai.library.model.Author;
-import ua.mai.library.model.Book;
-import ua.mai.library.model.Publisher;
+import ua.mai.library.model.*;
 
 import java.util.List;
 
@@ -45,6 +44,10 @@ public class LibraryController {
         return libraryService.getBooksByIds(ids);
     }
 
+    @MutationMapping
+    public BookPayload bookCreate(@Argument BookCreateInput input) {
+        return new BookPayload(libraryService.bookCreate(input));
+    }
 
     // ----- Author ----
     @QueryMapping

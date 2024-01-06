@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ua.mai.library.model.Author;
 import ua.mai.library.model.Book;
+import ua.mai.library.model.BookCreateInput;
 import ua.mai.library.model.Publisher;
 import ua.mai.library.repository.LibraryRepository;
 
@@ -31,6 +32,12 @@ public class LibraryService {
                     .map(dto -> Book.fromDto(dto))
                     .toList()
               : null;
+    }
+
+    public Book bookCreate(BookCreateInput input) {
+        return input != null
+                ? Book.fromDto(libraryRepository.bookDtoCreate(input))
+                : null;
     }
 
 

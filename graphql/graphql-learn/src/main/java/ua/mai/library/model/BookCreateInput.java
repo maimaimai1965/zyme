@@ -1,13 +1,16 @@
-package ua.mai.library.dto;
+package ua.mai.library.model;
+
+import ua.mai.library.dto.BookDto;
 
 import java.util.List;
+import java.util.Locale;
 
-public record BookDto(
+public record BookCreateInput (
         Long id,
         String name,
         List<Long> authorIds,
         Integer pageCount,
         Long publisherId,
-        String lang
+        Locale lang
 ) {
 }

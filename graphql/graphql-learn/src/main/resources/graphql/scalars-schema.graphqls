@@ -75,18 +75,7 @@ type Query {
     publishers: [Publisher]
 }
 
-
-#type Query {
-#    pets: [Pet]
-#    bookById(id: ID): Book
-#    books: [Book]
-#    scalarTests: [ScalarTest]
-#}
-
-#type Pet {
-#    name: String
-#    color: String
-#    birthday: Date
-#}
-
+type Mutation {
+    bookCreate(input: BookCreateInput): BookPayLoad
+}
 

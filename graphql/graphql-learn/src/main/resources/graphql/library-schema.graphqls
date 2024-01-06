@@ -5,8 +5,8 @@ enum Gender {
 }
 
 type Book {
-    id: ID
-    name: String
+    id: ID!
+    name: String!
     authorIds: [ID]
     authors: [Author]
     pageCount: Int
@@ -16,13 +16,46 @@ type Book {
 }
 
 type Author {
-    id: ID
-    firstName: String
+    id: ID!
+    firstName: String!
     lastName: String
     gender: Gender
 }
 
 type Publisher {
-    id: ID
-    name: String
+    id: ID!
+    name: String!
 }
+
+input bookCreateInput {
+    id: ID
+    name: String!
+    authorIds: [ID]
+    pageCount: Int
+    publisherId: ID
+    lang: Locale
+}
+
+type BookPayLoad {
+    book: Book
+}
+
+input BookCreateInput{
+    id: ID
+    name: String!
+    authorIds: [ID]
+    pageCount: Int
+    publisherId: ID
+    lang: Locale
+}
+
+#fragment bookDetails on Book {
+#    id
+#    name
+#}
+#
+#fragment bookAuthor on Author {
+#    id
+#    firstName
+#}
+
