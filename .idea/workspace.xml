@@ -5,40 +5,38 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8f73b445-5201-4244-94c7-bed9e6b359c9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/db/mysql/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/db/mysql/mysql8/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/db/mysql/mysql8/docker/docker-compose.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/goals/db/db-depl/database_zyme/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/goals/db/db-depl/database_zyme/_install_zyme02_with_env.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/goals/db/db-depl/database_zyme/_install_zyme_with_env.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/vaadin23/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphql/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphql/graphql-learn/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphql/graphql-learn/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphql/graphql-learn/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphql/graphql-learn/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphql/graphql-learn/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphql/graphql-learn/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphql/graphql-learn/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/graphql/boot/GraphqlLearnApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/graphql/config/GraphQlConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/graphql/model/ScalarInGraphQL.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/graphql/service/LibraryService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/graphql/сontroller/LibraryController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/graphql/сontroller/ScalarInGraphQLController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/library/dto/AuthorDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/library/dto/BookDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/library/dto/PublisherDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/library/model/Author.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/library/model/Book.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/library/model/Gender.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/library/model/Publisher.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/library/repository/LibraryRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphql/graphql-learn/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphql/graphql-learn/src/main/resources/application_.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphql/graphql-learn/src/main/resources/graphql/graphql.config.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphql/graphql-learn/src/main/resources/graphql/library-schema.graphqls" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphql/graphql-learn/src/main/resources/graphql/scalars-schema.graphqls" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphql/graphql-learn/src/test/java/ua/mai/graphql/learn/GraphqlLearnApplicationTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/goals/db/db-depl/database_zyme/.dbsetup.properties.sample" beforeDir="false" afterPath="$PROJECT_DIR$/goals/db/db-depl/database_zyme/.dbsetup.properties.sample" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/goals/db/db-depl/database_zyme/_install.bat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/goals/db/db-depl/database_zyme/_install_with_env.bat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/goals/db/db-depl/database_zyme/dbsetup.xml" beforeDir="false" afterPath="$PROJECT_DIR$/goals/db/db-depl/database_zyme/dbsetup.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/goals/db/db-depl/database_zyme/dbsetup_direct.properties" beforeDir="false" afterPath="$PROJECT_DIR$/goals/db/db-depl/database_zyme/dbsetup_zyme.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/goals/db/db-depl/database_zyme/dbsetup_env.properties" beforeDir="false" afterPath="$PROJECT_DIR$/goals/db/db-depl/database_zyme/dbsetup_env.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/goals/db/db-depl/database_zyme/dbsetup_url.properties" beforeDir="false" afterPath="$PROJECT_DIR$/goals/db/db-depl/database_zyme/dbsetup_url.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/goals/db/db-depl/database_zyme/initial_data_zo.sql" beforeDir="false" afterPath="$PROJECT_DIR$/goals/db/db-depl/database_zyme/initial_data_zo.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/goals/db/db-depl/database_zyme/mysql_user.sql" beforeDir="false" afterPath="$PROJECT_DIR$/goals/db/db-depl/database_zyme/mysql_user.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/goals/db/db-depl/database_zyme02/.dbsetup.properties.sample" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/goals/db/db-depl/database_zyme02/_install.bat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/goals/db/db-depl/database_zyme02/_install_with_env.bat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/goals/db/db-depl/database_zyme02/dbsetup.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/goals/db/db-depl/database_zyme02/dbsetup_direct.properties" beforeDir="false" afterPath="$PROJECT_DIR$/goals/db/db-depl/database_zyme/dbsetup_zyme02.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/goals/db/db-depl/database_zyme02/dbsetup_env.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/goals/db/db-depl/database_zyme02/dbsetup_url.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/goals/db/db-depl/database_zyme02/ddl_aa.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/goals/db/db-depl/database_zyme02/initial_data_aa.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/goals/db/db-depl/database_zyme02/mysql_user.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/goals/db/db-modules/db-jooq/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/goals/db/db-modules/db-jooq/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/goals/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/goals/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/mysql/mysql8/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/db/mysql/mysql8/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/goals/db/db-depl/database_zyme/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/goals/db/db-depl/database_zyme/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vaadin8/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/vaadin8/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vaadin8/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/vaadin8/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vaadin8/vaadin8-modules/vaadin8-theme/src/main/resources/VAADIN/themes/trt/addons.scss" beforeDir="false" afterPath="$PROJECT_DIR$/vaadin8/vaadin8-modules/vaadin8-theme/src/main/resources/VAADIN/themes/trt/addons.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,18 +47,16 @@
     <projectState path="$PROJECT_DIR$/goals/vaadin">
       <ProjectState />
     </projectState>
+    <projectState path="$PROJECT_DIR$/thread">
+      <ProjectState />
+    </projectState>
   </component>
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
         <projects_view>
           <tree_state>
-            <expand>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="vaadin" type="f1a62948:ProjectNode" />
-              </path>
-            </expand>
+            <expand />
             <select />
           </tree_state>
         </projects_view>
@@ -71,6 +67,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -108,6 +105,9 @@
   <component name="HierarchyBrowserManager">
     <option name="SORT_ALPHABETICALLY" value="true" />
   </component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -131,41 +131,48 @@
   <component name="ProjectId" id="2J7jfFU3yX7Ji7ZG1ccB1nhYZVf" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
-    <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "jdk.selected.JAVA_MODULE": "temurin-21",
-    "last_directory_selection": "C:/work/idea_home/zyme/goals/db/modules/transaction/src/main/java/ua/mai/zyme/db/transaction",
-    "last_opened_file_path": "C:/work/idea_home/zyme/goals/db/db-depl/database_zyme",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.26035503",
-    "settings.editor.selected.configurable": "profiler.jvm",
-    "spring.configuration.checksum": "11c74592a7cb64b5a61826c5c9ca31d3",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Maven.graphql-learn [clean,install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.security [clean,install].executor&quot;: &quot;Run&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;Spring Boot.GraphqlLearnApplication (8203).executor&quot;: &quot;Debug&quot;,
+    &quot;Spring Boot.GraphqlLearnApplication (dev 8202).executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.GraphqlLearnApplication.executor&quot;: &quot;Run&quot;,
+    &quot;StatusDashboardGroupingRule&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;temurin-21&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_directory_selection&quot;: &quot;C:/work/idea_home/zyme/goals/db/modules/transaction/src/main/java/ua/mai/zyme/db/transaction&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/work/idea_home/zyme/graphql/graphql-learn/src/main/resources/graphql&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.26035503&quot;,
+    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.importing&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;11c74592a7cb64b5a61826c5c9ca31d3&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
@@ -175,11 +182,11 @@
       <recent name="ua.mai.zyme.security.config" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\work\idea_home\zyme\goals\db\db-depl\database_zyme" />
+      <recent name="C:\work\idea_home\zyme\graphql\graphql-learn\src\main\resources\graphql" />
+      <recent name="C:\work\idea_home\zyme\graphql" />
       <recent name="C:\work\idea_home\zyme\db\mysql\mysql8" />
+      <recent name="C:\work\idea_home\zyme\goals\db\db-depl\database_zyme" />
       <recent name="C:\work\idea_home\zyme\db\mysql" />
-      <recent name="C:\work\idea_home\zyme\vaadin23" />
-      <recent name="C:\work\idea_home\zyme" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\work\idea_home\zyme\goals\graphql\graphql-modules\graphql-zoo\src\main" />
@@ -194,22 +201,31 @@
       <recent name="ua.mai.zyme.db.transaction" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="ua.mai.zyme.vaadin8.ui.platform" />
-      <recent name="ua.mai.zyme.vaadin8.ui.filter" />
-      <recent name="ua.mai.zyme.vaadin8.ui.entity" />
-      <recent name="ua.mai.zyme.vaadin8.ui" />
-      <recent name="ua.mai.zyme.vaadin8.boot.config" />
+      <recent name="ua.mai.library.dto" />
+      <recent name="ua.mai.library.model" />
+      <recent name="ua.mai.library.repo" />
+      <recent name="ua.mai.graphql.сontroller" />
+      <recent name="ua.mai.graphql.service" />
     </key>
   </component>
   <component name="RunDashboard">
     <option name="configurationTypes">
       <set>
         <option value="Application" />
+        <option value="MicronautRunConfigurationType" />
+        <option value="QuarkusRunConfigurationType" />
         <option value="SpringBootApplicationConfigurationType" />
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Docker.docker/docker-compose.yaml: Compose Deployment">
+  <component name="RunManager" selected="Application.Test">
+    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Test" />
+      <module name="db-app-general" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <module name="goals" />
       <method v="2">
@@ -222,38 +238,6 @@
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
-    </configuration>
-    <configuration name="vaadin8-widgets [clean:clean]" type="MavenRunConfiguration" factoryName="Maven" temporary="true">
-      <MavenSettings>
-        <option name="myGeneralSettings" />
-        <option name="myRunnerSettings" />
-        <option name="myRunnerParameters">
-          <MavenRunnerParameters>
-            <option name="cmdOptions" />
-            <option name="profiles">
-              <set />
-            </option>
-            <option name="goals">
-              <list>
-                <option value="clean:clean" />
-              </list>
-            </option>
-            <option name="pomFileName" value="pom.xml" />
-            <option name="profilesMap">
-              <map>
-                <entry key="nexus" value="true" />
-                <entry key="prod" value="false" />
-              </map>
-            </option>
-            <option name="projectsCmdOptionValues">
-              <list />
-            </option>
-            <option name="resolveToWorkspace" value="false" />
-            <option name="workingDirPath" value="$PROJECT_DIR$/goals/vaadin8-widgets" />
-          </MavenRunnerParameters>
-        </option>
-      </MavenSettings>
-      <method v="2" />
     </configuration>
     <configuration name="vaadin8-widgets [compiler:help]" type="MavenRunConfiguration" factoryName="Maven" temporary="true">
       <MavenSettings>
@@ -270,6 +254,7 @@
                 <option value="compiler:help" />
               </list>
             </option>
+            <option name="multimoduleDir" />
             <option name="pomFileName" value="pom.xml" />
             <option name="profilesMap">
               <map>
@@ -302,6 +287,7 @@
                 <option value="jar:jar" />
               </list>
             </option>
+            <option name="multimoduleDir" />
             <option name="pomFileName" value="pom.xml" />
             <option name="profilesMap">
               <map>
@@ -334,6 +320,7 @@
                 <option value="vaadin:compile" />
               </list>
             </option>
+            <option name="multimoduleDir" />
             <option name="pomFileName" value="pom.xml" />
             <option name="profilesMap">
               <map>
@@ -383,6 +370,13 @@
       <module name="db-app-general" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="ua.mai.zyme.db.boot.DbTransactionApplication" />
       <option name="VM_PARAMETERS" value="-Ddebug -Dspring.profiles.active=dev" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GraphqlLearnApplication (8203)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" folderName="graphql">
+      <module name="graphql-learn" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="ua.mai.graphql.boot.GraphqlLearnApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -522,15 +516,16 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Application.Test" />
       <item itemvalue="Docker.docker/docker-compose.yaml: Compose Deployment" />
       <item itemvalue="Maven.vaadin8-widgets [vaadin:compile]" />
-      <item itemvalue="Maven.vaadin8-widgets [clean:clean]" />
       <item itemvalue="Maven.vaadin8-widgets [compiler:help]" />
       <item itemvalue="Maven.vaadin8-widgets [jar:jar]" />
       <item itemvalue="Spring Boot.DbH2JdbcTemplateApplication (dev 8102)" />
       <item itemvalue="Spring Boot.DbTransactionApplication (dev 8101)" />
       <item itemvalue="Spring Boot.DbJooqApplication (dev 8101)" />
       <item itemvalue="Spring Boot.DbJdbcTemplateApplication (dev 8101)" />
+      <item itemvalue="Spring Boot.GraphqlLearnApplication (8203)" />
       <item itemvalue="Spring Boot.GraphqlZooApplication (dev 8201)" />
       <item itemvalue="Spring Boot.GraphqlLearnApplication (dev 8202)" />
       <item itemvalue="Spring Boot.RestZooApplication (dev 8105)" />
@@ -548,11 +543,11 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Test" />
         <item itemvalue="Docker.docker/docker-compose.yaml: Compose Deployment" />
         <item itemvalue="Maven.vaadin8-widgets [vaadin:compile]" />
         <item itemvalue="Maven.vaadin8-widgets [jar:jar]" />
         <item itemvalue="Maven.vaadin8-widgets [compiler:help]" />
-        <item itemvalue="Maven.vaadin8-widgets [clean:clean]" />
       </list>
     </recent_temporary>
   </component>
@@ -677,7 +672,22 @@
       <workItem from="1698298517774" duration="113000" />
       <workItem from="1698312643355" duration="2958000" />
       <workItem from="1698384841248" duration="598000" />
-      <workItem from="1698656559749" duration="13515000" />
+      <workItem from="1698656559749" duration="13745000" />
+      <workItem from="1699259391359" duration="2375000" />
+      <workItem from="1699340260463" duration="93000" />
+      <workItem from="1700294303126" duration="1467000" />
+      <workItem from="1700549799830" duration="630000" />
+      <workItem from="1700900751458" duration="7701000" />
+      <workItem from="1703405457344" duration="1031000" />
+      <workItem from="1703406527226" duration="139000" />
+      <workItem from="1703406677346" duration="391000" />
+      <workItem from="1703407090855" duration="1557000" />
+      <workItem from="1703485088385" duration="268000" />
+      <workItem from="1703753734606" duration="32878000" />
+      <workItem from="1703859345319" duration="21430000" />
+      <workItem from="1704015579411" duration="12087000" />
+      <workItem from="1704361184137" duration="665000" />
+      <workItem from="1704535347300" duration="1578000" />
     </task>
     <task id="LOCAL-00001" summary="add hikaryDefaultDatasource">
       <created>1671739261660</created>
@@ -952,7 +962,15 @@
       <option name="project" value="LOCAL" />
       <updated>1698052648080</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="add mysql8 in docker, refactoring database_zyme">
+      <option name="closed" value="true" />
+      <created>1698673365636</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1698673365636</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -991,7 +1009,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="add rest goal" />
     <MESSAGE value="fix" />
     <MESSAGE value="adding functionality" />
     <MESSAGE value="add JdbcTemplate services" />
@@ -1016,7 +1033,8 @@
     <MESSAGE value="add delete old vaadin8 modules" />
     <MESSAGE value="java 20 -&gt; 21" />
     <MESSAGE value="initial commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="initial commit" />
+    <MESSAGE value="add mysql8 in docker, refactoring database_zyme" />
+    <option name="LAST_COMMIT_MESSAGE" value="add mysql8 in docker, refactoring database_zyme" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1900,6 +1918,16 @@
           <url>file://$PROJECT_DIR$/vaadin8/vaadin8-modules/vaadin8-ui/src/main/java/ua/mai/zyme/vaadin8/ui/entity/EntityListComponent.java</url>
           <line>31</line>
           <option name="timeStamp" value="599" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/graphql/сontroller/ScalarInGraphQLController.java</url>
+          <line>20</line>
+          <option name="timeStamp" value="600" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/library/repository/LibraryRepository.java</url>
+          <line>20</line>
+          <option name="timeStamp" value="601" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-field">
           <url>file://$PROJECT_DIR$/goals/graphql/graphql-modules/graphql-zoo/src/main/java/ua/mai/zyme/graphql/zoo/controllers/BookController.java</url>

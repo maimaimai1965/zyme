@@ -1,0 +1,28 @@
+
+enum Gender {
+    MALE
+    FEMALE
+}
+
+type Book {
+    id: ID
+    name: String
+    authorIds: [ID]
+    authors: [Author]
+    pageCount: Int
+    publisherId: ID
+    publisher: Publisher
+    lang: Locale
+}
+
+type Author {
+    id: ID
+    firstName: String
+    lastName: String
+    gender: Gender
+}
+
+type Publisher {
+    id: ID
+    name: String
+}

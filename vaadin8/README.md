@@ -17,7 +17,7 @@
 ## Сборка и запуск проекта
 
 * *clean/install* модуля *vaadin8-widgets*.<br> 
-  Если изменений в этом модуле нет, то при повторной сборке проекта выполнять этот этап не нужно (widgetset
+  Если **изменений в этом модуле нет**, то при повторной сборке проекта выполнять этот этап не нужно (widgetset
   не изменяется).   
 * *clean/install* всего проекта *vaadin8*.
 * запускаем приложение [Vaadin8SimpleApplication.java](#vaadin8-app\vaadin8-app-simple\src\main\java\ua\mai\zyme\vaadin8\boot\Vaadin8SimpleApplication.java).

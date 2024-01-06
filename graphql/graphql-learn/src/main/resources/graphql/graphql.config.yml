@@ -1,0 +1,11 @@
+#schema: ./*.graphql
+
+#projects:
+#  default:
+#    schema: 'schema.graphql'
+#    documents: '**/*.graphql'
+#  bar:
+#    schema: './packages/bar/schema.graphql'
+
+#schema: schema.graphql
+#documents: '**/*.graphql'
