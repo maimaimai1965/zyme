@@ -1,6 +1,5 @@
 package ua.mai.library.model;
 
-import java.net.UnknownServiceException;
 import java.util.Arrays;
 import java.util.Optional;
 

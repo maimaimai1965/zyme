@@ -27,15 +27,7 @@ type Publisher {
     name: String!
 }
 
-input bookCreateInput {
-    id: ID
-    name: String!
-    authorIds: [ID]
-    pageCount: Int
-    publisherId: ID
-    lang: Locale
-}
-
+# Book -------------------------------
 type BookPayLoad {
     book: Book
 }
@@ -48,6 +40,45 @@ input BookCreateInput{
     publisherId: ID
     lang: Locale
 }
+
+input BookUpdateInput{
+    id: ID!
+    name: String
+    authorIds: [ID]
+    pageCount: Int
+    publisherId: ID
+    lang: Locale
+    #
+    nameSetNull: Boolean
+    authorIdsSetNull: Boolean
+    pageCountSetNull: Boolean
+    publisherIdSetNull: Boolean
+    langSetNull: Boolean
+}
+
+# Author -------------------------------
+type AuthorPayLoad {
+    author: Author
+}
+
+input AuthorCreateInput {
+    id: ID
+    firstName: String!
+    lastName: String
+    gender: Gender
+}
+
+input AuthorUpdateInput{
+    id: ID
+    firstName: String!
+    lastName: String
+    gender: Gender
+    #
+    firstNameSetNull: Boolean
+    lastNameSetNull: Boolean
+    genderSetNull: Boolean
+}
+
 
 #fragment bookDetails on Book {
 #    id

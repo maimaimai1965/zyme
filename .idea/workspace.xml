@@ -4,14 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8f73b445-5201-4244-94c7-bed9e6b359c9" name="Changes" comment="add module graphql-learn">
-      <change afterPath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/library/model/BookCreateInput.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/library/model/BookPayload.java" afterDir="false" />
+    <list default="true" id="8f73b445-5201-4244-94c7-bed9e6b359c9" name="Changes" comment="add mutation bookCreate">
+      <change afterPath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/graphql/config/CustomExceptionResolver.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/graphql/model/GraphqlUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/library/model/AuthorCreateInput.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/library/model/AuthorPayload.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/library/model/AuthorUpdateInput.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/library/model/BookUpdateInput.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/graphql/service/LibraryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/graphql/service/LibraryService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/graphql/сontroller/LibraryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/graphql/сontroller/LibraryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/library/dto/BookDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/library/dto/BookDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/library/model/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/library/model/Book.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/library/dto/AuthorDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/library/dto/AuthorDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/library/model/Gender.java" beforeDir="false" afterPath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/library/model/Gender.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/library/repository/LibraryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/library/repository/LibraryRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/graphql/graphql-learn/src/main/resources/graphql/library-schema.graphqls" beforeDir="false" afterPath="$PROJECT_DIR$/graphql/graphql-learn/src/main/resources/graphql/library-schema.graphqls" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/graphql/graphql-learn/src/main/resources/graphql/scalars-schema.graphqls" beforeDir="false" afterPath="$PROJECT_DIR$/graphql/graphql-learn/src/main/resources/graphql/scalars-schema.graphqls" afterDir="false" />
@@ -44,8 +48,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -665,7 +670,7 @@
       <workItem from="1703859345319" duration="21430000" />
       <workItem from="1704015579411" duration="12087000" />
       <workItem from="1704361184137" duration="665000" />
-      <workItem from="1704535347300" duration="10964000" />
+      <workItem from="1704535347300" duration="30394000" />
     </task>
     <task id="LOCAL-00001" summary="add hikaryDefaultDatasource">
       <created>1671739261660</created>
@@ -956,7 +961,15 @@
       <option name="project" value="LOCAL" />
       <updated>1704537199949</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="add mutation bookCreate">
+      <option name="closed" value="true" />
+      <created>1704548608622</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1704548608622</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -995,7 +1008,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="adding functionality" />
     <MESSAGE value="add JdbcTemplate services" />
     <MESSAGE value="add JdbcTemplate services 2" />
     <MESSAGE value="adding functionality in security goal" />
@@ -1020,7 +1032,8 @@
     <MESSAGE value="initial commit" />
     <MESSAGE value="add mysql8 in docker, refactoring database_zyme" />
     <MESSAGE value="add module graphql-learn" />
-    <option name="LAST_COMMIT_MESSAGE" value="add module graphql-learn" />
+    <MESSAGE value="add mutation bookCreate" />
+    <option name="LAST_COMMIT_MESSAGE" value="add mutation bookCreate" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1912,22 +1925,17 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/library/repository/LibraryRepository.java</url>
-          <line>61</line>
+          <line>65</line>
           <option name="timeStamp" value="603" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/graphql/service/LibraryService.java</url>
-          <line>37</line>
+          <line>36</line>
           <option name="timeStamp" value="604" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/graphql/сontroller/LibraryController.java</url>
-          <line>48</line>
-          <option name="timeStamp" value="605" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/library/repository/LibraryRepository.java</url>
-          <line>69</line>
+          <line>73</line>
           <option name="timeStamp" value="606" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -1939,6 +1947,51 @@
           <url>file://$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/library/model/Book.java</url>
           <line>19</line>
           <option name="timeStamp" value="608" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/graphql/сontroller/LibraryController.java</url>
+          <line>53</line>
+          <option name="timeStamp" value="609" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/graphql/service/LibraryService.java</url>
+          <line>42</line>
+          <option name="timeStamp" value="610" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/library/repository/LibraryRepository.java</url>
+          <line>80</line>
+          <option name="timeStamp" value="611" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/library/model/BookUpdateInput.java</url>
+          <line>24</line>
+          <option name="timeStamp" value="612" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/graphql/сontroller/LibraryController.java</url>
+          <line>75</line>
+          <option name="timeStamp" value="613" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/library/model/Gender.java</url>
+          <line>21</line>
+          <option name="timeStamp" value="614" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/graphql/service/LibraryService.java</url>
+          <line>70</line>
+          <option name="timeStamp" value="615" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/library/repository/LibraryRepository.java</url>
+          <line>117</line>
+          <option name="timeStamp" value="616" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/graphql/config/CustomExceptionResolver.java</url>
+          <line>14</line>
+          <option name="timeStamp" value="617" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-field">
           <url>file://$PROJECT_DIR$/goals/graphql/graphql-modules/graphql-zoo/src/main/java/ua/mai/zyme/graphql/zoo/controllers/BookController.java</url>

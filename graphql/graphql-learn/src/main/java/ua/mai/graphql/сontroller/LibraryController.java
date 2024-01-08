@@ -21,27 +21,27 @@ public class LibraryController {
     // ----- Book ----
     @SchemaMapping
     public List<Author> authors(Book book) {
-        return libraryService.getAuthorsByIds(book.authorIds());
+        return libraryService.authorsByIds(book.authorIds());
     }
 
     @SchemaMapping
     public Publisher publisher(Book book) {
-        return libraryService.getPublisherById(book.publisherId());
+        return libraryService.publisherById(book.publisherId());
     }
 
     @QueryMapping
     List<Book> books() {
-        return libraryService.getAllBooks();
+        return libraryService.books();
     }
 
     @QueryMapping
     public Book bookById(@Argument Long id) {
-        return libraryService.getBookById(id);
+        return libraryService.bookById(id);
     }
 
     @QueryMapping
     public List<Book> booksByIds(@Argument List<Long> ids) {
-        return libraryService.getBooksByIds(ids);
+        return libraryService.booksByIds(ids);
     }
 
     @MutationMapping
@@ -49,17 +49,43 @@ public class LibraryController {
         return new BookPayload(libraryService.bookCreate(input));
     }
 
+    @MutationMapping
+    public BookPayload bookUpdate(@Argument BookUpdateInput input) {
+        return new BookPayload(libraryService.bookUpdate(input));
+    }
+
+
     // ----- Author ----
     @QueryMapping
     List<Author> authors() {
-        return libraryService.getAllAuthors();
+        return libraryService.authors();
+    }
+
+    @QueryMapping
+    public Author authorById(@Argument Long id) {
+        return libraryService.authorById(id);
+    }
+
+    @QueryMapping
+    public List<Author> authorsByIds(@Argument List<Long> ids) {
+        return libraryService.authorsByIds(ids);
+    }
+
+    @MutationMapping
+    public AuthorPayload authorCreate(@Argument AuthorCreateInput input) {
+        return new AuthorPayload(libraryService.authorCreate(input));
+    }
+
+    @MutationMapping
+    public AuthorPayload authorUpdate(@Argument AuthorUpdateInput input) {
+        return new AuthorPayload(libraryService.authorUpdate(input));
     }
 
 
     // ----- Publisher ----
     @QueryMapping
     List<Publisher> publishers() {
-        return libraryService.getAllPublishers();
+        return libraryService.publishers();
     }
 
 }

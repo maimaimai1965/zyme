@@ -10,6 +10,5 @@ public record AuthorDto(
         String firstName,
         String lastName,
         Character gender
-
 ) {
 }

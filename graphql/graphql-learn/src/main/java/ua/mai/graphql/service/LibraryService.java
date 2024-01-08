@@ -2,10 +2,7 @@ package ua.mai.graphql.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ua.mai.library.model.Author;
-import ua.mai.library.model.Book;
-import ua.mai.library.model.BookCreateInput;
-import ua.mai.library.model.Publisher;
+import ua.mai.library.model.*;
 import ua.mai.library.repository.LibraryRepository;
 
 import java.util.List;
@@ -16,19 +13,21 @@ public class LibraryService {
     @Autowired
     private LibraryRepository libraryRepository;
 
-    public List<Book> getAllBooks() {
-        return libraryRepository.getAllBookDtos().stream()
+
+    // ----- Book ----
+    public List<Book> books() {
+        return libraryRepository.bookDtos().stream()
                 .map(dto -> Book.fromDto(dto))
                 .toList();
     }
 
-    public Book getBookById(Long id) {
-        return Book.fromDto(libraryRepository.getBookDtoById(id));
+    public Book bookById(Long id) {
+        return Book.fromDto(libraryRepository.bookDtoByIdGet(id));
     }
 
-    public List<Book> getBooksByIds(List<Long> ids) {
+    public List<Book> booksByIds(List<Long> ids) {
         return ids != null
-              ? libraryRepository.getBookDtosByIds(ids).stream()
+              ? libraryRepository.bookDtosByIdsGet(ids).stream()
                     .map(dto -> Book.fromDto(dto))
                     .toList()
               : null;
@@ -40,34 +39,54 @@ public class LibraryService {
                 : null;
     }
 
+    public Book bookUpdate(BookUpdateInput input) {
+        return input != null
+                ? Book.fromDto(libraryRepository.bookDtoUpdate(input))
+                : null;
+    }
 
-    public List<Author> getAllAuthors() {
-        return libraryRepository.getAllAuthorDtos().stream()
+
+    // ----- Author ----
+    public List<Author> authors() {
+        return libraryRepository.authorDtosGet().stream()
                 .map(dto -> Author.fromDto(dto))
                 .toList();
     }
 
-    public Author getAuthorById(Long id) {
-        return Author.fromDto(libraryRepository.getAuthorDtoById(id));
+    public Author authorById(Long id) {
+        return Author.fromDto(libraryRepository.authorDtoByIdGet(id));
     }
 
 
-    public List<Author> getAuthorsByIds(List<Long> ids) {
+    public List<Author> authorsByIds(List<Long> ids) {
         return ids != null
-              ? libraryRepository.getAuthorDtosByIds(ids).stream()
+              ? libraryRepository.authorDtosByIdsGet(ids).stream()
                     .map(dto -> Author.fromDto(dto))
                     .toList()
               : null;
     }
 
+    public Author authorCreate(AuthorCreateInput input) {
+        return input != null
+                ? Author.fromDto(libraryRepository.authorDtoCreate(input))
+                : null;
+    }
 
-    public List<Publisher> getAllPublishers() {
-        return libraryRepository.getAllPublisherDtos().stream()
+    public Author authorUpdate(AuthorUpdateInput input) {
+        return input != null
+                ? Author.fromDto(libraryRepository.authorDtoUpdate(input))
+                : null;
+    }
+
+
+    // ----- Publisher ----
+    public List<Publisher> publishers() {
+        return libraryRepository.publisherDtosGet().stream()
                 .map(dto -> Publisher.fromDto(dto))
                 .toList();
     }
-    public Publisher getPublisherById(Long id) {
-        return Publisher.fromDto(libraryRepository.getPublisherDtoById(id));
+    public Publisher publisherById(Long id) {
+        return Publisher.fromDto(libraryRepository.getPublisherDtoByIdGet(id));
     }
 
 }
