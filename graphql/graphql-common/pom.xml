@@ -11,10 +11,10 @@
     </parent>
 
     <groupId>ua.mai</groupId>
-    <artifactId>graphql-learn</artifactId>
+    <artifactId>graphql-common</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>graphql-learn</name>
-    <description>graphql :: learn</description>
+    <description>graphql :: common</description>
 
     <properties>
         <java.version>21</java.version>

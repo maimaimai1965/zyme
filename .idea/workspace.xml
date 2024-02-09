@@ -4,21 +4,50 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8f73b445-5201-4244-94c7-bed9e6b359c9" name="Changes" comment="add mutation bookCreate">
-      <change afterPath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/graphql/config/CustomExceptionResolver.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/graphql/model/GraphqlUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/library/model/AuthorCreateInput.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/library/model/AuthorPayload.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/library/model/AuthorUpdateInput.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/library/model/BookUpdateInput.java" afterDir="false" />
+    <list default="true" id="8f73b445-5201-4244-94c7-bed9e6b359c9" name="Changes" comment="add mutations, CustomExceptionResolver">
+      <change afterPath="$PROJECT_DIR$/graphql/graphql-common/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphql/graphql-common/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphql/graphql-common/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphql/graphql-common/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphql/graphql-common/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphql/graphql-common/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphql/graphql-common/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphql/graphql-common/src/main/java/ua/mai/graphql/boot/GraphqlLearnApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphql/graphql-common/src/main/java/ua/mai/graphql/config/CustomExceptionResolver.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphql/graphql-common/src/main/java/ua/mai/graphql/config/GraphQlConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphql/graphql-common/src/main/java/ua/mai/graphql/model/GraphqlUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphql/graphql-common/src/main/java/ua/mai/graphql/model/ScalarInGraphQL.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphql/graphql-common/src/main/java/ua/mai/graphql/service/LibraryService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphql/graphql-common/src/main/java/ua/mai/graphql/сontroller/LibraryController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphql/graphql-common/src/main/java/ua/mai/graphql/сontroller/ScalarInGraphQLController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphql/graphql-common/src/main/java/ua/mai/library/dto/AuthorDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphql/graphql-common/src/main/java/ua/mai/library/dto/BookDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphql/graphql-common/src/main/java/ua/mai/library/dto/PublisherDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphql/graphql-common/src/main/java/ua/mai/library/model/Author.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphql/graphql-common/src/main/java/ua/mai/library/model/AuthorCreateInput.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphql/graphql-common/src/main/java/ua/mai/library/model/AuthorPayload.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphql/graphql-common/src/main/java/ua/mai/library/model/AuthorUpdateInput.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphql/graphql-common/src/main/java/ua/mai/library/model/Book.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphql/graphql-common/src/main/java/ua/mai/library/model/BookCreateInput.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphql/graphql-common/src/main/java/ua/mai/library/model/BookPayload.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphql/graphql-common/src/main/java/ua/mai/library/model/BookUpdateInput.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphql/graphql-common/src/main/java/ua/mai/library/model/Gender.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphql/graphql-common/src/main/java/ua/mai/library/model/Publisher.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphql/graphql-common/src/main/java/ua/mai/library/repository/LibraryRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphql/graphql-common/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphql/graphql-common/src/main/resources/application_.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphql/graphql-common/src/main/resources/graphql/library-schema.graphqls" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphql/graphql-common/src/main/resources/graphql/scalars-schema.graphqls" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphql/graphql-common/src/test/java/ua/mai/graphql/learn/GraphqlLearnApplicationTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphql/graphql-common/src/test/resources/postman/902 Zyme GraphQL.postman_collection.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphql/graphql-common/src/test/resources/postman/localhost.postman_environment.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphql/graphql-learn/src/test/resources/postman/902 Zyme GraphQL.postman_collection.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphql/graphql-learn/src/test/resources/postman/localhost.postman_environment.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/graphql/service/LibraryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/graphql/service/LibraryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphql/graphql-learn/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/graphql/graphql-learn/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphql/graphql-learn/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/graphql/graphql-learn/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/graphql/сontroller/LibraryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/graphql/сontroller/LibraryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/library/dto/AuthorDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/library/dto/AuthorDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/library/model/Gender.java" beforeDir="false" afterPath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/library/model/Gender.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/library/repository/LibraryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/library/repository/LibraryRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/graphql/graphql-learn/src/main/resources/graphql/library-schema.graphqls" beforeDir="false" afterPath="$PROJECT_DIR$/graphql/graphql-learn/src/main/resources/graphql/library-schema.graphqls" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphql/graphql-learn/src/main/resources/graphql/scalars-schema.graphqls" beforeDir="false" afterPath="$PROJECT_DIR$/graphql/graphql-learn/src/main/resources/graphql/scalars-schema.graphqls" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,7 +156,8 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;Spring Boot.GraphqlLearnApplication (8203).executor&quot;: &quot;Debug&quot;,
-    &quot;Spring Boot.GraphqlLearnApplication (dev 8202).executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.GraphqlLearnApplication (dev 8202).executor&quot;: &quot;Debug&quot;,
+    &quot;Spring Boot.GraphqlLearnApplication (dev 8203).executor&quot;: &quot;Debug&quot;,
     &quot;Spring Boot.GraphqlLearnApplication.executor&quot;: &quot;Run&quot;,
     &quot;StatusDashboardGroupingRule&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
@@ -136,13 +166,13 @@
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;temurin-21&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_directory_selection&quot;: &quot;C:/work/idea_home/zyme/goals/db/modules/transaction/src/main/java/ua/mai/zyme/db/transaction&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/work/idea_home/zyme/graphql/graphql-learn/src/main/resources/graphql&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/work/idea_home/zyme/graphql&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Global Libraries&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.26035503&quot;,
     &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
@@ -165,8 +195,8 @@
       <recent name="ua.mai.zyme.security.config" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\work\idea_home\zyme\graphql\graphql-learn\src\main\resources\graphql" />
       <recent name="C:\work\idea_home\zyme\graphql" />
+      <recent name="C:\work\idea_home\zyme\graphql\graphql-learn\src\main\resources\graphql" />
       <recent name="C:\work\idea_home\zyme\db\mysql\mysql8" />
       <recent name="C:\work\idea_home\zyme\goals\db\db-depl\database_zyme" />
       <recent name="C:\work\idea_home\zyme\db\mysql" />
@@ -357,6 +387,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="GraphqlLearnApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="graphql-common" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="ua.mai.graphql.boot.GraphqlLearnApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="GraphqlLearnApplication (8203)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" folderName="graphql">
       <module name="graphql-learn" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="ua.mai.graphql.boot.GraphqlLearnApplication" />
@@ -364,11 +401,18 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="GraphqlLearnApplication (dev 8202)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" folderName="graphql">
+    <configuration name="GraphqlLearnApplication (dev 8203)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" folderName="graphql">
       <option name="ACTIVE_PROFILES" value="dev" />
+      <module name="graphql-learn" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="ua.mai.graphql.boot.GraphqlLearnApplication" />
+      <option name="VM_PARAMETERS" value="-Ddebug -Dspring.profiles.active=dev -Dserver.port=8203" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GraphqlLearnApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="graphql-app-learn" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="ua.mai.zyme.graphql.boot.GraphqlLearnApplication" />
-      <option name="VM_PARAMETERS" value="-Ddebug -Dspring.profiles.active=dev" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -510,7 +554,7 @@
       <item itemvalue="Spring Boot.DbJdbcTemplateApplication (dev 8101)" />
       <item itemvalue="Spring Boot.GraphqlLearnApplication (8203)" />
       <item itemvalue="Spring Boot.GraphqlZooApplication (dev 8201)" />
-      <item itemvalue="Spring Boot.GraphqlLearnApplication (dev 8202)" />
+      <item itemvalue="Spring Boot.GraphqlLearnApplication (dev 8203)" />
       <item itemvalue="Spring Boot.RestZooApplication (dev 8105)" />
       <item itemvalue="Spring Boot.SecurityJwtBasicApplication (dev 8114)" />
       <item itemvalue="Spring Boot.SecurityBasicOrKeyApplication (dev 8110)" />
@@ -519,6 +563,8 @@
       <item itemvalue="Spring Boot.SecurityCsrfApplication (dev 8112)" />
       <item itemvalue="Spring Boot.Vaadin8SimpleApplication (dev 8088)" />
       <item itemvalue="Spring Boot.Vaadin23SimpleApplication (dev 8080)" />
+      <item itemvalue="Spring Boot.GraphqlLearnApplication" />
+      <item itemvalue="Spring Boot.GraphqlLearnApplication (1)" />
       <item itemvalue="Spring Boot.Vaadin23SimpleApplication" />
       <item itemvalue="Spring Boot.GraphqlZooApplication" />
       <item itemvalue="Spring Boot.SoapZooApplication (dev 8105)" />
@@ -533,6 +579,13 @@
         <item itemvalue="Maven.vaadin8-widgets [compiler:help]" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-4f524021" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SpringBeansView">
@@ -670,7 +723,9 @@
       <workItem from="1703859345319" duration="21430000" />
       <workItem from="1704015579411" duration="12087000" />
       <workItem from="1704361184137" duration="665000" />
-      <workItem from="1704535347300" duration="30394000" />
+      <workItem from="1704535347300" duration="31228000" />
+      <workItem from="1707379781353" duration="9956000" />
+      <workItem from="1707479236468" duration="1925000" />
     </task>
     <task id="LOCAL-00001" summary="add hikaryDefaultDatasource">
       <created>1671739261660</created>
@@ -969,7 +1024,15 @@
       <option name="project" value="LOCAL" />
       <updated>1704548608622</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="add mutations, CustomExceptionResolver">
+      <option name="closed" value="true" />
+      <created>1704697133605</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1704697133605</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1008,7 +1071,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="add JdbcTemplate services" />
     <MESSAGE value="add JdbcTemplate services 2" />
     <MESSAGE value="adding functionality in security goal" />
     <MESSAGE value="adding SecurityGwtCodeApplication" />
@@ -1033,7 +1095,8 @@
     <MESSAGE value="add mysql8 in docker, refactoring database_zyme" />
     <MESSAGE value="add module graphql-learn" />
     <MESSAGE value="add mutation bookCreate" />
-    <option name="LAST_COMMIT_MESSAGE" value="add mutation bookCreate" />
+    <MESSAGE value="add mutations, CustomExceptionResolver" />
+    <option name="LAST_COMMIT_MESSAGE" value="add mutations, CustomExceptionResolver" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1950,7 +2013,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/graphql/сontroller/LibraryController.java</url>
-          <line>53</line>
+          <line>55</line>
           <option name="timeStamp" value="609" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -1970,7 +2033,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/graphql/сontroller/LibraryController.java</url>
-          <line>75</line>
+          <line>79</line>
           <option name="timeStamp" value="613" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">

@@ -18,7 +18,8 @@ public class LibraryController {
     LibraryService libraryService;
 
 
-    // ----- Book ----
+    // ----- Book --------
+    // Book aware query --
     @SchemaMapping
     public List<Author> authors(Book book) {
         return libraryService.authorsByIds(book.authorIds());
@@ -29,6 +30,7 @@ public class LibraryController {
         return libraryService.publisherById(book.publisherId());
     }
 
+    // Not Book aware (public) query
     @QueryMapping
     List<Book> books() {
         return libraryService.books();
@@ -55,7 +57,9 @@ public class LibraryController {
     }
 
 
-    // ----- Author ----
+    // ----- Author --------
+    // Author aware query --
+    // Not Author aware (public) query
     @QueryMapping
     List<Author> authors() {
         return libraryService.authors();
@@ -82,7 +86,9 @@ public class LibraryController {
     }
 
 
-    // ----- Publisher ----
+    // ----- Publisher --------
+    // Publisher aware query --
+    // Not Publisher aware (public) query
     @QueryMapping
     List<Publisher> publishers() {
         return libraryService.publishers();

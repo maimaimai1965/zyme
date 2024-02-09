@@ -1,0 +1,1138 @@
+{
+	"info": {
+		"_postman_id": "24bc55e6-d7f4-497c-8bf6-318919210dc5",
+		"name": "902 Zyme GraphQL",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5994305"
+	},
+	"item": [
+		{
+			"name": "Book",
+			"item": [
+				{
+					"name": "query bookDetails",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query bookDetails($id: ID) {\r\n    bookById(id: $id) {\r\n        id\r\n        name\r\n        pageCount\r\n        author {\r\n            id\r\n            firstName\r\n            lastName\r\n        }\r\n    }\r\n}\r\n# query bookDetails {\r\n#   bookById(id: \"book-1\") {\r\n#     id\r\n#     name\r\n#     pageCount\r\n#     author {\r\n#       id\r\n#       firstName\r\n#       lastName\r\n#     }\r\n#   }\r\n# }",
+								"variables": "{\r\n    \"id\": \"book-1\"\r\n}"
+							}
+						},
+						"url": {
+							"raw": "localhost:8202/graphql",
+							"host": [
+								"localhost"
+							],
+							"port": "8202",
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "basic",
+				"basic": [
+					{
+						"key": "password",
+						"value": "12345",
+						"type": "string"
+					},
+					{
+						"key": "username",
+						"value": "john",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Zoo",
+			"item": [
+				{
+					"name": "query allAnimal",
+					"item": [
+						{
+							"name": "Q allAnimal",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query allAnimal {\r\n    allAnimal {\r\n        animalId\r\n        nickname\r\n        animalTypeId\r\n        gender\r\n        birthDt\r\n        deathDt\r\n        descr\r\n    }\r\n}\r\n",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "localhost:8201/graphql",
+									"host": [
+										"localhost"
+									],
+									"port": "8201",
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Q allAnimal Copy",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query allAnimalWithErrors {\r\n    allAnimalWithErrors {\r\n        data {\r\n            animalId\r\n            nickname\r\n            animalTypeId\r\n            # gender\r\n            # birthDt\r\n            # deathDt\r\n            descr\r\n        }\r\n        errors {\r\n            message\r\n        }\r\n    }\r\n}\r\n",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "localhost:8201/graphql",
+									"host": [
+										"localhost"
+									],
+									"port": "8201",
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "query animals",
+					"item": [
+						{
+							"name": "query animals - no filter",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query animals {\r\n    animals {\r\n        animalId\r\n        nickname\r\n        animalTypeId\r\n        gender\r\n        birthDt\r\n        deathDt\r\n        descr\r\n    }\r\n}\r\n",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "localhost:8201/graphql",
+									"host": [
+										"localhost"
+									],
+									"port": "8201",
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "query animals - animalId: 1",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query animals ($animalId: Long) {\r\n    animals (animalId: $animalId) {\r\n        animalId\r\n        nickname\r\n        animalTypeId\r\n        # gender\r\n        # descr\r\n        currTank {\r\n            tankId\r\n            tankType\r\n            descr\r\n        }\r\n        tanks {\r\n            tankId\r\n            tankType\r\n            descr\r\n        }\r\n    }\r\n}\r\n",
+										"variables": "{\r\n    \"animalId\": 1\r\n}"
+									}
+								},
+								"url": {
+									"raw": "localhost:8201/graphql",
+									"host": [
+										"localhost"
+									],
+									"port": "8201",
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "query animals - animalTypeId: 1",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query animals ($animalTypeId: Int) {\r\n    animals (animalTypeId: $animalTypeId) {\r\n        animalId\r\n        nickname\r\n        animalTypeId\r\n        # gender\r\n        # descr\r\n        currTank {\r\n            tankId\r\n            tankType\r\n            descr\r\n        }\r\n        tanks {\r\n            tankId\r\n            tankType\r\n            descr\r\n        }\r\n    }\r\n}\r\n",
+										"variables": "{\r\n    \"animalTypeId\": 1\r\n}"
+									}
+								},
+								"url": {
+									"raw": "localhost:8201/graphql",
+									"host": [
+										"localhost"
+									],
+									"port": "8201",
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "query animals - likeNickname: \"а\"",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query animals {\r\n    animals (likeNickname: \"а\") {\r\n        animalId\r\n        nickname\r\n        animalTypeId\r\n        # gender\r\n        # descr\r\n    }\r\n}\r\n",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "localhost:8201/graphql",
+									"host": [
+										"localhost"
+									],
+									"port": "8201",
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "query animalByAnimalId",
+					"item": [
+						{
+							"name": "Q animalByAnimalId",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query animalByAnimalId($animalId: Long) {\r\n    animalByAnimalId(animalId: $animalId) {\r\n        animalId\r\n        nickname\r\n        animalTypeId\r\n        gender\r\n        descr\r\n        currTank {\r\n            tankId\r\n            tankType\r\n        }\r\n        tanks {\r\n            tankId\r\n            tankType\r\n        }\r\n    }\r\n}\r\n",
+										"variables": "{\r\n    \"animalId\": 1\r\n}"
+									}
+								},
+								"url": {
+									"raw": "localhost:8201/graphql",
+									"host": [
+										"localhost"
+									],
+									"port": "8201",
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "query currAnimalsByTankId",
+					"item": [
+						{
+							"name": "Q currAnimalsByTankId - tankId: 1",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query currAnimalsByTankId ($tankId: Int) {\r\n    currAnimalsByTankId (tankId: $tankId) {\r\n        animalId\r\n        nickname\r\n        animalTypeId\r\n        gender\r\n        descr\r\n    }\r\n}\r\n",
+										"variables": "{\r\n    \"tankId\": 1\r\n}"
+									}
+								},
+								"url": {
+									"raw": "localhost:8201/graphql",
+									"host": [
+										"localhost"
+									],
+									"port": "8201",
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "query animalsByTankId",
+					"item": [
+						{
+							"name": "Q animalsByTankId - tankId: 1",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query animalsByTankId ($tankId: Int) {\r\n    animalsByTankId (tankId: $tankId) {\r\n        animalId\r\n        nickname\r\n        animalTypeId\r\n        gender\r\n        descr\r\n    }\r\n}\r\n",
+										"variables": "{\r\n    \"tankId\": 1\r\n}"
+									}
+								},
+								"url": {
+									"raw": "localhost:8201/graphql",
+									"host": [
+										"localhost"
+									],
+									"port": "8201",
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "query tanks",
+					"item": [
+						{
+							"name": "Q tanks - no filter",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query tanks {\r\n    tanks {\r\n        tankId\r\n        tankType\r\n        numberCd\r\n        descr\r\n    }\r\n}\r\n",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "localhost:8201/graphql",
+									"host": [
+										"localhost"
+									],
+									"port": "8201",
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Q tanks- id: 1",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query tanks ($tankId: Int) {\r\n    tanks (tankId: $tankId) {\r\n        tankId\r\n        tankType\r\n        numberCd\r\n        descr\r\n        currAnimals {\r\n            animalId\r\n            animalTypeId\r\n            nickname\r\n            birthDt\r\n            deathDt\r\n        }\r\n        animals {\r\n            animalId\r\n            animalTypeId\r\n            nickname\r\n        }\r\n    }\r\n}\r\n",
+										"variables": "{\r\n    \"tankId\": 1\r\n}"
+									}
+								},
+								"url": {
+									"raw": "localhost:8201/graphql",
+									"host": [
+										"localhost"
+									],
+									"port": "8201",
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Q animals - likeDescr: \"а\"",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query tanks {\r\n    tanks (likeDescr: \"а\") {\r\n        tankId\r\n        tankType\r\n        numberCd\r\n        descr\r\n    }\r\n}\r\n\r\n",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "localhost:8201/graphql",
+									"host": [
+										"localhost"
+									],
+									"port": "8201",
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "query currTankByAnimalId",
+					"item": [
+						{
+							"name": "Q currTankByAnimalId - animalId: \"1\"",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query currTankByAnimalId ($animalId: ID) {\r\n    currTankByAnimalId (animalId: $animalId) {\r\n        tankId\r\n        tankType\r\n        numberCd\r\n        descr\r\n    }\r\n}\r\n",
+										"variables": "{\r\n    \"animalId\": \"1\"\r\n}"
+									}
+								},
+								"url": {
+									"raw": "localhost:8201/graphql",
+									"host": [
+										"localhost"
+									],
+									"port": "8201",
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Q tanksByAnimalId",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query tanksByAnimalId ($animalId: ID) {\r\n    tanksByAnimalId (animalId: $animalId) {\r\n        tankId\r\n        tankType\r\n        numberCd\r\n        descr\r\n    }\r\n}\r\n",
+										"variables": "{\r\n    \"animalId\": \"1\"\r\n}"
+									}
+								},
+								"url": {
+									"raw": "localhost:8201/graphql",
+									"host": [
+										"localhost"
+									],
+									"port": "8201",
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "query allTankAnimal",
+					"item": [
+						{
+							"name": "Q allTankAnimal",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query allTankAnimal {\r\n    allTankAnimal {\r\n        tankId\r\n        animalId\r\n        # fromDt\r\n        # toDt\r\n        tank {\r\n            tankId\r\n            tankType\r\n            numberCd\r\n        }\r\n        animal {\r\n            animalId\r\n            nickname\r\n            animalTypeId\r\n            gender\r\n            birthDt\r\n            deathDt\r\n            descr\r\n        }\r\n    }\r\n}\r\n",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "localhost:8201/graphql",
+									"host": [
+										"localhost"
+									],
+									"port": "8201",
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Library",
+			"item": [
+				{
+					"name": "Book",
+					"item": [
+						{
+							"name": "query books",
+							"item": [
+								{
+									"name": "query books",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "graphql",
+											"graphql": {
+												"query": "query books {\r\n    books {\r\n        id\r\n        name\r\n        authorIds\r\n        authors {\r\n            id\r\n            firstName\r\n            lastName\r\n            gender\r\n        }\r\n        pageCount\r\n        publisherId\r\n        publisher {\r\n            id\r\n            name\r\n        }\r\n        lang\r\n    }\r\n}\r\n# query bookDetails {\r\n#   bookById(id: \"book-1\") {\r\n#     id\r\n#     name\r\n#     pageCount\r\n#     author {\r\n#       id\r\n#       firstName\r\n#       lastName\r\n#     }\r\n#   }\r\n# }",
+												"variables": ""
+											}
+										},
+										"url": {
+											"raw": "{{graphql-library-url}}",
+											"host": [
+												"{{graphql-library-url}}"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "query bookById",
+							"item": [
+								{
+									"name": "query bookById",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "graphql",
+											"graphql": {
+												"query": "query bookById($id: ID) {\r\n    bookById(id: $id) {\r\n        id\r\n        name\r\n        authorIds\r\n        authors {\r\n            id\r\n            firstName\r\n            lastName\r\n            gender\r\n        }\r\n        pageCount\r\n        publisherId\r\n        publisher {\r\n            id\r\n            name\r\n        }\r\n        lang\r\n    }\r\n}\r\n",
+												"variables": "{\r\n    \"id\": 1\r\n}"
+											}
+										},
+										"url": {
+											"raw": "{{graphql-library-url}}",
+											"host": [
+												"{{graphql-library-url}}"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "query booksByIds",
+							"item": [
+								{
+									"name": "query booksByIds",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "graphql",
+											"graphql": {
+												"query": "query booksByIds($ids: [ID]) {\r\n    booksByIds(ids: $ids) {\r\n        id\r\n        name\r\n        authorIds\r\n        authors {\r\n            id\r\n            firstName\r\n            lastName\r\n            gender\r\n        }\r\n        pageCount\r\n        publisherId\r\n        publisher {\r\n            id\r\n            name\r\n        }\r\n        lang\r\n    }\r\n}\r\n",
+												"variables": "{\r\n    \"ids\": [\r\n        \"1\",\r\n        \"2\"\r\n    ]\r\n}"
+											}
+										},
+										"url": {
+											"raw": "{{graphql-library-url}}",
+											"host": [
+												"{{graphql-library-url}}"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "mutation bookCreate",
+							"item": [
+								{
+									"name": "mutation bookCreate",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "graphql",
+											"graphql": {
+												"query": "mutation bookCreate($input: BookCreateInput) {\r\n    bookCreate(input: $input) {\r\n        book {\r\n            id\r\n            name\r\n            authorIds\r\n            pageCount\r\n            publisherId\r\n            lang\r\n        }\r\n    }\r\n}\r\n",
+												"variables": "{\r\n    \"input\": {\r\n        \"name\": \"test mutation\",\r\n        \"pageCount\": 22\r\n    }\r\n}"
+											}
+										},
+										"url": {
+											"raw": "{{graphql-library-url}}",
+											"host": [
+												"{{graphql-library-url}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "mutation bookCreate Error: absent 'name'  field in Input",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "graphql",
+											"graphql": {
+												"query": "mutation bookCreate($input: BookCreateInput) {\r\n    bookCreate(input: $input) {\r\n        book {\r\n            id\r\n            name\r\n            authorIds\r\n            pageCount\r\n            publisherId\r\n            lang\r\n        }\r\n    }\r\n}\r\n",
+												"variables": "{\r\n    \"input\": {\r\n        \"pageCount\": 22\r\n    }\r\n}"
+											}
+										},
+										"url": {
+											"raw": "{{graphql-library-url}}",
+											"host": [
+												"{{graphql-library-url}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "mutation bookCreate Error: set null for NonNull 'name' field in Input",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "graphql",
+											"graphql": {
+												"query": "mutation bookCreate($input: BookCreateInput) {\r\n    bookCreate(input: $input) {\r\n        book {\r\n            id\r\n            name\r\n            authorIds\r\n            pageCount\r\n            publisherId\r\n            lang\r\n        }\r\n    }\r\n}\r\n",
+												"variables": "{\r\n    \"input\": {\r\n        \"name\": null,\r\n        \"pageCount\": 22\r\n    }\r\n}"
+											}
+										},
+										"url": {
+											"raw": "{{graphql-library-url}}",
+											"host": [
+												"{{graphql-library-url}}"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "mutation bookUpdate",
+							"item": [
+								{
+									"name": "mutation bookUpdate",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "graphql",
+											"graphql": {
+												"query": "mutation bookUpdate($input: BookUpdateInput) {\r\n    bookUpdate(input: $input) {\r\n        book {\r\n            id\r\n            name\r\n            authorIds\r\n            pageCount\r\n            publisherId\r\n            lang\r\n        }\r\n    }\r\n}\r\n",
+												"variables": "{\r\n    \"input\": {\r\n        \"id\": 1,\r\n        \"name\": \"test update mutation\",\r\n        \"pageCount\": 33\r\n    }\r\n}"
+											}
+										},
+										"url": {
+											"raw": "{{graphql-library-url}}",
+											"host": [
+												"{{graphql-library-url}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "mutation bookUpdate OK: pageCount set null",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "graphql",
+											"graphql": {
+												"query": "mutation bookUpdate($input: BookUpdateInput) {\r\n    bookUpdate(input: $input) {\r\n        book {\r\n            id\r\n            name\r\n            authorIds\r\n            pageCount\r\n            publisherId\r\n            lang\r\n        }\r\n    }\r\n}\r\n",
+												"variables": "{\r\n    \"input\": {\r\n        \"id\": 1,\r\n        \"name\": \"test update mutation\",\r\n        \"pageCountSetNull\": true\r\n    }\r\n}"
+											}
+										},
+										"url": {
+											"raw": "{{graphql-library-url}}",
+											"host": [
+												"{{graphql-library-url}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "mutation bookUpdate Copy",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "graphql",
+											"graphql": {
+												"query": "mutation bookUpdate($input: BookUpdateInput) {\r\n    bookUpdate(input: $input) {\r\n        book {\r\n            id\r\n            name\r\n            authorIds\r\n            pageCount\r\n            publisherId\r\n            lang\r\n        }\r\n    }\r\n}\r\n",
+												"variables": "{\r\n    \"input\": {\r\n        \"id\": 1,\r\n        \"name\": \"test update mutation\",\r\n        \"pageCount\": 33,\r\n        \"pageCountSetNull\": true\r\n    }\r\n}"
+											}
+										},
+										"url": {
+											"raw": "{{graphql-library-url}}",
+											"host": [
+												"{{graphql-library-url}}"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Author",
+					"item": [
+						{
+							"name": "query authors",
+							"item": [
+								{
+									"name": "query authors",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "graphql",
+											"graphql": {
+												"query": "query authors {\r\n    authors {\r\n        id\r\n        firstName\r\n        lastName\r\n        gender\r\n    }\r\n}\r\n",
+												"variables": ""
+											}
+										},
+										"url": {
+											"raw": "{{graphql-library-url}}",
+											"host": [
+												"{{graphql-library-url}}"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "query authorsByIds",
+							"item": [
+								{
+									"name": "query authorsByIds",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "graphql",
+											"graphql": {
+												"query": "query authorsByIds($ids: [ID]) {\r\n    authorsByIds(ids: $ids) {\r\n        id\r\n        firstName\r\n        lastName\r\n        gender\r\n    }\r\n}\r\n",
+												"variables": "{\r\n    \"ids\": [\r\n        \"1\",\r\n        \"2\"\r\n    ]\r\n}"
+											}
+										},
+										"url": {
+											"raw": "{{graphql-library-url}}",
+											"host": [
+												"{{graphql-library-url}}"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "mutation authorCreate",
+							"item": [
+								{
+									"name": "mutation authorCreate",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "graphql",
+											"graphql": {
+												"query": "mutation authorCreate($input: AuthorCreateInput) {\r\n    authorCreate(input: $input) {\r\n        author {\r\n            id\r\n            firstName\r\n            lastName\r\n            gender\r\n        }\r\n    }\r\n}\r\n",
+												"variables": "{\r\n    \"input\": {\r\n        \"firstName\": \"test mutation\",\r\n        \"gender\": \"MALE\"\r\n    }\r\n}"
+											}
+										},
+										"url": {
+											"raw": "{{graphql-library-url}}",
+											"host": [
+												"{{graphql-library-url}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "mutation authorCreate Error: absent 'firstName'  field in Input",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "graphql",
+											"graphql": {
+												"query": "mutation authorCreate($input: AuthorCreateInput) {\r\n    authorCreate(input: $input) {\r\n        author {\r\n            id\r\n            firstName\r\n            lastName\r\n            gender\r\n        }\r\n    }\r\n}\r\n",
+												"variables": "{\r\n    \"input\": {\r\n        \"lastName\": \"Jone\"\r\n    }\r\n}"
+											}
+										},
+										"url": {
+											"raw": "{{graphql-library-url}}",
+											"host": [
+												"{{graphql-library-url}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "mutation authorCreate Error: set null for NonNull 'firstName' field in Input",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "graphql",
+											"graphql": {
+												"query": "mutation authorCreate($input: AuthorCreateInput) {\r\n    authorCreate(input: $input) {\r\n        author {\r\n            id\r\n            firstName\r\n            lastName\r\n            gender\r\n        }\r\n    }\r\n}\r\n",
+												"variables": "{\r\n    \"input\": {\r\n        \"firstName\": null,\r\n        \"gender\": \"MALE\"\r\n    }\r\n}"
+											}
+										},
+										"url": {
+											"raw": "{{graphql-library-url}}",
+											"host": [
+												"{{graphql-library-url}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "mutation authorCreate Error: Invalid input for enum 'Gender'",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "graphql",
+											"graphql": {
+												"query": "mutation authorCreate($input: AuthorCreateInput) {\r\n    authorCreate(input: $input) {\r\n        author {\r\n            id\r\n            firstName\r\n            lastName\r\n            gender\r\n        }\r\n    }\r\n}\r\n",
+												"variables": "{\r\n    \"input\": {\r\n        \"firstName\": \"McGregor\",\r\n        \"gender\": \"WRONG\"\r\n    }\r\n}"
+											}
+										},
+										"url": {
+											"raw": "{{graphql-library-url}}",
+											"host": [
+												"{{graphql-library-url}}"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Publishers",
+					"item": [
+						{
+							"name": "query publishers",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query publishers {\r\n    publishers {\r\n        id\r\n        name\r\n    }\r\n}\r\n",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "{{graphql-library-url}}",
+									"host": [
+										"{{graphql-library-url}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "ScalarInGraphQL",
+			"item": [
+				{
+					"name": "query scalarInGraphQLs",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query scalarInGraphQLs {\r\n  scalarInGraphQLs {\r\n    # Встроенные типы GraphQL\r\n    intScalar,\r\n    floatScalar,\r\n    stringScalar,\r\n    booleanScalar,\r\n    idScalar,\r\n\r\n    #  Расширенные типы из graphql-datetime-spring-boot-starter.\r\n    date,\r\n    localDate,\r\n    localDateTime,\r\n    localTime,\r\n    offsetDateTime,\r\n    yearMonth,\r\n    duration,\r\n\r\n    # Расширенные типы из graphql-java-extended-scalars:\r\n    charScalar,\r\n    byteScalar,\r\n    shortScalar,\r\n    longScalar,\r\n    bigIntegerScalar,\r\n    bigDecimalScalar,\r\n    currencyScalar,\r\n    localeScalar,\r\n    urlScalar,\r\n    uuidScalar\r\n  }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{graphql-library-url}}",
+							"host": [
+								"{{graphql-library-url}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
