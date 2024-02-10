@@ -28,4 +28,5 @@ public class GraphQlConfig {
 //                .scalar(ExtendedScalars.Json)
                 ;
     }
+
 }

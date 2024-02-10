@@ -29,7 +29,7 @@ spring:
         allow-bean-definition-overriding: true
     lifecycle.timeout-per-shutdown-phase: 9s
     application:
-        name: Zyme GraphQL Zoo
+        name: Zyme GraphQL Learning
 #    messages:
 #        basename: i18n/messages
 #    datasource:

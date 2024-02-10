@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Import;
 import org.springframework.core.env.Environment;
 import ua.mai.zyme.graphql.config.GraphQlConfig;
+import ua.mai.zyme.library.config.LibraryConfig;
 import ua.mia.zyme.common.DefaultProfileUtil;
 import ua.mia.zyme.common.SpringUtil;
 
@@ -17,7 +18,8 @@ import ua.mia.zyme.common.SpringUtil;
     }
 )
 @Import({
-      GraphQlConfig.class,
+    GraphQlConfig.class,
+    LibraryConfig.class
 })
 public class GraphqlLearnApplication {
 

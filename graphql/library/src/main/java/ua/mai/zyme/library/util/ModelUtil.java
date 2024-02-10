@@ -1,8 +1,8 @@
-package ua.mai.zyme.library.model;
+package ua.mai.zyme.library.util;
 
 import java.util.Locale;
 
-public interface ModelUtils {
+public interface ModelUtil {
 
     public static <T> T valueForUpdate(String fieldName, T oldValue, T newValue, Boolean valueSetNull) {
         if (newValue != null) {

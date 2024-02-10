@@ -2,7 +2,7 @@ package ua.mai.zyme.library.model;
 
 import ua.mai.zyme.library.dto.AuthorDto;
 
-import static ua.mai.zyme.library.model.ModelUtils.valueForUpdate;
+import static ua.mai.zyme.library.util.ModelUtil.valueForUpdate;
 
 public record AuthorUpdateInput(
         Long id,

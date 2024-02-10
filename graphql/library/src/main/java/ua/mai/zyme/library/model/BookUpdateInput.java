@@ -5,7 +5,7 @@ import ua.mai.zyme.library.dto.BookDto;
 import java.util.List;
 import java.util.Locale;
 
-import static ua.mai.zyme.library.model.ModelUtils.valueForUpdate;
+import static ua.mai.zyme.library.util.ModelUtil.valueForUpdate;
 
 public record BookUpdateInput(
         Long id,

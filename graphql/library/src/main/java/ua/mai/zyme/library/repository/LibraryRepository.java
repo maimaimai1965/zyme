@@ -23,6 +23,7 @@ public class LibraryRepository {
     }
 
 
+    // ----- Dtos ------------------------------------------------------------------------------------------------------
     private static List<BookDto> bookDtos = new ArrayList<>(
         Arrays.asList(
             new BookDto(1L, "Effective Java", List.of(1L), 416, 1L, LangEnum.en.name()),
@@ -43,12 +44,12 @@ public class LibraryRepository {
             new PublisherDto(2L, "Wiley")
         ));
 
+
+    // ----- Book ------------------------------------------------------------------------------------------------------
     public List<BookDto> bookDtos() {
         return bookDtos;
     }
 
-
-    // ----- Book ----
     public BookDto bookDtoByIdGet(Long id) {
         return bookDtos.stream()
                 .filter(book -> book.id().equals(id))
@@ -93,7 +94,7 @@ public class LibraryRepository {
     }
 
 
-    // ----- Author ----
+    // ----- Author ----------------------------------------------------------------------------------------------------
     public List<AuthorDto> authorDtosGet() {
         return authorDtos;
     }
@@ -144,7 +145,7 @@ public class LibraryRepository {
     }
 
 
-    // ----- Publisher ----
+    // ----- Publisher -------------------------------------------------------------------------------------------------
     public List<PublisherDto> publisherDtosGet() {
         return publisherDtos;
     }
