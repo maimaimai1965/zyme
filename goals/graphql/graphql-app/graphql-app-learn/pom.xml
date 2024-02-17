@@ -123,7 +123,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>ua.mai.zyme.graphql.boot.GraphqlLearnApplication</mainClass>
+                    <mainClass>ua.mai.zyme.graphql.boot.GraphQLLearnApplication</mainClass>
                 </configuration>
             </plugin>
         </plugins>

@@ -6,6 +6,8 @@
 * библиотека [graphql-datetime-spring-boot-starter](https://github.com/tailrocks/graphql-java-datetime), которая
   определяет новые дополнительные типы данных;
 * библиотека [graphql-java-extended-scalars](https://github.com/graphql-java/graphql-java-extended-scalars), которая определяет новые дополнительные типы данных;
+* своя библиотека [library](../library/README.md), которая реализуется репозиторий Library;
+
 
 Для приложения не используется БД.
 

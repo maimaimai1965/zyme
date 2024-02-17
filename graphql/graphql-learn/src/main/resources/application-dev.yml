@@ -1,0 +1,7 @@
+logging:
+  level:
+    graphql: DEBUG
+    org.springframework.web.servlet: DEBUG
+    # Свое логирование:
+    org.springframework.web.filter.CommonsRequestLoggingFilter: DEBUG
+    ua.mai.zyme.spring.log.LogServiceImpl: DEBUG
