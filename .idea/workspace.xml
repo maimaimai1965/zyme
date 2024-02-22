@@ -4,40 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8f73b445-5201-4244-94c7-bed9e6b359c9" name="Changes" comment="refactoring module graphql-learn">
-      <change afterPath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/zyme/spring/log/HttpLoggingFilter.java_" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/zyme/spring/log/HttpRequestResponseLogFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/zyme/spring/log/LogConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/zyme/spring/log/LogService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/zyme/spring/log/LogServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/zyme/spring/log/LoggableDispatcherServlet.java_" afterDir="false" />
+    <list default="true" id="8f73b445-5201-4244-94c7-bed9e6b359c9" name="Changes" comment="add request, response log for graphql-learn">
+      <change afterPath="$PROJECT_DIR$/reactor/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/reactor/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/reactor/reactor-learn/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/reactor/reactor-learn/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/reactor/reactor-learn/src/main/java/ua/mai/zyme/reactor/MonoFlux.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/goals/db/db-app/db-app-general/src/main/resources/config/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/goals/db/db-app/db-app-general/src/main/resources/config/application-dev.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/goals/db/db-app/db-app-general/src/test/resources/config/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/goals/db/db-app/db-app-general/src/test/resources/config/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/goals/db/db-app/db-app-h2/src/main/resources/config/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/goals/db/db-app/db-app-h2/src/main/resources/config/application-dev.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/goals/db/db-app/db-app-h2/src/test/resources/config/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/goals/db/db-app/db-app-h2/src/test/resources/config/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/goals/graphql/graphql-app/graphql-app-learn/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/goals/graphql/graphql-app/graphql-app-learn/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/goals/graphql/graphql-app/graphql-app-learn/src/test/resources/config/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/goals/graphql/graphql-app/graphql-app-learn/src/test/resources/config/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/goals/graphql/graphql-app/graphql-app-zoo/src/test/resources/config/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/goals/graphql/graphql-app/graphql-app-zoo/src/test/resources/config/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/goals/rest/rest-app/rest-app-zoo/src/test/resources/config/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/goals/rest/rest-app/rest-app-zoo/src/test/resources/config/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/goals/security/security-app/security-app-basic/src/test/resources/config/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/goals/security/security-app/security-app-basic/src/test/resources/config/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/goals/security/security-app/security-app-csrf/src/test/resources/config/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/goals/security/security-app/security-app-csrf/src/test/resources/config/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/goals/security/security-app/security-app-general/src/test/resources/config/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/goals/security/security-app/security-app-general/src/test/resources/config/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/goals/security/security-app/security-app-jwt-basic/src/test/resources/config/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/goals/security/security-app/security-app-jwt-basic/src/test/resources/config/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/goals/security/security-app/security-app-jwt-code/src/test/resources/config/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/goals/security/security-app/security-app-jwt-code/src/test/resources/config/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/goals/security/security-app/security-app-login/src/test/resources/config/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/goals/security/security-app/security-app-login/src/test/resources/config/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/goals/soap/soap-app/soap-app-zoo/src/test/resources/config/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/goals/soap/soap-app/soap-app-zoo/src/test/resources/config/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/goals/vaadin/vaadin-app/vaadin-app-simple/src/test/resources/config/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/goals/vaadin/vaadin-app/vaadin-app-simple/src/test/resources/config/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphql/graphql-learn/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/graphql/graphql-learn/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphql/graphql-learn/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/graphql/graphql-learn/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/zyme/graphql/boot/GraphqlLearnApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/zyme/graphql/boot/GraphQLLearnApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/zyme/graphql/сontroller/LibraryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/zyme/graphql/сontroller/LibraryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphql/graphql-learn/src/main/resources/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/graphql/graphql-learn/src/main/resources/application-dev.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphql/graphql-learn/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/graphql/graphql-learn/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphql/graphql-learn/src/test/java/ua/mai/graphql/learn/GraphqlLearnApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/graphql/graphql-learn/src/test/java/ua/mai/graphql/learn/GraphQLLearnApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphql/library/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/graphql/library/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vaadin8/vaadin8-app/vaadin8-app-simple/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/vaadin8/vaadin8-app/vaadin8-app-simple/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vaadin8/vaadin8-app/vaadin8-app-simple/src/test/resources/config/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/vaadin8/vaadin8-app/vaadin8-app-simple/src/test/resources/config/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -148,10 +121,12 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;Application.MonoFlux.executor&quot;: &quot;Run&quot;,
     &quot;Maven.graphql [clean,install].executor&quot;: &quot;Run&quot;,
     &quot;Maven.graphql-common [clean,install].executor&quot;: &quot;Run&quot;,
     &quot;Maven.graphql-learn [clean,install].executor&quot;: &quot;Run&quot;,
     &quot;Maven.library [clean,install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.reactor-learn [clean,install].executor&quot;: &quot;Run&quot;,
     &quot;Maven.security [clean,install].executor&quot;: &quot;Run&quot;,
     &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
     &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
@@ -171,7 +146,7 @@
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;temurin-21&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_directory_selection&quot;: &quot;C:/work/idea_home/zyme/goals/db/modules/transaction/src/main/java/ua/mai/zyme/db/transaction&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/work/idea_home/zyme/graphql/graphql-learn/src/main/java/ua/mai/zyme/graphql&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/work/idea_home/zyme&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -200,11 +175,11 @@
       <recent name="ua.mai.zyme.security.config" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\work\idea_home\zyme" />
       <recent name="C:\work\idea_home\zyme\graphql\graphql-learn\src\main\java\ua\mai\zyme\graphql" />
       <recent name="C:\work\idea_home\zyme\graphql" />
       <recent name="C:\work\idea_home\zyme\graphql\graphql-learn\src\main\resources\graphql" />
       <recent name="C:\work\idea_home\zyme\db\mysql\mysql8" />
-      <recent name="C:\work\idea_home\zyme\goals\db\db-depl\database_zyme" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\work\idea_home\zyme\goals\graphql\graphql-modules\graphql-zoo\src\main" />
@@ -236,7 +211,21 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Test">
+  <component name="RunManager" selected="Application.MonoFlux">
+    <configuration name="MonoFlux" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ua.mai.zyme.reactor.MonoFlux" />
+      <module name="reactor-learn" />
+      <option name="VM_PARAMETERS" value="-Ddebug" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ua.mai.zyme.reactor.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Test" />
       <module name="db-app-general" />
@@ -256,39 +245,6 @@
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
-    </configuration>
-    <configuration name="vaadin8-widgets [compiler:help]" type="MavenRunConfiguration" factoryName="Maven" temporary="true">
-      <MavenSettings>
-        <option name="myGeneralSettings" />
-        <option name="myRunnerSettings" />
-        <option name="myRunnerParameters">
-          <MavenRunnerParameters>
-            <option name="cmdOptions" />
-            <option name="profiles">
-              <set />
-            </option>
-            <option name="goals">
-              <list>
-                <option value="compiler:help" />
-              </list>
-            </option>
-            <option name="multimoduleDir" />
-            <option name="pomFileName" value="pom.xml" />
-            <option name="profilesMap">
-              <map>
-                <entry key="nexus" value="true" />
-                <entry key="prod" value="false" />
-              </map>
-            </option>
-            <option name="projectsCmdOptionValues">
-              <list />
-            </option>
-            <option name="resolveToWorkspace" value="false" />
-            <option name="workingDirPath" value="$PROJECT_DIR$/goals/vaadin8-widgets" />
-          </MavenRunnerParameters>
-        </option>
-      </MavenSettings>
-      <method v="2" />
     </configuration>
     <configuration name="vaadin8-widgets [jar:jar]" type="MavenRunConfiguration" factoryName="Maven" temporary="true">
       <MavenSettings>
@@ -556,10 +512,10 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Application.MonoFlux" />
       <item itemvalue="Application.Test" />
       <item itemvalue="Docker.docker/docker-compose.yaml: Compose Deployment" />
       <item itemvalue="Maven.vaadin8-widgets [vaadin:compile]" />
-      <item itemvalue="Maven.vaadin8-widgets [compiler:help]" />
       <item itemvalue="Maven.vaadin8-widgets [jar:jar]" />
       <item itemvalue="Spring Boot.DbH2JdbcTemplateApplication (dev 8102)" />
       <item itemvalue="Spring Boot.DbTransactionApplication (dev 8101)" />
@@ -586,11 +542,11 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.MonoFlux" />
         <item itemvalue="Application.Test" />
         <item itemvalue="Docker.docker/docker-compose.yaml: Compose Deployment" />
         <item itemvalue="Maven.vaadin8-widgets [vaadin:compile]" />
         <item itemvalue="Maven.vaadin8-widgets [jar:jar]" />
-        <item itemvalue="Maven.vaadin8-widgets [compiler:help]" />
       </list>
     </recent_temporary>
   </component>
@@ -737,6 +693,9 @@
       <workItem from="1707725265247" duration="423000" />
       <workItem from="1707725838444" duration="27319000" />
       <workItem from="1708160634872" duration="11900000" />
+      <workItem from="1708418163326" duration="1241000" />
+      <workItem from="1708437133810" duration="11437000" />
+      <workItem from="1708625518146" duration="3563000" />
     </task>
     <task id="LOCAL-00001" summary="add hikaryDefaultDatasource">
       <created>1671739261660</created>
@@ -1067,7 +1026,15 @@
       <option name="project" value="LOCAL" />
       <updated>1707489889495</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="add request, response log for graphql-learn">
+      <option name="closed" value="true" />
+      <created>1708173710321</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1708173710322</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1106,7 +1073,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="describing Security Applications" />
     <MESSAGE value="change port" />
     <MESSAGE value="change port of authorization-server" />
     <MESSAGE value="add graphql goal; Spring Boot 2.6.5 -&gt; 2.7.12; java 17 -&gt; 20" />
@@ -1131,7 +1097,8 @@
     <MESSAGE value="add module library" />
     <MESSAGE value="refactoring module graphql-learn" />
     <MESSAGE value="refactoring module graphql-learn log" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactoring module graphql-learn log" />
+    <MESSAGE value="add request, response log for graphql-learn" />
+    <option name="LAST_COMMIT_MESSAGE" value="add request, response log for graphql-learn" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
