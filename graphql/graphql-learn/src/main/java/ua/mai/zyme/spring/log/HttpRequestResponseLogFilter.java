@@ -33,8 +33,8 @@ public class HttpRequestResponseLogFilter extends OncePerRequestFilter {
     @Value("${spring.log.response.max-payload-length}")
     private int responseMaxPayloadLength;
 
-    static private boolean includeResponsePayload = true;
-    static private int maxPayloadLength = 1000;
+//    static private boolean includeResponsePayload = true;
+//    static private int maxPayloadLength = 1000;
 
     @Autowired
     private LogService loggingService;
@@ -74,7 +74,7 @@ public class HttpRequestResponseLogFilter extends OncePerRequestFilter {
                 requestWrapper.getAsyncContext().addListener(new AsyncListener() {
                     public void onComplete(AsyncEvent asyncEvent) throws IOException {
                         String responseBody = responseIncludePayload
-                                ? getContentAsString(responseWrapper.getContentAsByteArray(), maxPayloadLength, response.getCharacterEncoding())
+                                ? getContentAsString(responseWrapper.getContentAsByteArray(), responseMaxPayloadLength, response.getCharacterEncoding())
                                 : null;
 //                        LOG.debug("[RESP_OUT] Status=" + response.getStatus() + " Duration=" + duration + "ms"
 //                                + (includeResponsePayload && str.length() > 0 ? (" Body=" + str) : ""));
@@ -90,9 +90,9 @@ public class HttpRequestResponseLogFilter extends OncePerRequestFilter {
                 });
             } else {
                 String responseBody = responseIncludePayload
-                        ? getContentAsString(responseWrapper.getContentAsByteArray(), maxPayloadLength, response.getCharacterEncoding())
+                        ? getContentAsString(responseWrapper.getContentAsByteArray(), responseMaxPayloadLength, response.getCharacterEncoding())
                         : null;
-//                String str = getContentAsString(responseWrapper.getContentAsByteArray(), maxPayloadLength, response.getCharacterEncoding());
+//                String str = getContentAsString(responseWrapper.getContentAsByteArray(), responseMaxPayloadLength, response.getCharacterEncoding());
 //                LOG.debug("[RESP_OUT] Status=" + response.getStatus() + " Duration=" + duration + "ms"
 //                        + (includeResponsePayload && str.length() > 0 ? (" Body=" + str.length()) : ""));
                 loggingService.logResponse(requestWrapper, finalRequestBody, responseWrapper, responseBody, duration);

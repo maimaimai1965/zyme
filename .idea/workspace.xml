@@ -4,13 +4,38 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8f73b445-5201-4244-94c7-bed9e6b359c9" name="Changes" comment="add request, response log for graphql-learn">
-      <change afterPath="$PROJECT_DIR$/reactor/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactor/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactor/reactor-learn/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactor/reactor-learn/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactor/reactor-learn/src/main/java/ua/mai/zyme/reactor/MonoFlux.java" afterDir="false" />
+    <list default="true" id="8f73b445-5201-4244-94c7-bed9e6b359c9" name="Changes" comment="add reactor module">
+      <change afterPath="$PROJECT_DIR$/core/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/java21/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/java21/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/java21/src/main/java/ua/mai/zyme/core/Collections.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/java21/src/main/java/ua/mai/zyme/core/MainJava21.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/java21/src/main/java/ua/mai/zyme/core/Record.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/java21/src/main/java/ua/mai/zyme/core/Switch.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/java21/src/main/java/ua/mai/zyme/core/SwitchForObjectFields.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/reactor/reactor-learn/src/main/java/ua/mai/zyme/reactor/MonoAndFlux.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/reactor/spring-reactor-learn/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/reactor/spring-reactor-learn/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/reactor/spring-reactor-learn/src/main/java/ua/mai/zyme/reactor/Greeting.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/reactor/spring-reactor-learn/src/main/java/ua/mai/zyme/reactor/GreetingClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/reactor/spring-reactor-learn/src/main/java/ua/mai/zyme/reactor/GreetingHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/reactor/spring-reactor-learn/src/main/java/ua/mai/zyme/reactor/GreetingRouter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/reactor/spring-reactor-learn/src/main/java/ua/mai/zyme/reactor/ReactiveWebServiceApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/reactor/spring-reactor-learn/src/main/java/ua/mai/zyme/reactor/SpringReactorLearnApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/reactor/spring-reactor-learn/src/main/java/ua/mai/zyme/reactor/controller/MainController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/reactor/spring-reactor-learn/src/main/java/ua/mai/zyme/reactor/domain/Message.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/reactor/spring-reactor-learn/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/reactor/spring-reactor-learn/src/main/resources/templates/index.mustache" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/reactor/spring-reactor-learn/src/test/java/ua/mai/zyme/reactor/SpringReactorLearnApplicationTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/zyme/spring/log/HttpRequestResponseLogFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/zyme/spring/log/HttpRequestResponseLogFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/zyme/spring/log/LogConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/zyme/spring/log/LogConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/zyme/spring/log/LogService.java" beforeDir="false" afterPath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/zyme/spring/log/LogService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/zyme/spring/log/LogServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/zyme/spring/log/LogServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphql/graphql-learn/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/graphql/graphql-learn/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactor/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactor/reactor-learn/src/main/java/ua/mai/zyme/reactor/MonoFlux.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/java21/src/main/java/ua/mai/zyme/core/StringTemplates.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,6 +67,7 @@
       <list>
         <option value="Enum" />
         <option value="Interface" />
+        <option value="HTML File" />
         <option value="Class" />
       </list>
     </option>
@@ -89,19 +115,9 @@
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
-        <option name="mavenHome" value="Use Maven wrapper" />
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
         <option name="threads" value="8" />
       </MavenGeneralSettings>
-    </option>
-    <option name="enabledProfiles">
-      <list>
-        <option value="nexus" />
-      </list>
-    </option>
-    <option name="disabledProfiles">
-      <list>
-        <option value="prod" />
-      </list>
     </option>
   </component>
   <component name="MavenRunner">
@@ -121,10 +137,17 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;Application.MainJava21.executor&quot;: &quot;Run&quot;,
+    &quot;Application.MonoAndFlux.executor&quot;: &quot;Run&quot;,
     &quot;Application.MonoFlux.executor&quot;: &quot;Run&quot;,
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;Maven.core [clean,install].executor&quot;: &quot;Run&quot;,
     &quot;Maven.graphql [clean,install].executor&quot;: &quot;Run&quot;,
     &quot;Maven.graphql-common [clean,install].executor&quot;: &quot;Run&quot;,
     &quot;Maven.graphql-learn [clean,install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.java21 [clean,install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.java21 [compile].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.java21 [validate].executor&quot;: &quot;Run&quot;,
     &quot;Maven.library [clean,install].executor&quot;: &quot;Run&quot;,
     &quot;Maven.reactor-learn [clean,install].executor&quot;: &quot;Run&quot;,
     &quot;Maven.security [clean,install].executor&quot;: &quot;Run&quot;,
@@ -139,6 +162,7 @@
     &quot;Spring Boot.GraphqlLearnApplication (dev 8202).executor&quot;: &quot;Debug&quot;,
     &quot;Spring Boot.GraphqlLearnApplication (dev 8203).executor&quot;: &quot;Debug&quot;,
     &quot;Spring Boot.GraphqlLearnApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.ReactiveWebServiceApplication.executor&quot;: &quot;Debug&quot;,
     &quot;StatusDashboardGroupingRule&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
@@ -146,7 +170,7 @@
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;temurin-21&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_directory_selection&quot;: &quot;C:/work/idea_home/zyme/goals/db/modules/transaction/src/main/java/ua/mai/zyme/db/transaction&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/work/idea_home/zyme&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/work/idea_home/zyme/core/java21/src/main/java/ua/mai/zyme/core&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -156,7 +180,7 @@
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.26035503&quot;,
     &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.importing&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;profiler.calltree.filter&quot;,
     &quot;spring.configuration.checksum&quot;: &quot;11c74592a7cb64b5a61826c5c9ca31d3&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
@@ -175,11 +199,11 @@
       <recent name="ua.mai.zyme.security.config" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\work\idea_home\zyme\core\java21\src\main\java\ua\mai\zyme\core" />
       <recent name="C:\work\idea_home\zyme" />
-      <recent name="C:\work\idea_home\zyme\graphql\graphql-learn\src\main\java\ua\mai\zyme\graphql" />
-      <recent name="C:\work\idea_home\zyme\graphql" />
-      <recent name="C:\work\idea_home\zyme\graphql\graphql-learn\src\main\resources\graphql" />
-      <recent name="C:\work\idea_home\zyme\db\mysql\mysql8" />
+      <recent name="C:\work\idea_home\zyme\reactor\spring-reactor-learn" />
+      <recent name="C:\work\idea_home\zyme\reactor\spring-reactor-learn\src\main\java\ua\mai\zyme\reactor" />
+      <recent name="C:\work\idea_home\zyme\reactor" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\work\idea_home\zyme\goals\graphql\graphql-modules\graphql-zoo\src\main" />
@@ -211,9 +235,35 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Application.MonoFlux">
-    <configuration name="MonoFlux" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="ua.mai.zyme.reactor.MonoFlux" />
+  <component name="RunManager" selected="Application.MonoAndFlux">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="goals" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="goals" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MainJava21" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ua.mai.zyme.core.MainJava21" />
+      <module name="java21" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ua.mai.zyme.core.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MonoAndFlux" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ua.mai.zyme.reactor.MonoAndFlux" />
       <module name="reactor-learn" />
       <option name="VM_PARAMETERS" value="-Ddebug" />
       <extension name="coverage">
@@ -232,85 +282,6 @@
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
-    </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="goals" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="goals" />
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="vaadin8-widgets [jar:jar]" type="MavenRunConfiguration" factoryName="Maven" temporary="true">
-      <MavenSettings>
-        <option name="myGeneralSettings" />
-        <option name="myRunnerSettings" />
-        <option name="myRunnerParameters">
-          <MavenRunnerParameters>
-            <option name="cmdOptions" />
-            <option name="profiles">
-              <set />
-            </option>
-            <option name="goals">
-              <list>
-                <option value="jar:jar" />
-              </list>
-            </option>
-            <option name="multimoduleDir" />
-            <option name="pomFileName" value="pom.xml" />
-            <option name="profilesMap">
-              <map>
-                <entry key="nexus" value="true" />
-                <entry key="prod" value="false" />
-              </map>
-            </option>
-            <option name="projectsCmdOptionValues">
-              <list />
-            </option>
-            <option name="resolveToWorkspace" value="false" />
-            <option name="workingDirPath" value="$PROJECT_DIR$/goals/vaadin8-widgets" />
-          </MavenRunnerParameters>
-        </option>
-      </MavenSettings>
-      <method v="2" />
-    </configuration>
-    <configuration name="vaadin8-widgets [vaadin:compile]" type="MavenRunConfiguration" factoryName="Maven" temporary="true">
-      <MavenSettings>
-        <option name="myGeneralSettings" />
-        <option name="myRunnerSettings" />
-        <option name="myRunnerParameters">
-          <MavenRunnerParameters>
-            <option name="cmdOptions" />
-            <option name="profiles">
-              <set />
-            </option>
-            <option name="goals">
-              <list>
-                <option value="vaadin:compile" />
-              </list>
-            </option>
-            <option name="multimoduleDir" />
-            <option name="pomFileName" value="pom.xml" />
-            <option name="profilesMap">
-              <map>
-                <entry key="nexus" value="true" />
-                <entry key="prod" value="false" />
-              </map>
-            </option>
-            <option name="projectsCmdOptionValues">
-              <list />
-            </option>
-            <option name="resolveToWorkspace" value="false" />
-            <option name="workingDirPath" value="$PROJECT_DIR$/goals/vaadin8-widgets" />
-          </MavenRunnerParameters>
-        </option>
-      </MavenSettings>
-      <method v="2" />
     </configuration>
     <configuration name="DbH2JdbcTemplateApplication (dev 8102)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" folderName="db">
       <option name="ACTIVE_PROFILES" value="dev" />
@@ -371,14 +342,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="GraphqlLearnApplication (dev 8203)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" folderName="graphql">
-      <option name="ACTIVE_PROFILES" value="dev" />
-      <module name="graphql-learn" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="ua.mai.zyme.graphql.boot.GraphQLLearnApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="GraphqlLearnApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="graphql-app-learn" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="ua.mai.zyme.graphql.boot.GraphqlLearnApplication" />
@@ -398,6 +361,20 @@
     <configuration name="GraphqlZooApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="graphql-app-learn" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="ua.mai.zyme.graphql.boot.GraphqlZooApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ReactiveWebServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" folderName="reactor" temporary="true" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="spring-reactor-learn" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="ua.mai.zyme.reactor.ReactiveWebServiceApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ua.mai.zyme.reactor.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -467,6 +444,14 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="SpringReactorLearnApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="spring-reactor-learn" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="ua.mai.zyme.reactor.SpringReactorLearnApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Vaadin23SimpleApplication (dev 8080)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" folderName="vaadin">
       <module name="vaadin23" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="ua.mai.vaadin.Vaadin23SimpleApplication" />
@@ -512,18 +497,17 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Application.MonoFlux" />
+      <item itemvalue="Application.MainJava21" />
+      <item itemvalue="Application.MonoAndFlux" />
       <item itemvalue="Application.Test" />
       <item itemvalue="Docker.docker/docker-compose.yaml: Compose Deployment" />
-      <item itemvalue="Maven.vaadin8-widgets [vaadin:compile]" />
-      <item itemvalue="Maven.vaadin8-widgets [jar:jar]" />
       <item itemvalue="Spring Boot.DbH2JdbcTemplateApplication (dev 8102)" />
       <item itemvalue="Spring Boot.DbTransactionApplication (dev 8101)" />
       <item itemvalue="Spring Boot.DbJooqApplication (dev 8101)" />
       <item itemvalue="Spring Boot.DbJdbcTemplateApplication (dev 8101)" />
-      <item itemvalue="Spring Boot.GraphqlLearnApplication (dev 8203)" />
       <item itemvalue="Spring Boot.GraphQLLearnApplication (dev 8203)" />
       <item itemvalue="Spring Boot.GraphqlZooApplication (dev 8201)" />
+      <item itemvalue="Spring Boot.ReactiveWebServiceApplication" />
       <item itemvalue="Spring Boot.RestZooApplication (dev 8105)" />
       <item itemvalue="Spring Boot.SecurityJwtBasicApplication (dev 8114)" />
       <item itemvalue="Spring Boot.SecurityBasicOrKeyApplication (dev 8110)" />
@@ -532,6 +516,7 @@
       <item itemvalue="Spring Boot.SecurityCsrfApplication (dev 8112)" />
       <item itemvalue="Spring Boot.Vaadin8SimpleApplication (dev 8088)" />
       <item itemvalue="Spring Boot.Vaadin23SimpleApplication (dev 8080)" />
+      <item itemvalue="Spring Boot.SpringReactorLearnApplication" />
       <item itemvalue="Spring Boot.GraphQLLearnApplication" />
       <item itemvalue="Spring Boot.GraphqlLearnApplication" />
       <item itemvalue="Spring Boot.GraphqlLearnApplication (1)" />
@@ -542,11 +527,11 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.MonoFlux" />
+        <item itemvalue="Application.MonoAndFlux" />
+        <item itemvalue="Application.MainJava21" />
+        <item itemvalue="Spring Boot.ReactiveWebServiceApplication" />
         <item itemvalue="Application.Test" />
         <item itemvalue="Docker.docker/docker-compose.yaml: Compose Deployment" />
-        <item itemvalue="Maven.vaadin8-widgets [vaadin:compile]" />
-        <item itemvalue="Maven.vaadin8-widgets [jar:jar]" />
       </list>
     </recent_temporary>
   </component>
@@ -695,7 +680,18 @@
       <workItem from="1708160634872" duration="11900000" />
       <workItem from="1708418163326" duration="1241000" />
       <workItem from="1708437133810" duration="11437000" />
-      <workItem from="1708625518146" duration="3563000" />
+      <workItem from="1708625518146" duration="4294000" />
+      <workItem from="1708857999295" duration="4340000" />
+      <workItem from="1709057285403" duration="5210000" />
+      <workItem from="1709146498623" duration="6380000" />
+      <workItem from="1709370800208" duration="22204000" />
+      <workItem from="1709560397526" duration="1212000" />
+      <workItem from="1709561639777" duration="318000" />
+      <workItem from="1709562033559" duration="7625000" />
+      <workItem from="1709620285018" duration="45000" />
+      <workItem from="1709662986779" duration="4174000" />
+      <workItem from="1709734913930" duration="1303000" />
+      <workItem from="1709888956241" duration="5413000" />
     </task>
     <task id="LOCAL-00001" summary="add hikaryDefaultDatasource">
       <created>1671739261660</created>
@@ -1034,7 +1030,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708173710322</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="add reactor module">
+      <option name="closed" value="true" />
+      <created>1708629146214</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1708629146214</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1073,7 +1077,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="change port" />
     <MESSAGE value="change port of authorization-server" />
     <MESSAGE value="add graphql goal; Spring Boot 2.6.5 -&gt; 2.7.12; java 17 -&gt; 20" />
     <MESSAGE value="add graphql-app-learn module" />
@@ -1098,7 +1101,8 @@
     <MESSAGE value="refactoring module graphql-learn" />
     <MESSAGE value="refactoring module graphql-learn log" />
     <MESSAGE value="add request, response log for graphql-learn" />
-    <option name="LAST_COMMIT_MESSAGE" value="add request, response log for graphql-learn" />
+    <MESSAGE value="add reactor module" />
+    <option name="LAST_COMMIT_MESSAGE" value="add reactor module" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2059,11 +2063,6 @@
           <option name="timeStamp" value="617" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/zyme/spring/log/LogServiceImpl.java</url>
-          <line>30</line>
-          <option name="timeStamp" value="621" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/zyme/graphql/сontroller/LibraryController.java</url>
           <line>40</line>
           <option name="timeStamp" value="624" />
@@ -2192,14 +2191,24 @@
           <option name="timeStamp" value="680" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/zyme/spring/log/LogServiceImpl.java</url>
-          <line>32</line>
-          <option name="timeStamp" value="681" />
+          <url>file://$PROJECT_DIR$/reactor/spring-reactor-learn/src/main/java/ua/mai/zyme/reactor/GreetingHandler.java</url>
+          <line>25</line>
+          <option name="timeStamp" value="690" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/zyme/spring/log/LogServiceImpl.java</url>
-          <line>27</line>
-          <option name="timeStamp" value="682" />
+          <url>file://$PROJECT_DIR$/core/java21/src/main/java/ua/mai/zyme/core/Switch.java</url>
+          <line>33</line>
+          <option name="timeStamp" value="691" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/core/java21/src/main/java/ua/mai/zyme/core/Switch.java</url>
+          <line>36</line>
+          <option name="timeStamp" value="692" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/zyme/graphql/сontroller/LibraryController.java</url>
+          <line>45</line>
+          <option name="timeStamp" value="693" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-field">
           <url>file://$PROJECT_DIR$/goals/graphql/graphql-modules/graphql-zoo/src/main/java/ua/mai/zyme/graphql/zoo/controllers/BookController.java</url>

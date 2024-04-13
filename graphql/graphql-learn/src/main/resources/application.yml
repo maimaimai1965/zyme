@@ -30,6 +30,13 @@ spring:
     lifecycle.timeout-per-shutdown-phase: 9s
     application:
         name: Zyme GraphQL Learning
+    log:
+        request:
+            include-payload: true
+            max-payload-length: 1000
+        response:
+            include-payload: true
+            max-payload-length: 1000
 #    messages:
 #        basename: i18n/messages
 #    datasource:

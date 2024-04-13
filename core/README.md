@@ -1,5 +1,5 @@
 # reactor  
 
 Проекты по Reactor:
-* [reactor-learn](reactor-learn/README.md)
+* [reactor-learn](java21/README.md)
 * [spring-reactor-learn](spring-reactor-learn/README.md)

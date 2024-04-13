@@ -12,7 +12,7 @@ public class LogConfig {
 
     @Bean
     public LogService loggingService() {
-        return new LogServiceImpl();
+        return new LogServiceImpl("GraphQL Library");
     }
 
 //    @Bean
