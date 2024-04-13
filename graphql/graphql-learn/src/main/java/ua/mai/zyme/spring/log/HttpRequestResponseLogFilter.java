@@ -33,8 +33,6 @@ public class HttpRequestResponseLogFilter extends OncePerRequestFilter {
     @Value("${spring.log.response.max-payload-length}")
     private int responseMaxPayloadLength;
 
-//    static private boolean includeResponsePayload = true;
-//    static private int maxPayloadLength = 1000;
 
     @Autowired
     private LogService loggingService;

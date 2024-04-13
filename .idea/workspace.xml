@@ -4,38 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8f73b445-5201-4244-94c7-bed9e6b359c9" name="Changes" comment="add reactor module">
-      <change afterPath="$PROJECT_DIR$/core/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/java21/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/java21/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/java21/src/main/java/ua/mai/zyme/core/Collections.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/java21/src/main/java/ua/mai/zyme/core/MainJava21.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/java21/src/main/java/ua/mai/zyme/core/Record.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/java21/src/main/java/ua/mai/zyme/core/Switch.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/java21/src/main/java/ua/mai/zyme/core/SwitchForObjectFields.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactor/reactor-learn/src/main/java/ua/mai/zyme/reactor/MonoAndFlux.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactor/spring-reactor-learn/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactor/spring-reactor-learn/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactor/spring-reactor-learn/src/main/java/ua/mai/zyme/reactor/Greeting.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactor/spring-reactor-learn/src/main/java/ua/mai/zyme/reactor/GreetingClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactor/spring-reactor-learn/src/main/java/ua/mai/zyme/reactor/GreetingHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactor/spring-reactor-learn/src/main/java/ua/mai/zyme/reactor/GreetingRouter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactor/spring-reactor-learn/src/main/java/ua/mai/zyme/reactor/ReactiveWebServiceApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactor/spring-reactor-learn/src/main/java/ua/mai/zyme/reactor/SpringReactorLearnApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactor/spring-reactor-learn/src/main/java/ua/mai/zyme/reactor/controller/MainController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactor/spring-reactor-learn/src/main/java/ua/mai/zyme/reactor/domain/Message.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactor/spring-reactor-learn/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactor/spring-reactor-learn/src/main/resources/templates/index.mustache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactor/spring-reactor-learn/src/test/java/ua/mai/zyme/reactor/SpringReactorLearnApplicationTests.java" afterDir="false" />
+    <list default="true" id="8f73b445-5201-4244-94c7-bed9e6b359c9" name="Changes" comment="add module java21">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphql/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/graphql/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/zyme/spring/log/HttpRequestResponseLogFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/zyme/spring/log/HttpRequestResponseLogFilter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/zyme/spring/log/LogConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/zyme/spring/log/LogConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/zyme/spring/log/LogService.java" beforeDir="false" afterPath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/zyme/spring/log/LogService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/zyme/spring/log/LogServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/zyme/spring/log/LogServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphql/graphql-learn/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/graphql/graphql-learn/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactor/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactor/reactor-learn/src/main/java/ua/mai/zyme/reactor/MonoFlux.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/java21/src/main/java/ua/mai/zyme/core/StringTemplates.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -1038,7 +1012,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708629146214</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00048" summary="add module java21">
+      <option name="closed" value="true" />
+      <created>1713002916868</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1713002916868</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1077,7 +1059,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="change port of authorization-server" />
     <MESSAGE value="add graphql goal; Spring Boot 2.6.5 -&gt; 2.7.12; java 17 -&gt; 20" />
     <MESSAGE value="add graphql-app-learn module" />
     <MESSAGE value="add graphql queries" />
@@ -1102,7 +1083,8 @@
     <MESSAGE value="refactoring module graphql-learn log" />
     <MESSAGE value="add request, response log for graphql-learn" />
     <MESSAGE value="add reactor module" />
-    <option name="LAST_COMMIT_MESSAGE" value="add reactor module" />
+    <MESSAGE value="add module java21" />
+    <option name="LAST_COMMIT_MESSAGE" value="add module java21" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2154,37 +2136,37 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/zyme/spring/log/HttpRequestResponseLogFilter.java</url>
-          <line>67</line>
+          <line>65</line>
           <option name="timeStamp" value="671" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/zyme/spring/log/HttpRequestResponseLogFilter.java</url>
-          <line>75</line>
+          <line>73</line>
           <option name="timeStamp" value="672" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/zyme/spring/log/HttpRequestResponseLogFilter.java</url>
-          <line>91</line>
+          <line>89</line>
           <option name="timeStamp" value="673" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/zyme/spring/log/HttpRequestResponseLogFilter.java</url>
-          <line>42</line>
+          <line>40</line>
           <option name="timeStamp" value="676" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/zyme/spring/log/HttpRequestResponseLogFilter.java</url>
-          <line>54</line>
+          <line>52</line>
           <option name="timeStamp" value="677" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/zyme/spring/log/HttpRequestResponseLogFilter.java</url>
-          <line>66</line>
+          <line>64</line>
           <option name="timeStamp" value="678" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/graphql/graphql-learn/src/main/java/ua/mai/zyme/spring/log/HttpRequestResponseLogFilter.java</url>
-          <line>99</line>
+          <line>97</line>
           <properties>
             <option name="lambda-ordinal" value="-1" />
           </properties>
