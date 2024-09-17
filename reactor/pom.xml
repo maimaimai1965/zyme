@@ -10,6 +10,7 @@
 
     <modules>
         <module>reactor-learn</module>
+        <module>r2dbc-mysql</module>
     </modules>
 
 </project>
