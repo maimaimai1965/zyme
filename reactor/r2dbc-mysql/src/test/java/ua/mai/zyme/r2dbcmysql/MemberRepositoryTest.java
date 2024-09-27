@@ -11,7 +11,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import ua.mai.zyme.r2dbcmysql.entity.Member;
-import ua.mai.zyme.r2dbcmysql.entity.Transfer;
 import ua.mai.zyme.r2dbcmysql.repository.MemberRepository;
 
 import java.util.ArrayList;
@@ -27,23 +26,23 @@ import static org.junit.Assert.*;
 @ActiveProfiles(profiles = "test")
 class MemberRepositoryTest {
 
-  @Autowired
-  private MemberRepository memberRepository;
+    @Autowired
+    private MemberRepository memberRepository;
 
-  @Autowired
-  private ConnectionFactory connectionFactory;
+    @Autowired
+    private ConnectionFactory connectionFactory;
 
-  private TestUtil tu;
+    private TestUtil tu;
 
-  @BeforeEach
-  public void setup() {
-    tu = new TestUtil();
-    tu.setConnectionFactory(connectionFactory);
-    tu.setMemberRepository(memberRepository);
+    @BeforeEach
+    public void setup() {
+        tu = new TestUtil();
+        tu.setConnectionFactory(connectionFactory);
+        tu.setMemberRepository(memberRepository);
 
 //    initializeDatabase();
 //    insertData();
-  }
+    }
 
 //  @BeforeEach
 //  public void setup() {
@@ -71,219 +70,302 @@ class MemberRepositoryTest {
 //  }
 
 
-  @AfterEach
-  public void cleanup() {
-    // Teardown
-    tu.deleteMembersTestData();
-  }
+    @AfterEach
+    public void cleanup() {
+        // Teardown
+        tu.deleteMembersTestData();
+    }
 
 
-  @Test
-  public void save() {
-    // Setup
-    Member memberIn = TestUtil.newMember("annaTest");
+    @Test
+    public void saveAsInsert() {
+        // Setup
+        Member memberIn = TestUtil.newMember("annaTest");
 
-    // Execution
-    Member memberOut = memberRepository.save(memberIn).block(); // После выполнения в поле memberIn.id прописывается значение.
+        // Execution
+        Member memberOut = memberRepository.save(memberIn).block(); // После выполнения в поле memberIn.id прописывается значение.
 
-    // Assertion
-    assertNotNull(memberOut.getMemberId());
-    Member memberDb = tu.findMemberById(memberOut.getMemberId());
-    Assertions.assertThat(memberIn)
-              .usingRecursiveComparison()
-              .isEqualTo(memberDb);
-  }
+        // Assertion
+        assertNotNull(memberOut.getMemberId());
+        Member memberDb = tu.findMemberByMemberId(memberOut.getMemberId());
+        Assertions.assertThat(memberIn)
+                .usingRecursiveComparison()
+                .isEqualTo(memberDb);
+    }
 
-  @Test
-  public void saveAll() {
-    // Setup
-    List<Member> listIn = new ArrayList<>(List.of(
-            TestUtil.newMember("veraTest"),
-            TestUtil.newMember("benTest"),
-            TestUtil.newMember("tomTest")
-    ));
+    @Test
+    public void saveAsUpdate() {
+        // Setup
+        Member memberIn = tu.insertMember("billTest");
+        memberIn.setName("bill2Test");
 
-    // Execution
-    List<Member> listOut = memberRepository.saveAll(listIn).toStream().toList();
+        // Execution
+        Member memberOut = memberRepository.save(memberIn).block(); // После выполнения в поле memberIn.id прописывается значение.
 
-    // Assertion
-    assertTrue(listOut.size() == 2);
-    listOut.forEach(member -> {
-        assertNotNull(member.getMemberId());
-    });
-    List<Member> listDb = List.of(tu.findMemberById(listOut.get(0).getMemberId()),
-                                  tu.findMemberById(listOut.get(1).getMemberId()));
-    Assertions.assertThat(listIn).containsExactlyInAnyOrderElementsOf(listOut);
-  }
+        // Assertion
+        Member memberDb = tu.findMemberByMemberId(memberOut.getMemberId());
+        Assertions.assertThat(memberIn)
+                .usingRecursiveComparison()
+                .isEqualTo(memberDb);
+    }
 
+    @Test
+    public void saveAllAsInsert() {
+        // Setup
+        List<Member> listIn = new ArrayList<>(List.of(
+                TestUtil.newMember("veraTest"),
+                TestUtil.newMember("benTest"),
+                TestUtil.newMember("tomTest")
+        ));
 
-  @Test
-  public void deleteById() {
-    // Setup
-    Member memberIn = tu.insertMember("tomTest");
+        // Execution
+        List<Member> listOut = memberRepository.saveAll(listIn).toStream().toList();
 
-    // Execution
-    memberRepository.deleteById(memberIn.getMemberId()).block();
+        // Assertion
+        assertTrue(listOut.size() == 3);
+        listOut.forEach(member -> {
+            assertNotNull(member.getMemberId());
+        });
+        List<Member> listDb = List.of(
+                tu.findMemberByMemberId(listOut.get(0).getMemberId()),
+                tu.findMemberByMemberId(listOut.get(1).getMemberId()),
+                tu.findMemberByMemberId(listOut.get(2).getMemberId()));
+        Assertions.assertThat(listOut).containsExactlyInAnyOrderElementsOf(listDb);
+    }
 
-    // Assertion
-    assertNull(tu.findMemberById(memberIn.getMemberId()));
-  }
+    @Test
+    public void saveAllAsInsertAndUpdate() {
+        // Setup
+        Member memberIn = tu.insertMember("billTest");
+        memberIn.setName("bill2Test");
 
-  @Test
-  public void deleteAllById() {
-    // Setup
-    List<Member> list = new ArrayList<>(List.of(
-            TestUtil.newMember("aniTest"),
-            TestUtil.newMember("budiTest"),
-            TestUtil.newMember("cepTest"),
-            TestUtil.newMember("dodTest")
-    ));
-    List<Member> listInserted = new ArrayList<>();
-    list.forEach(member -> listInserted.add(tu.insertMember(member)));
-    List<Integer> listIdDeleted = new ArrayList<>(List.of(
-            listInserted.get(0).getMemberId(),
-            listInserted.get(1).getMemberId()));
+        List<Member> listIn = new ArrayList<>(List.of(
+                memberIn,
+                TestUtil.newMember("tomTest")
+        ));
 
-    // Execution
-    memberRepository.deleteAllById(listIdDeleted).block();
+        // Execution
+        List<Member> listOut = memberRepository.saveAll(listIn).toStream().toList();
 
-    // Assertion
-    assertNull(tu.findMemberById(listIdDeleted.get(0)));
-    assertNull(tu.findMemberById(listIdDeleted.get(1)));
-    assertNotNull(tu.findMemberById(listInserted.get(2).getMemberId()));
-    assertNotNull(tu.findMemberById(listInserted.get(3).getMemberId()));
-  }
+        // Assertion
+        assertTrue(listOut.size() == 2);
+        listOut.forEach(member -> {
+            assertNotNull(member.getMemberId());
+        });
+        List<Member> listDb = List.of(
+                tu.findMemberByMemberId(listOut.get(0).getMemberId()),
+                tu.findMemberByMemberId(listOut.get(1).getMemberId()));
+        Assertions.assertThat(listOut).containsExactlyInAnyOrderElementsOf(listDb);
+    }
 
+    @Test
+    public void deleteById() {
+        // Setup
+        Member memberIn = tu.insertMember("tomTest");
 
-  @Test
-  public void findById() {
-    // Setup
-    Member memberIn = tu.insertMember("annaTest");
+        // Execution
+        memberRepository.deleteById(memberIn.getMemberId()).block();
 
-    // Execution
-    Member memberOut = memberRepository.findById(memberIn.getMemberId()).block();
+        // Assertion
+        assertNull(tu.findMemberByMemberId(memberIn.getMemberId()));
+    }
 
-    // Assertion
-    Assertions.assertThat(memberIn.getMemberId()).isEqualTo(memberOut.getMemberId());
-  }
+    @Test
+    public void deleteAllById() {
+        // Setup
+        List<Member> list = new ArrayList<>(List.of(
+                TestUtil.newMember("aniTest"),
+                TestUtil.newMember("budiTest"),
+                TestUtil.newMember("cepTest"),
+                TestUtil.newMember("dodTest")
+        ));
+        List<Member> listInserted = new ArrayList<>();
+        list.forEach(member -> listInserted.add(tu.insertMember(member)));
+        List<Integer> listIdDeleted = new ArrayList<>(List.of(
+                listInserted.get(0).getMemberId(),
+                listInserted.get(1).getMemberId()));
 
-  @Test
-  public void findByName() {
-    // Setup
-    Member memberIn = tu.insertMember("kirilTest");
+        // Execution
+        memberRepository.deleteAllById(listIdDeleted).block();
 
-    // Execution
-    Member memberOut = memberRepository.findByName(memberIn.getName()).block();
+        // Assertion
+        assertNull(tu.findMemberByMemberId(listIdDeleted.get(0)));
+        assertNull(tu.findMemberByMemberId(listIdDeleted.get(1)));
+        assertNotNull(tu.findMemberByMemberId(listInserted.get(2).getMemberId()));
+        assertNotNull(tu.findMemberByMemberId(listInserted.get(3).getMemberId()));
+    }
 
-    // Assertion
-    Assertions.assertThat(memberIn.getName()).isEqualTo(memberOut.getName());
-  }
+    @Test
+    public void findById() {
+        // Setup
+        Member memberIn = tu.insertMember("annaTest");
 
-  @Test
-  public void findByIdWhenNotExists() {
-    // Setup
-    Integer noExistsId = -1;
+        // Execution
+        Member memberOut = memberRepository.findById(memberIn.getMemberId()).block();
 
-    // Execution
-    Member memberOut = memberRepository.findById(noExistsId).block();
+        // Assertion
+        Assertions.assertThat(memberIn.getMemberId()).isEqualTo(memberOut.getMemberId());
+    }
 
-    // Assertion
-    assertNull(memberOut);
-  }
+    @Test
+    public void findByName() {
+        // Setup
+        Member memberIn = tu.insertMember("kirilTest");
 
-  @Test
-  public void findAll() throws InterruptedException {
-    // Setup
-    List<Member> list = new ArrayList<>(List.of(
-            TestUtil.newMember("aniTest"),
-            TestUtil.newMember("budiTest"),
-            TestUtil.newMember("cepTest"),
-            TestUtil.newMember("dodTest")
-    ));
-    List<Member> listSaved = new ArrayList<>();
-    list.forEach(member -> listSaved.add(tu.insertMember(member)));
+        // Execution
+        Member memberOut = memberRepository.findByName(memberIn.getName()).block();
 
-    // Execution
-    List<Member> listOut = memberRepository.findAll()
-            .filter(member -> TestUtil.isMemberForTest(member))
-            .toStream()
-            .toList();
+        // Assertion
+        Assertions.assertThat(memberIn.getName()).isEqualTo(memberOut.getName());
+    }
 
-    // Assertion
-    Assertions.assertThat(list).containsExactlyInAnyOrderElementsOf(listOut);
-  }
+    @Test
+    public void findByIdWhenNotExists() {
+        // Setup
+        Integer noExistsId = -1;
 
+        // Execution
+        Member memberOut = memberRepository.findById(noExistsId).block();
 
-  @Test
-  public void findAllById() throws InterruptedException {
-    // Setup
-    List<Member> list = new ArrayList<>(List.of(
-            TestUtil.newMember("aniTest"),
-            TestUtil.newMember("budiTest"),
-            TestUtil.newMember("cepTest"),
-            TestUtil.newMember("dodTest")
-    ));
-    List<Member> listSaved = new ArrayList<>();
-    list.forEach(member -> listSaved.add(tu.insertMember(member)));
-    List<Member> listForCheck = List.of(listSaved.get(0), listSaved.get(3));
-    List<Integer> listIdForCheck = listForCheck.stream().map(member -> member.getMemberId()).toList();
+        // Assertion
+        assertNull(memberOut);
+    }
 
-    // Execution
-    List<Member> listOut = memberRepository.findAllById(listIdForCheck)
-            .filter(member -> TestUtil.isMemberForTest(member))
-            .toStream()
-            .toList();
+    @Test
+    public void findAll() throws InterruptedException {
+        // Setup
+        List<Member> list = new ArrayList<>(List.of(
+                TestUtil.newMember("aniTest"),
+                TestUtil.newMember("budiTest"),
+                TestUtil.newMember("cepTest"),
+                TestUtil.newMember("dodTest")
+        ));
+        List<Member> listSaved = new ArrayList<>();
+        list.forEach(member -> listSaved.add(tu.insertMember(member)));
 
-    // Assertion
-    Assertions.assertThat(listForCheck).containsExactlyInAnyOrderElementsOf(listOut);
-  }
+        // Execution
+        List<Member> listOut = memberRepository.findAll()
+                .filter(member -> TestUtil.isMemberForTest(member))
+                .toStream()
+                .toList();
 
+        // Assertion
+        Assertions.assertThat(list).containsExactlyInAnyOrderElementsOf(listOut);
+    }
 
-  @Test
-  public void findByNameLike() throws InterruptedException {
-    // Setup
-    List<Member> list = new ArrayList<>(List.of(
-            TestUtil.newMember("vinsenTest"),
-            TestUtil.newMember("bearnTest"),
-            TestUtil.newMember("tomTest"),
-            TestUtil.newMember("redlTest")
-    ));
-    List<Member> listSaved = new ArrayList<>();
-    list.forEach(member -> listSaved.add(tu.insertMember(member)));
-    List<Member> listForCheck = list.stream().filter(member -> member.getName().contains("r")).toList();
+    @Test
+    public void findAllById() throws InterruptedException {
+        // Setup
+        List<Member> list = new ArrayList<>(List.of(
+                TestUtil.newMember("aniTest"),
+                TestUtil.newMember("budiTest"),
+                TestUtil.newMember("cepTest"),
+                TestUtil.newMember("dodTest")
+        ));
+        List<Member> listSaved = new ArrayList<>();
+        list.forEach(member -> listSaved.add(tu.insertMember(member)));
+        List<Member> listForCheck = List.of(listSaved.get(0), listSaved.get(3));
+        List<Integer> listIdForCheck = listForCheck.stream().map(member -> member.getMemberId()).toList();
 
-    // Execution
-    List<Member> listOut = memberRepository.findByNameLike("%r%")
-            .filter(member -> TestUtil.isMemberForTest(member))
-            .toStream()
-            .toList();
+        // Execution
+        List<Member> listOut = memberRepository.findAllById(listIdForCheck)
+                .filter(member -> TestUtil.isMemberForTest(member))
+                .toStream()
+                .toList();
 
-    // Assertion
-    Assertions.assertThat(listForCheck).containsExactlyInAnyOrderElementsOf(listOut);
-  }
+        // Assertion
+        Assertions.assertThat(listForCheck).containsExactlyInAnyOrderElementsOf(listOut);
+    }
 
+    @Test
+    public void findByNameLike() {
+        // Setup
+        List<Member> list = new ArrayList<>(List.of(
+                TestUtil.newMember("vinsenTest"),
+                TestUtil.newMember("bearnTest"),
+                TestUtil.newMember("tomTest"),
+                TestUtil.newMember("redlTest")
+        ));
+        List<Member> listSaved = new ArrayList<>();
+        list.forEach(member -> listSaved.add(tu.insertMember(member)));
+        List<Member> listForCheck = list.stream().filter(member -> member.getName().contains("r")).toList();
 
-  @Test
-  public void findByNameLengthLE() throws InterruptedException {
-    // Setup
-    List<Member> list = new ArrayList<>(List.of(
-            TestUtil.newMember("vinTest"),
-            TestUtil.newMember("bearnTest"),
-            TestUtil.newMember("tomTest"),
-            TestUtil.newMember("redlTest")
-    ));
-    List<Member> listSaved = new ArrayList<>();
-    list.forEach(member -> listSaved.add(tu.insertMember(member)));
-    List<Member> listForCheck = list.stream().filter(member -> member.getName().length() <= 3).toList();
+        // Execution
+        List<Member> listOut = memberRepository.findByNameLike("%r%")
+                .filter(member -> TestUtil.isMemberForTest(member))
+                .toStream()
+                .toList();
 
-    // Execution
-    List<Member> listOut = memberRepository.findByNameLengthLE(3)
-            .filter(member -> TestUtil.isMemberForTest(member))
-            .toStream()
-            .toList();
+        // Assertion
+        Assertions.assertThat(listForCheck).containsExactlyInAnyOrderElementsOf(listOut);
+    }
 
-    // Assertion
-    Assertions.assertThat(listForCheck).containsExactlyInAnyOrderElementsOf(listOut);
-  }
+    @Test
+    public void findByNameLengthLE() {
+        // Setup
+        List<Member> list = new ArrayList<>(List.of(
+                TestUtil.newMember("vinTest"),
+                TestUtil.newMember("bearnTest"),
+                TestUtil.newMember("tomTest"),
+                TestUtil.newMember("redlTest")
+        ));
+        List<Member> listSaved = new ArrayList<>();
+        list.forEach(member -> listSaved.add(tu.insertMember(member)));
+        List<Member> listForCheck = list.stream().filter(member -> member.getName().length() <= 3).toList();
+
+        // Execution
+        List<Member> listOut = memberRepository.findByNameLengthLE(3)
+                .filter(member -> TestUtil.isMemberForTest(member))
+                .toStream()
+                .toList();
+
+        // Assertion
+        Assertions.assertThat(listForCheck).containsExactlyInAnyOrderElementsOf(listOut);
+    }
+
+    @Test
+    public void insertThroughSql() {
+        // Setup
+        String name = "memberTest";
+
+        // Execution
+        memberRepository.insertThroughSql(name)
+                .block();
+
+        // Assertion
+        Member memberDb = memberRepository.findByName(name).block();
+        assertNotNull(memberDb);
+    }
+
+    @Test
+    public void updateThroughSql() {
+        // Setup
+        Member memberIn = tu.insertMember("jilTest");
+        memberIn.setName("jil2Test");
+
+        // Execution
+        memberRepository.updateThroughSql(memberIn.getMemberId(), memberIn.getName())
+                .block();
+
+        // Assertion
+        Member memberDb = tu.findMemberByMemberId(memberIn.getMemberId());
+        Assertions.assertThat(memberIn)
+                .usingRecursiveComparison()
+                .isEqualTo(memberDb);
+    }
+
+    @Test
+    public void deleteThroughSql() {
+        // Setup
+        Member memberIn = tu.insertMember("mikeTest");
+
+        // Execution
+        memberRepository.deleteThroughSql(memberIn.getMemberId())
+                .block();
+
+        // Assertion
+        Member memberDb = tu.findMemberByMemberId(memberIn.getMemberId());
+        assertNull(memberDb);
+    }
 
 }

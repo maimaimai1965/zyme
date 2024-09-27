@@ -47,18 +47,13 @@ public class MemberController {
     return memberRepository.deleteById(id);
   }
 
-//  @DeleteMapping
-//  public Mono<Void> deleteMember(@RequestBody Member member) {
-//    return memberRepository.deleteById(member.getId());
-//  }
-
   @GetMapping(value = "")
   public Flux<Member> findAll() {
     return memberRepository.findAll();
   }
 
   @GetMapping(value = "/{id}")
-  public Mono<Member> findById(@PathVariable Integer id) {
+  public Mono<Member> findByMemberId(@PathVariable Integer id) {
     return memberRepository.findById(id);
   }
 

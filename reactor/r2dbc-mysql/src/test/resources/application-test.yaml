@@ -1,14 +1,16 @@
 logging:
   level:
-    org.springframework.r2dbc: DEBUG
+    ROOT: INFO
+
+    org.springframework.r2dbc: TRACE
 
     # Для отладки транзакций:
-    org.springframework.jdbc.support.JdbcTransactionManager: DEBUG
+    org.springframework.jdbc.support.JdbcTransactionManager: TRACE
     com.zaxxer.hikari: DEBUG
     org.springframework.transaction: TRACE
 
     # Для отладки сервисов
-    ua.mai.zyme.db.transaction: DEBUG
+    ua.mai.zyme.db.transaction: TRACE
     ua.mai.zyme.db.jooq: DEBUG
     ua.mai.zyme.db.jdbc: DEBUG
 
@@ -19,12 +21,12 @@ logging:
     org.springframework.jdbc.core.StatementCreatorUtils: TRACE
     org.springframework.jdbc.support.JdbcAccessor: TRACE
 
+
 spring:
   application:
     name: r2dbc-mysql
 
   r2dbc:
-#    url=r2dbc:postgresql://postgres:password@localhost:5432/postgres
     url: r2dbc:mysql://localhost:3306/trt
     username: root
     password: root
@@ -32,4 +34,3 @@ spring:
     pool.enabled: true
     pool.initial-size: 5
     pool.max-size: 10
-

@@ -10,7 +10,7 @@ public enum RestFaults implements RestFaultInfo {
     UNKNOWN_ERROR("3", "Unknown error", HttpStatus.INTERNAL_SERVER_ERROR),
     INVALID_LOGIN("4", "Invalid login", HttpStatus.UNAUTHORIZED),
     ACCESS_DENIED("5", "Access denied", HttpStatus.FORBIDDEN),
-    NO_PERMISION("6", "No Permission", HttpStatus.FORBIDDEN),
+    NO_PERMISSION("6", "No Permission", HttpStatus.FORBIDDEN),
     NOT_ALLOWED_IP("7", "Request from client with IP is not allowed: {}", HttpStatus.FORBIDDEN),
     INVALID_REQUEST("10", "Invalid request", HttpStatus.BAD_REQUEST),
     UNSUPPORTED_MEDIA_TYPE("10", "Invalid request", HttpStatus.UNSUPPORTED_MEDIA_TYPE),

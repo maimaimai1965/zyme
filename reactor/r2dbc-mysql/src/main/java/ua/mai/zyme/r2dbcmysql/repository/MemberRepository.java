@@ -15,4 +15,13 @@ public interface MemberRepository extends R2dbcRepository<Member, Integer> {
   @Query("SELECT * FROM member WHERE CHAR_LENGTH(name) <= :length")
   Flux<Member> findByNameLengthLE(int length);
 
+  @Query("INSERT INTO member (name) VALUES (:name)")
+  Mono<Void> insertThroughSql(String name);
+
+  @Query("UPDATE member SET name = :name WHERE member_id = :member_id")
+  Mono<Void> updateThroughSql(int member_id, String name);
+
+  @Query("DELETE FROM member WHERE member_id = :member_id")
+  Mono<Void> deleteThroughSql(int member_id);
+
 }

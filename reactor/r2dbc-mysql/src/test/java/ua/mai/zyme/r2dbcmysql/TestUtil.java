@@ -1,23 +1,24 @@
 package ua.mai.zyme.r2dbcmysql;
 
 import io.r2dbc.spi.ConnectionFactory;
-import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.r2dbc.core.R2dbcEntityTemplate;
-import org.springframework.data.relational.core.mapping.Column;
+import ua.mai.zyme.r2dbcmysql.config.AppUtil;
+import ua.mai.zyme.r2dbcmysql.entity.Balance;
 import ua.mai.zyme.r2dbcmysql.entity.Member;
 import ua.mai.zyme.r2dbcmysql.entity.Transfer;
+import ua.mai.zyme.r2dbcmysql.repository.BalanceRepository;
 import ua.mai.zyme.r2dbcmysql.repository.MemberRepository;
 import ua.mai.zyme.r2dbcmysql.repository.TransferRepository;
 
 import java.time.LocalDateTime;
 
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class TestUtil {
 
     private ConnectionFactory connectionFactory;
     private MemberRepository memberRepository;
+    private BalanceRepository balanceRepository;
     private TransferRepository transferRepository;
 
     public ConnectionFactory getConnectionFactory() {
@@ -32,6 +33,13 @@ public class TestUtil {
     }
     public void setMemberRepository(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
+    }
+
+    public BalanceRepository getBalanceRepository() {
+        return balanceRepository;
+    }
+    public void setBalanceRepository(BalanceRepository balanceRepository) {
+        this.balanceRepository = balanceRepository;
     }
 
     public TransferRepository getTransferRepository() {
@@ -65,10 +73,14 @@ public class TestUtil {
         template.getDatabaseClient().sql(sql).fetch().rowsUpdated().block();
     }
 
-
     static public LocalDateTime now() {
-        return LocalDateTime.now().withNano(0);
+        return AppUtil.now();
     }
+    static public LocalDateTime roundLocalDateTime(LocalDateTime dateTime) {
+        return AppUtil.roundLocalDateTime(dateTime);
+    }
+
+
 
     /* -- Methods used for Member testing ------------------------------------------------------------------------------*/
 
@@ -108,6 +120,22 @@ public class TestUtil {
         return insertMember(memberRepository, newMember(name));
     }
 
+    public Member insertMemberWithBalance(String name, Long amount, LocalDateTime dateTime) {
+        return insertMemberWithBalance(memberRepository, balanceRepository, name, amount, dateTime);
+    }
+    static public Member insertMemberWithBalance(MemberRepository memberRepository, BalanceRepository balanceRepository,
+                                                 String name, Long amount, LocalDateTime dateTime) {
+        Member member = insertMember(memberRepository,"annaTest");
+        Balance balanceToIn = insertBalance(balanceRepository, Balance.builder()
+                .memberId(member.getMemberId())
+                .amount(amount)
+                .createdDate(dateTime)
+                .lastModifiedDate(dateTime)
+                .build()
+        );
+        return member;
+    }
+
     public void deleteMember(Integer memberId) {
         deleteMember(memberRepository, memberId);
     }
@@ -123,10 +151,10 @@ public class TestUtil {
         memberRepository.deleteById(member.getMemberId()).block();
     }
 
-    public Member findMemberById(Integer memberId) {
-        return findMemberById(memberRepository, memberId);
+    public Member findMemberByMemberId(Integer memberId) {
+        return findMemberByMemberId(memberRepository, memberId);
     }
-    static public Member findMemberById(MemberRepository memberRepository, Integer memberId) {
+    static public Member findMemberByMemberId(MemberRepository memberRepository, Integer memberId) {
         return memberRepository.findById(memberId).block();
     }
 
@@ -198,11 +226,74 @@ public class TestUtil {
         transferRepository.deleteById(transfer.getTransferId()).block();
     }
 
-    public Transfer findTransferById(Long transferId) {
-        return findTransferById(transferRepository, transferId);
+    public Transfer findTransferByTransferId(Long transferId) {
+        return findTransferByTransferId(transferRepository, transferId);
     }
-    static public Transfer findTransferById(TransferRepository transferRepository, Long transferId) {
+    static public Transfer findTransferByTransferId(TransferRepository transferRepository, Long transferId) {
         return transferRepository.findById(transferId).block();
     }
+
+
+    /* -- Methods used for Balance testing ------------------------------------------------------------------------------*/
+
+    static final private String sqlDeleteBalancesTestData =
+            """
+                DELETE FROM balance b
+                WHERE b.member_id IN (SELECT member_id FROM member WHERE ucase(name) LIKE '%TEST%')
+            """;
+
+    public void deleteBalancesTestData() {
+        deleteBalancesTestData(connectionFactory);
+    }
+    static public void deleteBalancesTestData(ConnectionFactory connectionFactory) {
+        runSql(connectionFactory, sqlDeleteBalancesTestData);
+    }
+
+    static public Balance newBalance(Integer memberId, Long amount, LocalDateTime createdDate, LocalDateTime lastModifiedDate) {
+        Balance balance = Balance.builder()
+                .memberId(memberId)
+                .amount(amount)
+                .createdDate(createdDate)
+                .lastModifiedDate(lastModifiedDate).build();
+        return balance;
+    }
+
+    public Balance insertBalance(Balance balance) {
+        return insertBalance(balanceRepository, balance);
+    }
+    static public Balance insertBalance(BalanceRepository balanceRepository, Balance balance) {
+        return insertBalance(balanceRepository,
+                balance.getMemberId(), balance.getAmount(), balance.getCreatedDate(), balance.getLastModifiedDate());
+    }
+    public Balance insertBalance(Integer memberId, Long amount, LocalDateTime createdDate, LocalDateTime lastModifiedDate) {
+        return insertBalance(balanceRepository, memberId, amount, createdDate, lastModifiedDate);
+    }
+    static public Balance insertBalance(BalanceRepository balanceRepository,
+                                        Integer memberId, Long amount, LocalDateTime createdDate, LocalDateTime lastModifiedDate) {
+        balanceRepository.insert(memberId, amount, createdDate, lastModifiedDate).block();
+        return newBalance(memberId, amount, createdDate, lastModifiedDate);
+    }
+
+    public void deleteBalance(Integer memberId) {
+        deleteBalance(balanceRepository, memberId);
+    }
+    static public void deleteBalance(BalanceRepository balanceRepository, Integer memberId) {
+        balanceRepository.deleteById(memberId).block();
+    }
+
+    public void deleteBalance(Balance balance) {
+        deleteBalance(balanceRepository, balance);
+    }
+    static public void deleteBalance(BalanceRepository balanceRepository, Balance balance) {
+        balanceRepository.deleteById(balance.getMemberId()).block();
+    }
+
+    public Balance findBalanceByMemberId(Integer memberId) {
+        return findBalanceByMemberId(balanceRepository, memberId);
+    }
+    static public Balance findBalanceByMemberId(BalanceRepository balanceRepository, Integer memberId) {
+        return balanceRepository.findById(memberId).block();
+    }
+
 
 }

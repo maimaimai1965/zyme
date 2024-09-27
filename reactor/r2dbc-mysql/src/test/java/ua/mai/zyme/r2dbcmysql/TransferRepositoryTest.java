@@ -15,7 +15,6 @@ import ua.mai.zyme.r2dbcmysql.entity.Transfer;
 import ua.mai.zyme.r2dbcmysql.repository.MemberRepository;
 import ua.mai.zyme.r2dbcmysql.repository.TransferRepository;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,13 +28,11 @@ import static org.junit.Assert.*;
 class TransferRepositoryTest {
 
   @Autowired
-  private TransferRepository transferRepository;
-
+  ConnectionFactory connectionFactory;
   @Autowired
   private MemberRepository memberRepository;
-
   @Autowired
-  ConnectionFactory connectionFactory;
+  private TransferRepository transferRepository;
 
   private TestUtil tu;
 
@@ -52,6 +49,7 @@ class TransferRepositoryTest {
   public void cleanup() {
     // Teardown
     tu.deleteTransfersTestData();
+    tu.deleteBalancesTestData();
     tu.deleteMembersTestData();
   }
 
@@ -74,7 +72,7 @@ class TransferRepositoryTest {
 
     // Assertion
     assertNotNull(transferOut.getTransferId());
-    Transfer transferDb = tu.findTransferById(transferOut.getTransferId());
+    Transfer transferDb = tu.findTransferByTransferId(transferOut.getTransferId());
     Assertions.assertThat(transferOut)
               .usingRecursiveComparison()
               .isEqualTo(transferDb);
@@ -110,8 +108,8 @@ class TransferRepositoryTest {
     listOut.forEach(transfer -> {
         assertNotNull(transfer.getTransferId());
     });
-    List<Transfer> listDb = List.of(tu.findTransferById(listOut.get(0).getTransferId()),
-                                    tu.findTransferById(listOut.get(1).getTransferId()));
+    List<Transfer> listDb = List.of(tu.findTransferByTransferId(listOut.get(0).getTransferId()),
+                                    tu.findTransferByTransferId(listOut.get(1).getTransferId()));
     Assertions.assertThat(listOut).containsExactlyInAnyOrderElementsOf(listDb);
   }
 
@@ -144,8 +142,8 @@ class TransferRepositoryTest {
     transferRepository.deleteById(deletedTransfer.getTransferId()).block();
 
     // Assertion
-    assertNull(tu.findTransferById(deletedTransfer.getTransferId()));
-    assertNotNull(tu.findTransferById(existedTransfer.getTransferId()));
+    assertNull(tu.findTransferByTransferId(deletedTransfer.getTransferId()));
+    assertNotNull(tu.findTransferByTransferId(existedTransfer.getTransferId()));
   }
 
   @Test
@@ -187,9 +185,9 @@ class TransferRepositoryTest {
                       .block();
 
     // Assertion
-    assertNull(tu.findTransferById(deletedTransfer.getTransferId()));
-    assertNull(tu.findTransferById(deletedTransfer2.getTransferId()));
-    assertNotNull(tu.findTransferById(existedTransfer.getTransferId()));
+    assertNull(tu.findTransferByTransferId(deletedTransfer.getTransferId()));
+    assertNull(tu.findTransferByTransferId(deletedTransfer2.getTransferId()));
+    assertNotNull(tu.findTransferByTransferId(existedTransfer.getTransferId()));
   }
 
 
@@ -227,9 +225,9 @@ class TransferRepositoryTest {
   @Test
   public void findByIdWhenNotExists() {
     // Setup
-    Member memberTo = tu.insertMember("rikTest");
-    Member memberFrom = tu.insertMember("janTest");
-    Member memberFrom2 = tu.insertMember("mikeTest");
+    Member memberTo = tu.insertMember("memberToTest");
+    Member memberFrom = tu.insertMember("memberFromTest");
+    Member memberFrom2 = tu.insertMember("memberFrom2Test");
 
     tu.insertTransfer(
             Transfer.builder()
@@ -257,7 +255,7 @@ class TransferRepositoryTest {
   }
 
   @Test
-  public void findAllById() throws InterruptedException {
+  public void findAllById() {
     // Setup
     Member memberTo    = tu.insertMember("rikTest");
     Member memberFrom  = tu.insertMember("benTest");
@@ -300,27 +298,50 @@ class TransferRepositoryTest {
     Assertions.assertThat(listForCheck).containsExactlyInAnyOrderElementsOf(listOut);
   }
 
-//  @Test
-//  public void findByNameLengthLE() throws InterruptedException {
-//    // Setup
-//    List<Member> list = new ArrayList<>(List.of(
-//            newMember("vinTest"),
-//            newMember("bearnTest"),
-//            newMember("tomTest"),
-//            newMember("redlTest")
-//    ));
-//    List<Member> listSaved = new ArrayList<>();
-//    list.forEach(member -> listSaved.add(insertMember(member)));
-//    List<Member> listForCheck = list.stream().filter(member -> member.getName().length() <= 3).toList();
-//
-//    // Execution
-//    List<Member> listOut = transferRepository.findByNameLengthLE(3)
-//            .filter(member -> isMemberForTest(member))
-//            .toStream()
-//            .toList();
-//
-//    // Assertion
-//    Assertions.assertThat(listForCheck).containsExactlyInAnyOrderElementsOf(listOut);
-//  }
+  @Test
+  public void findByToMemberId() {
+    // Setup
+    Member member1 = tu.insertMember("member1Test");
+    Member member2 = tu.insertMember("member2Test");
+    Member member3 = tu.insertMember("member3Test");
+
+    Transfer transfer1_2_10 = Transfer.builder()
+            .amount(10L)
+            .toMemberId(member1.getMemberId())
+            .fromMemberId(member2.getMemberId())
+            .createdDate(tu.now())
+            .build();
+    tu.insertTransfer(transfer1_2_10);
+    Transfer transfer1_3_20 = Transfer.builder()
+            .amount(20L)
+            .toMemberId(member1.getMemberId())
+            .fromMemberId(member3.getMemberId())
+            .createdDate(tu.now())
+            .build();
+    tu.insertTransfer(transfer1_3_20);
+    Transfer transfer2_3_40 = Transfer.builder()
+            .amount(40L)
+            .toMemberId(member2.getMemberId())
+            .fromMemberId(member3.getMemberId())
+            .createdDate(tu.now())
+            .build();
+    tu.insertTransfer(transfer2_3_40);
+    Transfer transfer3_1_50 = Transfer.builder()
+            .amount(50L)
+            .toMemberId(member3.getMemberId())
+            .fromMemberId(member1.getMemberId())
+            .createdDate(tu.now())
+            .build();
+    tu.insertTransfer(transfer3_1_50);
+
+    List<Transfer> listForCheck = List.of(transfer1_2_10, transfer1_3_20);
+
+    // Execution
+    List<Transfer> listOut = transferRepository.findByToMemberId(member1.getMemberId())
+            .toStream().toList();
+
+    // Assertion
+    Assertions.assertThat(listForCheck).containsExactlyInAnyOrderElementsOf(listOut);
+  }
 
 }

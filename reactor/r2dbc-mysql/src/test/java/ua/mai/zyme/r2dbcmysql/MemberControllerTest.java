@@ -2,7 +2,6 @@ package ua.mai.zyme.r2dbcmysql;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import reactor.core.publisher.Mono;
 import ua.mai.zyme.r2dbcmysql.entity.Member;
@@ -31,14 +30,11 @@ import static org.junit.Assert.*;
 class MemberControllerTest {
 
   @Autowired
-  private WebTestClient webTestClient;
-
+  private ConnectionFactory connectionFactory;
   @Autowired
   private MemberRepository memberRepository;
-
   @Autowired
-  private ConnectionFactory connectionFactory;
-
+  private WebTestClient webTestClient;
 
   private TestUtil tu;
 
@@ -87,7 +83,7 @@ class MemberControllerTest {
 
     // Execution
     List<Member> list =  webTestClient.post()
-            .uri("/api/members")   // Вычитываем все строки из таблицы (не только тестируемые)
+            .uri("/api/members")
             .accept(MediaType.APPLICATION_JSON)
             .body(Mono.just(memberIn), Member.class)
             .exchange()
@@ -98,7 +94,7 @@ class MemberControllerTest {
             .toStream().toList();
     assertTrue(list.size() == 1);
     Member memberOut = list.get(0);
-    Member memberDb = tu.findMemberById(memberOut.getMemberId());
+    Member memberDb = tu.findMemberByMemberId(memberOut.getMemberId());
     assertEquals(memberOut, memberDb);
   }
 
@@ -107,10 +103,9 @@ class MemberControllerTest {
     // Setup
     Member memberIn = tu.insertMember("ivanTest");
     memberIn.setName("igorTEST");
-
     // Execution
     List<Member> list =  webTestClient.put()
-            .uri("/api/members")   // Вычитываем все строки из таблицы (не только тестируемые)
+            .uri("/api/members")
             .accept(MediaType.APPLICATION_JSON)
             .body(Mono.just(memberIn), Member.class)
             .exchange()
@@ -121,10 +116,9 @@ class MemberControllerTest {
             .toStream().toList();
     assertTrue(list.size() == 1);
     Member memberOut = list.get(0);
-    Member memberDb = tu.findMemberById(memberOut.getMemberId());
+    Member memberDb = tu.findMemberByMemberId(memberOut.getMemberId());
     assertEquals(memberOut, memberDb);
   }
-
 
   @Test
   public void deleteMemberById() {
@@ -142,9 +136,8 @@ class MemberControllerTest {
             .getResponseBody()
             .toStream().toList();
     assertTrue(list.size() == 0);
-    assertNull(tu.findMemberById(memberIn.getMemberId()));
+    assertNull(tu.findMemberByMemberId(memberIn.getMemberId()));
   }
-
 
   @Test
   public void deleteMember() {
@@ -162,9 +155,8 @@ class MemberControllerTest {
             .getResponseBody()
             .toStream().toList();
     assertTrue(list.size() == 0);
-    assertNull(tu.findMemberById(memberIn.getMemberId()));
+    assertNull(tu.findMemberByMemberId(memberIn.getMemberId()));
   }
-
 
   @Test
   public void findAll() {
@@ -192,7 +184,7 @@ class MemberControllerTest {
   }
 
   @Test
-  public void findById() {
+  public void findByMemberId() {
     // Setup
     Member memberIn = tu.insertMember("annaTest");
     Integer id = memberIn.getMemberId();

@@ -1,57 +1,75 @@
 package ua.mai.zyme.r2dbcmysql.service;
 
-import ua.mai.zyme.r2dbcmysql.dto.CreateTransactionWebRequest;
+import org.springframework.transaction.annotation.Transactional;
+import reactor.core.publisher.Mono;
+import reactor.util.function.Tuple2;
 import ua.mai.zyme.r2dbcmysql.entity.Balance;
-import ua.mai.zyme.r2dbcmysql.repository.BalanceRepository;
-import java.util.Random;
+import ua.mai.zyme.r2dbcmysql.entity.Transfer;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import reactor.core.publisher.Mono;
-import reactor.util.function.Tuple2;
+import ua.mai.zyme.r2dbcmysql.repository.BalanceRepository;
+import ua.mai.zyme.r2dbcmysql.repository.TransferRepository;
+
+import java.time.LocalDateTime;
+
 
 @RequiredArgsConstructor
 @Service
 @Slf4j
 public class TransferService {
 
-  private final BalanceRepository balanceRepository;
+    private final TransferRepository transferRepository;
+    private final BalanceRepository balanceRepository;
+    private final BalanceService balanceService;
 
-//  @Transactional
-//  public Mono<Balance> doTransfer(CreateTransactionWebRequest request) {
-//    Long amount = request.getAmount();
-//
-//    return Mono.zip(balanceRepository.findByMemberId(request.getFrom()),
-//                    balanceRepository.findByMemberId(request.getTo()))
-//               .flatMap(balanceTuple -> executeTransaction(balanceTuple, amount));
-//  }
-//
-//  private Mono<Balance> executeTransaction(Tuple2<Balance, Balance> balanceTuple, Long amount) {
-//    Balance fromBalance = balanceTuple.getT1();
-//    Balance toBalance = balanceTuple.getT2();
-//    return deductBalance(fromBalance, amount).flatMap(
-//        balance -> increaseBalance(toBalance, amount));
-//  }
-//
-//  private Mono<Balance> increaseBalance(Balance toBalance, Long amount) {
-//    return Mono.fromSupplier(() -> new Random().nextDouble())
-//        .flatMap(randomValue -> increaseBalance(toBalance, amount, randomValue));
-//  }
-//
-//  private Mono<Balance> increaseBalance(Balance toBalance, Long amount, Double randomValue) {
-//    log.info("random value {}", randomValue);
-//    if (randomValue > 0.5) {
-//      toBalance.setBalance(toBalance.getBalance() + amount);
-//      return balanceRepository.save(toBalance);
-//    }
-//    return Mono.error(new RuntimeException("randomized error"));
-//  }
-//
-//  private Mono<Balance> deductBalance(Balance fromBalance, Long amount) {
-//    fromBalance.setBalance(fromBalance.getBalance() - amount);
-//    return balanceRepository.save(fromBalance);
-//  }
+     /**
+      * Если баланса у fromMemberId или toMemberId нет, то генерится исключение AppFaultInfo.BALANCE_FOR_MEMBER_NOT_EXISTS.
+      */
+    @Transactional
+    public Mono<Transfer> doTransferWhenBalancesExist(Integer fromMemberId, Integer toMemberId, Long amount, LocalDateTime dateTime) {
+        return Mono.zip(balanceService.findBalanceByMemberIdWithFaultWhenNotExists(fromMemberId),
+                        balanceService.findBalanceByMemberIdWithFaultWhenNotExists(toMemberId))
+                   .flatMap(balanceTuple -> executeTransfer(balanceTuple, amount, dateTime));
+
+    }
+
+    /**
+     * Если баланса для fromMemberId не существует, то генерится исключение AppFaultInfo.BALANCE_FOR_MEMBER_NOT_EXISTS.
+     * Если у toMemberId баланс не существует, но такой member есть, то для него создается нулевой баланс
+     * и выполняется transfer. Если же такого toMemberId не существует, то генерится исключение
+     * AppFaultInfo.MEMBER_NOT_EXISTS.
+     */
+    @Transactional
+    public Mono<Transfer> doTransfer(Integer fromMemberId, Integer toMemberId, Long amount, LocalDateTime dateTime) {
+        return Mono.zip(balanceService.findBalanceByMemberIdWithFaultWhenNotExists(fromMemberId),
+                        balanceService.findBalanceByMemberIdWithCreateZeroBalanceIfNotExists(toMemberId, dateTime))
+                .flatMap(memberTuple -> executeTransfer(memberTuple, amount, dateTime));
+    }
+
+    private Mono<Transfer> executeTransfer(Tuple2<Balance, Balance> balanceTuple, Long amount, LocalDateTime dateTime) {
+        Balance balanceFrom = balanceTuple.getT1();
+        Balance balanceTo = balanceTuple.getT2();
+        return decreaseBalance(balanceFrom, amount, dateTime)
+                .flatMap(fromBalanceResult -> increaseBalance(balanceTo, amount, dateTime))
+                .flatMap(toBalanceResult -> transferRepository.save(
+                        Transfer.builder()
+                                .amount(amount)
+                                .fromMemberId(balanceFrom.getMemberId())
+                                .toMemberId(balanceTo.getMemberId())
+                                .createdDate(dateTime)
+                                .build()));
+    }
+
+    private Mono<Balance> decreaseBalance(Balance balance, Long delta, LocalDateTime dateTime) {
+        balance.increaseBalance(-delta, dateTime);
+        return balanceRepository.save(balance);
+    }
+
+    private Mono<Balance> increaseBalance(Balance balance, Long delta, LocalDateTime dateTime) {
+        balance.increaseBalance(delta, dateTime);
+        return balanceRepository.save(balance);
+    }
 
 }
