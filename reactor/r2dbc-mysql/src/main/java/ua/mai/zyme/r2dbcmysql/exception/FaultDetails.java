@@ -14,7 +14,7 @@ public class FaultDetails {
     }
 
     public String getMessage() {
-        return MessageFormat.format(faultInfo.messageTemplate(), errorParameters);
+        return MessageFormat.format(faultInfo.messageTemplate(), errorParameters.toArray());
     }
 
 }

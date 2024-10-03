@@ -1,25 +1,27 @@
 package ua.mai.zyme.r2dbcmysql.exception;
 
+import org.springframework.http.HttpStatus;
+
 import java.util.List;
 
-public class ServiceFault extends RuntimeException {
+public class FaultException extends RuntimeException {
 
     private FaultDetails faultDetails;
 
-    public ServiceFault(FaultInfo faultInfo) {
+    public FaultException(FaultInfo faultInfo) {
         this(faultInfo, List.of());
     }
 
-    public ServiceFault(FaultInfo faultInfo, Object...errorParameters ) {
+    public FaultException(FaultInfo faultInfo, Object...errorParameters ) {
         this(null, faultInfo, errorParameters);
     }
 
-    public ServiceFault(Throwable cause, FaultInfo faultInfo, Object...errorParameters) {
+    public FaultException(Throwable cause, FaultInfo faultInfo, Object...errorParameters) {
         super(cause);
         faultDetails = new FaultDetails(faultInfo, errorParameters);
     }
 
-    public ServiceFault(Throwable cause) {
+    public FaultException(Throwable cause) {
         super(cause);
         faultDetails = new FaultDetails(AppFaultInfo.UNEXPECTED_ERROR, cause.getMessage());
     }
@@ -31,6 +33,10 @@ public class ServiceFault extends RuntimeException {
 
     public String getMessage() {
         return faultDetails.getMessage();
+    }
+
+    public HttpStatus getHttpStatus() {
+        return faultDetails.faultInfo.httpStatus();
     }
 
     public String getCauseMessage() {

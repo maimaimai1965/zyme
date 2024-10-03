@@ -3,11 +3,8 @@ package ua.mai.zyme.r2dbcmysql.entity;
 import lombok.Builder;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.domain.Persistable;
 import org.springframework.data.relational.core.mapping.Column;
-import ua.mai.zyme.r2dbcmysql.exception.AppException;
-import ua.mai.zyme.r2dbcmysql.exception.AppFaultInfo;
-import ua.mai.zyme.r2dbcmysql.exception.ServiceFault;
+import ua.mai.zyme.r2dbcmysql.exception.FaultException;
 
 import java.time.LocalDateTime;
 
@@ -32,9 +29,9 @@ public class Balance {
     public Long increaseBalance(Long delta, LocalDateTime modifiedDate) {
         Long newAmount = this.amount + delta;
         if (newAmount < 0)
-            throw new ServiceFault(BALANCE_AMOUNT_NOT_ENOUGH, memberId, amount, delta);
+            throw new FaultException(BALANCE_AMOUNT_NOT_ENOUGH, memberId, amount, delta);
         if (modifiedDate.isBefore(modifiedDate))
-            throw new ServiceFault(BALANCE_CHANGE_DATE_EARLIER_LAST_DATE, memberId, lastModifiedDate, modifiedDate);
+            throw new FaultException(BALANCE_CHANGE_DATE_EARLIER_LAST_DATE, memberId, lastModifiedDate, modifiedDate);
         amount = newAmount;
         lastModifiedDate = modifiedDate;
         return newAmount;

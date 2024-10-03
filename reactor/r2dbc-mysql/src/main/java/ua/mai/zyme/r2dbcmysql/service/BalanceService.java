@@ -7,7 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Mono;
 import ua.mai.zyme.r2dbcmysql.entity.Balance;
 import ua.mai.zyme.r2dbcmysql.exception.AppFaultInfo;
-import ua.mai.zyme.r2dbcmysql.exception.ServiceFault;
+import ua.mai.zyme.r2dbcmysql.exception.FaultException;
 import ua.mai.zyme.r2dbcmysql.repository.BalanceRepository;
 
 import java.time.LocalDateTime;
@@ -23,8 +23,8 @@ public class BalanceService {
 
     @Transactional
     public Mono<Balance> insertBalance(Integer memberId, Long amount, LocalDateTime createdDate, LocalDateTime lastModifiedDate) {
-        balanceRepository.insert(memberId, amount, createdDate, lastModifiedDate);
-        return findBalanceByMemberId(memberId);
+        return balanceRepository.insert(memberId, amount, createdDate, lastModifiedDate)
+                .then(findBalanceByMemberId(memberId));
     }
 
     public Mono<Balance> insertZeroBalance(Integer memberId, LocalDateTime createdDate) {
@@ -36,15 +36,14 @@ public class BalanceService {
         return balanceRepository.findById(memberId);
     }
 
-    public Mono<Balance> findBalanceByMemberIdWithFaultWhenNotExists(Integer memberId) {
+    public Mono<Balance> findBalanceByMemberIdWithFaultWhenBalanceNotExists(Integer memberId) {
         return findBalanceByMemberId(memberId)
-                     .switchIfEmpty(Mono.error(new ServiceFault(AppFaultInfo.BALANCE_FOR_MEMBER_NOT_EXISTS, memberId)));
+                .switchIfEmpty(Mono.error(new FaultException(AppFaultInfo.BALANCE_FOR_MEMBER_NOT_EXISTS, memberId)));
     }
 
     public Mono<Balance> findBalanceByMemberIdWithCreateZeroBalanceIfNotExists(Integer memberId, LocalDateTime createdDate) {
         return findBalanceByMemberId(memberId)
-                   .switchIfEmpty(
-                           insertZeroBalance(memberId, createdDate));
+                .switchIfEmpty(insertZeroBalance(memberId, createdDate));
     }
 
 }

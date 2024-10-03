@@ -71,14 +71,14 @@ class BalanсeRepositoryTest {
 
         // Execution
         StepVerifier.create(
-                        balanceRepository.insert(balanceIn.getMemberId(), balanceIn.getAmount(), balanceIn.getCreatedDate(), balanceIn.getLastModifiedDate()))
+                balanceRepository.insert(balanceIn.getMemberId(), balanceIn.getAmount(), balanceIn.getCreatedDate(), balanceIn.getLastModifiedDate()))
         // Assertion
                     .verifyComplete();
 
-        Balance balanceDb = tu.findBalanceByMemberId(memberIn.getMemberId());
+        Balance balance_Db = tu.findBalanceByMemberId(memberIn.getMemberId());
         Assertions.assertThat(balanceIn)
                 .usingRecursiveComparison()
-                .isEqualTo(balanceDb);
+                .isEqualTo(balance_Db);
     }
 
     @Test
@@ -93,9 +93,9 @@ class BalanсeRepositoryTest {
 
         // Execution
         StepVerifier.create(
-                        balanceRepository.save(balanceIn))
-                    .consumeNextWith(result -> listResult.add(result))
+                balanceRepository.save(balanceIn))
         // Assertion
+                    .consumeNextWith(result -> listResult.add(result))
                     .verifyComplete();
 
         Balance balance_Db = tu.findBalanceByMemberId(member.getMemberId());
@@ -141,7 +141,7 @@ class BalanсeRepositoryTest {
 
         // Execution
         StepVerifier.create(
-                        balanceRepository.deleteById(balanceIn.getMemberId()))
+                balanceRepository.deleteById(balanceIn.getMemberId()))
         // Assertion
                     .verifyComplete();
 
@@ -160,7 +160,7 @@ class BalanсeRepositoryTest {
 
         // Execution
         StepVerifier.create(
-                        balanceRepository.deleteAllById(listForCheck))
+                balanceRepository.deleteAllById(listForCheck))
         // Assertion
                     .verifyComplete();
 
@@ -181,10 +181,10 @@ class BalanсeRepositoryTest {
 
         // Execution
         StepVerifier.create(
-                        balanceRepository.findByMemberId(memberIn.getMemberId()))
-                .consumeNextWith(result -> listResult.add(result))
+                balanceRepository.findByMemberId(memberIn.getMemberId()))
         // Assertion
-                .verifyComplete();
+                    .consumeNextWith(result -> listResult.add(result))
+                    .verifyComplete();
 
         Balance balanceOut = listResult.get(0);
         Assertions.assertThat(balanceIn)
@@ -193,16 +193,16 @@ class BalanсeRepositoryTest {
     }
 
     @Test
-    public void findByIdWhenNotExists() {
+    public void findByMemberId_WhenNotExists() {
         // Setup
         Member memberIn = tu.insertMemberWithBalance("rikTest", 60L, TestUtil.now());
         Integer noExistsId = -1;
 
         // Execution
         StepVerifier.create(
-                        balanceRepository.findByMemberId(noExistsId))
+                         balanceRepository.findByMemberId(noExistsId))
         // Assertion
-                    .verifyComplete(); // Ппроверяем пустое значение в Mono.
+                    .verifyComplete(); // Проверяет получение Mono с пустым значением.
     }
 
     @Test
@@ -223,7 +223,7 @@ class BalanсeRepositoryTest {
 
         // Execution
         StepVerifier.create(
-                        balanceRepository.findAllById(listIdForCheck))
+                balanceRepository.findAllById(listIdForCheck))
         // Assertion
                     .consumeNextWith(listResult::add)
                     .consumeNextWith(listResult::add)
@@ -248,14 +248,17 @@ class BalanсeRepositoryTest {
         Balance balance4 = tu.findBalanceByMemberId(member4.getMemberId());
 
         List<Balance> listForCheck = List.of(balance1, balance3);
+        List<Balance> listResult = new ArrayList<>();
 
         // Execution
-        List<Balance> listOut = balanceRepository.findByAmountIsBetween(70L, 80L)
-                .toStream()
-                .toList();
-
+        StepVerifier.create(
+                         balanceRepository.findByAmountIsBetween(70L, 80L))
         // Assertion
-        Assertions.assertThat(listForCheck).containsExactlyInAnyOrderElementsOf(listOut);
+                    .consumeNextWith(listResult::add)
+                    .consumeNextWith(listResult::add)
+                    .verifyComplete();
+
+        Assertions.assertThat(listForCheck).containsExactlyInAnyOrderElementsOf(listResult);
     }
 
 }

@@ -15,7 +15,7 @@ import ua.mai.zyme.r2dbcmysql.entity.Balance;
 import ua.mai.zyme.r2dbcmysql.entity.Member;
 import ua.mai.zyme.r2dbcmysql.entity.Transfer;
 import ua.mai.zyme.r2dbcmysql.exception.AppFaultInfo;
-import ua.mai.zyme.r2dbcmysql.exception.ServiceFault;
+import ua.mai.zyme.r2dbcmysql.exception.FaultException;
 import ua.mai.zyme.r2dbcmysql.repository.BalanceRepository;
 import ua.mai.zyme.r2dbcmysql.repository.MemberRepository;
 import ua.mai.zyme.r2dbcmysql.repository.TransferRepository;
@@ -74,12 +74,11 @@ class TransferServiceTest {
 
         // Execution
         StepVerifier.create(
-                   transferService.doTransferWhenBalancesExist(memberFrom.getMemberId(), memberTo.getMemberId(), 20L, TestUtil.now())
-               )
-              .consumeNextWith(result -> listResult.add(result))
-              .verifyComplete();
-
+                transferService.doTransferWhenBalancesExist(memberFrom.getMemberId(), memberTo.getMemberId(), 20L, TestUtil.now()))
         // Assertion
+                    .consumeNextWith(result -> listResult.add(result))
+                    .verifyComplete();
+
         Transfer transferOut = listResult.get(0);
         Assert.assertNotNull(transferOut.getTransferId());
         Balance balanceFrom_Db = tu.findBalanceByMemberId(memberFrom.getMemberId());
@@ -94,7 +93,7 @@ class TransferServiceTest {
     }
 
     @Test
-    public void doTransferWhenBalancesExist_Fault_BalanceAmountNotEnough() throws InterruptedException {
+    public void doTransferWhenBalancesExist_Fault_WhenBalanceAmountNotEnough() throws InterruptedException {
         // Setup
         Member memberFrom = tu.insertMemberWithBalance("benTest", 40L, TestUtil.now());
         Member memberTo = tu.insertMemberWithBalance("annaTest", 70L, TestUtil.now());
@@ -103,78 +102,74 @@ class TransferServiceTest {
 
         // Execution
         StepVerifier.create(
-                        transferService.doTransferWhenBalancesExist(memberFrom.getMemberId(), memberTo.getMemberId(), 50L, TestUtil.now())
-                )
-                // Assertion
-                .consumeErrorWith(error -> {
-                    assertThat(error).isInstanceOf(ServiceFault.class);
-                    ServiceFault fault = (ServiceFault) error;
-                    assertThat(fault.getCode()).isEqualTo(AppFaultInfo.BALANCE_AMOUNT_NOT_ENOUGH.code());
-                    assertThat(fault.getErrorParameters().get(0)).isEqualTo(memberFrom.getMemberId());
-                    assertThat(fault.getErrorParameters().get(1)).isEqualTo(40L);  // memberFrom amount
-                    assertThat(fault.getErrorParameters().get(2)).isEqualTo(-50L);  // transfer amount
-                })
-                .verify();
+                transferService.doTransferWhenBalancesExist(memberFrom.getMemberId(), memberTo.getMemberId(), 50L, TestUtil.now()))
+        // Assertion
+                    .consumeErrorWith(error -> {
+                         assertThat(error).isInstanceOf(FaultException.class);
+                         FaultException fault = (FaultException) error;
+                         assertThat(fault.getCode()).isEqualTo(AppFaultInfo.BALANCE_AMOUNT_NOT_ENOUGH.code());
+                         assertThat(fault.getErrorParameters().get(0)).isEqualTo(memberFrom.getMemberId());
+                         assertThat(fault.getErrorParameters().get(1)).isEqualTo(40L);  // memberFrom amount
+                         assertThat(fault.getErrorParameters().get(2)).isEqualTo(-50L);  // transfer amount
+                     })
+                    .verify();
     }
 
     @Test
-    public void doTransferWhenBalancesExist_Fault_MemberFromNotExists() {
+    public void doTransferWhenBalancesExist_Fault_WhenMemberFromNotExists() {
         // Setup
         int memberFromId = -1; // Не существующий member.
         Member memberTo = tu.insertMemberWithBalance("rikTest", 40L, TestUtil.now());
 
         // Execution
         StepVerifier.create(
-                        transferService.doTransferWhenBalancesExist(memberFromId, memberTo.getMemberId(), 50L, TestUtil.now())
-                 )
+                transferService.doTransferWhenBalancesExist(memberFromId, memberTo.getMemberId(), 50L, TestUtil.now()))
         // Assertion
-                .consumeErrorWith(error -> {
-                    assertThat(error).isInstanceOf(ServiceFault.class);
-                    ServiceFault fault = (ServiceFault) error;
-                    assertThat(fault.getCode()).isEqualTo(AppFaultInfo.BALANCE_FOR_MEMBER_NOT_EXISTS.code());
-                    assertThat(fault.getErrorParameters().get(0)).isEqualTo(memberFromId);
-                 })
-                .verify();
+                    .consumeErrorWith(error -> {
+                         assertThat(error).isInstanceOf(FaultException.class);
+                         FaultException fault = (FaultException) error;
+                         assertThat(fault.getCode()).isEqualTo(AppFaultInfo.BALANCE_FOR_MEMBER_NOT_EXISTS.code());
+                         assertThat(fault.getErrorParameters().get(0)).isEqualTo(memberFromId);
+                     })
+                    .verify();
     }
 
     @Test
-    public void doTransferWhenBalancesExist_Fault_MemberToNotExists() {
+    public void doTransferWhenBalancesExist_Fault_WhenMemberToNotExists() {
         // Setup
         Member memberFrom = tu.insertMemberWithBalance("rikTest", 40L, TestUtil.now());
         int memberToId = -1; // Не существующий member.
 
         // Execution
         StepVerifier.create(
-                        transferService.doTransferWhenBalancesExist(memberFrom.getMemberId(), memberToId, 50L, TestUtil.now())
-                )
+                transferService.doTransferWhenBalancesExist(memberFrom.getMemberId(), memberToId, 50L, TestUtil.now()))
         // Assertion
-                .consumeErrorWith(error -> {
-                    assertThat(error).isInstanceOf(ServiceFault.class);
-                    ServiceFault fault = (ServiceFault) error;
-                    assertThat(fault.getCode()).isEqualTo(AppFaultInfo.BALANCE_FOR_MEMBER_NOT_EXISTS.code());
-                    assertThat(fault.getErrorParameters().get(0)).isEqualTo(memberToId);
-                 })
-                .verify();
+                    .consumeErrorWith(error -> {
+                         assertThat(error).isInstanceOf(FaultException.class);
+                         FaultException fault = (FaultException) error;
+                         assertThat(fault.getCode()).isEqualTo(AppFaultInfo.BALANCE_FOR_MEMBER_NOT_EXISTS.code());
+                         assertThat(fault.getErrorParameters().get(0)).isEqualTo(memberToId);
+                     })
+                    .verify();
     }
 
     @Test
-    public void doTransferWhenBalancesExist_Fault_BalanceFromNotExists() {
+    public void doTransferWhenBalancesExist_Fault_WhenBalanceFromNotExists() {
         // Setup
         Member memberFrom = tu.insertMember("rikTest");
         Member memberTo = tu.insertMemberWithBalance("tedTest", 40L, TestUtil.now());
 
         // Execution
         StepVerifier.create(
-                        transferService.doTransferWhenBalancesExist(memberFrom.getMemberId(), memberTo.getMemberId(), 50L, TestUtil.now())
-                )
+                transferService.doTransferWhenBalancesExist(memberFrom.getMemberId(), memberTo.getMemberId(), 50L, TestUtil.now()))
         // Assertion
-                .consumeErrorWith(error -> {
-                    assertThat(error).isInstanceOf(ServiceFault.class);
-                    ServiceFault fault = (ServiceFault) error;
-                    assertThat(fault.getCode()).isEqualTo(AppFaultInfo.BALANCE_FOR_MEMBER_NOT_EXISTS.code());
-                    assertThat(fault.getErrorParameters().get(0)).isEqualTo(memberFrom.getMemberId());
-                 })
-                .verify();
+                    .consumeErrorWith(error -> {
+                         assertThat(error).isInstanceOf(FaultException.class);
+                         FaultException fault = (FaultException) error;
+                         assertThat(fault.getCode()).isEqualTo(AppFaultInfo.BALANCE_FOR_MEMBER_NOT_EXISTS.code());
+                         assertThat(fault.getErrorParameters().get(0)).isEqualTo(memberFrom.getMemberId());
+                     })
+                    .verify();
     }
 
     @Test
@@ -185,18 +180,45 @@ class TransferServiceTest {
 
         // Execution
         StepVerifier.create(
-                         transferService.doTransferWhenBalancesExist(memberFrom.getMemberId(), memberTo.getMemberId(), 50L, TestUtil.now())
-                 )
+                transferService.doTransferWhenBalancesExist(memberFrom.getMemberId(), memberTo.getMemberId(), 50L, TestUtil.now()))
         // Assertion
-                .consumeErrorWith(error -> {
-                    assertThat(error).isInstanceOf(ServiceFault.class);
-                    ServiceFault fault = (ServiceFault) error;
-                    assertThat(fault.getCode()).isEqualTo(AppFaultInfo.BALANCE_FOR_MEMBER_NOT_EXISTS.code());
-                    assertThat(fault.getErrorParameters().get(0)).isEqualTo(memberTo.getMemberId());
-                 })
-                .verify();
+                    .consumeErrorWith(error -> {
+                         assertThat(error).isInstanceOf(FaultException.class);
+                         FaultException fault = (FaultException) error;
+                         assertThat(fault.getCode()).isEqualTo(AppFaultInfo.BALANCE_FOR_MEMBER_NOT_EXISTS.code());
+                         assertThat(fault.getErrorParameters().get(0)).isEqualTo(memberTo.getMemberId());
+                     })
+                    .verify();
     }
 
+
+    @Test
+    public void doTransfer() throws InterruptedException {
+        // Setup
+        Member memberFrom = tu.insertMemberWithBalance("benTest", 40L, TestUtil.now());
+        Member memberTo = tu.insertMemberWithBalance("annaTest", 70L, TestUtil.now());
+        Thread.sleep(1000);  // Чтобы отличались даты создания и изменения.
+        List<Transfer> listResult = new ArrayList<>(1);
+
+        // Execution
+        StepVerifier.create(
+                transferService.doTransfer(memberFrom.getMemberId(), memberTo.getMemberId(), 20L, TestUtil.now()))
+        // Assertion
+                    .consumeNextWith(result -> listResult.add(result))
+                    .verifyComplete();
+
+        Transfer transferOut = listResult.get(0);
+        Assert.assertNotNull(transferOut.getTransferId());
+        Balance balanceFrom_Db = tu.findBalanceByMemberId(memberFrom.getMemberId());
+        Balance balanceTo_Db = tu.findBalanceByMemberId(memberTo.getMemberId());
+        Transfer transfer_Db = tu.findTransferByTransferId(transferOut.getTransferId());
+        Assert.assertEquals(20L, transfer_Db.getAmount().longValue());
+
+        Assert.assertEquals(40L - 20L, balanceFrom_Db.getAmount().longValue());
+        Assert.assertEquals(transfer_Db.getCreatedDate(), balanceFrom_Db.getLastModifiedDate());
+        Assert.assertEquals(70L + 20L, balanceTo_Db.getAmount().longValue());
+        Assert.assertEquals(transfer_Db.getCreatedDate(), balanceTo_Db.getLastModifiedDate());
+    }
 
     @Test
     public void doTransfer_WhenToMemberBalanceNotExists() throws InterruptedException {
@@ -208,15 +230,13 @@ class TransferServiceTest {
 
         // Execution
         StepVerifier.create(
-                        transferService.doTransfer(memberFrom.getMemberId(), memberTo.getMemberId(), 20L, TestUtil.now())
-                )
-                .consumeNextWith(result -> listResult.add(result))
-                .verifyComplete();
-
+                transferService.doTransfer(memberFrom.getMemberId(), memberTo.getMemberId(), 20L, TestUtil.now()))
         // Assertion
+                    .consumeNextWith(result -> listResult.add(result))
+                    .verifyComplete();
+
         Transfer transferOut = listResult.get(0);
         Assert.assertNotNull(transferOut.getTransferId());
-
         Balance balanceFrom_Db = tu.findBalanceByMemberId(memberFrom.getMemberId());
         Balance balanceTo_Db = tu.findBalanceByMemberId(memberTo.getMemberId());
         Transfer transfer_Db = tu.findTransferByTransferId(transferOut.getTransferId());
@@ -224,27 +244,8 @@ class TransferServiceTest {
 
         Assert.assertEquals(40L - 20L, balanceFrom_Db.getAmount().longValue());
         Assert.assertEquals(transfer_Db.getCreatedDate(), balanceFrom_Db.getLastModifiedDate());
-        Assert.assertEquals(0L + 20L, balanceTo_Db.getAmount().longValue());
+        Assert.assertEquals(0 + 20L, balanceTo_Db.getAmount().longValue());
         Assert.assertEquals(transfer_Db.getCreatedDate(), balanceTo_Db.getLastModifiedDate());
     }
-
-//    public void doTransferWhenBalancesExist_MemberToNotExists2() {
-//        // Setup
-//        Member memberFrom = tu.insertMemberWithBalance("rikTest", 40L, TestUtil.now());
-//        int memberToId = -1; // Не существующий member.
-//
-//        // Execution
-//        Mono<Transfer> transfer = transferService.doTransferWhenBalancesExist(memberFrom.getMemberId(), memberToId, 50L, TestUtil.now());
-//
-//        StepVerifier.create(transfer)
-//                // Assertion
-//                .consumeErrorWith(error -> {
-//                    assertThat(error).isInstanceOf(ServiceFault.class);
-//                    ServiceFault fault = (ServiceFault) error;
-//                    assertThat(fault.getCode()).isEqualTo(AppFaultInfo.BALANCE_FOR_MEMBER_NOT_EXISTS.code());
-//                    assertThat(fault.getErrorParameters().get(0)).isEqualTo(memberToId);
-//                 })
-//                .verify();
-//    }
 
 }

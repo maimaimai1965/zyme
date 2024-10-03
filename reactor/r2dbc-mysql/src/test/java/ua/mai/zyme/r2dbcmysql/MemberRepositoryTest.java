@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
+import reactor.test.StepVerifier;
+import ua.mai.zyme.r2dbcmysql.entity.Balance;
 import ua.mai.zyme.r2dbcmysql.entity.Member;
 import ua.mai.zyme.r2dbcmysql.repository.MemberRepository;
 
@@ -81,16 +83,21 @@ class MemberRepositoryTest {
     public void saveAsInsert() {
         // Setup
         Member memberIn = TestUtil.newMember("annaTest");
+        List<Member> listResult = new ArrayList<>(1);
 
         // Execution
-        Member memberOut = memberRepository.save(memberIn).block(); // После выполнения в поле memberIn.id прописывается значение.
-
+        StepVerifier.create(
+                memberRepository.save(memberIn))
         // Assertion
+                    .consumeNextWith(result -> listResult.add(result))
+                    .verifyComplete();
+
+        Member memberOut = listResult.get(0);
         assertNotNull(memberOut.getMemberId());
-        Member memberDb = tu.findMemberByMemberId(memberOut.getMemberId());
-        Assertions.assertThat(memberIn)
+        Member member_Db = tu.findMemberByMemberId(memberOut.getMemberId());
+        Assertions.assertThat(member_Db)
                 .usingRecursiveComparison()
-                .isEqualTo(memberDb);
+                .isEqualTo(memberOut);
     }
 
     @Test
@@ -98,15 +105,23 @@ class MemberRepositoryTest {
         // Setup
         Member memberIn = tu.insertMember("billTest");
         memberIn.setName("bill2Test");
+        List<Member> listResult = new ArrayList<>(1);
 
         // Execution
-        Member memberOut = memberRepository.save(memberIn).block(); // После выполнения в поле memberIn.id прописывается значение.
-
+        StepVerifier.create(
+                memberRepository.save(memberIn))
         // Assertion
-        Member memberDb = tu.findMemberByMemberId(memberOut.getMemberId());
-        Assertions.assertThat(memberIn)
+                    .consumeNextWith(result -> listResult.add(result))
+                    .verifyComplete();
+
+        Member memberOut = listResult.get(0);
+        Assertions.assertThat(memberOut)
                 .usingRecursiveComparison()
-                .isEqualTo(memberDb);
+                .isEqualTo(memberIn);
+        Member member_Db = tu.findMemberByMemberId(memberOut.getMemberId());
+        Assertions.assertThat(member_Db)
+                .usingRecursiveComparison()
+                .isEqualTo(memberIn);
     }
 
     @Test
@@ -117,20 +132,26 @@ class MemberRepositoryTest {
                 TestUtil.newMember("benTest"),
                 TestUtil.newMember("tomTest")
         ));
+        List<Member> listResult = new ArrayList<>();
 
         // Execution
-        List<Member> listOut = memberRepository.saveAll(listIn).toStream().toList();
-
+        StepVerifier.create(
+                memberRepository.saveAll(listIn))
         // Assertion
-        assertTrue(listOut.size() == 3);
-        listOut.forEach(member -> {
+                    .consumeNextWith(result -> listResult.add(result))
+                    .consumeNextWith(result -> listResult.add(result))
+                    .consumeNextWith(result -> listResult.add(result))
+                    .verifyComplete();
+
+        assertTrue(listResult.size() == 3);
+        listResult.forEach(member -> {
             assertNotNull(member.getMemberId());
         });
-        List<Member> listDb = List.of(
-                tu.findMemberByMemberId(listOut.get(0).getMemberId()),
-                tu.findMemberByMemberId(listOut.get(1).getMemberId()),
-                tu.findMemberByMemberId(listOut.get(2).getMemberId()));
-        Assertions.assertThat(listOut).containsExactlyInAnyOrderElementsOf(listDb);
+        List<Member> list_Db = List.of(
+                tu.findMemberByMemberId(listResult.get(0).getMemberId()),
+                tu.findMemberByMemberId(listResult.get(1).getMemberId()),
+                tu.findMemberByMemberId(listResult.get(2).getMemberId()));
+        Assertions.assertThat(list_Db).containsExactlyInAnyOrderElementsOf(listResult);
     }
 
     @Test
@@ -143,19 +164,24 @@ class MemberRepositoryTest {
                 memberIn,
                 TestUtil.newMember("tomTest")
         ));
+        List<Member> listResult = new ArrayList<>();
 
         // Execution
-        List<Member> listOut = memberRepository.saveAll(listIn).toStream().toList();
-
+        StepVerifier.create(
+                memberRepository.saveAll(listIn))
         // Assertion
-        assertTrue(listOut.size() == 2);
-        listOut.forEach(member -> {
+                    .consumeNextWith(result -> listResult.add(result))
+                    .consumeNextWith(result -> listResult.add(result))
+                    .verifyComplete();
+
+        assertTrue(listResult.size() == 2);
+        listResult.forEach(member -> {
             assertNotNull(member.getMemberId());
         });
-        List<Member> listDb = List.of(
-                tu.findMemberByMemberId(listOut.get(0).getMemberId()),
-                tu.findMemberByMemberId(listOut.get(1).getMemberId()));
-        Assertions.assertThat(listOut).containsExactlyInAnyOrderElementsOf(listDb);
+        List<Member> list_Db = List.of(
+                tu.findMemberByMemberId(listResult.get(0).getMemberId()),
+                tu.findMemberByMemberId(listResult.get(1).getMemberId()));
+        Assertions.assertThat(list_Db).containsExactlyInAnyOrderElementsOf(listResult);
     }
 
     @Test
@@ -166,7 +192,12 @@ class MemberRepositoryTest {
         // Execution
         memberRepository.deleteById(memberIn.getMemberId()).block();
 
+        // Execution
+        StepVerifier.create(
+                memberRepository.deleteById(memberIn.getMemberId()))
         // Assertion
+                    .verifyComplete();
+
         assertNull(tu.findMemberByMemberId(memberIn.getMemberId()));
     }
 
@@ -186,9 +217,11 @@ class MemberRepositoryTest {
                 listInserted.get(1).getMemberId()));
 
         // Execution
-        memberRepository.deleteAllById(listIdDeleted).block();
-
+        StepVerifier.create(
+                memberRepository.deleteAllById(listIdDeleted))
         // Assertion
+                    .verifyComplete();
+
         assertNull(tu.findMemberByMemberId(listIdDeleted.get(0)));
         assertNull(tu.findMemberByMemberId(listIdDeleted.get(1)));
         assertNotNull(tu.findMemberByMemberId(listInserted.get(2).getMemberId()));
@@ -199,11 +232,17 @@ class MemberRepositoryTest {
     public void findById() {
         // Setup
         Member memberIn = tu.insertMember("annaTest");
+        Member memberIn2 = tu.insertMember("anna2Test");
+        List<Member> listResult = new ArrayList<>();
 
         // Execution
-        Member memberOut = memberRepository.findById(memberIn.getMemberId()).block();
-
+        StepVerifier.create(
+                memberRepository.findById(memberIn.getMemberId()))
         // Assertion
+                    .consumeNextWith(result -> listResult.add(result))
+                    .verifyComplete();
+
+        Member memberOut = listResult.get(0);
         Assertions.assertThat(memberIn.getMemberId()).isEqualTo(memberOut.getMemberId());
     }
 
@@ -211,46 +250,55 @@ class MemberRepositoryTest {
     public void findByName() {
         // Setup
         Member memberIn = tu.insertMember("kirilTest");
+        List<Member> listResult = new ArrayList<>();
 
         // Execution
-        Member memberOut = memberRepository.findByName(memberIn.getName()).block();
-
+        StepVerifier.create(
+                memberRepository.findByName(memberIn.getName()))
         // Assertion
+                    .consumeNextWith(result -> listResult.add(result))
+                    .verifyComplete();
+
+        Member memberOut = listResult.get(0);
         Assertions.assertThat(memberIn.getName()).isEqualTo(memberOut.getName());
     }
 
     @Test
-    public void findByIdWhenNotExists() {
+    public void findById_WhenMemberNotExists() {
         // Setup
-        Integer noExistsId = -1;
+        Integer notExistedMemberId = -1;
 
         // Execution
-        Member memberOut = memberRepository.findById(noExistsId).block();
-
+        StepVerifier.create(
+                memberRepository.findById(notExistedMemberId))
         // Assertion
-        assertNull(memberOut);
+                   .verifyComplete(); // Проверяет получение Mono с пустым значением.
     }
 
     @Test
     public void findAll() throws InterruptedException {
         // Setup
-        List<Member> list = new ArrayList<>(List.of(
-                TestUtil.newMember("aniTest"),
-                TestUtil.newMember("budiTest"),
-                TestUtil.newMember("cepTest"),
-                TestUtil.newMember("dodTest")
+        List<Member> listIn = new ArrayList<>(List.of(
+                tu.insertMember("aniTest"),
+                tu.insertMember("budiTest"),
+                tu.insertMember("cepTest"),
+                tu.insertMember("dodTest")
         ));
-        List<Member> listSaved = new ArrayList<>();
-        list.forEach(member -> listSaved.add(tu.insertMember(member)));
+        List<Member> listResult = new ArrayList<>();
 
         // Execution
-        List<Member> listOut = memberRepository.findAll()
-                .filter(member -> TestUtil.isMemberForTest(member))
-                .toStream()
-                .toList();
-
+        StepVerifier.create(
+                memberRepository.findAll()                                           // Вычитываем все данные.
+                                .filter(member -> TestUtil.isMemberForTest(member))) // Проверяем только на тестируемых данных.
         // Assertion
-        Assertions.assertThat(list).containsExactlyInAnyOrderElementsOf(listOut);
+                    .consumeNextWith(result -> listResult.add(result))
+                    .consumeNextWith(result -> listResult.add(result))
+                    .consumeNextWith(result -> listResult.add(result))
+                    .consumeNextWith(result -> listResult.add(result))
+                    .verifyComplete();
+
+        Assertions.assertThat(listResult)
+                  .containsExactlyInAnyOrderElementsOf(listIn);
     }
 
     @Test
@@ -266,15 +314,18 @@ class MemberRepositoryTest {
         list.forEach(member -> listSaved.add(tu.insertMember(member)));
         List<Member> listForCheck = List.of(listSaved.get(0), listSaved.get(3));
         List<Integer> listIdForCheck = listForCheck.stream().map(member -> member.getMemberId()).toList();
+        List<Member> listResult = new ArrayList<>();
 
         // Execution
-        List<Member> listOut = memberRepository.findAllById(listIdForCheck)
-                .filter(member -> TestUtil.isMemberForTest(member))
-                .toStream()
-                .toList();
+        StepVerifier.create(
+                memberRepository.findAllById(listIdForCheck))
+        // Assertion
+                    .consumeNextWith(result -> listResult.add(result))
+                    .consumeNextWith(result -> listResult.add(result))
+                    .verifyComplete();
 
         // Assertion
-        Assertions.assertThat(listForCheck).containsExactlyInAnyOrderElementsOf(listOut);
+        Assertions.assertThat(listResult).containsExactlyInAnyOrderElementsOf(listForCheck);
     }
 
     @Test
@@ -289,15 +340,17 @@ class MemberRepositoryTest {
         List<Member> listSaved = new ArrayList<>();
         list.forEach(member -> listSaved.add(tu.insertMember(member)));
         List<Member> listForCheck = list.stream().filter(member -> member.getName().contains("r")).toList();
+        List<Member> listResult = new ArrayList<>();
 
         // Execution
-        List<Member> listOut = memberRepository.findByNameLike("%r%")
-                .filter(member -> TestUtil.isMemberForTest(member))
-                .toStream()
-                .toList();
-
+        StepVerifier.create(
+                memberRepository.findByNameLike("%r%"))
         // Assertion
-        Assertions.assertThat(listForCheck).containsExactlyInAnyOrderElementsOf(listOut);
+                    .consumeNextWith(result -> listResult.add(result))
+                    .consumeNextWith(result -> listResult.add(result))
+                    .verifyComplete();
+
+        Assertions.assertThat(listResult).containsExactlyInAnyOrderElementsOf(listForCheck);
     }
 
     @Test
@@ -311,16 +364,18 @@ class MemberRepositoryTest {
         ));
         List<Member> listSaved = new ArrayList<>();
         list.forEach(member -> listSaved.add(tu.insertMember(member)));
-        List<Member> listForCheck = list.stream().filter(member -> member.getName().length() <= 3).toList();
+        List<Member> listForCheck = list.stream().filter(member -> member.getName().length() <= 7).toList();
+        List<Member> listResult = new ArrayList<>();
 
         // Execution
-        List<Member> listOut = memberRepository.findByNameLengthLE(3)
-                .filter(member -> TestUtil.isMemberForTest(member))
-                .toStream()
-                .toList();
-
+        StepVerifier.create(
+                memberRepository.findByNameLengthLE(7))
         // Assertion
-        Assertions.assertThat(listForCheck).containsExactlyInAnyOrderElementsOf(listOut);
+                    .consumeNextWith(result -> listResult.add(result))
+                    .consumeNextWith(result -> listResult.add(result))
+                    .verifyComplete();
+
+        Assertions.assertThat(listResult).containsExactlyInAnyOrderElementsOf(listForCheck);
     }
 
     @Test
@@ -329,10 +384,11 @@ class MemberRepositoryTest {
         String name = "memberTest";
 
         // Execution
-        memberRepository.insertThroughSql(name)
-                .block();
-
+        StepVerifier.create(
+                memberRepository.insertThroughSql(name))
         // Assertion
+                    .verifyComplete();
+
         Member memberDb = memberRepository.findByName(name).block();
         assertNotNull(memberDb);
     }
@@ -344,14 +400,15 @@ class MemberRepositoryTest {
         memberIn.setName("jil2Test");
 
         // Execution
-        memberRepository.updateThroughSql(memberIn.getMemberId(), memberIn.getName())
-                .block();
-
+        StepVerifier.create(
+                memberRepository.updateThroughSql(memberIn.getMemberId(), memberIn.getName()))
         // Assertion
-        Member memberDb = tu.findMemberByMemberId(memberIn.getMemberId());
-        Assertions.assertThat(memberIn)
+                    .verifyComplete();
+
+        Member member_Db = tu.findMemberByMemberId(memberIn.getMemberId());
+        Assertions.assertThat(member_Db)
                 .usingRecursiveComparison()
-                .isEqualTo(memberDb);
+                .isEqualTo(memberIn);
     }
 
     @Test
@@ -360,12 +417,13 @@ class MemberRepositoryTest {
         Member memberIn = tu.insertMember("mikeTest");
 
         // Execution
-        memberRepository.deleteThroughSql(memberIn.getMemberId())
-                .block();
-
+        StepVerifier.create(
+                memberRepository.deleteThroughSql(memberIn.getMemberId()))
         // Assertion
-        Member memberDb = tu.findMemberByMemberId(memberIn.getMemberId());
-        assertNull(memberDb);
+                    .verifyComplete();
+
+        Member member_Db = tu.findMemberByMemberId(memberIn.getMemberId());
+        assertNull(member_Db);
     }
 
 }

@@ -29,8 +29,8 @@ public class TransferService {
       */
     @Transactional
     public Mono<Transfer> doTransferWhenBalancesExist(Integer fromMemberId, Integer toMemberId, Long amount, LocalDateTime dateTime) {
-        return Mono.zip(balanceService.findBalanceByMemberIdWithFaultWhenNotExists(fromMemberId),
-                        balanceService.findBalanceByMemberIdWithFaultWhenNotExists(toMemberId))
+        return Mono.zip(balanceService.findBalanceByMemberIdWithFaultWhenBalanceNotExists(fromMemberId),
+                        balanceService.findBalanceByMemberIdWithFaultWhenBalanceNotExists(toMemberId))
                    .flatMap(balanceTuple -> executeTransfer(balanceTuple, amount, dateTime));
 
     }
@@ -43,7 +43,7 @@ public class TransferService {
      */
     @Transactional
     public Mono<Transfer> doTransfer(Integer fromMemberId, Integer toMemberId, Long amount, LocalDateTime dateTime) {
-        return Mono.zip(balanceService.findBalanceByMemberIdWithFaultWhenNotExists(fromMemberId),
+        return Mono.zip(balanceService.findBalanceByMemberIdWithFaultWhenBalanceNotExists(fromMemberId),
                         balanceService.findBalanceByMemberIdWithCreateZeroBalanceIfNotExists(toMemberId, dateTime))
                 .flatMap(memberTuple -> executeTransfer(memberTuple, amount, dateTime));
     }

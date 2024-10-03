@@ -125,7 +125,7 @@ public class TestUtil {
     }
     static public Member insertMemberWithBalance(MemberRepository memberRepository, BalanceRepository balanceRepository,
                                                  String name, Long amount, LocalDateTime dateTime) {
-        Member member = insertMember(memberRepository,"annaTest");
+        Member member = insertMember(memberRepository, name);
         Balance balanceToIn = insertBalance(balanceRepository, Balance.builder()
                 .memberId(member.getMemberId())
                 .amount(amount)
