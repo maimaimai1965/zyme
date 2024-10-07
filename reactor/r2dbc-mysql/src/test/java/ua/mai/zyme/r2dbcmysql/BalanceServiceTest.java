@@ -208,7 +208,7 @@ class BalanceServiceTest {
                     .consumeErrorWith(error -> {
                          assertThat(error).isInstanceOf(FaultException.class);
                          FaultException fault = (FaultException) error;
-                         assertThat(fault.getCode()).isEqualTo(AppFaultInfo.BALANCE_FOR_MEMBER_NOT_EXISTS.code());
+                         assertThat(fault.getCode()).isEqualTo(AppFaultInfo.BALANCE_FOR_MEMBER_NOT_FOUND.code());
                          assertThat(fault.getErrorParameters().get(0)).isEqualTo(memberIn.getMemberId());
                      })
                     .verify(); // Проверяет получение Mono с пустым значением.

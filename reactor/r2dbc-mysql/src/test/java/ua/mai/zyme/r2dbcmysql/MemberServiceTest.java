@@ -162,7 +162,7 @@ class MemberServiceTest {
         StepVerifier.create(
                         memberService.findMemberByMemberId(noExistedMemberId))
         // Assertion
-                   .verifyComplete(); // Проверяет получение Mono с пустым значением.
+                    .verifyComplete(); // Проверяет получение Mono с пустым значением.
     }
 
     @Test
@@ -195,7 +195,7 @@ class MemberServiceTest {
                     .consumeErrorWith(error -> {
                          assertThat(error).isInstanceOf(FaultException.class);
                          FaultException fault = (FaultException) error;
-                         assertThat(fault.getCode()).isEqualTo(AppFaultInfo.MEMBER_NOT_EXISTS.code());
+                         assertThat(fault.getCode()).isEqualTo(AppFaultInfo.MEMBER_NOT_FOUND.code());
                          assertThat(fault.getErrorParameters().get(0)).isEqualTo(noExistedMemberId);
                      })
                     .verify();

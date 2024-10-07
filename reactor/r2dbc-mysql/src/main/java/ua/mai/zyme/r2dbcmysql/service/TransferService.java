@@ -9,31 +9,23 @@ import ua.mai.zyme.r2dbcmysql.entity.Transfer;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import ua.mai.zyme.r2dbcmysql.exception.AppFaultInfo;
+import ua.mai.zyme.r2dbcmysql.exception.FaultException;
+import ua.mai.zyme.r2dbcmysql.exception.FaultInfo;
 import ua.mai.zyme.r2dbcmysql.repository.BalanceRepository;
 import ua.mai.zyme.r2dbcmysql.repository.TransferRepository;
 
 import java.time.LocalDateTime;
 
 
+@Slf4j
 @RequiredArgsConstructor
 @Service
-@Slf4j
 public class TransferService {
 
     private final TransferRepository transferRepository;
     private final BalanceRepository balanceRepository;
     private final BalanceService balanceService;
-
-     /**
-      * Если баланса у fromMemberId или toMemberId нет, то генерится исключение AppFaultInfo.BALANCE_FOR_MEMBER_NOT_EXISTS.
-      */
-    @Transactional
-    public Mono<Transfer> doTransferWhenBalancesExist(Integer fromMemberId, Integer toMemberId, Long amount, LocalDateTime dateTime) {
-        return Mono.zip(balanceService.findBalanceByMemberIdWithFaultWhenBalanceNotExists(fromMemberId),
-                        balanceService.findBalanceByMemberIdWithFaultWhenBalanceNotExists(toMemberId))
-                   .flatMap(balanceTuple -> executeTransfer(balanceTuple, amount, dateTime));
-
-    }
 
     /**
      * Если баланса для fromMemberId не существует, то генерится исключение AppFaultInfo.BALANCE_FOR_MEMBER_NOT_EXISTS.
@@ -48,7 +40,21 @@ public class TransferService {
                 .flatMap(memberTuple -> executeTransfer(memberTuple, amount, dateTime));
     }
 
+    /**
+     * Если баланса у fromMemberId или toMemberId нет, то генерится исключение AppFaultInfo.BALANCE_FOR_MEMBER_NOT_EXISTS.
+     */
+    @Transactional
+    public Mono<Transfer> doTransferWhenBalancesExist(Integer fromMemberId, Integer toMemberId, Long amount, LocalDateTime dateTime) {
+        return Mono.zip(balanceService.findBalanceByMemberIdWithFaultWhenBalanceNotExists(fromMemberId),
+                        balanceService.findBalanceByMemberIdWithFaultWhenBalanceNotExists(toMemberId))
+                .flatMap(balanceTuple -> executeTransfer(balanceTuple, amount, dateTime));
+
+    }
+
     private Mono<Transfer> executeTransfer(Tuple2<Balance, Balance> balanceTuple, Long amount, LocalDateTime dateTime) {
+        if (amount <= 0) {
+            return Mono.error(new FaultException(AppFaultInfo.TRANSFER_AMOUNT_MUST_BE_POSITIVE));
+        }
         Balance balanceFrom = balanceTuple.getT1();
         Balance balanceTo = balanceTuple.getT2();
         return decreaseBalance(balanceFrom, amount, dateTime)

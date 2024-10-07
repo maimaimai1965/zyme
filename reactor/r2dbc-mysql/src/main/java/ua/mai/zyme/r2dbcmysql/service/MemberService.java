@@ -37,7 +37,7 @@ public class MemberService {
 
     public Mono<Member> findMemberByMemberIdWithFaultWhenNotExists(Integer memberId) {
         return findMemberByMemberId(memberId)
-                     .switchIfEmpty(Mono.error(new FaultException(AppFaultInfo.MEMBER_NOT_EXISTS, memberId)));
+                     .switchIfEmpty(Mono.error(new FaultException(AppFaultInfo.MEMBER_NOT_FOUND, memberId)));
     }
 
 }
