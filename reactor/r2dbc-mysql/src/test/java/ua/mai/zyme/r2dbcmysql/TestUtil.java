@@ -175,15 +175,15 @@ public class TestUtil {
         runSql(connectionFactory, sqlDeleteTransfersTestData);
     }
 
-    static public Transfer newTransfer(Long amount, Integer toMemberId, Integer fromMemberId) {
-        return newTransfer(amount, toMemberId, fromMemberId, now());
+    static public Transfer newTransfer(Integer fromMemberId, Integer toMemberId, Long amount) {
+        return newTransfer(fromMemberId, toMemberId,amount, now());
     }
 
-    static public Transfer newTransfer(Long amount, Integer toMemberId, Integer fromMemberId, LocalDateTime createdDate) {
+    static public Transfer newTransfer(Integer fromMemberId, Integer toMemberId, Long amount, LocalDateTime createdDate) {
         Transfer transfer = Transfer.builder()
-                .amount(amount)
-                .toMemberId(toMemberId)
                 .fromMemberId(fromMemberId)
+                .toMemberId(toMemberId)
+                .amount(amount)
                 .createdDate(createdDate).build();
         return transfer;
     }
@@ -196,20 +196,20 @@ public class TestUtil {
         return transferRepository.save(transfer).block();
     }
 
-    public Transfer insertTransfer(Long amount, Integer toMemberId, Integer fromMemberId) {
-        return insertTransfer(transferRepository, amount, toMemberId, fromMemberId);
+    public Transfer insertTransfer(Integer fromMemberId, Integer toMemberId, Long amount) {
+        return insertTransfer(transferRepository, fromMemberId, toMemberId, amount);
     }
     static public Transfer insertTransfer(TransferRepository transferRepository,
-                                          Long amount, Integer toMemberId, Integer fromMemberId) {
-        return insertTransfer(transferRepository, newTransfer(amount, toMemberId, fromMemberId, now()));
+                                          Integer fromMemberId, Integer toMemberId, Long amount) {
+        return insertTransfer(transferRepository, newTransfer(fromMemberId, toMemberId, amount, now()));
     }
 
-    public Transfer insertTransfer(Long amount, Integer toMemberId, Integer fromMemberId, LocalDateTime createdDate) {
-        return insertTransfer(transferRepository, amount, toMemberId, fromMemberId, createdDate);
+    public Transfer insertTransfer(Integer fromMemberId, Integer toMemberId, Long amount, LocalDateTime createdDate) {
+        return insertTransfer(transferRepository, fromMemberId, toMemberId, amount, createdDate);
     }
     static public Transfer insertTransfer(TransferRepository transferRepository,
-                                          Long amount, Integer toMemberId, Integer fromMemberId, LocalDateTime createdDate) {
-        return insertTransfer(transferRepository, newTransfer(amount, toMemberId, fromMemberId, createdDate));
+                                          Integer fromMemberId, Integer toMemberId, Long amount, LocalDateTime createdDate) {
+        return insertTransfer(transferRepository, newTransfer(fromMemberId, toMemberId, amount, createdDate));
     }
 
     public void deleteTransfer(Long transferId) {

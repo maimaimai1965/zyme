@@ -132,8 +132,8 @@ class TransferRepositoryTest {
         Member memberFrom = tu.insertMember("benTest");
         Member memberFrom2 = tu.insertMember("mikeTest");
 
-        Transfer deletedTransfer = tu.insertTransfer(150L, memberTo.getMemberId(), memberFrom.getMemberId(), tu.now());
-        Transfer existedTransfer = tu.insertTransfer(60L, memberTo.getMemberId(), memberFrom2.getMemberId(), tu.now());
+        Transfer deletedTransfer = tu.insertTransfer(memberFrom.getMemberId(), memberTo.getMemberId(), 150L, tu.now());
+        Transfer existedTransfer = tu.insertTransfer(memberFrom2.getMemberId(), memberTo.getMemberId(), 60L, tu.now());
 
         // Execution
         StepVerifier.create(
@@ -153,9 +153,9 @@ class TransferRepositoryTest {
         Member memberFrom2 = tu.insertMember("mikeTest");
         Member memberFrom3 = tu.insertMember("joanTest");
 
-        Transfer deletedTransfer = tu.insertTransfer(150L, memberTo.getMemberId(), memberFrom.getMemberId(), tu.now());
-        Transfer deletedTransfer2 = tu.insertTransfer(40L, memberTo.getMemberId(), memberFrom2.getMemberId(), tu.now());
-        Transfer existedTransfer = tu.insertTransfer(60L, memberTo.getMemberId(), memberFrom3.getMemberId(), tu.now());
+        Transfer deletedTransfer = tu.insertTransfer(memberFrom.getMemberId(), memberTo.getMemberId(), 150L, tu.now());
+        Transfer deletedTransfer2 = tu.insertTransfer(memberFrom.getMemberId(), memberTo.getMemberId(), 40L, tu.now());
+        Transfer existedTransfer = tu.insertTransfer(memberFrom.getMemberId(), memberTo.getMemberId(), 60L, tu.now());
 
         List<Long> deletedIdList = new ArrayList<>(List.of(deletedTransfer.getTransferId(),
                                                            deletedTransfer2.getTransferId()));
@@ -177,8 +177,8 @@ class TransferRepositoryTest {
         Member memberFrom = tu.insertMember("janTest");
         Member memberFrom2 = tu.insertMember("mikeTest");
 
-        Transfer findedTransfer = tu.insertTransfer(30L, memberTo.getMemberId(), memberFrom.getMemberId(), tu.now());
-        Transfer otherTransfer = tu.insertTransfer(20L, memberTo.getMemberId(), memberFrom2.getMemberId(), tu.now());
+        Transfer findedTransfer = tu.insertTransfer(memberFrom.getMemberId(), memberTo.getMemberId(), 30L, tu.now());
+        Transfer otherTransfer = tu.insertTransfer(memberFrom2.getMemberId(), memberTo.getMemberId(), 20L, tu.now());
 
         List<Transfer> listResult = new ArrayList<>(1);
 
@@ -200,8 +200,8 @@ class TransferRepositoryTest {
         Member memberFrom = tu.insertMember("memberFromTest");
         Member memberFrom2 = tu.insertMember("memberFrom2Test");
 
-        tu.insertTransfer(30L, memberTo.getMemberId(), memberFrom.getMemberId(), tu.now());
-        tu.insertTransfer(20L, memberTo.getMemberId(), memberFrom2.getMemberId(), tu.now());
+        tu.insertTransfer(memberFrom.getMemberId(), memberTo.getMemberId(), 30L, tu.now());
+        tu.insertTransfer(memberFrom2.getMemberId(), memberTo.getMemberId(), 20L, tu.now());
 
         Long noExistsId = -1L;
 
@@ -220,9 +220,9 @@ class TransferRepositoryTest {
         Member memberFrom2 = tu.insertMember("mikeTest");
         Member memberFrom3 = tu.insertMember("joanTest");
 
-        Transfer findedTransfer = tu.insertTransfer(10L, memberTo.getMemberId(), memberFrom.getMemberId(), tu.now());
-        Transfer findedTransfer2 = tu.insertTransfer(140L, memberTo.getMemberId(), memberFrom2.getMemberId(), tu.now());
-        tu.insertTransfer(600L, memberTo.getMemberId(), memberFrom3.getMemberId(), tu.now());
+        Transfer findedTransfer = tu.insertTransfer(memberFrom.getMemberId(), memberTo.getMemberId(), 10L, tu.now());
+        Transfer findedTransfer2 = tu.insertTransfer(memberFrom2.getMemberId(), memberTo.getMemberId(), 140L, tu.now());
+        tu.insertTransfer(memberFrom3.getMemberId(), memberTo.getMemberId(), 600L, tu.now());
 
         List<Transfer> listForCheck = List.of(findedTransfer, findedTransfer2);
         List<Long> listTransferId = List.of(findedTransfer.getTransferId(), findedTransfer2.getTransferId());
@@ -246,10 +246,10 @@ class TransferRepositoryTest {
         Member member2 = tu.insertMember("member2Test");
         Member member3 = tu.insertMember("member3Test");
 
-        Transfer transfer1_2_10 = tu.insertTransfer(10L, member1.getMemberId(), member2.getMemberId(), tu.now());
-        Transfer transfer1_3_20 = tu.insertTransfer(20L, member1.getMemberId(), member3.getMemberId(), tu.now());
-        Transfer transfer2_3_40 = tu.insertTransfer(40L, member2.getMemberId(), member3.getMemberId(), tu.now());
-        Transfer transfer3_1_50 = tu.insertTransfer(50L, member3.getMemberId(), member1.getMemberId(), tu.now());
+        Transfer transfer1_2_10 = tu.insertTransfer(member2.getMemberId(), member1.getMemberId(), 10L, tu.now());
+        Transfer transfer1_3_20 = tu.insertTransfer(member3.getMemberId(), member1.getMemberId(), 20L, tu.now());
+        Transfer transfer2_3_40 = tu.insertTransfer(member3.getMemberId(), member2.getMemberId(), 40L, tu.now());
+        Transfer transfer3_1_50 = tu.insertTransfer(member1.getMemberId(), member3.getMemberId(), 50L, tu.now());
 
         List<Transfer> listForCheck = List.of(transfer1_2_10, transfer1_3_20);
         List<Transfer> listResult = new ArrayList<>(1);

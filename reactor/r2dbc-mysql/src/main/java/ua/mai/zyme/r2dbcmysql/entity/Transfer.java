@@ -15,13 +15,13 @@ public class Transfer {
   @Column("transfer_id")
   private Long transferId;
 
-  private Long amount;
+  @Column("from_member_id")
+  private Integer fromMemberId;
 
   @Column("to_member_id")
   private Integer toMemberId;
 
-  @Column("from_member_id")
-  private Integer fromMemberId;
+  private Long amount;
 
   @Column("created_date")
   private LocalDateTime createdDate;

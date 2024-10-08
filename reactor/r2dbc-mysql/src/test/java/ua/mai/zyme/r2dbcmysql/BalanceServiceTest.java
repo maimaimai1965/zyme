@@ -89,7 +89,31 @@ class BalanceServiceTest {
     }
 
     @Test
-    public void insertBalance_Error_WhenMemberNotExists() throws InterruptedException {
+    public void insertBalance_Fault_WhenNegativeAmount() throws InterruptedException {
+        // Setup
+        Member memberIn = tu.insertMember("monaTest");
+        Balance balanceIn = Balance.builder()
+                .memberId(memberIn.getMemberId())
+                .amount(-50L)
+                .createdDate(TestUtil.now())
+                .lastModifiedDate(TestUtil.now())
+                .build();
+        List<Balance> listResult = new ArrayList<>(1);
+
+        // Execution
+        StepVerifier.create(
+                balanceService.insertBalance(balanceIn.getMemberId(), balanceIn.getAmount(), balanceIn.getCreatedDate(), balanceIn.getLastModifiedDate()))
+        // Assertion
+                    .consumeErrorWith(error -> {
+                         assertThat(error).isInstanceOf(FaultException.class);
+                         FaultException fault = (FaultException) error;
+                         assertThat(fault.getCode()).isEqualTo(AppFaultInfo.BALANCE_AMOUNT_CANNOT_BE_NEGATIVE.code());
+                })
+                .verify(); // Проверяет получение Mono с пустым значением.
+    }
+
+    @Test
+    public void insertBalance_Fault_WhenMemberNotExists() throws InterruptedException {
         // Setup
         Integer notExistsMemberId = -1;
         Balance balanceIn = Balance.builder()
@@ -104,7 +128,11 @@ class BalanceServiceTest {
                 balanceService.insertBalance(balanceIn.getMemberId(), balanceIn.getAmount(), balanceIn.getCreatedDate(), balanceIn.getLastModifiedDate()))
         // Assertion
                     .consumeErrorWith(error -> {
-                         assertThat(error).isInstanceOf(org.springframework.dao.DataIntegrityViolationException.class);//                         FaultException fault = (FaultException) error;
+                         assertThat(error).isInstanceOf(FaultException.class);
+                         FaultException fault = (FaultException) error;
+                         assertThat(fault.getCode()).isEqualTo(AppFaultInfo.BALANCE_NOT_CREATED.code());
+                         assertThat(fault.getErrorParameters().get(0)).isEqualTo(balanceIn.getMemberId());
+                         assertThat(fault.getErrorParameters().get(1)).isEqualTo(balanceIn.getAmount());
                      })
                     .verify();
     }

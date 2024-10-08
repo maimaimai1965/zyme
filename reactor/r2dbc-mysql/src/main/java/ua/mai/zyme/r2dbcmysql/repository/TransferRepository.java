@@ -9,8 +9,10 @@ public interface TransferRepository extends R2dbcRepository<Transfer, Long> {
 
   Mono<Transfer> findByTransferId(Long transferId);
 
+  Flux<Transfer> findByFromMemberId(Integer fromMemberId);
+
   Flux<Transfer> findByToMemberId(Integer toMemberId);
 
-  Flux<Transfer> findByFromMemberId(Integer fromMemberId);
+  Flux<Transfer> findByFromMemberIdAndToMemberId(Integer fromMemberId, Integer toMemberId);
 
 }

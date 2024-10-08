@@ -58,6 +58,8 @@ class BalanceControllerTest {
     }
 
 
+    // ------------------------------------ findBalanceByMemberId(name) <- /api/balances/{memberId} --------------------
+
     @Test
     public void findBalanceByMemberId() {
         Member member1 = tu.insertMember("member1Test");
@@ -92,6 +94,9 @@ class BalanceControllerTest {
                 .isEqualTo(balanceOut1);
     }
 
+
+    // ------------------------------------ findBalancesByMemberIds(memberIds) <- /api/balances?memberIds= -------------
+
     @Test
     public void findBalancesByMemberIds() {
         Member member1 = tu.insertMember("member1Test");
@@ -121,7 +126,7 @@ class BalanceControllerTest {
 
         // Execution
         List<Balance> listOut = webTestClient.get()
-                .uri("/api/balances/?memberIds=" + balance1.getMemberId() + "," + balance3.getMemberId())
+                .uri("/api/balances?memberIds=" + balance1.getMemberId() + "," + balance3.getMemberId())
                 .accept(MediaType.APPLICATION_JSON)
                 .exchange()
         // Assertion
@@ -131,6 +136,9 @@ class BalanceControllerTest {
 
         Assertions.assertThat(listForCheck).containsExactlyInAnyOrderElementsOf(listOut);
     }
+
+
+    // -------- findBalancesByAmountIsBetween(minAmount, maxAmount) <- /api/balances?minAmount= &maxAmount= ------------
 
     @Test
     public void findBalancesByAmountIsBetween() {
@@ -161,7 +169,7 @@ class BalanceControllerTest {
 
         // Execution
         List<Balance> listOut = webTestClient.get()
-                .uri("/api/balances/?minAmount=70&maxAmount=80")
+                .uri("/api/balances?minAmount=70&maxAmount=80")
                 .accept(MediaType.APPLICATION_JSON)
                 .exchange()
                 // Assertion

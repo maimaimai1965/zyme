@@ -24,13 +24,13 @@ public class BalanceController {
   }
 
   // Пример url-а: /api/balances/?memberIds=521,523
-  @GetMapping(value = "/")
+  @GetMapping(value = "")
   public Flux<Balance> findBalancesByMemberIds(@RequestParam List<Integer> memberIds) {
     return balanceRepository.findAllById(memberIds);
   }
 
   // Пример url-а: /api/balances/?minAmount=70&maxAmount=80
-  @GetMapping(value = "/", params = {"minAmount", "maxAmount"})
+  @GetMapping(value = "", params = {"minAmount", "maxAmount"})
   public Flux<Balance> findBalancesByAmountIsBetween(@RequestParam Long minAmount,
                                                      @RequestParam Long maxAmount) {
     return balanceRepository.findByAmountIsBetween(minAmount, maxAmount);
