@@ -1,6 +1,26 @@
 logging:
   level:
-    org.springframework.r2dbc: DEBUG
+    ROOT: INFO
+
+#    org.springframework.r2dbc: DEBUG
+
+    ua.mai.zyme.r2dbcmysql.log.RequestLogWebFilter: DEBUG
+    ua.mai.zyme.r2dbcmysql.log.ResponseLogWebFilter: DEBUG
+
+    # Вывод SQL:
+    org.springframework.r2dbc.core.DefaultDatabaseClient: DEBUG
+    # Вывод request и response:
+    org.springframework.web.server.adapter.HttpWebHandlerAdapter: DEBUG
+    # Вывод названия вызываемого метода контроллера:
+    org.springframework.web.reactive.result.method.annotation.RequestMappingHandlerMapping: DEBUG
+    # Вывод доп. информации о привязке запроса к вызываемому методу контроллера (DEBUG):
+    org.springframework.web.reactive.result.method.annotation.RequestBodyMethodArgumentResolver: INFO
+    # Вывод доп. информации о response (DEBUG):
+    org.springframework.web.reactive.result.method.annotation.ResponseBodyResultHandler: INFO
+    # Вывод доп. информации об Encoding тела ответа в JSON (DEBUG):
+    org.springframework.http.codec: INFO
+    # Вывод доп. информации об Encoding тела ответа (DEBUG):
+    org.springframework.web.HttpLogging: INFO
 
     # Для отладки транзакций:
     org.springframework.jdbc.support.JdbcTransactionManager: DEBUG
