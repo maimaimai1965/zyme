@@ -33,21 +33,21 @@ public class RequestLogWebFilter implements WebFilter {
         this.logMessageFormatter = DEFAULT_LOG_MESSAGE_FORMATTER;
     }
 
-//    public MediaTypeFilter getMediaTypeFilter() {
-//        return mediaTypeFilter;
-//    }
-//
-//    public void setMediaTypeFilter(MediaTypeFilter mediaTypeFilter) {
-//        this.mediaTypeFilter = mediaTypeFilter;
-//    }
-//
-//    public LogMessageFormatter getLogMessageFormatter() {
-//        return logMessageFormatter;
-//    }
-//
-//    public void setLogMessageFormatter(LogMessageFormatter logMessageFormatter) {
-//        this.logMessageFormatter = logMessageFormatter;
-//    }
+    public MediaTypeFilter getMediaTypeFilter() {
+        return mediaTypeFilter;
+    }
+
+    public void setMediaTypeFilter(MediaTypeFilter mediaTypeFilter) {
+        this.mediaTypeFilter = mediaTypeFilter;
+    }
+
+    public LogMessageFormatter getLogMessageFormatter() {
+        return logMessageFormatter;
+    }
+
+    public void setLogMessageFormatter(LogMessageFormatter logMessageFormatter) {
+        this.logMessageFormatter = logMessageFormatter;
+    }
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {

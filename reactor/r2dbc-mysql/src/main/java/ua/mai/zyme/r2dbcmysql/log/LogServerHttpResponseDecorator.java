@@ -29,21 +29,21 @@ class LogServerHttpResponseDecorator extends ServerHttpResponseDecorator impleme
         this.request = request;
         this.formatter = formatter;
         MediaType mediaType = getHeaders().getContentType();
-//        if (logger.isDebugEnabled() && mediaTypeFilter.logged(mediaType)) {
+        if (logger.isDebugEnabled() && mediaTypeFilter.logged(mediaType)) {
             baos = new ByteArrayOutputStream();
             delegate.beforeCommit(() -> {
                 flushLog(baos);
                 return Mono.empty();
             });
-//        } else if (logger.isInfoEnabled()) {
-//            baos = EMPTY_BYTE_ARRAY_OUTPUT_STREAM;
-//            delegate.beforeCommit(() -> {
-//                flushLog(baos);
-//                return Mono.empty();
-//            });
-//        } else {
-//            baos = EMPTY_BYTE_ARRAY_OUTPUT_STREAM;
-//        }
+        } else if (logger.isInfoEnabled()) {
+            baos = EMPTY_BYTE_ARRAY_OUTPUT_STREAM;
+            delegate.beforeCommit(() -> {
+                flushLog(baos);
+                return Mono.empty();
+            });
+        } else {
+            baos = EMPTY_BYTE_ARRAY_OUTPUT_STREAM;
+        }
     }
 
     @Override
@@ -68,15 +68,15 @@ class LogServerHttpResponseDecorator extends ServerHttpResponseDecorator impleme
 
     private void flushLog(ByteArrayOutputStream baos) {
         if (logger.isInfoEnabled()) {
-//            if (logger.isDebugEnabled()) {
-//                if (mediaTypeFilter.logged(getHeaders().getContentType())) {
-//                    logger.debug(formatter.format(this.request, getDelegate(), baos.toByteArray()));
-logger.info(formatter.format(this.request, getDelegate(), baos.toByteArray()));
-//                }
-//                logger.debug(formatter.format(this.request, getDelegate(), null));
-//            } else {
-//                logger.info(formatter.format(this.request, getDelegate(), null));
-//            }
+            if (logger.isDebugEnabled()) {
+                if (mediaTypeFilter.logged(getHeaders().getContentType())) {
+                    logger.debug(formatter.format(this.request, getDelegate(), baos.toByteArray()));
+                }
+                else
+                    logger.debug(formatter.format(this.request, getDelegate(), null));
+            } else {
+                logger.info(formatter.format(this.request, getDelegate(), null));
+            }
         }
     }
 
@@ -89,23 +89,16 @@ logger.info(formatter.format(this.request, getDelegate(), baos.toByteArray()));
 
         @Override
         public String format(ServerHttpRequest request, ServerHttpResponse response, byte[] payload) {
-            final StringBuilder data = new StringBuilder();
-            data.append("Response [")
-                    .append(Optional.ofNullable(response.getStatusCode()).orElse(HttpStatus.OK))
-                    .append("] for [").append(request.getMethod())
-                    .append("] '").append(String.valueOf(request.getURI()))
-                    .append("' from ")
-                    .append(
-                            Optional.ofNullable(request.getRemoteAddress())
-                                    .map( addr -> addr.getHostString() )
-                                    .orElse("null")
-                    );
-            if (payload != null) {
-                response.getHeaders().forEach((key, value) -> data.append('\n').append(key).append('=').append(String.valueOf(value)));
-                data.append("\n[\n");
-                data.append(new String(payload));
-                data.append("\n]");
-            }
+            StringBuilder data = new StringBuilder();
+//            if (payload == null)
+            data.append("REQ OUT [").append(request.getId())
+                    .append("]\n  Address: ").append(request.getURI())
+                    .append("\n  HttpMethod: ").append(request.getMethod())
+                    .append("\n  Status: ").append(Optional.ofNullable(response.getStatusCode()).orElse(HttpStatus.OK))
+                    .append("\n  Headers: ").append(request.getHeaders());
+//            else
+            if (payload != null)
+                data.append("\n  Payload OUT: ").append(payload != null ? ("\n" + new String(payload)) : "");
             return data.toString();
         }
     }

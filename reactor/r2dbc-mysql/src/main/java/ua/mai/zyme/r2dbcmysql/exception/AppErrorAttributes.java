@@ -22,7 +22,6 @@ public class AppErrorAttributes<T extends Throwable> extends DefaultErrorAttribu
         Throwable ex = getError(request);
 
         if (ex != null) {
-            errorAttributes.remove("requestId");
             errorAttributes.remove("message");
 
             if (ex instanceof FaultException faultException) {

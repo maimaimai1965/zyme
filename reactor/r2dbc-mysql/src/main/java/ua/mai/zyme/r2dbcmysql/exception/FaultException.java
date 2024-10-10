@@ -32,11 +32,15 @@ public class FaultException extends RuntimeException {
     }
 
     public String getMessage() {
-        return faultDetails.getMessage();
+        return getFaultMessage();
     }
 
     public HttpStatus getHttpStatus() {
         return faultDetails.faultInfo.httpStatus();
+    }
+
+    public String getFaultMessage() {
+        return faultDetails.getMessage();
     }
 
     public String getCauseMessage() {
@@ -45,6 +49,13 @@ public class FaultException extends RuntimeException {
 
     public List<Object> getErrorParameters() {
         return faultDetails.errorParameters;
+    }
+
+    public String toString() {
+        return "Code=" + getCode() +
+               ", Message=\"" + getFaultMessage() + "\"" +
+                (getCause() != null ? (", Details=" + getCause()) : "") +
+               ", HttpStatus=" + getHttpStatus();
     }
 
 }

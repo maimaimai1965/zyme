@@ -4,15 +4,16 @@ logging:
 
 #    org.springframework.r2dbc: DEBUG
 
+# ---------- Настройка логирования request-ов и response-ов (и ошибок) REST сервиса ------------------------------------
+    # Вывод request-ов (ERROR,WARN - ничего кроме ошибок, INFO - request без body; DEBUG - request + body)
     ua.mai.zyme.r2dbcmysql.log.RequestLogWebFilter: DEBUG
+    # Вывод response-ов (ERROR,WARN - ничего, INFO - response без body; DEBUG - response + body)
     ua.mai.zyme.r2dbcmysql.log.ResponseLogWebFilter: DEBUG
-
-    # Вывод SQL:
-    org.springframework.r2dbc.core.DefaultDatabaseClient: DEBUG
-    # Вывод request и response:
-    org.springframework.web.server.adapter.HttpWebHandlerAdapter: DEBUG
-    # Вывод названия вызываемого метода контроллера:
+    # Вывод названий вызываемых методов контроллера (DEBUG):
     org.springframework.web.reactive.result.method.annotation.RequestMappingHandlerMapping: DEBUG
+    # -- Вывод различной доп. информации ------------------------------------------------------------------
+    # Вывод request и response (DEBUG - краткая информация о request и response):
+    org.springframework.web.server.adapter.HttpWebHandlerAdapter: INFO
     # Вывод доп. информации о привязке запроса к вызываемому методу контроллера (DEBUG):
     org.springframework.web.reactive.result.method.annotation.RequestBodyMethodArgumentResolver: INFO
     # Вывод доп. информации о response (DEBUG):
@@ -21,6 +22,10 @@ logging:
     org.springframework.http.codec: INFO
     # Вывод доп. информации об Encoding тела ответа (DEBUG):
     org.springframework.web.HttpLogging: INFO
+# ----------------------------------------------------------------------------------------------------------------------
+
+    # Вывод SQL в r2dbc:
+    org.springframework.r2dbc.core.DefaultDatabaseClient: DEBUG
 
     # Для отладки транзакций:
     org.springframework.jdbc.support.JdbcTransactionManager: DEBUG
@@ -53,3 +58,4 @@ spring:
     pool.initial-size: 5
     pool.max-size: 10
 
+  jackson.deserialization.fail-on-unknown-properties: true

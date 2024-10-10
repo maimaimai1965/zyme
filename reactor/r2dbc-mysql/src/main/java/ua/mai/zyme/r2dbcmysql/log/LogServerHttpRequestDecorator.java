@@ -52,7 +52,7 @@ class LogServerHttpRequestDecorator extends ServerHttpRequestDecorator implement
                 } else {
                     logger.debug(formatter.format(getDelegate(), this.response, null));
                 }
-            } else {
+            } else if (onCreate) {
                 logger.info(formatter.format(getDelegate(), this.response, null));
             }
         }
@@ -68,20 +68,13 @@ class LogServerHttpRequestDecorator extends ServerHttpRequestDecorator implement
         @Override
         public String format(ServerHttpRequest request, ServerHttpResponse response, byte[] payload) {
             StringBuilder data = new StringBuilder();
-            data.append('[').append(request.getMethod())
-                    .append("] '").append(String.valueOf(request.getURI()))
-                    .append("' from ")
-                    .append(
-                            Optional.ofNullable(request.getRemoteAddress())
-                                    .map(addr -> addr.getHostString())
-                                    .orElse("null")
-                    );
-            if (payload != null) {
-                request.getHeaders().forEach((key, value) -> data.append('\n').append(key).append('=').append(String.valueOf(value)));
-                data.append("\n[\n");
-                data.append(new String(payload));
-                data.append("\n]");
-            }
+            if (payload == null)
+                data.append("REQ IN [").append(request.getId())
+                    .append("]\n  Address: ").append(request.getURI())
+                    .append("\n  HttpMethod: ").append(request.getMethod())
+                    .append("\n  Headers: ").append(request.getHeaders());
+            else
+                data.append("\n  Payload IN: ").append(payload != null ? ("\n"+ new String(payload)) : "");
             return data.toString();
         }
     }
