@@ -16,6 +16,7 @@ import ua.mai.zyme.r2dbcmysql.exception.AppFaultInfo;
 import ua.mai.zyme.r2dbcmysql.exception.FaultException;
 import ua.mai.zyme.r2dbcmysql.repository.MemberRepository;
 import ua.mai.zyme.r2dbcmysql.service.MemberService;
+import ua.mai.zyme.r2dbcmysql.util.TestUtil;
 
 import java.util.ArrayList;
 import java.util.List;

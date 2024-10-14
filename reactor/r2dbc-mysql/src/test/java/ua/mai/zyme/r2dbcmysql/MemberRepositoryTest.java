@@ -11,9 +11,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import reactor.test.StepVerifier;
-import ua.mai.zyme.r2dbcmysql.entity.Balance;
 import ua.mai.zyme.r2dbcmysql.entity.Member;
 import ua.mai.zyme.r2dbcmysql.repository.MemberRepository;
+import ua.mai.zyme.r2dbcmysql.util.TestUtil;
 
 import java.util.ArrayList;
 import java.util.List;

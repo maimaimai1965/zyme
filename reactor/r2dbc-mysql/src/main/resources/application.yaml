@@ -44,9 +44,13 @@ logging:
     org.springframework.jdbc.core.StatementCreatorUtils: TRACE
     org.springframework.jdbc.support.JdbcAccessor: TRACE
 
+server:
+  port: 8080
+  address: localhost
 spring:
+  main.banner-mode: off
   application:
-    name: r2dbc-mysql
+    name: r2dbc-mysql REST service
 
   r2dbc:
 #    url=r2dbc:postgresql://postgres:password@localhost:5432/postgres

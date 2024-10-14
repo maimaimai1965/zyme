@@ -1,8 +1,7 @@
-package ua.mai.zyme.r2dbcmysql;
+package ua.mai.zyme.r2dbcmysql.util;
 
 import io.r2dbc.spi.ConnectionFactory;
 import org.springframework.data.r2dbc.core.R2dbcEntityTemplate;
-import ua.mai.zyme.r2dbcmysql.config.AppUtil;
 import ua.mai.zyme.r2dbcmysql.entity.Balance;
 import ua.mai.zyme.r2dbcmysql.entity.Member;
 import ua.mai.zyme.r2dbcmysql.entity.Transfer;

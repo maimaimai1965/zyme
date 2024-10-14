@@ -12,17 +12,15 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.reactive.server.WebTestClient;
-import reactor.core.publisher.Mono;
 import ua.mai.zyme.r2dbcmysql.entity.Balance;
 import ua.mai.zyme.r2dbcmysql.entity.Member;
 import ua.mai.zyme.r2dbcmysql.repository.BalanceRepository;
 import ua.mai.zyme.r2dbcmysql.repository.MemberRepository;
+import ua.mai.zyme.r2dbcmysql.util.TestUtil;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.hamcrest.Matchers.hasItems;
-import static org.junit.Assert.*;
 
 
 @SpringBootTest

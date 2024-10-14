@@ -1,4 +1,4 @@
-package ua.mai.zyme.r2dbcmysql.config;
+package ua.mai.zyme.r2dbcmysql.util;
 
 import reactor.core.publisher.Mono;
 import ua.mai.zyme.r2dbcmysql.entity.Balance;
@@ -24,7 +24,5 @@ public class AppUtil {
             throw new RuntimeException(e);
         }
     }
-
-
 
 }

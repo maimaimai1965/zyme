@@ -16,6 +16,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.reactive.server.WebTestClient;
+import ua.mai.zyme.r2dbcmysql.util.TestUtil;
 
 import java.util.ArrayList;
 import java.util.List;

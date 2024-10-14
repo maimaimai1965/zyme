@@ -1,0 +1,439 @@
+{
+	"info": {
+		"_postman_id": "d71a3054-a070-497f-bdd0-bbb5f97ec643",
+		"name": "9032 Zyme r2dbc-mysql",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5994305"
+	},
+	"item": [
+		{
+			"name": "MemberController - /api/members",
+			"item": [
+				{
+					"name": "insertMember(member) <- /api/members",
+					"item": [
+						{
+							"name": "/api/members",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"bond\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/members",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"members"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/api/members: ERR001  unrecognizedField 400",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"fnna\",\r\n    \"badAtribute\" : 111\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/members",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"members"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "deleteMemberById(id) <- /api/members/{id}",
+					"item": [
+						{
+							"name": "/api/members/{id}",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/members/123",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"members",
+										"123"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/api/members/{id} WhenMemberNotExists",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/members/-1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"members",
+										"-1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "findByMemberId(id) <- /api/members/{id}",
+					"item": [
+						{
+							"name": "/api/members/{id}",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/members/1321",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"members",
+										"1321"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/api/members/{id}: ERR002 MemberNotFound 404",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/members/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"members",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/api/members/1BAD: ERR001 BadMemberId 400",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/members/1BAD",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"members",
+										"1BAD"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/api/members/1: ERR001 MethodNotAllowed 405",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/members/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"members",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/api/memb: ERR001 NoStaticResource 404",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/memb",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"memb"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "findMemberByName(name) <- /api/members?name=",
+					"item": [
+						{
+							"name": "/api/members?name=",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/members?name=anna",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"members"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "anna"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/api/members?name=ABSENT: ERR002 MemberNotFound 404",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/members?name=ABSENT",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"members"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "ABSENT"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/api/members?name=ABSENT: ERR001 BadRequest 400",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/members?name=ABSENT",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"members"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "ABSENT"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "findMembersByNameLike(nameLike) <- /api/members?nameLike=",
+					"item": [
+						{
+							"name": "/api/members?nameLike=",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/members?nameLike=a",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"members"
+									],
+									"query": [
+										{
+											"key": "nameLike",
+											"value": "a"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/api/members?nameLike=: EmpyList",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/members?nameLike=ZZZ",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"members"
+									],
+									"query": [
+										{
+											"key": "nameLike",
+											"value": "ZZZ"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/api/members?nameLike=: ERR001 BadRequest 400",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/members?nameLike=Y",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"members"
+									],
+									"query": [
+										{
+											"key": "nameLike",
+											"value": "Y"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "TransferController",
+			"item": [
+				{
+					"name": "doTransfer() <- /api/transfers",
+					"item": [
+						{
+							"name": "/api/transfers: ERR300 BalanceFromNotExists 500",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"fromMemberId\": -1,\r\n    \"toMemberId\": -2,\r\n    \"amount\": 10\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/transfers",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"transfers"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}

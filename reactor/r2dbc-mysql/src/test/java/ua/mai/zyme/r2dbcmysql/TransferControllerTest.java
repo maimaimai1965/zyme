@@ -13,10 +13,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.reactive.server.WebTestClient;
-import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import ua.mai.zyme.r2dbcmysql.dto.CreateTransferRequest;
-import ua.mai.zyme.r2dbcmysql.entity.Balance;
 import ua.mai.zyme.r2dbcmysql.entity.Member;
 import ua.mai.zyme.r2dbcmysql.entity.Transfer;
 import ua.mai.zyme.r2dbcmysql.exception.AppFaultInfo;
@@ -24,10 +22,8 @@ import ua.mai.zyme.r2dbcmysql.exception.FaultInfo;
 import ua.mai.zyme.r2dbcmysql.repository.BalanceRepository;
 import ua.mai.zyme.r2dbcmysql.repository.MemberRepository;
 import ua.mai.zyme.r2dbcmysql.repository.TransferRepository;
+import ua.mai.zyme.r2dbcmysql.util.TestUtil;
 
-import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -161,7 +157,7 @@ class TransferControllerTest {
                 .consumeWith(response -> {
                      String body = new String(response.getResponseBody());
                      assertTrue(body.contains(AppFaultInfo.BALANCE_FOR_MEMBER_NOT_FOUND.code()));
-                     assertTrue(body.contains(memberFromIdNotExists.toString()));
+                     assertTrue(body.contains("(memberId=" + memberFromIdNotExists.toString()));
                  });
     }
 

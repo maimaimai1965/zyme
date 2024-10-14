@@ -13,13 +13,12 @@ import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import reactor.test.StepVerifier;
 import ua.mai.zyme.r2dbcmysql.entity.Balance;
 import ua.mai.zyme.r2dbcmysql.entity.Member;
-import ua.mai.zyme.r2dbcmysql.entity.Transfer;
 import ua.mai.zyme.r2dbcmysql.repository.BalanceRepository;
 import ua.mai.zyme.r2dbcmysql.repository.MemberRepository;
+import ua.mai.zyme.r2dbcmysql.util.TestUtil;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
-import java.time.temporal.TemporalUnit;
 import java.util.ArrayList;
 import java.util.List;
 

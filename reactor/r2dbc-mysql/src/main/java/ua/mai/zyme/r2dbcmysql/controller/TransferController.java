@@ -2,7 +2,7 @@ package ua.mai.zyme.r2dbcmysql.controller;
 
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
-import ua.mai.zyme.r2dbcmysql.config.AppUtil;
+import ua.mai.zyme.r2dbcmysql.util.AppUtil;
 import ua.mai.zyme.r2dbcmysql.dto.CreateTransferRequest;
 import ua.mai.zyme.r2dbcmysql.entity.Transfer;
 import ua.mai.zyme.r2dbcmysql.repository.TransferRepository;
