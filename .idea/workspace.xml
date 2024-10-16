@@ -4,33 +4,86 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8f73b445-5201-4244-94c7-bed9e6b359c9" name="Changes" comment="develop r2dbc-mysql module: add Errors logging">
-      <change afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/main/java/ua/mai/zyme/r2dbcmysql/util/DefaultProfileUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/main/java/ua/mai/zyme/r2dbcmysql/util/SpringUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/main/resources/application-prod.yaml" afterDir="false" />
+    <list default="true" id="8f73b445-5201-4244-94c7-bed9e6b359c9" name="Changes" comment="develop r2dbc-mysql module: refactoring, add Postman collection">
+      <change afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql-app/src/test/resources/application-test.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql-be/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/config/AppConfig.java_" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/main/resources/schema.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/R2dbcMysqlApplicationTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/config/AppTestConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/resources/application-test.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql-webclient/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql-webclient/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql-webclient/src/main/java/ua/mai/zyme/r2dbcmysql/webclient/R2dbsMysqlWebClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql-webclient/src/test/java/ua/mai/zyme/r2dbcmysql/webclient/R2dbsMysqlWebClientTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/main/java/ua/mai/zyme/r2dbcmysql/R2dbcMysqlApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/main/java/ua/mai/zyme/r2dbcmysql/R2dbcMysqlApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/main/java/ua/mai/zyme/r2dbcmysql/config/AppUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/main/java/ua/mai/zyme/r2dbcmysql/util/AppUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/main/java/ua/mai/zyme/r2dbcmysql/config/PayloadLoggingWebFilter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/main/java/ua/mai/zyme/r2dbcmysql/config/RequestResponseLoggingFilter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/main/java/ua/mai/zyme/r2dbcmysql/controller/TransferController.java" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/main/java/ua/mai/zyme/r2dbcmysql/controller/TransferController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/main/resources/application.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/BalanceControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/BalanceControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/BalanceServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/BalanceServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/BalanсeRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/BalanсeRepositoryTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/MemberControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/MemberControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/MemberRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/MemberRepositoryTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/MemberServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/MemberServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/TestUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/util/TestUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/TransferControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/TransferControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/TransferRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/TransferRepositoryTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/TransferServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/TransferServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactor/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql-app/mvnw" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql-app/mvnw.cmd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql-app/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/main/java/ua/mai/zyme/r2dbcmysql/R2dbcMysqlApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql-app/src/main/java/ua/mai/zyme/r2dbcmysql/R2dbcMysqlApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/main/java/ua/mai/zyme/r2dbcmysql/config/AppConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql-app/src/main/java/ua/mai/zyme/r2dbcmysql/config/AppConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/main/java/ua/mai/zyme/r2dbcmysql/config/AuditorAwareConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/config/AuditorAwareConfiguration.java_" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/main/java/ua/mai/zyme/r2dbcmysql/controller/BalanceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/controller/BalanceController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/main/java/ua/mai/zyme/r2dbcmysql/controller/MemberController.java" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/controller/MemberController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/main/java/ua/mai/zyme/r2dbcmysql/controller/TransferController.java" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/controller/TransferController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/main/java/ua/mai/zyme/r2dbcmysql/dto/CreateBalanceRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/dto/CreateBalanceRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/main/java/ua/mai/zyme/r2dbcmysql/dto/CreateTransferRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/dto/CreateTransferRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/main/java/ua/mai/zyme/r2dbcmysql/dto/IncreaseBalanceRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/dto/IncreaseBalanceRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/main/java/ua/mai/zyme/r2dbcmysql/entity/Balance.java" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/entity/Balance.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/main/java/ua/mai/zyme/r2dbcmysql/entity/Member.java" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/entity/Member.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/main/java/ua/mai/zyme/r2dbcmysql/entity/Provider.java" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/entity/Provider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/main/java/ua/mai/zyme/r2dbcmysql/entity/Transfer.java" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/entity/Transfer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/main/java/ua/mai/zyme/r2dbcmysql/exception/AppErrorAttributes.java" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/exception/AppErrorAttributes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/main/java/ua/mai/zyme/r2dbcmysql/exception/AppErrorConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/exception/AppErrorConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/main/java/ua/mai/zyme/r2dbcmysql/exception/AppErrorWebExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/exception/AppErrorWebExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/main/java/ua/mai/zyme/r2dbcmysql/exception/AppFaultInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/exception/AppFaultInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/main/java/ua/mai/zyme/r2dbcmysql/exception/FaultDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/exception/FaultDetails.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/main/java/ua/mai/zyme/r2dbcmysql/exception/FaultException.java" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/exception/FaultException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/main/java/ua/mai/zyme/r2dbcmysql/exception/FaultInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/exception/FaultInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/main/java/ua/mai/zyme/r2dbcmysql/log/LogMessageFormatter.java" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/log/LogMessageFormatter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/main/java/ua/mai/zyme/r2dbcmysql/log/LogServerHttpRequestDecorator.java" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/log/LogServerHttpRequestDecorator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/main/java/ua/mai/zyme/r2dbcmysql/log/LogServerHttpResponseDecorator.java" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/log/LogServerHttpResponseDecorator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/main/java/ua/mai/zyme/r2dbcmysql/log/MediaTypeFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/log/MediaTypeFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/main/java/ua/mai/zyme/r2dbcmysql/log/RequestLogWebFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/log/RequestLogWebFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/main/java/ua/mai/zyme/r2dbcmysql/log/ResponseLogWebFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/log/ResponseLogWebFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/main/java/ua/mai/zyme/r2dbcmysql/log/WithMemoizingFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/log/WithMemoizingFunction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/main/java/ua/mai/zyme/r2dbcmysql/repository/BalanceRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/repository/BalanceRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/main/java/ua/mai/zyme/r2dbcmysql/repository/MemberRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/repository/MemberRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/main/java/ua/mai/zyme/r2dbcmysql/repository/TransferRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/repository/TransferRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/main/java/ua/mai/zyme/r2dbcmysql/service/BalanceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/service/BalanceService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/main/java/ua/mai/zyme/r2dbcmysql/service/MemberService.java" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/service/MemberService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/main/java/ua/mai/zyme/r2dbcmysql/service/TransferService.java" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/service/TransferService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/main/java/ua/mai/zyme/r2dbcmysql/util/AppUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/util/AppUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/main/java/ua/mai/zyme/r2dbcmysql/util/DefaultProfileUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/util/DefaultProfileUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/main/java/ua/mai/zyme/r2dbcmysql/util/SpringUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/util/SpringUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/main/resources/application-prod.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql-app/src/main/resources/application-prod.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql-app/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/main/resources/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql-app/src/main/resources/schema.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/BalanceControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/controller/BalanceControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/BalanceServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/service/BalanceServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/BalanсeRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/repository/BalanсeRepositoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/MemberControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/controller/MemberControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/MemberRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/repository/MemberRepositoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/MemberServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/service/MemberServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/R2dbcMysqlApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql-app/src/test/java/ua/mai/zyme/r2dbcmysql/R2dbcMysqlApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/TransferControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/controller/TransferControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/TransferRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/repository/TransferRepositoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/TransferServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/service/TransferServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/util/TestUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/util/TestUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/postman/9032 Zyme r2dbc-mysql.postman_collection.json" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql-app/src/test/postman/9032 Zyme r2dbc-mysql.postman_collection.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/resources/application-test.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql-webclient/src/test/resources/application-test.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager">
+    <option name="groupingKeys">
+      <option value="module" />
+    </option>
   </component>
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$/goals/vaadin">
@@ -146,6 +199,8 @@
     "Application.MonoFlux.executor": "Run",
     "Application.Test.executor": "Run",
     "DefaultHtmlFileTemplate": "HTML File",
+    "JUnit.BalanceControllerTest (1).executor": "Run",
+    "JUnit.BalanceControllerTest.executor": "Run",
     "JUnit.BalanceControllerTest.findBalanceByMemberId.executor": "Run",
     "JUnit.BalanceControllerTest.findBalancesByAmountIsBetween.executor": "Run",
     "JUnit.BalanceControllerTest.findBalancesByMemberIds.executor": "Run",
@@ -173,7 +228,7 @@
     "JUnit.BalanсeRepositoryTest.findByAmountIsBetween.executor": "Run",
     "JUnit.BalanсeRepositoryTest.findByIdWhenNotExists.executor": "Run",
     "JUnit.BalanсeRepositoryTest.findByMemberId.executor": "Debug",
-    "JUnit.BalanсeRepositoryTest.insert.executor": "Debug",
+    "JUnit.BalanсeRepositoryTest.insert.executor": "Run",
     "JUnit.BalanсeRepositoryTest.saveAsInsert.executor": "Debug",
     "JUnit.BalanсeRepositoryTest.saveAsUpdate.executor": "Debug",
     "JUnit.MemberControllerTest.badUrl.executor": "Run",
@@ -197,6 +252,7 @@
     "JUnit.MemberControllerTest.findByNameLike_ERR002_MemberNotFound.executor": "Run",
     "JUnit.MemberControllerTest.findByNameLike_EmptyList.executor": "Run",
     "JUnit.MemberControllerTest.findByName_ERR002_MemberNotFound.executor": "Run",
+    "JUnit.MemberControllerTest.findMemberByMemberId_ERR002_MemberNotFound.executor": "Run",
     "JUnit.MemberControllerTest.getAll.executor": "Run",
     "JUnit.MemberControllerTest.getOne.executor": "Run",
     "JUnit.MemberControllerTest.insertMember.executor": "Run",
@@ -204,6 +260,7 @@
     "JUnit.MemberControllerTest.save.executor": "Debug",
     "JUnit.MemberControllerTest.updateMember.executor": "Run",
     "JUnit.MemberControllerTest.updateMemberWhenMemberNotExists.executor": "Debug",
+    "JUnit.MemberRepositoryTest (1).executor": "Run",
     "JUnit.MemberRepositoryTest.deleteAllById.executor": "Run",
     "JUnit.MemberRepositoryTest.deleteById.executor": "Run",
     "JUnit.MemberRepositoryTest.deleteThroughSql.executor": "Run",
@@ -236,11 +293,15 @@
     "JUnit.MemberServiceTest.updateMember_Fault_WhenUpdatedMemberDasNotHaveMemberId.executor": "Run",
     "JUnit.ProviderControllerTest.getAll.executor": "Run",
     "JUnit.ProviderRepositoryTest.findAll.executor": "Debug",
+    "JUnit.R2dbcMysqlApplicationTests (1).executor": "Run",
+    "JUnit.R2dbcMysqlApplicationTests.contextLoads.executor": "Run",
+    "JUnit.R2dbcMysqlApplicationTests.executor": "Run",
+    "JUnit.R2dbcMysqlTestApplication.executor": "Run",
     "JUnit.TransferControllerTest.doTransfer.executor": "Run",
     "JUnit.TransferControllerTest.doTransfer_.executor": "Debug",
     "JUnit.TransferControllerTest.doTransfer_Fault_WhenBalanceFromNotExists.executor": "Debug",
     "JUnit.TransferControllerTest.doTransfer_Fault_WhenMemberFromNotExists.executor": "Run",
-    "JUnit.TransferControllerTest.doTransfer_Fault_WhenZeroTransferAmount.executor": "Debug",
+    "JUnit.TransferControllerTest.doTransfer_Fault_WhenZeroTransferAmount.executor": "Run",
     "JUnit.TransferControllerTest.doTransfer_WhenToMemberBalanceNotExists.executor": "Debug",
     "JUnit.TransferControllerTest.executor": "Run",
     "JUnit.TransferControllerTest.findBalanceByMemberId.executor": "Debug",
@@ -280,7 +341,16 @@
     "JUnit.TransferServiceTest.doTransfer_WhenToMemberBalanceNotExists.executor": "Run",
     "JUnit.TransferServiceTest.executor": "Run",
     "JUnit.TransferServiceTest.save.executor": "Debug",
+    "JUnit.controller in r2dbc-mysql-app.executor": "Run",
+    "JUnit.controller in r2dbc-mysql-be.executor": "Run",
+    "JUnit.r2dbcmysql in r2dbc-mysql-app.executor": "Run",
+    "JUnit.r2dbcmysql in r2dbc-mysql-be (1).executor": "Run",
+    "JUnit.r2dbcmysql in r2dbc-mysql-be.executor": "Run",
     "JUnit.r2dbcmysql in r2dbc-mysql.executor": "Run",
+    "JUnit.repository in r2dbc-mysql-app.executor": "Run",
+    "JUnit.service in r2dbc-mysql-app.executor": "Run",
+    "JUnit.service in r2dbc-mysql-be.executor": "Run",
+    "JUnit.ua.mai.zyme.r2dbcmysql in r2dbc-mysql.executor": "Run",
     "Kotlin.CreatureKt.executor": "Run",
     "Kotlin.ExtensionsKt.executor": "Run",
     "Kotlin.GameKt.executor": "Run",
@@ -300,6 +370,15 @@
     "Maven.java21 [validate].executor": "Run",
     "Maven.library [clean,install].executor": "Run",
     "Maven.r2dbc-mysql [clean,install].executor": "Run",
+    "Maven.r2dbc-mysql [clean].executor": "Run",
+    "Maven.r2dbc-mysql [compile].executor": "Run",
+    "Maven.r2dbc-mysql [install].executor": "Run",
+    "Maven.r2dbc-mysql [validate].executor": "Run",
+    "Maven.r2dbc-mysql-app [clean,install].executor": "Run",
+    "Maven.r2dbc-mysql-app [clean].executor": "Run",
+    "Maven.r2dbc-mysql-be [clean,install].executor": "Run",
+    "Maven.r2dbc-mysql-webclient [clean,install].executor": "Run",
+    "Maven.r2dbc-mysql-webclient [compile].executor": "Run",
     "Maven.reactive-postgres [clean,install].executor": "Run",
     "Maven.reactor [clean,install].executor": "Run",
     "Maven.reactor-learn [clean,install].executor": "Run",
@@ -324,8 +403,9 @@
     "Spring Boot.GraphqlLearnApplication.executor": "Debug",
     "Spring Boot.GraphqlZooApplication (dev 8201).executor": "Debug",
     "Spring Boot.GraphqlZooApplication.executor": "Debug",
+    "Spring Boot.R2dbcMysqlApplication (dev).executor": "Debug",
     "Spring Boot.R2dbcMysqlApplication (prod).executor": "Debug",
-    "Spring Boot.R2dbcMysqlApplication.executor": "Debug",
+    "Spring Boot.R2dbcMysqlApplication.executor": "Run",
     "Spring Boot.ReactivePostgresApplication.executor": "Debug",
     "Spring Boot.ReactiveWebServiceApplication.executor": "Debug",
     "Spring Boot.RestZooApplication (dev 8105).executor": "Debug",
@@ -346,7 +426,7 @@
     "jdk.selected.JAVA_MODULE": "temurin-21",
     "kotlin-language-version-configured": "true",
     "last_directory_selection": "C:/work/idea_home/zyme/goals/db/modules/transaction/src/main/java/ua/mai/zyme/db/transaction",
-    "last_opened_file_path": "C:/work/idea_home/zyme/reactor/r2dbc-mysql/src/main/resources",
+    "last_opened_file_path": "C:/work/idea_home/zyme/reactor/r2dbc-mysql-be/src/test/java/r2dbcmysql",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -376,32 +456,32 @@
       <recent name="ua.mai.zyme.security.config" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\work\idea_home\zyme\reactor\r2dbc-mysql\src\main\resources" />
-      <recent name="C:\work\idea_home\zyme\reactor\r2dbc-mysql\src\main\java\ua\mai\zyme\r2dbcmysql" />
-      <recent name="C:\work\idea_home\zyme\reactor\r2dbc-mysql\src\main\java\ua\mai\zyme\r2dbcmysql\config" />
-      <recent name="C:\work\idea_home\zyme\reactor\r2dbc-mysql" />
-      <recent name="C:\work\idea_home\zyme\reactor\r2dbc-mysql\src" />
+      <recent name="C:\work\idea_home\zyme\reactor\r2dbc-mysql-be\src\test\java\r2dbcmysql" />
+      <recent name="C:\work\idea_home\zyme\reactor\r2dbc-mysql-be\src\main" />
+      <recent name="C:\work\idea_home\zyme\reactor\r2dbc-mysql-app\src\test\java" />
+      <recent name="C:\work\idea_home\zyme\reactor\r2dbc-mysql-app\src\test\resources" />
+      <recent name="C:\work\idea_home\zyme\reactor" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\work\idea_home\zyme\reactor\r2dbc-mysql-be\src" />
       <recent name="C:\work\idea_home\zyme\kotlin\first-steps\src\main\kotlin\ua\mai\zyme\kotlin\firststeps\intro" />
       <recent name="C:\work\idea_home\zyme\kotlin\first-steps\src\main\resources" />
       <recent name="C:\work\idea_home\zyme\reactor\reactor-learn\src\main\resources" />
       <recent name="C:\work\idea_home\zyme\goals\graphql\graphql-modules\graphql-zoo\src\main" />
-      <recent name="C:\work\idea_home\zyme\goals\security\security-modules\security-gwt\src\main\resources\scripts" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
-      <recent name="ua.mai.zyme.r2dbcmysql.util" />
       <recent name="ua.mai.zyme.r2dbcmysql" />
+      <recent name="ua.mai.zyme.r2dbcmysql.util" />
       <recent name="ua.mai.zyme.db.boot" />
       <recent name="ua.mai.zyme.db.transaction.config" />
       <recent name="ua.mai.zyme.db.transaction" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="r2dbcmysql" />
+      <recent name="r2dbcmysql.repository" />
+      <recent name="r2dbcmysql.config" />
       <recent name="ua.mai.zyme.r2dbcmysql" />
       <recent name="ua.mai.zyme.r2dbcmysql.exception" />
-      <recent name="ua.mai.zyme.r2dbcmysql.service" />
-      <recent name="ua.mai.zyme.r2dbcmysql.dto" />
-      <recent name="ua.mai.zyme.r2dbcmysql.entity" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -414,25 +494,25 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.TransferControllerTest.doTransfer_Fault_WhenBalanceFromNotExists">
-    <configuration name="MemberControllerTest.insertMember" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="r2dbc-mysql" />
+  <component name="RunManager" selected="JUnit.MemberServiceTest.insertMember">
+    <configuration name="MemberServiceTest.insertMember" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="r2dbc-mysql-be" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ua.mai.zyme.r2dbcmysql.util.*" />
+          <option name="PATTERN" value="ua.mai.zyme.r2dbcmysql.service.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="ua.mai.zyme.r2dbcmysql" />
-      <option name="MAIN_CLASS_NAME" value="ua.mai.zyme.r2dbcmysql.MemberControllerTest" />
+      <option name="PACKAGE_NAME" value="ua.mai.zyme.r2dbcmysql.service" />
+      <option name="MAIN_CLASS_NAME" value="ua.mai.zyme.r2dbcmysql.service.MemberServiceTest" />
       <option name="METHOD_NAME" value="insertMember" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MemberRepositoryTest.findByNameLengthLE" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="r2dbc-mysql" />
+    <configuration name="R2dbcMysqlApplicationTests (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="r2dbc-mysql-be" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="ua.mai.zyme.r2dbcmysql.*" />
@@ -440,15 +520,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="ua.mai.zyme.r2dbcmysql" />
-      <option name="MAIN_CLASS_NAME" value="ua.mai.zyme.r2dbcmysql.MemberRepositoryTest" />
-      <option name="METHOD_NAME" value="findByNameLengthLE" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="MAIN_CLASS_NAME" value="ua.mai.zyme.r2dbcmysql.R2dbcMysqlApplicationTests" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TransferControllerTest.doTransfer_Fault_WhenBalanceFromNotExists" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="r2dbc-mysql" />
+    <configuration name="R2dbcMysqlApplicationTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="r2dbc-mysql-app" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="ua.mai.zyme.r2dbcmysql.*" />
@@ -456,33 +535,24 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="ua.mai.zyme.r2dbcmysql" />
-      <option name="MAIN_CLASS_NAME" value="ua.mai.zyme.r2dbcmysql.TransferControllerTest" />
-      <option name="METHOD_NAME" value="doTransfer_Fault_WhenBalanceFromNotExists" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="MAIN_CLASS_NAME" value="ua.mai.zyme.r2dbcmysql.R2dbcMysqlApplicationTests" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TransferControllerTest.doTransfer_Fault_WhenMemberFromNotExists" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="r2dbc-mysql" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ua.mai.zyme.r2dbcmysql.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="ua.mai.zyme.r2dbcmysql" />
-      <option name="MAIN_CLASS_NAME" value="ua.mai.zyme.r2dbcmysql.TransferControllerTest" />
-      <option name="METHOD_NAME" value="doTransfer_Fault_WhenMemberFromNotExists" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="r2dbcmysql in r2dbc-mysql" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="r2dbc-mysql" />
+    <configuration name="r2dbcmysql in r2dbc-mysql-be (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="r2dbc-mysql-be" />
       <option name="TEST_OBJECT" value="directory" />
-      <dir value="$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql" />
+      <dir value="$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="r2dbcmysql in r2dbc-mysql-be" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="r2dbc-mysql-be" />
+      <option name="TEST_OBJECT" value="directory" />
+      <dir value="$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/r2dbcmysql" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -532,6 +602,13 @@
       <module name="db-app-general" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="ua.mai.zyme.db.boot.DbTransactionApplication" />
       <option name="VM_PARAMETERS" value="-Ddebug -Dspring.profiles.active=dev" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DemoApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="r2dbc-mysql-webclient" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.web.client.demo.DemoApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -593,7 +670,16 @@
     <configuration name="R2dbcMysqlApplication (dev)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" folderName="reactor">
       <option name="ACTIVE_PROFILES" value="dev" />
       <option name="DEBUG_MODE" value="true" />
-      <module name="r2dbc-mysql" />
+      <module name="r2dbc-mysql-app" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="ua.mai.zyme.r2dbcmysql.R2dbcMysqlApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="R2dbcMysqlApplication (dev)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" folderName="reactor">
+      <option name="ACTIVE_PROFILES" value="dev" />
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="r2dbc-mysql-app" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="ua.mai.zyme.r2dbcmysql.R2dbcMysqlApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -601,8 +687,8 @@
     </configuration>
     <configuration name="R2dbcMysqlApplication (prod)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" folderName="reactor">
       <option name="ACTIVE_PROFILES" value="prod" />
-      <option name="DEBUG_MODE" value="true" />
-      <module name="r2dbc-mysql" />
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="r2dbc-mysql-app" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="ua.mai.zyme.r2dbcmysql.R2dbcMysqlApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -718,11 +804,11 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="JUnit.MemberRepositoryTest.findByNameLengthLE" />
-      <item itemvalue="JUnit.r2dbcmysql in r2dbc-mysql" />
-      <item itemvalue="JUnit.MemberControllerTest.insertMember" />
-      <item itemvalue="JUnit.TransferControllerTest.doTransfer_Fault_WhenBalanceFromNotExists" />
-      <item itemvalue="JUnit.TransferControllerTest.doTransfer_Fault_WhenMemberFromNotExists" />
+      <item itemvalue="JUnit.MemberServiceTest.insertMember" />
+      <item itemvalue="JUnit.R2dbcMysqlApplicationTests" />
+      <item itemvalue="JUnit.R2dbcMysqlApplicationTests (1)" />
+      <item itemvalue="JUnit.r2dbcmysql in r2dbc-mysql-be" />
+      <item itemvalue="JUnit.r2dbcmysql in r2dbc-mysql-be (1)" />
       <item itemvalue="Spring Boot.DbH2JdbcTemplateApplication (dev 8102)" />
       <item itemvalue="Spring Boot.DbJdbcTemplateApplication (dev 8101)" />
       <item itemvalue="Spring Boot.DbJooqApplication (dev 8101)" />
@@ -743,6 +829,7 @@
       <item itemvalue="Spring Boot.SecurityLoginApplication (dev 8111)" />
       <item itemvalue="Spring Boot.Vaadin23SimpleApplication (dev 8080)" />
       <item itemvalue="Spring Boot.Vaadin8SimpleApplication (dev 8088)" />
+      <item itemvalue="Spring Boot.DemoApplication (1)" />
       <item itemvalue="Spring Boot.DemoApplication" />
       <item itemvalue="Spring Boot.SoapZooApplication (dev 8105)" />
       <item itemvalue="Spring Boot.SpringReactorLearnApplication" />
@@ -751,11 +838,11 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.TransferControllerTest.doTransfer_Fault_WhenBalanceFromNotExists" />
-        <item itemvalue="JUnit.r2dbcmysql in r2dbc-mysql" />
-        <item itemvalue="JUnit.TransferControllerTest.doTransfer_Fault_WhenMemberFromNotExists" />
-        <item itemvalue="JUnit.MemberRepositoryTest.findByNameLengthLE" />
-        <item itemvalue="JUnit.MemberControllerTest.insertMember" />
+        <item itemvalue="JUnit.MemberServiceTest.insertMember" />
+        <item itemvalue="JUnit.r2dbcmysql in r2dbc-mysql-be (1)" />
+        <item itemvalue="JUnit.R2dbcMysqlApplicationTests (1)" />
+        <item itemvalue="JUnit.R2dbcMysqlApplicationTests" />
+        <item itemvalue="JUnit.r2dbcmysql in r2dbc-mysql-be" />
       </list>
     </recent_temporary>
   </component>
@@ -2595,12 +2682,12 @@
           <option name="timeStamp" value="745" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/util/TestUtil.java</url>
-          <line>53</line>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/util/TestUtil.java</url>
+          <line>52</line>
           <option name="timeStamp" value="768" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/MemberRepositoryTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/MemberRepositoryTest.java</url>
           <line>146</line>
           <properties>
             <option name="lambda-ordinal" value="-1" />
@@ -2608,290 +2695,252 @@
           <option name="timeStamp" value="775" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/MemberRepositoryTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/MemberRepositoryTest.java</url>
           <line>206</line>
           <option name="timeStamp" value="776" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/MemberRepositoryTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/MemberRepositoryTest.java</url>
           <line>224</line>
           <option name="timeStamp" value="778" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/MemberRepositoryTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/MemberRepositoryTest.java</url>
           <line>214</line>
           <option name="timeStamp" value="779" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/main/java/ua/mai/zyme/r2dbcmysql/controller/MemberController.java</url>
-          <line>55</line>
-          <option name="timeStamp" value="808" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/TransferRepositoryTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/TransferRepositoryTest.java</url>
           <line>82</line>
           <option name="timeStamp" value="818" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/TransferRepositoryTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/TransferRepositoryTest.java</url>
           <line>64</line>
           <option name="timeStamp" value="819" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/TransferRepositoryTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/TransferRepositoryTest.java</url>
           <line>90</line>
           <option name="timeStamp" value="821" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/TransferRepositoryTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/TransferRepositoryTest.java</url>
           <line>118</line>
           <option name="timeStamp" value="823" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/TransferRepositoryTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/TransferRepositoryTest.java</url>
           <line>124</line>
           <option name="timeStamp" value="824" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/TransferRepositoryTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/TransferRepositoryTest.java</url>
           <line>144</line>
           <option name="timeStamp" value="828" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/TransferRepositoryTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/TransferRepositoryTest.java</url>
           <line>168</line>
           <option name="timeStamp" value="829" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/TransferRepositoryTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/TransferRepositoryTest.java</url>
           <line>265</line>
           <option name="timeStamp" value="831" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/MemberRepositoryTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/MemberRepositoryTest.java</url>
           <line>149</line>
           <option name="timeStamp" value="836" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/MemberRepositoryTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/MemberRepositoryTest.java</url>
           <line>145</line>
           <option name="timeStamp" value="838" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/TransferRepositoryTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/TransferRepositoryTest.java</url>
           <line>193</line>
           <option name="timeStamp" value="840" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/MemberRepositoryTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/MemberRepositoryTest.java</url>
           <line>120</line>
           <option name="timeStamp" value="842" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/MemberRepositoryTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/MemberRepositoryTest.java</url>
           <line>176</line>
           <option name="timeStamp" value="843" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/TransferRepositoryTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/TransferRepositoryTest.java</url>
           <line>61</line>
           <option name="timeStamp" value="844" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/BalanсeRepositoryTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/BalanсeRepositoryTest.java</url>
           <line>99</line>
           <option name="timeStamp" value="851" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/BalanсeRepositoryTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/BalanсeRepositoryTest.java</url>
           <line>100</line>
           <option name="timeStamp" value="852" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/MemberRepositoryTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/MemberRepositoryTest.java</url>
           <line>95</line>
           <option name="timeStamp" value="860" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/MemberRepositoryTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/MemberRepositoryTest.java</url>
           <line>97</line>
           <option name="timeStamp" value="861" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/BalanсeRepositoryTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/BalanсeRepositoryTest.java</url>
           <line>259</line>
           <option name="timeStamp" value="882" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/BalanceControllerTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/BalanceControllerTest.java</url>
           <line>125</line>
           <option name="timeStamp" value="883" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/BalanceControllerTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/BalanceControllerTest.java</url>
           <line>134</line>
           <option name="timeStamp" value="884" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/BalanceControllerTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/BalanceControllerTest.java</url>
           <line>79</line>
           <option name="timeStamp" value="886" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/BalanceControllerTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/BalanceControllerTest.java</url>
           <line>89</line>
           <option name="timeStamp" value="887" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/BalanceControllerTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/BalanceControllerTest.java</url>
           <line>168</line>
           <option name="timeStamp" value="888" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/BalanceControllerTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/BalanceControllerTest.java</url>
           <line>177</line>
           <option name="timeStamp" value="889" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/main/java/ua/mai/zyme/r2dbcmysql/controller/BalanceController.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/controller/BalanceController.java</url>
           <line>35</line>
           <option name="timeStamp" value="890" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/TransferControllerTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/TransferControllerTest.java</url>
           <line>95</line>
           <option name="timeStamp" value="907" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/TransferControllerTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/TransferControllerTest.java</url>
           <line>83</line>
           <option name="timeStamp" value="908" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/TransferServiceTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/TransferServiceTest.java</url>
           <line>131</line>
           <option name="timeStamp" value="953" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/TransferServiceTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/TransferServiceTest.java</url>
           <line>133</line>
           <option name="timeStamp" value="955" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/TransferServiceTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/TransferServiceTest.java</url>
           <line>81</line>
           <option name="timeStamp" value="959" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/TransferServiceTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/TransferServiceTest.java</url>
           <line>83</line>
           <option name="timeStamp" value="964" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/TransferServiceTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/TransferServiceTest.java</url>
           <line>110</line>
           <option name="timeStamp" value="965" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/BalanсeRepositoryTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/BalanсeRepositoryTest.java</url>
           <line>93</line>
           <option name="timeStamp" value="972" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/BalanсeRepositoryTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/BalanсeRepositoryTest.java</url>
           <line>76</line>
           <option name="timeStamp" value="975" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/BalanсeRepositoryTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/BalanсeRepositoryTest.java</url>
           <line>224</line>
           <option name="timeStamp" value="979" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/BalanсeRepositoryTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/BalanсeRepositoryTest.java</url>
           <line>228</line>
           <option name="timeStamp" value="980" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/BalanсeRepositoryTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/BalanсeRepositoryTest.java</url>
           <line>230</line>
           <option name="timeStamp" value="981" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/MemberRepositoryTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/MemberRepositoryTest.java</url>
           <line>89</line>
           <option name="timeStamp" value="989" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/TransferServiceTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/TransferServiceTest.java</url>
           <line>237</line>
           <option name="timeStamp" value="990" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/TransferServiceTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/TransferServiceTest.java</url>
           <line>242</line>
           <option name="timeStamp" value="991" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/TransferServiceTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/TransferServiceTest.java</url>
           <line>230</line>
           <option name="timeStamp" value="992" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/BalanceServiceTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/BalanceServiceTest.java</url>
           <line>127</line>
           <option name="timeStamp" value="995" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/MemberRepositoryTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/MemberRepositoryTest.java</url>
           <line>289</line>
           <option name="timeStamp" value="1001" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/MemberServiceTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/MemberServiceTest.java</url>
           <line>90</line>
           <option name="timeStamp" value="1003" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/MemberServiceTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/MemberServiceTest.java</url>
           <line>87</line>
           <option name="timeStamp" value="1004" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/main/java/ua/mai/zyme/r2dbcmysql/controller/MemberController.java</url>
-          <line>68</line>
-          <option name="timeStamp" value="1017" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/main/java/ua/mai/zyme/r2dbcmysql/controller/MemberController.java</url>
-          <line>60</line>
-          <option name="timeStamp" value="1019" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/main/java/ua/mai/zyme/r2dbcmysql/controller/MemberController.java</url>
-          <line>50</line>
-          <option name="timeStamp" value="1020" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/main/java/ua/mai/zyme/r2dbcmysql/controller/MemberController.java</url>
-          <line>43</line>
-          <option name="timeStamp" value="1021" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/main/java/ua/mai/zyme/r2dbcmysql/controller/MemberController.java</url>
-          <line>36</line>
-          <properties>
-            <option name="lambda-ordinal" value="0" />
-          </properties>
-          <option name="timeStamp" value="1022" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/main/java/ua/mai/zyme/r2dbcmysql/controller/MemberController.java</url>
-          <line>31</line>
-          <option name="timeStamp" value="1023" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/TransferControllerTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/TransferControllerTest.java</url>
           <line>183</line>
           <properties>
             <option name="lambda-ordinal" value="0" />
@@ -2899,102 +2948,102 @@
           <option name="timeStamp" value="1025" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/TransferControllerTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/TransferControllerTest.java</url>
           <line>187</line>
           <option name="timeStamp" value="1026" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/TransferControllerTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/TransferControllerTest.java</url>
           <line>181</line>
           <option name="timeStamp" value="1027" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/TransferServiceTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/TransferServiceTest.java</url>
           <line>308</line>
           <option name="timeStamp" value="1030" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/TransferServiceTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/TransferServiceTest.java</url>
           <line>311</line>
           <option name="timeStamp" value="1031" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/TransferControllerTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/TransferControllerTest.java</url>
           <line>184</line>
           <option name="timeStamp" value="1032" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/TransferControllerTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/TransferControllerTest.java</url>
           <line>176</line>
           <option name="timeStamp" value="1033" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/TransferControllerTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/TransferControllerTest.java</url>
           <line>186</line>
           <option name="timeStamp" value="1034" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/TransferServiceTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/TransferServiceTest.java</url>
           <line>331</line>
           <option name="timeStamp" value="1035" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/TransferServiceTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/TransferServiceTest.java</url>
           <line>329</line>
           <option name="timeStamp" value="1036" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/TransferServiceTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/TransferServiceTest.java</url>
           <line>326</line>
           <option name="timeStamp" value="1050" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/TransferControllerTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/TransferControllerTest.java</url>
           <line>129</line>
           <option name="timeStamp" value="1063" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/BalanceServiceTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/BalanceServiceTest.java</url>
           <line>131</line>
           <option name="timeStamp" value="1064" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/TransferControllerTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/TransferControllerTest.java</url>
           <line>217</line>
           <option name="timeStamp" value="1065" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/TransferControllerTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/TransferControllerTest.java</url>
           <line>214</line>
           <option name="timeStamp" value="1066" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/TransferControllerTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/TransferControllerTest.java</url>
           <line>235</line>
           <option name="timeStamp" value="1067" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/TransferControllerTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/TransferControllerTest.java</url>
           <line>247</line>
           <option name="timeStamp" value="1068" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/TransferControllerTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/TransferControllerTest.java</url>
           <line>248</line>
           <option name="timeStamp" value="1069" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/TransferControllerTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/TransferControllerTest.java</url>
           <line>231</line>
           <option name="timeStamp" value="1071" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/TransferControllerTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/TransferControllerTest.java</url>
           <line>270</line>
           <option name="timeStamp" value="1072" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/TransferControllerTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/TransferControllerTest.java</url>
           <line>285</line>
           <properties>
             <option name="lambda-ordinal" value="0" />
@@ -3002,57 +3051,57 @@
           <option name="timeStamp" value="1073" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/TransferControllerTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/TransferControllerTest.java</url>
           <line>281</line>
           <option name="timeStamp" value="1074" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/TransferControllerTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/TransferControllerTest.java</url>
           <line>288</line>
           <option name="timeStamp" value="1075" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/TransferControllerTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/TransferControllerTest.java</url>
           <line>154</line>
           <option name="timeStamp" value="1076" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/TransferControllerTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/TransferControllerTest.java</url>
           <line>157</line>
           <option name="timeStamp" value="1077" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/TransferControllerTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/TransferControllerTest.java</url>
           <line>321</line>
           <option name="timeStamp" value="1078" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/TransferControllerTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/TransferControllerTest.java</url>
           <line>311</line>
           <option name="timeStamp" value="1079" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/TransferControllerTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/TransferControllerTest.java</url>
           <line>299</line>
           <option name="timeStamp" value="1080" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/TransferControllerTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/TransferControllerTest.java</url>
           <line>344</line>
           <option name="timeStamp" value="1081" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/TransferControllerTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/TransferControllerTest.java</url>
           <line>354</line>
           <option name="timeStamp" value="1082" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/main/java/ua/mai/zyme/r2dbcmysql/controller/TransferController.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/controller/TransferController.java</url>
           <line>43</line>
           <option name="timeStamp" value="1083" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/main/java/ua/mai/zyme/r2dbcmysql/log/LogServerHttpResponseDecorator.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/log/LogServerHttpResponseDecorator.java</url>
           <line>91</line>
           <option name="timeStamp" value="1132" />
         </line-breakpoint>
@@ -3087,7 +3136,7 @@
           <option name="timeStamp" value="1151" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/main/java/ua/mai/zyme/r2dbcmysql/exception/AppErrorConfiguration.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/exception/AppErrorConfiguration.java</url>
           <line>34</line>
           <option name="timeStamp" value="1157" />
         </line-breakpoint>
@@ -3097,7 +3146,7 @@
           <option name="timeStamp" value="1159" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/main/java/ua/mai/zyme/r2dbcmysql/exception/AppErrorAttributes.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/exception/AppErrorAttributes.java</url>
           <line>20</line>
           <option name="timeStamp" value="1161" />
         </line-breakpoint>
@@ -3107,24 +3156,57 @@
           <option name="timeStamp" value="1162" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/main/java/ua/mai/zyme/r2dbcmysql/exception/AppErrorWebExceptionHandler.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/exception/AppErrorWebExceptionHandler.java</url>
           <line>41</line>
           <option name="timeStamp" value="1165" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/main/java/ua/mai/zyme/r2dbcmysql/exception/AppErrorWebExceptionHandler.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/exception/AppErrorWebExceptionHandler.java</url>
           <line>55</line>
           <option name="timeStamp" value="1166" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/TransferControllerTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/TransferControllerTest.java</url>
           <line>146</line>
           <option name="timeStamp" value="1167" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/src/test/java/ua/mai/zyme/r2dbcmysql/TransferControllerTest.java</url>
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/TransferControllerTest.java</url>
           <line>155</line>
           <option name="timeStamp" value="1168" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-webclient/src/test/java/ua/mai/zyme/r2dbcmysql/webclient/R2dbsMysqlWebClientTest.java</url>
+          <line>67</line>
+          <option name="timeStamp" value="1169" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-webclient/src/test/java/ua/mai/zyme/r2dbcmysql/webclient/R2dbsMysqlWebClientTest.java</url>
+          <line>69</line>
+          <option name="timeStamp" value="1170" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-app/src/test/java/r2dbcmysql/controller/BalanceControllerTest.java</url>
+          <line>62</line>
+          <option name="timeStamp" value="1176" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-app/src/test/java/r2dbcmysql/config/AppTestConfig.java</url>
+          <line>19</line>
+          <option name="timeStamp" value="1177" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/controller/MemberControllerTest.java</url>
+          <line>236</line>
+          <properties>
+            <option name="lambda-ordinal" value="0" />
+          </properties>
+          <option name="timeStamp" value="1179" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/controller/MemberControllerTest.java</url>
+          <line>230</line>
+          <option name="timeStamp" value="1180" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-field">
           <url>file://$PROJECT_DIR$/goals/graphql/graphql-modules/graphql-zoo/src/main/java/ua/mai/zyme/graphql/zoo/controllers/BookController.java</url>
@@ -3137,6 +3219,36 @@
           <line>25</line>
           <properties field="zooService" class="ua.mai.zyme.graphql.zoo.controllers.ZooController" />
           <option name="timeStamp" value="570" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-field">
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-app/src/test/java/r2dbcmysql/controller/BalanceControllerTest.java</url>
+          <line>46</line>
+          <properties field="connectionFactory" class="r2dbcmysql.controller.BalanceControllerTest" />
+          <option name="timeStamp" value="1171" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-field">
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-app/src/test/java/r2dbcmysql/controller/BalanceControllerTest.java</url>
+          <line>48</line>
+          <properties field="webTestClient" class="r2dbcmysql.controller.BalanceControllerTest" />
+          <option name="timeStamp" value="1172" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-field">
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-app/src/test/java/r2dbcmysql/controller/BalanceControllerTest.java</url>
+          <line>50</line>
+          <properties field="memberRepository" class="r2dbcmysql.controller.BalanceControllerTest" />
+          <option name="timeStamp" value="1173" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-field">
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-app/src/test/java/r2dbcmysql/controller/BalanceControllerTest.java</url>
+          <line>52</line>
+          <properties field="balanceRepository" class="r2dbcmysql.controller.BalanceControllerTest" />
+          <option name="timeStamp" value="1174" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-field">
+          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql-app/src/test/java/r2dbcmysql/controller/BalanceControllerTest.java</url>
+          <line>58</line>
+          <properties field="tu" class="r2dbcmysql.BalanceControllerTest" />
+          <option name="timeStamp" value="1175" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/kotlin/first-steps/src/main/kotlin/ua/mai/zyme/kotlin/firststeps/intro/NoClassForStart.kt</url>
