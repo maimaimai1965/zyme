@@ -10,7 +10,7 @@ import java.util.function.Supplier;
  */
 public interface FaultInfo extends Supplier<FaultException> {
 
-    HttpStatus DEFAUILT_SERVICE_FAULT_ERROR_HTTPSTATUS =  HttpStatus.INTERNAL_SERVER_ERROR;
+    HttpStatus DEFAUILT_SERVICE_FAULT_ERROR_HTTPSTATUS =  HttpStatus.INTERNAL_SERVER_ERROR;  // 500
 
     String UNEXPECTED_ERROR_CODE = "ERR001";
     String UNEXPECTED_ERROR_TEMPLATE =  "Unexpected error: {0}";

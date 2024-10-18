@@ -1,22 +1,18 @@
-package ua.mai.zyme.r2dbcmysql.controller;
+package ua.mai.zyme.r2dbcmysql.webclient;
 
 import io.r2dbc.spi.ConnectionFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWebTestClient;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
 import org.springframework.data.r2dbc.repository.config.EnableR2dbcRepositories;
-import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.web.reactive.server.WebTestClient;
 import ua.mai.zyme.r2dbcmysql.R2dbcMysqlApplicationTests;
 import ua.mai.zyme.r2dbcmysql.config.AppTestConfig;
 import ua.mai.zyme.r2dbcmysql.entity.Balance;
@@ -25,34 +21,36 @@ import ua.mai.zyme.r2dbcmysql.repository.BalanceRepository;
 import ua.mai.zyme.r2dbcmysql.repository.MemberRepository;
 import ua.mai.zyme.r2dbcmysql.util.TestUtil;
 
+import java.io.IOException;
 import java.util.List;
 
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+
 @SpringBootTest
-//@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK) // Запуск всего контекста на
 @ContextConfiguration(classes = {R2dbcMysqlApplicationTests.class})
 @EnableR2dbcRepositories(basePackages = {"ua.mai.zyme.r2dbcmysql.repository"})
-@ComponentScan(basePackages = {
-        "ua.mai.zyme.r2dbcmysql.service",
-        "ua.mai.zyme.r2dbcmysql.controller",
-        "ua.mai.zyme.r2dbcmysql.exception",
-})
 @Import(AppTestConfig.class)
-@EnableAutoConfiguration
-@AutoConfigureWebTestClient
 @Slf4j
 @ActiveProfiles(profiles = "test")
-class BalanceControllerTest {
+public class R2dbsMysqlWebClientForBalanceControllerTests {
+
+    public static String BASE_URL = "http://localhost:8080";
+    private static R2dbsMysqlWebClient mysqlWebClient;
 
     @Autowired
     private ConnectionFactory connectionFactory;
-    @Autowired
-    private WebTestClient webTestClient;
     @Autowired
     private MemberRepository memberRepository;
     @Autowired
     private BalanceRepository balanceRepository;
 
     private TestUtil tu;
+
+    @BeforeAll
+    static void setUp() throws IOException {
+        mysqlWebClient = new R2dbsMysqlWebClient(BASE_URL);
+    }
 
     @BeforeEach
     public void setup() {
@@ -70,7 +68,7 @@ class BalanceControllerTest {
     }
 
 
-    // ------------------------------------ findBalanceByMemberId(name) <- /api/balances/{memberId} --------------------
+    // ------------------------------------ findBalanceByMemberId(memberId) --------------------------------------------
 
     @Test
     public void findBalanceByMemberId() {
@@ -92,22 +90,23 @@ class BalanceControllerTest {
                 .build());
 
         // Execution
-        Balance balanceOut1 = webTestClient.get()
-                .uri("/api/balances/" + member1.getMemberId())
-                .accept(MediaType.APPLICATION_JSON)
-                .exchange()
+        Balance balanceOut1 = mysqlWebClient.findBalanceByMemberId(member1.getMemberId()).block();
         // Assertion
-                .expectStatus().isOk()  // 200
-                .expectBody(Balance.class)
-                .returnResult().getResponseBody();
-
         Assertions.assertThat(balanceOut1)
                 .usingRecursiveComparison()
                 .isEqualTo(balance1);
     }
 
+    @Test
+    public void findBalanceByMemberId_WhenBalanceNotFound() {
+        // Execution
+        Balance balanceOut = mysqlWebClient.findBalanceByMemberId(-1).block();
+        // Assertion
+        assertNull(balanceOut);
+    }
 
-    // ------------------------------------ findBalancesByMemberIds(memberIds) <- /api/balances?memberIds= -------------
+
+    // ------------------------------------ findBalancesByMemberIds(memberIds) -----------------------------------------
 
     @Test
     public void findBalancesByMemberIds() {
@@ -138,21 +137,25 @@ class BalanceControllerTest {
         List<Balance> listForCheck = List.of(balance1, balance3);
 
         // Execution
-        List<Balance> listOut = webTestClient.get()
-                .uri("/api/balances?memberIds=" + balance1.getMemberId() + "," + balance3.getMemberId())
-                .accept(MediaType.APPLICATION_JSON)
-                .exchange()
+        List<Balance> listOut =
+                mysqlWebClient.findBalancesByMemberIds(listForCheck.stream().map(balance -> balance.getMemberId()).toList())
+                              .toStream().toList();
         // Assertion
-                .expectStatus().isOk()  // 200
-                .returnResult(Balance.class)
-                .getResponseBody()
-                .toStream().toList();
-
         Assertions.assertThat(listOut).containsExactlyInAnyOrderElementsOf(listForCheck);
     }
 
+    @Test
+    public void findBalancesByMemberIds_WhenBalancesNotFound() {
+        // Execution
+        List<Balance> listOut =
+                mysqlWebClient.findBalancesByMemberIds(List.of(-1, -2))
+                        .toStream().toList();
+        // Assertion
+        assertTrue(listOut.isEmpty());
+    }
 
-    // -------- findBalancesByAmountIsBetween(minAmount, maxAmount) <- /api/balances?minAmount= &maxAmount= ------------
+
+    // ------------------------------------ findBalancesByAmountIsBetween(minAmount, maxAmount) ------------------------
 
     @Test
     public void findBalancesByAmountIsBetween() {
@@ -183,17 +186,12 @@ class BalanceControllerTest {
         List<Balance> listForCheck = List.of(balance1, balance3);
 
         // Execution
-        List<Balance> listOut = webTestClient.get()
-                .uri("/api/balances?minAmount=70&maxAmount=80")
-                .accept(MediaType.APPLICATION_JSON)
-                .exchange()
+        List<Balance> listOut =
+                mysqlWebClient.findBalancesByAmountIsBetween(70L, 80L)
+                        .toStream().toList();
         // Assertion
-                .expectStatus().isOk()  // 200
-                .returnResult(Balance.class)
-                .getResponseBody()
-                .toStream().toList();
-
         Assertions.assertThat(listOut).containsExactlyInAnyOrderElementsOf(listForCheck);
     }
+
 
 }

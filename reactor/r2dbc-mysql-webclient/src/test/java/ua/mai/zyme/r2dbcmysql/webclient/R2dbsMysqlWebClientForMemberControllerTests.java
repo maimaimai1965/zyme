@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.data.r2dbc.repository.config.EnableR2dbcRepositories;
-import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import reactor.core.publisher.Mono;
@@ -20,7 +19,6 @@ import ua.mai.zyme.r2dbcmysql.R2dbcMysqlApplicationTests;
 import ua.mai.zyme.r2dbcmysql.config.AppTestConfig;
 import ua.mai.zyme.r2dbcmysql.entity.Member;
 import ua.mai.zyme.r2dbcmysql.exception.AppFaultInfo;
-import ua.mai.zyme.r2dbcmysql.exception.FaultInfo;
 import ua.mai.zyme.r2dbcmysql.repository.MemberRepository;
 import ua.mai.zyme.r2dbcmysql.util.TestUtil;
 import java.io.IOException;
@@ -35,7 +33,7 @@ import static org.junit.Assert.*;
 @Import(AppTestConfig.class)
 @Slf4j
 @ActiveProfiles(profiles = "test")
-public class R2dbsMysqlWebClientTest {
+public class R2dbsMysqlWebClientForMemberControllerTests {
 
     public static String BASE_URL = "http://localhost:8080";
     private static R2dbsMysqlWebClient mysqlWebClient;
@@ -92,6 +90,7 @@ public class R2dbsMysqlWebClientTest {
             mysqlWebClient.insertMember(Mono.just(memberIn)).block();
         });
         // Assertion
+        assertEquals("500", error.getClientFaultInfo().getStatus());
         assertEquals(AppFaultInfo.NEW_MEMBER_ID_MUST_BE_NULL.code(), error.getClientFaultInfo().getErrorCd());
     }
 

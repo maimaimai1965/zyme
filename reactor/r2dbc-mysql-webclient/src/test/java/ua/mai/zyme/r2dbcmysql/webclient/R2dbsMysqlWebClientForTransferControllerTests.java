@@ -1,60 +1,52 @@
-package ua.mai.zyme.r2dbcmysql.controller;
+package ua.mai.zyme.r2dbcmysql.webclient;
 
+import com.web.client.demo.exception.AppClientError;
 import io.r2dbc.spi.ConnectionFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWebTestClient;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
 import org.springframework.data.r2dbc.repository.config.EnableR2dbcRepositories;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.web.reactive.server.WebTestClient;
+import reactor.core.publisher.Mono;
 import ua.mai.zyme.r2dbcmysql.R2dbcMysqlApplicationTests;
 import ua.mai.zyme.r2dbcmysql.config.AppTestConfig;
-import reactor.core.publisher.Mono;
 import ua.mai.zyme.r2dbcmysql.dto.CreateTransferRequest;
+import ua.mai.zyme.r2dbcmysql.entity.Balance;
 import ua.mai.zyme.r2dbcmysql.entity.Member;
 import ua.mai.zyme.r2dbcmysql.entity.Transfer;
 import ua.mai.zyme.r2dbcmysql.exception.AppFaultInfo;
-import ua.mai.zyme.r2dbcmysql.exception.FaultInfo;
 import ua.mai.zyme.r2dbcmysql.repository.BalanceRepository;
 import ua.mai.zyme.r2dbcmysql.repository.MemberRepository;
 import ua.mai.zyme.r2dbcmysql.repository.TransferRepository;
 import ua.mai.zyme.r2dbcmysql.util.TestUtil;
 
+import java.io.IOException;
 import java.util.List;
 
 import static org.junit.Assert.*;
 
 @SpringBootTest
-//@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK) // Запуск всего контекста на
 @ContextConfiguration(classes = {R2dbcMysqlApplicationTests.class})
 @EnableR2dbcRepositories(basePackages = {"ua.mai.zyme.r2dbcmysql.repository"})
-@ComponentScan(basePackages = {
-        "ua.mai.zyme.r2dbcmysql.service",
-        "ua.mai.zyme.r2dbcmysql.controller",
-        "ua.mai.zyme.r2dbcmysql.exception",
-})
 @Import(AppTestConfig.class)
-@EnableAutoConfiguration
-@AutoConfigureWebTestClient
 @Slf4j
 @ActiveProfiles(profiles = "test")
-class TransferControllerTest {
+public class R2dbsMysqlWebClientForTransferControllerTests {
+
+    public static String BASE_URL = "http://localhost:8080";
+    private static R2dbsMysqlWebClient mysqlWebClient;
 
     @Autowired
     private ConnectionFactory connectionFactory;
-    @Autowired
-    private WebTestClient webTestClient;
     @Autowired
     private MemberRepository memberRepository;
     @Autowired
@@ -63,6 +55,11 @@ class TransferControllerTest {
     private TransferRepository transferRepository;
 
     private TestUtil tu;
+
+    @BeforeAll
+    static void setUp() throws IOException {
+        mysqlWebClient = new R2dbsMysqlWebClient(BASE_URL);
+    }
 
     @BeforeEach
     public void setup() {
@@ -82,7 +79,7 @@ class TransferControllerTest {
     }
 
 
-    // ------------------------------------ doTransfer() <- /api/transfers ---------------------------------------------
+    // ------------------------------------ doTransfer(transferRequest) ------------------------------------------------
 
     @Test
     public void doTransfer() throws InterruptedException {
@@ -97,18 +94,8 @@ class TransferControllerTest {
                 .build();
 
         // Execution
-        Transfer transferOut = webTestClient
-                .post()
-                .uri("/api/transfers")
-                .accept(MediaType.APPLICATION_JSON)
-                .body(Mono.just(transferRequest), CreateTransferRequest.class)
-                .exchange()
+        Transfer transferOut = mysqlWebClient.doTransfer(transferRequest).block();
         // Assertion
-                .expectStatus().isOk()  // 200
-                .expectBody(Transfer.class)
-                .returnResult().getResponseBody();
-
-        assertNotNull(transferOut.getTransferId());
         Transfer transfer_Db = tu.findTransferByTransferId(transferOut.getTransferId());
         Assertions.assertThat(transferOut)
                 .usingRecursiveComparison()
@@ -128,17 +115,8 @@ class TransferControllerTest {
                 .build();
 
         // Execution
-        Transfer transferOut = webTestClient
-                .post()
-                .uri("/api/transfers")
-                .accept(MediaType.APPLICATION_JSON)
-                .body(Mono.just(transferRequest), CreateTransferRequest.class)
-                .exchange()
+        Transfer transferOut = mysqlWebClient.doTransfer(transferRequest).block();
         // Assertion
-                .expectStatus().isOk()  // 200
-                .expectBody(Transfer.class)
-                .returnResult().getResponseBody();
-
         assertNotNull(transferOut.getTransferId());
         Transfer transfer_Db = tu.findTransferByTransferId(transferOut.getTransferId());
         Assertions.assertThat(transferOut)
@@ -151,29 +129,20 @@ class TransferControllerTest {
         // Setup
         Member memberFrom = tu.insertMemberWithBalance("benTest", 40L, TestUtil.now());
         Member memberTo = tu.insertMemberWithBalance("annaTest", 70L, TestUtil.now());
-        Thread.sleep(1000);  // Чтобы дата создания transfer отличалась от даты создания memberFrom и memberTo.
         CreateTransferRequest transferRequest = CreateTransferRequest.builder()
                 .fromMemberId(memberFrom.getMemberId())
                 .toMemberId(memberTo.getMemberId())
                 .amount(50L)
                 .build();
 
+        AppClientError error = assertThrows(AppClientError.class, () -> {
         // Execution
-        webTestClient
-                .post()
-                .uri("/api/transfers")
-                .accept(MediaType.APPLICATION_JSON)
-                .body(Mono.just(transferRequest), CreateTransferRequest.class)
-                .exchange()
+            mysqlWebClient.doTransfer(transferRequest).block();
+        });
         // Assertion
-                .expectStatus().value(status ->
-                        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR.value(), status.intValue()))  // 500
-                .expectBody()
-                .consumeWith(response -> {
-                    String body = new String(response.getResponseBody());
-                    assertTrue(body.contains(AppFaultInfo.BALANCE_AMOUNT_NOT_ENOUGH.code()));
-//                    assertTrue(body.contains("(memberId=" + memberFrom.getMemberId()));
-                });
+        assertEquals("500", error.getClientFaultInfo().getStatus());
+        assertEquals(AppFaultInfo.BALANCE_AMOUNT_NOT_ENOUGH.code(), error.getClientFaultInfo().getErrorCd());
+//        assertTrue(error.getClientFaultInfo().getErrorMsg().contains("(memberId=" + memberFrom.getMemberId()));
     }
 
     @Test
@@ -187,22 +156,14 @@ class TransferControllerTest {
                 .amount(20L)
                 .build();
 
+        AppClientError error = assertThrows(AppClientError.class, () -> {
         // Execution
-        webTestClient
-                .post()
-                .uri("/api/transfers")
-                .accept(MediaType.APPLICATION_JSON)
-                .body(Mono.just(transferRequest), CreateTransferRequest.class)
-                .exchange()
+            mysqlWebClient.doTransfer(transferRequest).block();
+        });
         // Assertion
-                .expectStatus().value(status ->
-                        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR.value(), status.intValue()))  // 500
-                .expectBody()
-                .consumeWith(response -> {
-                     String body = new String(response.getResponseBody());
-                     assertTrue(body.contains(AppFaultInfo.BALANCE_FOR_MEMBER_NOT_FOUND.code()));
-                     assertTrue(body.contains("(memberId=" + memberFromIdNotExists));
-                 });
+        assertEquals("500", error.getClientFaultInfo().getStatus());
+        assertEquals(AppFaultInfo.BALANCE_FOR_MEMBER_NOT_FOUND.code(), error.getClientFaultInfo().getErrorCd());
+        assertTrue(error.getClientFaultInfo().getErrorMsg().contains("(memberId=" + memberFromIdNotExists.toString()));
     }
 
     @Test
@@ -217,22 +178,14 @@ class TransferControllerTest {
                 .amount(20L)
                 .build();
 
+        AppClientError error = assertThrows(AppClientError.class, () -> {
         // Execution
-        webTestClient
-                .post()
-                .uri("/api/transfers")
-                .accept(MediaType.APPLICATION_JSON)
-                .body(Mono.just(transferRequest), CreateTransferRequest.class)
-                .exchange()
+            mysqlWebClient.doTransfer(transferRequest).block();
+        });
         // Assertion
-                .expectStatus().value(status ->
-                        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR.value(), status.intValue()))  // 500
-                .expectBody()
-                .consumeWith(response -> {
-                    String body = new String(response.getResponseBody());
-                    assertTrue(body.contains(AppFaultInfo.BALANCE_FOR_MEMBER_NOT_FOUND.code()));
-//                    assertTrue(body.contains("(memberId=" + memberFrom.getMemberId()));
-                });
+        assertEquals("500", error.getClientFaultInfo().getStatus());
+        assertEquals(AppFaultInfo.BALANCE_FOR_MEMBER_NOT_FOUND.code(), error.getClientFaultInfo().getErrorCd());
+//        assertTrue(error.getClientFaultInfo().getErrorMsg().contains("(memberId=" + memberFrom.getMemberId().toString()));
     }
 
     @Test
@@ -247,25 +200,17 @@ class TransferControllerTest {
                 .amount(0L)
                 .build();
 
+        AppClientError error = assertThrows(AppClientError.class, () -> {
         // Execution
-        webTestClient
-                .post()
-                .uri("/api/transfers")
-                .accept(MediaType.APPLICATION_JSON)
-                .body(Mono.just(transferRequest), CreateTransferRequest.class)
-                .exchange()
+            mysqlWebClient.doTransfer(transferRequest).block();
+        });
         // Assertion
-                .expectStatus().value(status ->
-                        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR.value(), status.intValue()))  // 500
-                .expectBody()
-                .consumeWith(response -> {
-                    String body = new String(response.getResponseBody());
-                    assertTrue(body.contains(AppFaultInfo.TRANSFER_AMOUNT_MUST_BE_POSITIVE.code()));
-                });
+        assertEquals("500", error.getClientFaultInfo().getStatus());
+        assertEquals(AppFaultInfo.TRANSFER_AMOUNT_MUST_BE_POSITIVE.code(), error.getClientFaultInfo().getErrorCd());
     }
 
 
-    // ------------------------------------ findTransfer(transferId) <- /api/transfers/{transferId} --------------------
+    // ------------------------------------ findTransfer(transferId) ---------------------------------------------------
 
     @Test
     public void findTransfer() throws InterruptedException {
@@ -277,17 +222,8 @@ class TransferControllerTest {
         Transfer transfer2 = tu.insertTransfer(memberFrom.getMemberId(), memberTo.getMemberId(), 10L);
 
         // Execution
-        Transfer transferOut = webTestClient
-                .get()
-                .uri("/api/transfers/" + transfer1.getTransferId())
-                .accept(MediaType.APPLICATION_JSON)
-                .exchange()
+        Transfer transferOut = mysqlWebClient.findTransferByTransferId(transfer1.getTransferId()).block();
         // Assertion
-                .expectStatus().isOk()  // 200
-                .expectBody(Transfer.class)
-                .returnResult().getResponseBody();
-
-        assertNotNull(transferOut.getTransferId());
         Transfer transfer_Db = tu.findTransferByTransferId(transferOut.getTransferId());
         Assertions.assertThat(transferOut)
                 .usingRecursiveComparison()
@@ -300,41 +236,13 @@ class TransferControllerTest {
         Long transferIdNotExists = -1L;
 
         // Execution
-        Transfer transferOut = webTestClient
-                .get()
-                .uri("/api/transfers/" + transferIdNotExists)
-                .accept(MediaType.APPLICATION_JSON)
-                .exchange()
+        Transfer transferOut = mysqlWebClient.findTransferByTransferId(transferIdNotExists).block();
         // Assertion
-                .expectStatus().isOk()  // 200
-                .expectBody(Transfer.class)
-                .returnResult().getResponseBody();
-
         assertNull(transferOut);
     }
 
-    @Test
-    public void findTransfer_Fault_WhenBadTransferId() throws InterruptedException {
-        // Setup
-        String badTransferId = "2W";
 
-        // Execution
-        webTestClient
-                .get()
-                .uri("/api/transfers/" + badTransferId)
-                .accept(MediaType.APPLICATION_JSON)
-                .exchange()
-        // Assertion
-                .expectStatus().value(status -> assertEquals("400", status.toString()))
-                .expectBody()
-                .consumeWith(response -> {
-                    String body = new String(response.getResponseBody());
-                    assertTrue(body.contains(FaultInfo.UNEXPECTED_ERROR_CODE));
-                });
-    }
-
-
-    //------------ findTransfersByFromMemberId(fromMemberId) <- /api/transfers/?fromMemberId= --------------------------
+    // ------------------------------------ findTransfersByFromMemberId(fromMemberId) ----------------------------------
 
     @Test
     public void findTransfersByFromMemberId() throws InterruptedException {
@@ -351,24 +259,15 @@ class TransferControllerTest {
         List<Transfer> transfersIn = List.of(transfer1_2, transfer1_3);
 
         // Execution
-        List<Transfer> transfersOut = webTestClient
-                .get()
-                .uri("/api/transfers?fromMemberId=" + member1.getMemberId())
-                .accept(MediaType.APPLICATION_JSON)
-                .exchange()
+        List<Transfer> transfersOut = mysqlWebClient.findTransfersByFromMemberId(member1.getMemberId()).toStream().toList();
         // Assertion
-                .expectStatus().isOk()  // 200
-                .returnResult(Transfer.class)
-                .getResponseBody()
-                .toStream().toList();
-
         Assertions.assertThat(transfersOut)
                 .usingRecursiveComparison()
                 .isEqualTo(transfersIn);
     }
 
 
-    //------------ findTransfersByToMemberId(toMemberId) <- /api/transfers/?toMemberId= --------------------------------
+    // ------------------------------------ findTransfersByToMemberId(toMemberId) --------------------------------------
 
     @Test
     public void findTransfersByToMemberId() throws InterruptedException {
@@ -385,17 +284,8 @@ class TransferControllerTest {
         List<Transfer> transfersIn = List.of(transfer1_3, transfer2_3);
 
         // Execution
-        List<Transfer> transfersOut = webTestClient
-                .get()
-                .uri("/api/transfers?toMemberId=" + member3.getMemberId())
-                .accept(MediaType.APPLICATION_JSON)
-                .exchange()
+        List<Transfer> transfersOut = mysqlWebClient.findTransfersByToMemberId(member3.getMemberId()).toStream().toList();
         // Assertion
-                .expectStatus().isOk()  // 200
-                .returnResult(Transfer.class)
-                .getResponseBody()
-                .toStream().toList();
-
         Assertions.assertThat(transfersOut)
                 .usingRecursiveComparison()
                 .isEqualTo(transfersIn);

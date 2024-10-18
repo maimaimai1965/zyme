@@ -25,8 +25,9 @@ public class TransferController {
 
   @PostMapping
   @Transactional
-  public Mono<Transfer> doTransfer(@RequestBody CreateTransferRequest request) throws ExecutionException, InterruptedException {
-      return transferService.doTransfer(request.getFromMemberId(), request.getToMemberId(), request.getAmount(), AppUtil.now());
+  public Mono<Transfer> doTransfer(@RequestBody CreateTransferRequest transferRequest) throws ExecutionException, InterruptedException {
+      return transferService.doTransfer(transferRequest.getFromMemberId(),
+              transferRequest.getToMemberId(), transferRequest.getAmount(), AppUtil.now());
   }
 
   @GetMapping(value = "/{transferId}")

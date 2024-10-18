@@ -1,17 +1,25 @@
 package ua.mai.zyme.r2dbcmysql.webclient;
 
 import com.web.client.demo.exception.AppClientError;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.reactive.function.client.ExchangeFilterFunction;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+import ua.mai.zyme.r2dbcmysql.dto.CreateTransferRequest;
+import ua.mai.zyme.r2dbcmysql.entity.Balance;
 import ua.mai.zyme.r2dbcmysql.entity.Member;
+import ua.mai.zyme.r2dbcmysql.entity.Transfer;
+
+import java.util.List;
 
 public class R2dbsMysqlWebClient {
 
     private final WebClient webClient;
 
     static final String MEMBER_BASE_URL = "/api/members";
+    static final String BALANCE_BASE_URL = "/api/balances";
+    static final String TRANSFER_BASE_URL = "/api/transfers";
 
     private static int DEFAULT_MAX_RETRY_ATTEMPTS = 3;
     private static int DEFAULT_DELAY_MILLIS = 100;
@@ -120,7 +128,76 @@ public class R2dbsMysqlWebClient {
                 .bodyToFlux(Member.class);
     }
 
+
     // ------------------------------------ BalanceController ----------------------------------------------------------
 
+    public Mono<Balance> findBalanceByMemberId(Integer memberId) {
+        return webClient.get()
+                .uri(BALANCE_BASE_URL + "/{id}", memberId)
+                .retrieve()
+                .bodyToMono(Balance.class);
+    }
+
+    public Flux<Balance> findBalancesByMemberIds(List<Integer> memberIds) {
+        return webClient.get()
+                .uri(uriBuilder ->
+                        uriBuilder
+                                .path(BALANCE_BASE_URL)
+                                .queryParam("memberIds", memberIds)
+                                .build())
+                .retrieve()
+                .bodyToFlux(Balance.class);
+    }
+
+    public Flux<Balance> findBalancesByAmountIsBetween(Long minAmount, Long maxAmount) {
+        return webClient.get()
+                .uri(uriBuilder ->
+                        uriBuilder
+                                .path(BALANCE_BASE_URL)
+                                .queryParam("minAmount", minAmount)
+                                .queryParam("maxAmount", maxAmount)
+                                .build())
+                .retrieve()
+                .bodyToFlux(Balance.class);
+    }
+
+    // ------------------------------------ TransferController ---------------------------------------------------------
+
+    public Mono<Transfer> doTransfer(CreateTransferRequest request) {
+        return webClient.post()
+                .uri(TRANSFER_BASE_URL)
+                .body(Mono.just(request), CreateTransferRequest.class)
+                .retrieve()
+                .bodyToMono(Transfer.class);
+    }
+
+    public Mono<Transfer> findTransferByTransferId(Long transferId) {
+        return webClient.get()
+                .uri(TRANSFER_BASE_URL + "/{id}", transferId)
+                .retrieve()
+                .bodyToMono(Transfer.class);
+    }
+
+    public Flux<Transfer> findTransfersByFromMemberId(Integer fromMemberId) {
+        return webClient.get()
+                .uri(uriBuilder ->
+                        uriBuilder
+                                .path(TRANSFER_BASE_URL)
+                                .queryParam("fromMemberId", fromMemberId)
+                                .build())
+                .retrieve()
+                .bodyToFlux(Transfer.class);
+    }
+
+    public Flux<Transfer> findTransfersByToMemberId(Integer toMemberId) {
+        return webClient.get()
+                .uri(uriBuilder ->
+                        uriBuilder
+                                .path(TRANSFER_BASE_URL)
+                                .queryParam("toMemberId", toMemberId)
+                                .build())
+                .retrieve()
+                .bodyToFlux(Transfer.class);
+    }
 
 }
