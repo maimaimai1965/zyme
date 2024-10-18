@@ -21,6 +21,7 @@ import ua.mai.zyme.r2dbcmysql.R2dbcMysqlApplicationTests;
 import ua.mai.zyme.r2dbcmysql.config.AppTestConfig;
 import reactor.core.publisher.Mono;
 import ua.mai.zyme.r2dbcmysql.entity.Member;
+import ua.mai.zyme.r2dbcmysql.exception.AppFaultInfo;
 import ua.mai.zyme.r2dbcmysql.exception.FaultInfo;
 import ua.mai.zyme.r2dbcmysql.repository.MemberRepository;
 import ua.mai.zyme.r2dbcmysql.util.TestUtil;
@@ -95,6 +96,28 @@ class MemberControllerTest {
         assertEquals(memberOut, member_Db);
     }
 
+    @Test
+    public void insertMember_ERR101_NotNullNewMemberId() {
+        // Setup
+        Member memberIn = TestUtil.newMember("mikeTest");
+        memberIn.setMemberId(-1);
+
+        // Execution
+        webTestClient
+                .post()
+                .uri("/api/members")
+                .accept(MediaType.APPLICATION_JSON)
+                .body(Mono.just(memberIn), Member.class)
+                .exchange()
+        // Assertion
+                .expectStatus().value(status -> assertEquals("500", status.toString()))
+                .expectBody()
+                .consumeWith(response -> {
+                    String body = new String(response.getResponseBody());
+                    assertTrue(body.contains(AppFaultInfo.NEW_MEMBER_ID_MUST_BE_NULL.code()));
+                });
+    }
+
 
     // ------------------------------------ updateMember(member) <- /api/members ---------------------------------------
 
@@ -155,7 +178,7 @@ class MemberControllerTest {
                 .uri("/api/members/" + -1)
                 .accept(MediaType.APPLICATION_JSON)
                 .exchange()
-                // Assertion
+        // Assertion
                 .expectStatus().isOk()  // 200
                 .returnResult(Member.class)
                 .getResponseBody()
