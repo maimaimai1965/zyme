@@ -1,4 +1,4 @@
-package com.web.client.demo.exception;
+package ua.mai.zyme.r2dbcmysql.webclient.exception;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

@@ -1,6 +1,6 @@
 package ua.mai.zyme.r2dbcmysql.webclient;
 
-import com.web.client.demo.exception.AppClientError;
+import ua.mai.zyme.r2dbcmysql.webclient.exception.AppClientError;
 import io.r2dbc.spi.ConnectionFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.api.Assertions;
@@ -12,15 +12,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.data.r2dbc.repository.config.EnableR2dbcRepositories;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
-import reactor.core.publisher.Mono;
 import ua.mai.zyme.r2dbcmysql.R2dbcMysqlApplicationTests;
 import ua.mai.zyme.r2dbcmysql.config.AppTestConfig;
 import ua.mai.zyme.r2dbcmysql.dto.CreateTransferRequest;
-import ua.mai.zyme.r2dbcmysql.entity.Balance;
 import ua.mai.zyme.r2dbcmysql.entity.Member;
 import ua.mai.zyme.r2dbcmysql.entity.Transfer;
 import ua.mai.zyme.r2dbcmysql.exception.AppFaultInfo;
@@ -42,8 +38,8 @@ import static org.junit.Assert.*;
 @ActiveProfiles(profiles = "test")
 public class R2dbsMysqlWebClientForTransferControllerTests {
 
-    public static String BASE_URL = "http://localhost:8080";
-    private static R2dbsMysqlWebClient mysqlWebClient;
+    @Autowired
+    private R2dbsMysqlWebClient mysqlWebClient;
 
     @Autowired
     private ConnectionFactory connectionFactory;
@@ -56,10 +52,6 @@ public class R2dbsMysqlWebClientForTransferControllerTests {
 
     private TestUtil tu;
 
-    @BeforeAll
-    static void setUp() throws IOException {
-        mysqlWebClient = new R2dbsMysqlWebClient(BASE_URL);
-    }
 
     @BeforeEach
     public void setup() {

@@ -4,7 +4,6 @@ import io.r2dbc.spi.ConnectionFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +20,6 @@ import ua.mai.zyme.r2dbcmysql.repository.BalanceRepository;
 import ua.mai.zyme.r2dbcmysql.repository.MemberRepository;
 import ua.mai.zyme.r2dbcmysql.util.TestUtil;
 
-import java.io.IOException;
 import java.util.List;
 
 import static org.junit.Assert.assertNull;
@@ -35,8 +33,8 @@ import static org.junit.Assert.assertTrue;
 @ActiveProfiles(profiles = "test")
 public class R2dbsMysqlWebClientForBalanceControllerTests {
 
-    public static String BASE_URL = "http://localhost:8080";
-    private static R2dbsMysqlWebClient mysqlWebClient;
+    @Autowired
+    private R2dbsMysqlWebClient mysqlWebClient;
 
     @Autowired
     private ConnectionFactory connectionFactory;
@@ -47,10 +45,6 @@ public class R2dbsMysqlWebClientForBalanceControllerTests {
 
     private TestUtil tu;
 
-    @BeforeAll
-    static void setUp() throws IOException {
-        mysqlWebClient = new R2dbsMysqlWebClient(BASE_URL);
-    }
 
     @BeforeEach
     public void setup() {

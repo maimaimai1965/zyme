@@ -1,4 +1,4 @@
-package com.web.client.demo.exception;
+package ua.mai.zyme.r2dbcmysql.webclient.exception;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;

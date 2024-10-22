@@ -1,7 +1,7 @@
 package ua.mai.zyme.r2dbcmysql.webclient;
 
-import com.web.client.demo.exception.AppClientError;
-import org.springframework.web.bind.annotation.PathVariable;
+import ua.mai.zyme.r2dbcmysql.webclient.property.WebClientProperty;
+import ua.mai.zyme.r2dbcmysql.webclient.exception.AppClientError;
 import org.springframework.web.reactive.function.client.ExchangeFilterFunction;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
@@ -10,8 +10,23 @@ import ua.mai.zyme.r2dbcmysql.dto.CreateTransferRequest;
 import ua.mai.zyme.r2dbcmysql.entity.Balance;
 import ua.mai.zyme.r2dbcmysql.entity.Member;
 import ua.mai.zyme.r2dbcmysql.entity.Transfer;
+import ua.mai.zyme.r2dbcmysql.webclient.log.LogService;
 
+import java.net.URI;
 import java.util.List;
+
+import org.eclipse.jetty.client.HttpClient;
+import org.eclipse.jetty.client.Request;
+import org.springframework.http.client.reactive.ClientHttpConnector;
+import org.springframework.http.client.reactive.JettyClientHttpConnector;
+
+// Reactor Netty
+//import io.netty.channel.ChannelOption;
+//import io.netty.handler.timeout.ReadTimeoutHandler;
+//import io.netty.handler.timeout.WriteTimeoutHandler;
+//import reactor.netty.http.client.HttpClient;
+//import java.util.concurrent.TimeUnit;
+//import org.springframework.http.client.reactive.ReactorClientHttpConnector;
 
 public class R2dbsMysqlWebClient {
 
@@ -28,13 +43,51 @@ public class R2dbsMysqlWebClient {
     private int delayMillis = DEFAULT_DELAY_MILLIS;
 
 
-    public R2dbsMysqlWebClient(String baseUrl) {
-        webClient = WebClient.builder()
-                .baseUrl(baseUrl)
+    public R2dbsMysqlWebClient(WebClientProperty webClientProperty) {
+        webClient = webClientWithJetty(webClientProperty, new LogService());
+//        webClient = webClientWithNetty(webClientProperty, new LogService());
+    }
+
+    private WebClient webClientWithJetty(WebClientProperty webClientProperty, LogService logService) {
+        // Настраиваем Jetty HttpClient
+        HttpClient httpClient = new HttpClient() {
+            @Override
+            public Request newRequest(URI uri) {
+                Request request = super.newRequest(uri);
+                return logService.logRequestResponse(request);
+            }
+        };
+
+        httpClient.setConnectTimeout(webClientProperty.getConnectTimeout());
+//        httpClient.setFollowRedirects(false);
+        try {
+            httpClient.start();  // Jetty HttpClient должен быть запущен
+        } catch (Exception e) {
+            throw new RuntimeException("Ошибка при запуске Jetty HttpClient", e);
+        }
+
+        // Используем JettyClientHttpConnector для WebClient
+        ClientHttpConnector jettyConnector = new JettyClientHttpConnector(httpClient);
+
+        return WebClient.builder()
+                .clientConnector(jettyConnector)  // Указываем JettyConnector
+                .baseUrl(webClientProperty.getBaseUrl())
                 .defaultHeader("Content-Type", "application/json")
                 .filter(errorHandlingFilter())
                 .build();
     }
+
+//    public WebClient webClientWithNetty() {
+//        final var httpClient = HttpClient.create().option(ChannelOption.CONNECT_TIMEOUT_MILLIS, timeout)
+//                .doOnConnected(connection -> {
+//                    connection.addHandlerLast(new ReadTimeoutHandler(timeout, TimeUnit.MILLISECONDS));
+//                    connection.addHandlerLast(new WriteTimeoutHandler(timeout, TimeUnit.MILLISECONDS));
+//                });
+//
+//        return WebClient.builder()
+//                  .baseUrl(baseUrl)
+//                  .clientConnector(new ReactorClientHttpConnector(httpClient)).build();
+//    }
 
     public int getMaxRetryAttempts() {
         return maxRetryAttempts;

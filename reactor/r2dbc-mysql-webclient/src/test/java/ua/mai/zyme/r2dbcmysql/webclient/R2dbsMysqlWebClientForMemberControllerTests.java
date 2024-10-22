@@ -1,6 +1,6 @@
 package ua.mai.zyme.r2dbcmysql.webclient;
 
-import com.web.client.demo.exception.AppClientError;
+import ua.mai.zyme.r2dbcmysql.webclient.exception.AppClientError;
 import io.r2dbc.spi.ConnectionFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.api.Assertions;
@@ -30,13 +30,13 @@ import static org.junit.Assert.*;
 @SpringBootTest
 @ContextConfiguration(classes = {R2dbcMysqlApplicationTests.class})
 @EnableR2dbcRepositories(basePackages = {"ua.mai.zyme.r2dbcmysql.repository"})
-@Import(AppTestConfig.class)
+@Import({AppTestConfig.class})
 @Slf4j
 @ActiveProfiles(profiles = "test")
 public class R2dbsMysqlWebClientForMemberControllerTests {
 
-    public static String BASE_URL = "http://localhost:8080";
-    private static R2dbsMysqlWebClient mysqlWebClient;
+    @Autowired
+    private R2dbsMysqlWebClient mysqlWebClient;
 
     @Autowired
     private ConnectionFactory connectionFactory;
@@ -44,10 +44,6 @@ public class R2dbsMysqlWebClientForMemberControllerTests {
     private MemberRepository memberRepository;
     private TestUtil tu;
 
-    @BeforeAll
-    static void setUp() throws IOException {
-        mysqlWebClient = new R2dbsMysqlWebClient(BASE_URL);
-    }
 
     @BeforeEach
     public void setup() {

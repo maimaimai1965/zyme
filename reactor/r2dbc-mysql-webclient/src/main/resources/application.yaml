@@ -1,0 +1,19 @@
+logging:
+  level:
+    ROOT: INFO
+
+# ---------- Настройка логирования request-ов и response-ов (и ошибок) REST сервиса ------------------------------------
+    ua.mai.zyme.r2dbcmysql.webclient.log: DEBUG
+    reactor.netty.http.client: DEBUG
+# ----------------------------------------------------------------------------------------------------------------------
+
+spring:
+  main.banner-mode: off
+  application:
+    name: r2dbc-mysql using WebClient application
+
+zyme:
+  r2dbc-mysql:
+    webclient:
+      base-url: http://localhost:8080
+      connect-timeout: 1000

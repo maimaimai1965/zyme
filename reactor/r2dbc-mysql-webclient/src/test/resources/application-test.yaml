@@ -4,25 +4,11 @@ logging:
 
     #    org.springframework.r2dbc: DEBUG
 
-    # ---------- Настройка логирования request-ов и response-ов (и ошибок) REST сервиса ------------------------------------
-    # Вывод request-ов (ERROR,WARN - ничего кроме ошибок, INFO - request без body; DEBUG - request + body)
-    ua.mai.zyme.r2dbcmysql.log.RequestLogWebFilter: DEBUG
-    # Вывод response-ов (ERROR,WARN - ничего, INFO - response без body; DEBUG - response + body)
-    ua.mai.zyme.r2dbcmysql.log.ResponseLogWebFilter: DEBUG
-    # Вывод названий вызываемых методов контроллера (DEBUG):
-    org.springframework.web.reactive.result.method.annotation.RequestMappingHandlerMapping: DEBUG
-    # -- Вывод различной доп. информации ------------------------------------------------------------------
-    # Вывод request и response (DEBUG - краткая информация о request и response):
-    org.springframework.web.server.adapter.HttpWebHandlerAdapter: INFO
-    # Вывод доп. информации о привязке запроса к вызываемому методу контроллера (DEBUG):
-    org.springframework.web.reactive.result.method.annotation.RequestBodyMethodArgumentResolver: INFO
-    # Вывод доп. информации о response (DEBUG):
-    org.springframework.web.reactive.result.method.annotation.ResponseBodyResultHandler: INFO
-    # Вывод доп. информации об Encoding тела ответа в JSON (DEBUG):
-    org.springframework.http.codec: INFO
-    # Вывод доп. информации об Encoding тела ответа (DEBUG):
-    org.springframework.web.HttpLogging: INFO
-    # ----------------------------------------------------------------------------------------------------------------------
+# ---------- Настройка логирования request-ов и response-ов (и ошибок) REST сервиса ------------------------------------
+    ua.mai.zyme.r2dbcmysql.webclient.log: DEBUG
+    reactor.netty.http.client.HttpClientConnect: DEBUG
+    reactor.netty.http.client.HttpClientOperations : DEBUG
+# ----------------------------------------------------------------------------------------------------------------------
 
     # Вывод SQL в r2dbc:
     org.springframework.r2dbc.core.DefaultDatabaseClient: DEBUG
@@ -44,16 +30,13 @@ logging:
     org.springframework.jdbc.core.StatementCreatorUtils: TRACE
     org.springframework.jdbc.support.JdbcAccessor: TRACE
 
-server:
-  port: 8080
-  address: localhost
 spring:
   main.banner-mode: off
   application:
-    name: r2dbc-mysql REST service
+    name: r2dbc-mysql using WebClient Tests application
 
+  # Нужно для обращения к объектам БД напрямую (для тестов).
   r2dbc:
-    #    url=r2dbc:postgresql://postgres:password@localhost:5432/postgres
     url: r2dbc:mysql://localhost:3306/trt
     username: root
     password: root
@@ -64,5 +47,8 @@ spring:
 
   jackson.deserialization.fail-on-unknown-properties: true
 
-  test:
-    webtestclient:
+zyme:
+  r2dbc-mysql:
+    webclient:
+      base-url: http://localhost:8080
+      connect-timeout: 1000
