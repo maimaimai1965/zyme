@@ -71,7 +71,6 @@ class BalanceControllerTest {
 
 
     // ------------------------------------ findBalanceByMemberId(name) <- /api/balances/{memberId} --------------------
-
     @Test
     public void findBalanceByMemberId() {
         // Setup
@@ -108,7 +107,6 @@ class BalanceControllerTest {
 
 
     // ------------------------------------ findBalancesByMemberIds(memberIds) <- /api/balances?memberIds= -------------
-
     @Test
     public void findBalancesByMemberIds() {
         // Setup
@@ -153,7 +151,6 @@ class BalanceControllerTest {
 
 
     // -------- findBalancesByAmountIsBetween(minAmount, maxAmount) <- /api/balances?minAmount= &maxAmount= ------------
-
     @Test
     public void findBalancesByAmountIsBetween() {
         // Setup

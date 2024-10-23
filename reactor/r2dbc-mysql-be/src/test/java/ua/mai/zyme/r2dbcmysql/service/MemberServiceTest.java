@@ -11,8 +11,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
 import org.springframework.data.r2dbc.repository.config.EnableR2dbcRepositories;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
+import reactor.core.publisher.Flux;
 import ua.mai.zyme.r2dbcmysql.R2dbcMysqlApplicationTests;
 import ua.mai.zyme.r2dbcmysql.config.AppTestConfig;
 import reactor.test.StepVerifier;
@@ -26,7 +28,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 @SpringBootTest
 @ContextConfiguration(classes = {R2dbcMysqlApplicationTests.class})
@@ -62,6 +65,8 @@ class MemberServiceTest {
     }
 
 
+    // ------------------------------------ insertMember(member) -------------------------------------------------------
+
     @Test
     public void insertMember() {
         // Setup
@@ -72,7 +77,8 @@ class MemberServiceTest {
         StepVerifier.create(
                 memberService.insertMember(memberIn))
         // Assertion
-                    .consumeNextWith(result -> listResult.add(result))
+                    .recordWith(() -> listResult)
+                    .expectNextCount(1)
                     .verifyComplete();
 
         Member memberOut = listResult.get(0);
@@ -101,6 +107,34 @@ class MemberServiceTest {
                     .verify();
     }
 
+
+    // ------------------------------------ insertMembers(fluxMember) <- /api/members/flux -----------------------------
+    @Test
+    public void insertMembers() {
+        // Setup
+        Member memberIn1 = TestUtil.newMember("mikeTest");
+        Member memberIn2 = TestUtil.newMember("rikTest");
+        List<Member> listResult = new ArrayList<>(2);
+
+        // Execution
+        StepVerifier.create(
+                        memberService.insertMembers(Flux.just(memberIn1, memberIn2)))
+        // Assertion
+                    .recordWith(() -> listResult)
+                    .expectNextCount(2)
+                    .verifyComplete();
+
+        assertTrue(listResult.size() == 2);
+
+        Member memberOut1 = listResult.get(0);
+        Member memberOut2 = listResult.get(1);
+        List<Member> list_Db = List.of(tu.findMemberByMemberId(memberOut1.getMemberId()),
+                                       tu.findMemberByMemberId(memberOut2.getMemberId()));
+        Assertions.assertThat(listResult).containsExactlyInAnyOrderElementsOf(list_Db);
+    }
+
+
+    // ------------------------------------ updateMember(member) -------------------------------------------------------
     @Test
     public void updateMember() {
         // Setup
@@ -112,7 +146,8 @@ class MemberServiceTest {
         StepVerifier.create(
                 memberService.updateMember(memberIn))
         // Assertion
-                    .consumeNextWith(result -> listResult.add(result))
+                    .recordWith(() -> listResult)
+                    .expectNextCount(1)
                     .verifyComplete();
 
         Member memberOut = listResult.get(0);
@@ -142,6 +177,10 @@ class MemberServiceTest {
                     .verify();
     }
 
+    // ------------------------------------ deleteMemberById(id) -------------------------------------------------------
+
+
+    // ------------------------------------ findMemberByMemberId(memberId) ---------------------------------------------
     @Test
     public void findMemberByMemberId() {
         // Setup
@@ -153,7 +192,8 @@ class MemberServiceTest {
         StepVerifier.create(
                 memberService.findMemberByMemberId(memberIn.getMemberId()))
         // Assertion
-                    .consumeNextWith(result -> listResult.add(result))
+                    .recordWith(() -> listResult)
+                    .expectNextCount(1)
                     .verifyComplete();
 
         Member memberOut = listResult.get(0);
@@ -183,7 +223,8 @@ class MemberServiceTest {
         StepVerifier.create(
                 memberService.findMemberByMemberIdWithFaultWhenNotExists(memberIn.getMemberId()))
         // Assertion
-                    .consumeNextWith(result -> listResult.add(result))
+                    .recordWith(() -> listResult)
+                    .expectNextCount(1)
                     .verifyComplete();
 
         Member memberOut = listResult.get(0);

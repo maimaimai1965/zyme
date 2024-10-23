@@ -54,7 +54,7 @@ public class R2dbsMysqlWebClient {
             @Override
             public Request newRequest(URI uri) {
                 Request request = super.newRequest(uri);
-                return logService.logRequestResponse(request);
+                return logService.logRequestResponse(request, webClientProperty.getTargetServiceName());
             }
         };
 
@@ -110,7 +110,7 @@ public class R2dbsMysqlWebClient {
                 // Обрабатываем ошибку в зависимости от статуса
                 return clientResponse.bodyToMono(String.class)
                         .flatMap(errorBody ->
-                                Mono.error(new AppClientError(errorBody))
+                                Mono.error(new AppClientError(clientResponse, errorBody))
                          );
             }
             // Если ошибки нет, продолжаем работу с ответом
@@ -127,6 +127,14 @@ public class R2dbsMysqlWebClient {
                 .body(monoMember, Member.class)
                 .retrieve()
                 .bodyToMono(Member.class);
+    }
+
+    public Flux<Member> insertMembers(Flux<Member> fluxMember) {
+        return webClient.post()
+                .uri(MEMBER_BASE_URL + "/flux")
+                .body(fluxMember, Member.class)
+                .retrieve()
+                .bodyToFlux(Member.class);
     }
 
     public Mono<Member> updateMember(Mono<Member> monoMember) {

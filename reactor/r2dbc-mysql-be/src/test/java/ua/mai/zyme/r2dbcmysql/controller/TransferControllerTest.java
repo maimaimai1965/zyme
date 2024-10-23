@@ -83,7 +83,6 @@ class TransferControllerTest {
 
 
     // ------------------------------------ doTransfer() <- /api/transfers ---------------------------------------------
-
     @Test
     public void doTransfer() throws InterruptedException {
         // Setup
@@ -173,7 +172,7 @@ class TransferControllerTest {
                     String body = new String(response.getResponseBody());
                     assertTrue(body.contains(AppFaultInfo.BALANCE_AMOUNT_NOT_ENOUGH.code()));
 //                    assertTrue(body.contains("(memberId=" + memberFrom.getMemberId()));
-                });
+                 });
     }
 
     @Test
@@ -232,7 +231,7 @@ class TransferControllerTest {
                     String body = new String(response.getResponseBody());
                     assertTrue(body.contains(AppFaultInfo.BALANCE_FOR_MEMBER_NOT_FOUND.code()));
 //                    assertTrue(body.contains("(memberId=" + memberFrom.getMemberId()));
-                });
+                 });
     }
 
     @Test
@@ -261,12 +260,11 @@ class TransferControllerTest {
                 .consumeWith(response -> {
                     String body = new String(response.getResponseBody());
                     assertTrue(body.contains(AppFaultInfo.TRANSFER_AMOUNT_MUST_BE_POSITIVE.code()));
-                });
+                 });
     }
 
 
     // ------------------------------------ findTransfer(transferId) <- /api/transfers/{transferId} --------------------
-
     @Test
     public void findTransfer() throws InterruptedException {
         // Setup
@@ -330,12 +328,11 @@ class TransferControllerTest {
                 .consumeWith(response -> {
                     String body = new String(response.getResponseBody());
                     assertTrue(body.contains(FaultInfo.UNEXPECTED_ERROR_CODE));
-                });
+                 });
     }
 
 
     //------------ findTransfersByFromMemberId(fromMemberId) <- /api/transfers/?fromMemberId= --------------------------
-
     @Test
     public void findTransfersByFromMemberId() throws InterruptedException {
         // Setup
@@ -369,7 +366,6 @@ class TransferControllerTest {
 
 
     //------------ findTransfersByToMemberId(toMemberId) <- /api/transfers/?toMemberId= --------------------------------
-
     @Test
     public void findTransfersByToMemberId() throws InterruptedException {
         // Setup

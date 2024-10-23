@@ -59,6 +59,7 @@ class TransferRepositoryTest {
     }
 
 
+    // ------------------------------------ save(transfer) -------------------------------------------------------------
     @Test
     public void save() {
         // Setup
@@ -77,7 +78,8 @@ class TransferRepositoryTest {
         StepVerifier.create(
                 transferRepository.save(transferIn))
         // Assertion
-                    .consumeNextWith(result -> listResult.add(result))
+                    .recordWith(() -> listResult)
+                    .expectNextCount(1)
                     .verifyComplete();
 
         Transfer transferOut = listResult.get(0);
@@ -88,6 +90,8 @@ class TransferRepositoryTest {
                 .isEqualTo(transferDb);
     }
 
+
+    // ------------------------------------ saveAll(listTransfer) ------------------------------------------------------
     @Test
     public void saveAll() {
         // Setup
@@ -115,8 +119,8 @@ class TransferRepositoryTest {
         StepVerifier.create(
                 transferRepository.saveAll(listIn))
         // Assertion
-                    .consumeNextWith(result -> listResult.add(result))
-                    .consumeNextWith(result -> listResult.add(result))
+                    .recordWith(() -> listResult)
+                    .expectNextCount(2)
                     .verifyComplete();
 
         assertTrue(listResult.size() == 2);
@@ -124,11 +128,12 @@ class TransferRepositoryTest {
             assertNotNull(transfer.getTransferId());
         });
         List<Transfer> listDb = List.of(tu.findTransferByTransferId(listResult.get(0).getTransferId()),
-                tu.findTransferByTransferId(listResult.get(1).getTransferId()));
+                                        tu.findTransferByTransferId(listResult.get(1).getTransferId()));
         Assertions.assertThat(listResult).containsExactlyInAnyOrderElementsOf(listDb);
     }
 
 
+    // ------------------------------------ deleteById(transferId) -----------------------------------------------------
     @Test
     public void deleteById() {
         // Setup
@@ -149,6 +154,8 @@ class TransferRepositoryTest {
         assertNotNull(tu.findTransferByTransferId(existedTransfer.getTransferId()));
     }
 
+
+    // ------------------------------------ deleteAllById(listTransferId) ----------------------------------------------
     @Test
     public void deleteAllById() {
         // Setup
@@ -174,6 +181,8 @@ class TransferRepositoryTest {
         assertNotNull(tu.findTransferByTransferId(existedTransfer.getTransferId()));
     }
 
+
+    // ------------------------------------ findById(transferId) -------------------------------------------------------
     @Test
     public void findById() {
         // Setup
@@ -190,7 +199,8 @@ class TransferRepositoryTest {
         StepVerifier.create(
                 transferRepository.findById(findedTransfer.getTransferId()))
         // Assertion
-                    .consumeNextWith(result -> listResult.add(result))
+                    .recordWith(() -> listResult)
+                    .expectNextCount(1)
                     .verifyComplete();
 
         Transfer transferOut = listResult.get(0);
@@ -216,6 +226,8 @@ class TransferRepositoryTest {
                     .verifyComplete(); // Проверяет получение Mono с пустым значением.
     }
 
+
+    // ------------------------------------ findAllById(listTransferId) ------------------------------------------------
     @Test
     public void findAllById() {
         // Setup
@@ -230,19 +242,21 @@ class TransferRepositoryTest {
 
         List<Transfer> listForCheck = List.of(findedTransfer, findedTransfer2);
         List<Long> listTransferId = List.of(findedTransfer.getTransferId(), findedTransfer2.getTransferId());
-        List<Transfer> listResult = new ArrayList<>(1);
+        List<Transfer> listResult = new ArrayList<>(2);
 
         // Execution
         StepVerifier.create(
                 transferRepository.findAllById(listTransferId))
         // Assertion
-                    .consumeNextWith(result -> listResult.add(result))
-                    .consumeNextWith(result -> listResult.add(result))
+                    .recordWith(() -> listResult)
+                    .expectNextCount(2)
                     .verifyComplete();
 
         Assertions.assertThat(listForCheck).containsExactlyInAnyOrderElementsOf(listResult);
     }
 
+
+    // ------------------------------------ findByToMemberId(toMemberId) -----------------------------------------------
     @Test
     public void findByToMemberId() {
         // Setup
@@ -256,14 +270,14 @@ class TransferRepositoryTest {
         Transfer transfer3_1_50 = tu.insertTransfer(member1.getMemberId(), member3.getMemberId(), 50L, tu.now());
 
         List<Transfer> listForCheck = List.of(transfer1_2_10, transfer1_3_20);
-        List<Transfer> listResult = new ArrayList<>(1);
+        List<Transfer> listResult = new ArrayList<>(2);
 
         // Execution
         StepVerifier.create(
                 transferRepository.findByToMemberId(member1.getMemberId()))
         // Assertion
-                    .consumeNextWith(result -> listResult.add(result))
-                    .consumeNextWith(result -> listResult.add(result))
+                    .recordWith(() -> listResult)
+                    .expectNextCount(2)
                     .verifyComplete();
 
         Assertions.assertThat(listForCheck).containsExactlyInAnyOrderElementsOf(listResult);

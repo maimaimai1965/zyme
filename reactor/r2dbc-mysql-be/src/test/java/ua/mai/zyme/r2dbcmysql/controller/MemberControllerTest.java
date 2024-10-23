@@ -17,6 +17,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.reactive.server.WebTestClient;
+import reactor.core.publisher.Flux;
 import ua.mai.zyme.r2dbcmysql.R2dbcMysqlApplicationTests;
 import ua.mai.zyme.r2dbcmysql.config.AppTestConfig;
 import reactor.core.publisher.Mono;
@@ -71,14 +72,13 @@ class MemberControllerTest {
 
 
     // ------------------------------------ insertMember(member) <- /api/members ---------------------------------------
-
     @Test
     public void insertMember() {
         // Setup
         Member memberIn = TestUtil.newMember("mikeTest");
 
         // Execution
-        List<Member> list =  webTestClient
+        List<Member> listResult =  webTestClient
                 .post()
                 .uri("/api/members")
                 .accept(MediaType.APPLICATION_JSON)
@@ -90,8 +90,8 @@ class MemberControllerTest {
                 .getResponseBody()
                 .toStream().toList();
 
-        assertTrue(list.size() == 1);
-        Member memberOut = list.get(0);
+        assertTrue(listResult.size() == 1);
+        Member memberOut = listResult.get(0);
         Member member_Db = tu.findMemberByMemberId(memberOut.getMemberId());
         assertEquals(memberOut, member_Db);
     }
@@ -119,13 +119,43 @@ class MemberControllerTest {
     }
 
 
-    // ------------------------------------ updateMember(member) <- /api/members ---------------------------------------
+    // ------------------------------------ insertMembers(fluxMember) <- /api/members/flux -----------------------------
+    @Test
+    public void insertMembers() {
+        // Setup
+        Member memberIn1 = TestUtil.newMember("mikeTest");
+        Member memberIn2 = TestUtil.newMember("rikTest");
 
+        // Execution
+        List<Member> listResult =  webTestClient
+                .post()
+                .uri("/api/members/flux")
+                .accept(MediaType.APPLICATION_JSON)
+                .body(Flux.just(memberIn1, memberIn2), Member.class)
+                .exchange()
+        // Assertion
+                .expectStatus().isOk()  // 200
+                .returnResult(Member.class)
+                .getResponseBody()
+                .toStream().toList();
+
+        assertTrue(listResult.size() == 2);
+
+        int memberId1 = listResult.get(0).getMemberId();
+        int memberId2 = listResult.get(1).getMemberId();
+        List<Member> list_Db = List.of(tu.findMemberByMemberId(memberId1),
+                                       tu.findMemberByMemberId(memberId2));
+        Assertions.assertThat(listResult).containsExactlyInAnyOrderElementsOf(list_Db);
+    }
+
+
+    // ------------------------------------ updateMember(member) <- /api/members ---------------------------------------
     @Test
     public void updateMember() {
         // Setup
         Member memberIn = tu.insertMember("ivanTest");
         memberIn.setName("igorTEST");
+
         // Execution
         List<Member> listResult =  webTestClient
                 .put()
@@ -148,7 +178,6 @@ class MemberControllerTest {
 
 
     // ------------------------------------ deleteMemberById(id) <- /api/members/{id} ----------------------------------
-
     @Test
     public void deleteMemberById() {
         // Setup
@@ -189,7 +218,6 @@ class MemberControllerTest {
 
 
     // ------------------------------------ findAll() <- /api/members --------------------------------------------------
-
     @Test
     public void findAll() {
         // Setup
@@ -219,8 +247,7 @@ class MemberControllerTest {
     }
 
 
-    // ------------------------------------ findMemberByMemberId(id) <- /api/members/{id} ------------------------------
-
+    // ------------------------------------ findMemberByMemberId(memberId) <- /api/members/{memberId} ------------------
     @Test
     public void findMemberByMemberId() {
         // Setup
@@ -286,8 +313,6 @@ class MemberControllerTest {
 
     @Test
     public void findMemberByMemberId_ERR001_MethodNotAllowed() {
-        // Setup
-
         // Execution
         webTestClient
                 .put()
@@ -305,8 +330,6 @@ class MemberControllerTest {
 
     @Test
     public void findMemberByMemberId_ERR001_NoStaticResource() {
-        // Setup
-
         // Execution
         webTestClient
                 .put()
@@ -324,7 +347,6 @@ class MemberControllerTest {
 
 
     // ------------------------------------ findMemberByName(name) <- /api/members?name= -------------------------------
-
     @Test
     public void findMemberByName() {
         // Setup
@@ -354,8 +376,6 @@ class MemberControllerTest {
 
     @Test
     public void findMemberByName_ERR002_MemberNotFound() {
-        // Setup
-
         // Execution
         webTestClient
                 .get()
@@ -376,7 +396,6 @@ class MemberControllerTest {
 
 
     // ------------------------------------ findMembersByNameLike(nameLike) <- /api/members?nameLike= ------------------
-
     @Test
     public void findMembersByNameLike() {
         // Setup
@@ -437,8 +456,6 @@ class MemberControllerTest {
 
     @Test
     public void findMembersByNameLike_ERR001_BadRequest_400() {
-        // Setup
-
         // Execution
         webTestClient
                 .post()

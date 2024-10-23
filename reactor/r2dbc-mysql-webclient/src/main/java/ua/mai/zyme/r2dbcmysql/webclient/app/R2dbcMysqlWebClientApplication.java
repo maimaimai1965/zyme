@@ -10,9 +10,14 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import reactor.core.publisher.Mono;
 import ua.mai.zyme.r2dbcmysql.entity.Member;
+import ua.mai.zyme.r2dbcmysql.exception.AppFaultInfo;
 import ua.mai.zyme.r2dbcmysql.util.TestUtil;
 import ua.mai.zyme.r2dbcmysql.webclient.R2dbsMysqlWebClient;
+import ua.mai.zyme.r2dbcmysql.webclient.exception.AppClientError;
 import ua.mai.zyme.r2dbcmysql.webclient.property.ZymeR2dbcMysqlProperty;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @SpringBootApplication(exclude = {
         R2dbcAutoConfiguration.class
@@ -42,20 +47,59 @@ public class R2dbcMysqlWebClientApplication {
 
         return args -> {
             // Выполняем действие при старте приложения
-            System.out.println("*** Приложение запущено! Выполняются действия: ***");
+            System.out.println("-------- Приложение запущено! Выполняются действия: ------------");
 
-            f();
+//            insertMember();
+//            insertMember_ERR101_NotNullNewMemberId();
+            findMembersByNameLike();
         };
     }
 
-    private void f() {
+
+    private void insertMember() {
+        System.out.println("*** insertMember() ***");
+
         Member memberIn = TestUtil.newMember("mikeTest");
 
-        Member memberOut =  mysqlWebClient.insertMember(Mono.just(memberIn)).block();
-        System.out.println("memberOut =" + memberOut);
+        try {
+            Member memberOut =  mysqlWebClient.insertMember(Mono.just(memberIn)).block();
+//            System.out.println("memberOut =" + memberOut);
+        } catch (Exception ex) {
+//            System.out.println(ex.getMessage());
+//            ex.printStackTrace();
+        }
+    }
+
+    private void insertMember_ERR101_NotNullNewMemberId() {
+        System.out.println("*** insertMember_ERR101_NotNullNewMemberId() ***");
+
+        Member memberIn = TestUtil.newMember("mikeTest");
+        memberIn.setMemberId(-1);
+
+        try {
+            mysqlWebClient.insertMember(Mono.just(memberIn)).block();
+        } catch (Exception ex) {
+//            System.out.println(ex.getMessage());
+//            ex.printStackTrace();
+        }
 
     }
 
+    private void findMembersByNameLike() {
+        System.out.println("*** findMembersByNameLike() ***");
+        try {
+//            mysqlWebClient.insertMember(Mono.just(TestUtil.newMember("vinsenTest"))).block();
+//            mysqlWebClient.insertMember(Mono.just(TestUtil.newMember("bearnTest"))).block();
+//            mysqlWebClient.insertMember(Mono.just(TestUtil.newMember("learnTest"))).block();
+//            mysqlWebClient.insertMember(Mono.just(TestUtil.newMember("tomTest"))).block();
+
+            System.out.println("# findMembersByNameLike():");
+            List<Member> members = mysqlWebClient.findMembersByNameLike("nTest").toStream().toList();
+        } catch (Exception ex) {
+//            System.out.println(ex.getMessage());
+//            ex.printStackTrace();
+        }
+    }
 
 }
 

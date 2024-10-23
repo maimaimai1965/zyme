@@ -72,6 +72,8 @@ class TransferServiceTest {
         tu.deleteMembersTestData();
     }
 
+
+    // ------------------------------------ doTransferWhenBalancesExist() ----------------------------------------------
     @Test
     public void doTransferWhenBalancesExist() throws InterruptedException {
         // Setup
@@ -84,7 +86,8 @@ class TransferServiceTest {
         StepVerifier.create(
                 transferService.doTransferWhenBalancesExist(memberFrom.getMemberId(), memberTo.getMemberId(), 20L, TestUtil.now()))
         // Assertion
-                    .consumeNextWith(result -> listResult.add(result))
+                    .recordWith(() -> listResult)
+                    .expectNextCount(1)
                     .verifyComplete();
 
         Transfer transferOut = listResult.get(0);
@@ -99,7 +102,6 @@ class TransferServiceTest {
         Assert.assertEquals(70L + 20L, balanceTo_Db.getAmount().longValue());
         Assert.assertEquals(transfer_Db.getCreatedDate(), balanceTo_Db.getLastModifiedDate());
     }
-
 
     @Test
     public void doTransferWhenBalancesExist_Fault_WhenBalanceAmountNotEnough() throws InterruptedException {
@@ -202,7 +204,6 @@ class TransferServiceTest {
 
 
     // ------------------------------------ doTransfer () --------------------------------------------------------------
-
     @Test
     public void doTransfer() throws InterruptedException {
         // Setup
@@ -215,7 +216,8 @@ class TransferServiceTest {
         StepVerifier.create(
                 transferService.doTransfer(memberFrom.getMemberId(), memberTo.getMemberId(), 20L, TestUtil.now()))
         // Assertion
-                    .consumeNextWith(result -> listResult.add(result))
+                    .recordWith(() -> listResult)
+                    .expectNextCount(1)
                     .verifyComplete();
 
         Transfer transferOut = listResult.get(0);
@@ -248,7 +250,8 @@ class TransferServiceTest {
         StepVerifier.create(
                 transferService.doTransfer(memberFrom.getMemberId(), memberTo.getMemberId(), 20L, TestUtil.now()))
         // Assertion
-                    .consumeNextWith(result -> listResult.add(result))
+                    .recordWith(() -> listResult)
+                    .expectNextCount(1)
                     .verifyComplete();
 
         Transfer transferOut = listResult.get(0);
@@ -275,7 +278,6 @@ class TransferServiceTest {
         Member memberFrom = tu.insertMemberWithBalance("benTest", 40L, TestUtil.now());
         Member memberTo = tu.insertMemberWithBalance("annaTest", 70L, TestUtil.now());
         Thread.sleep(1000);  // Чтобы отличались даты создания и изменения.
-        List<Transfer> listResult = new ArrayList<>(1);
 
         // Execution
         StepVerifier.create(

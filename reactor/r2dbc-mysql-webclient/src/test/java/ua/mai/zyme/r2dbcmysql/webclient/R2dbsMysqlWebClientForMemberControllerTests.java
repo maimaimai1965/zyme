@@ -1,11 +1,12 @@
 package ua.mai.zyme.r2dbcmysql.webclient;
 
+import org.springframework.http.MediaType;
+import reactor.core.publisher.Flux;
 import ua.mai.zyme.r2dbcmysql.webclient.exception.AppClientError;
 import io.r2dbc.spi.ConnectionFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,6 @@ import ua.mai.zyme.r2dbcmysql.entity.Member;
 import ua.mai.zyme.r2dbcmysql.exception.AppFaultInfo;
 import ua.mai.zyme.r2dbcmysql.repository.MemberRepository;
 import ua.mai.zyme.r2dbcmysql.util.TestUtil;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,7 +60,6 @@ public class R2dbsMysqlWebClientForMemberControllerTests {
 
 
     // ------------------------------------ insertMember(monoMember) ---------------------------------------------------
-
     @Test
     public void insertMember() {
         // Setup
@@ -91,8 +90,27 @@ public class R2dbsMysqlWebClientForMemberControllerTests {
     }
 
 
-    // ------------------------------------ updateMember(monoMember) ---------------------------------------------------
+    // ------------------------------------ insertMembers(fluxMember) --------------------------------------------------
+    @Test
+    public void insertMembers() {
+        // Setup
+        Member memberIn1 = TestUtil.newMember("mikeTest");
+        Member memberIn2 = TestUtil.newMember("rikTest");
 
+        // Execution
+        List<Member> listResult = mysqlWebClient.insertMembers(Flux.just(memberIn1, memberIn2)).toStream().toList();
+
+        assertTrue(listResult.size() == 2);
+
+        int memberId1 = listResult.get(0).getMemberId();
+        int memberId2 = listResult.get(1).getMemberId();
+        List<Member> list_Db = List.of(tu.findMemberByMemberId(memberId1),
+                                       tu.findMemberByMemberId(memberId2));
+        Assertions.assertThat(listResult).containsExactlyInAnyOrderElementsOf(list_Db);
+    }
+
+
+    // ------------------------------------ updateMember(monoMember) ---------------------------------------------------
     @Test
     public void updateMember() {
         // Setup
@@ -110,7 +128,6 @@ public class R2dbsMysqlWebClientForMemberControllerTests {
 
 
     // ------------------------------------ deleteMemberById(id) -------------------------------------------------------
-
     @Test
     public void deleteMemberById() {
         // Setup
@@ -131,7 +148,6 @@ public class R2dbsMysqlWebClientForMemberControllerTests {
 
 
     // ------------------------------------ findMembersAll() -----------------------------------------------------------
-
     @Test
     public void findMembersAll() {
         // Setup
@@ -154,7 +170,6 @@ public class R2dbsMysqlWebClientForMemberControllerTests {
 
 
     // ------------------------------------ findMemberByMemberId(id) ---------------------------------------------------
-
     @Test
     public void findMemberByMemberId() {
         // Setup
@@ -183,7 +198,6 @@ public class R2dbsMysqlWebClientForMemberControllerTests {
 
 
     // ------------------------------------ findMemberByName(name) -----------------------------------------------------
-
     @Test
     public void findMemberByName() {
         // Setup
@@ -211,7 +225,6 @@ public class R2dbsMysqlWebClientForMemberControllerTests {
 
 
     // ------------------------------------ findMembersByNameLike(nameLike) --------------------------------------------
-
     @Test
     public void findMembersByNameLike() {
         // Setup

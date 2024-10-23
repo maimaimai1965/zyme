@@ -3,102 +3,150 @@ package ua.mai.zyme.r2dbcmysql.webclient.log;
 import lombok.extern.slf4j.Slf4j;
 import org.eclipse.jetty.client.Request;
 import org.eclipse.jetty.http.HttpField;
-import org.springframework.stereotype.Service;
-
 import java.nio.charset.StandardCharsets;
 
 @Slf4j
-//@Service
 public class LogService {
     /**
      * @param inboundRequest of type jetty client Request Object
      * @return return same request again after preparing logging
      */
-    public Request logRequestResponse(Request inboundRequest) {
-        // Created a string builder object to append logs belongs to specific request
-        StringBuilder logBuilder = new StringBuilder();
+    public Request logRequestResponse(Request inboundRequest, String targetServiceName) {
+        // Created a string builder objects to append logs belongs to specific request
+        StringBuilder logRequestBuilder = new StringBuilder();
+        StringBuilder logResponseBuilder = new StringBuilder();
+        boolean[] first = new boolean[]{true};
+
 
         // Request Logging ---------------------------------------------------------------------------------------------
 
-        /*  This listener will be invoked when the request is being processed in order to be sent.
-            When this is invoked we are appending uri and method to string builder with line break.
+        /* This listener will be invoked when the request is being processed in order to be sent.
          */
-        inboundRequest.onRequestBegin(request -> logBuilder.append("Request: \n")
-                .append("URI: ")
-                .append(request.getURI())
-                .append("\n")
-                .append("Method: ")
-                .append(request.getMethod()));
+        inboundRequest.onRequestBegin(request -> logRequestBuilder
+                        .append("WEBCLIENT REQ (to ")
+                        .append(targetServiceName)
+                        .append(")\n  Address: ").append(request.getURI())
+                        .append("\n  HttpMethod: ").append(request.getMethod())
+        );
 
         /*  This listener will be invoked when the request headers are ready to be sent.
             When this is invoked we are appending Headers to string builder with proper format.
-            make sure debugging is enabled if not remove log.isDebugEnabled condition.
          */
         inboundRequest.onRequestHeaders(request -> {
-            if(log.isDebugEnabled()) {
-                logBuilder.append("\nHeaders:\n");
-                for (HttpField header : request.getHeaders()) {
-                    logBuilder.append("\t\t").append(header.getName()).append(" : ").append(header.getValue()).append("\n");
+            if (log.isDebugEnabled()) {
+                if (request.getHeaders().stream().count() > 0) {
+                    logRequestBuilder.append("\n  Headers: ");
+                    for (HttpField header : request.getHeaders()) {
+                        logRequestBuilder.append(header.getName()).append(":").append(header.getValue()).append("; ");
+                    }
                 }
             }
         });
 
         /*  This listener will be invoked when request content has been sent successfully.
             When this is invoked we are converting bytes to String and appending to StringBuilder .
-            make sure debugging is enabled if not remove log.isDebugEnabled condition.
          */
         inboundRequest.onRequestContent((request, content) ->  {
-            if(log.isDebugEnabled()) {
+            if (log.isDebugEnabled()) {
                 var bufferAsString = StandardCharsets.UTF_8.decode(content).toString();
-                logBuilder.append("Body: \n\t")
-                        .append(bufferAsString);
+                logRequestBuilder.append("\n  Body REQ:\n").append(bufferAsString);
             }
         });
+
+//        inboundRequest.onRequestSuccess(request -> {
+//            logInfoDebugMsg(logRequestBuilder.toString());
+//        });
+//
+//        inboundRequest.onRequestFailure((request, throwable) -> {
+//            logErrorMsg(logRequestBuilder.toString(), throwable, request);
+//        });
 
 
         // Response Logging --------------------------------------------------------------------------------------------
 
-        /*  This listener will be invoked  when the response containing HTTP version, HTTP status code and reason has been received and parsed.
-            When this is invoked we are appending response status to string builder with line break for formatting.
+        /* This listener will be invoked  when the response containing HTTP version, HTTP status code and reason has been received and parsed.
          */
-        inboundRequest.onResponseBegin(response -> logBuilder.append("\nResponse:\n")
-                .append("Status: ")
-                .append(response.getStatus())
-                .append("\n"));
+        inboundRequest.onResponseBegin(response -> { logResponseBuilder
+                .append("WEBCLIENT RES (from ")
+                .append(targetServiceName)
+                .append(")\n  Address: ").append(response.getRequest().getURI())
+                .append("\n  HttpMethod: ").append(response.getRequest().getMethod())
+                .append("\n  Status: ").append(response.getStatus());
+        });
 
-         /*
-            This listener will be invoked when the response headers are received and parsed.
-            When this is invoked we are appending Headers to string builder with proper format.
-            make sure debugging is enabled if not remove log.isDebugEnabled condition.
-         */
+         /* This listener will be invoked when the response headers are received and parsed.
+          */
         inboundRequest.onResponseHeaders(response -> {
-            logBuilder.append("Headers:\n");
-            for (HttpField header : response.getHeaders()) {
-                logBuilder.append("\t\t").append(header.getName()).append(" : ").append(header.getValue()).append("\n");
+            if (log.isDebugEnabled()) {
+                if (response.getHeaders().stream().count() > 0) {
+                    logResponseBuilder.append("\n  Headers: ");
+                    for (HttpField header : response.getHeaders()) {
+                        logResponseBuilder.append(header.getName()).append(":").append(header.getValue()).append("; ");
+                    }
+                }
             }
         });
 
-        /*
-            This listener will be invoked when response content has been received and parsed.
-            When this is invoked we are converting bytes to String and appending to StringBuilder .
-            make sure debugging is enabled if not remove log.isDebugEnabled condition.
+        /* This listener will be invoked when response content has been received and parsed.
+           When this is invoked we are converting bytes to String and appending to StringBuilder .
          */
         inboundRequest.onResponseContent(((response, content) -> {
-            if(log.isDebugEnabled()) {
+            if (log.isDebugEnabled()) {
                 var bufferAsString = StandardCharsets.UTF_8.decode(content).toString();
-                logBuilder.append("Response Body:\n").append(bufferAsString);
+                if (first[0]) {
+                    logResponseBuilder.append("\n  Body RES:");
+                    first[0] = false;
+                }
+                logResponseBuilder.append("\n").append(bufferAsString);
             }
         }));
 
 
-        inboundRequest.onResponseSuccess(response ->
-                log.info(logBuilder.toString()));
+        inboundRequest.onResponseSuccess(response -> {
+            logInfoDebugMsg(logRequestBuilder.toString());
+            String logResponse = logResponseBuilder.toString();
+            if (logResponse.contains("errorCd"))
+                log.error(logResponse);
+            else
+                logInfoDebugMsg(logResponseBuilder.toString());
+        });
 
-        inboundRequest.onRequestFailure((request, throwable) ->
-                log.error(logBuilder.toString(), throwable));
-        inboundRequest.onResponseFailure((response, throwable) ->
-                log.error(logBuilder.toString(), throwable));
+        inboundRequest.onResponseFailure((response, throwable) -> {
+            Request request = response.getRequest();
+            if (logRequestBuilder.isEmpty()) {
+                logRequestBuilder
+                        .append("WEBCLIENT REQ (to ")
+                        .append(targetServiceName)
+                        .append(")\n  Address: ").append(request.getURI())
+                        .append("\n  HttpMethod: ").append(request.getMethod());
+                if (log.isDebugEnabled()) {
+                    if (request.getHeaders().stream().count() > 0) {
+                        logRequestBuilder.append("\n  Headers: ");
+                        for (HttpField header : request.getHeaders()) {
+                            logRequestBuilder.append(header.getName()).append(":").append(header.getValue()).append("; ");
+                        }
+                    }
+                }
+            }
+            logInfoDebugMsg(logRequestBuilder.toString());
+            logErrorMsg(logResponseBuilder.toString(), throwable, response.getRequest());
+        });
 
         return inboundRequest;
     }
+
+    private void logInfoDebugMsg(String msg) {
+        if (log.isDebugEnabled()) {
+            log.debug(msg);
+        } else if (log.isInfoEnabled()) {
+            log.info(msg);
+        }
+    }
+
+    private void logErrorMsg(String msg, Throwable throwable, Request request) {
+        log.error(msg != null && !msg.isEmpty() ? msg
+                   : throwable.getMessage() + "; URI=" + request.getURI()
+                , throwable);
+    }
+
 }

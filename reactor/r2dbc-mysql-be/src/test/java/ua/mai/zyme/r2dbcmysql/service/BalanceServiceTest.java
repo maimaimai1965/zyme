@@ -66,6 +66,8 @@ class BalanceServiceTest {
         tu.deleteMembersTestData();
     }
 
+
+    // ------------------------------------ insertBalance() ------------------------------------------------------------
     @Test
     public void insertBalance() throws InterruptedException {
         // Setup
@@ -82,7 +84,8 @@ class BalanceServiceTest {
         StepVerifier.create(
                 balanceService.insertBalance(balanceIn.getMemberId(), balanceIn.getAmount(), balanceIn.getCreatedDate(), balanceIn.getLastModifiedDate()))
        // Assertion
-                    .consumeNextWith(result -> listResult.add(result))
+                    .recordWith(() -> listResult)
+                    .expectNextCount(1)
                     .verifyComplete();
 
         Balance balanceOut = listResult.get(0);
@@ -105,7 +108,6 @@ class BalanceServiceTest {
                 .createdDate(TestUtil.now())
                 .lastModifiedDate(TestUtil.now())
                 .build();
-        List<Balance> listResult = new ArrayList<>(1);
 
         // Execution
         StepVerifier.create(
@@ -115,8 +117,8 @@ class BalanceServiceTest {
                          assertThat(error).isInstanceOf(FaultException.class);
                          FaultException fault = (FaultException) error;
                          assertThat(fault.getCode()).isEqualTo(AppFaultInfo.BALANCE_AMOUNT_CANNOT_BE_NEGATIVE.code());
-                })
-                .verify(); // Проверяет получение Mono с пустым значением.
+                     })
+                    .verify(); // Проверяет получение Mono с пустым значением.
     }
 
     @Test
@@ -144,6 +146,8 @@ class BalanceServiceTest {
                     .verify();
     }
 
+
+    // ------------------------------------ insertZeroBalance() --------------------------------------------------------
     @Test
     public void insertZeroBalance() throws InterruptedException {
         // Setup
@@ -161,7 +165,8 @@ class BalanceServiceTest {
         StepVerifier.create(
                 balanceService.insertZeroBalance(balanceIn.getMemberId(), now))
         // Assertion
-                    .consumeNextWith(result -> listResult.add(result))
+                    .recordWith(() -> listResult)
+                    .expectNextCount(1)
                     .verifyComplete();
 
         Balance balanceOut = listResult.get(0);
@@ -174,6 +179,8 @@ class BalanceServiceTest {
                 .isEqualTo(balanceIn);
     }
 
+
+    // ------------------------------------ findBalanceByMemberId() ----------------------------------------------------
     @Test
     public void findBalanceByMemberId() {
         // Setup
@@ -187,7 +194,8 @@ class BalanceServiceTest {
         StepVerifier.create(
                 balanceService.findBalanceByMemberId(memberIn.getMemberId()))
         // Assertion
-                    .consumeNextWith(result -> listResult.add(result))
+                    .recordWith(() -> listResult)
+                    .expectNextCount(1)
                     .verifyComplete();
 
         Balance balanceOut = listResult.get(0);
@@ -209,6 +217,8 @@ class BalanceServiceTest {
                     .verifyComplete();  // Проверяет получение Mono с пустым значением.
     }
 
+
+    // ------------------------------------ findBalanceByMemberIdWithFaultWhenBalanceNotExists() -----------------------
     @Test
     public void findBalanceByMemberIdWithFaultWhenBalanceNotExists() {
         // Setup
@@ -222,7 +232,8 @@ class BalanceServiceTest {
         StepVerifier.create(
                 balanceService.findBalanceByMemberIdWithFaultWhenBalanceNotExists(memberIn.getMemberId()))
         // Assertion
-                    .consumeNextWith(result -> listResult.add(result))
+                    .recordWith(() -> listResult)
+                    .expectNextCount(1)
                     .verifyComplete();
 
         Balance balanceOut = listResult.get(0);
@@ -249,6 +260,8 @@ class BalanceServiceTest {
                     .verify(); // Проверяет получение Mono с пустым значением.
     }
 
+
+    // ------------------------------------ findBalanceByMemberIdWithCreateZeroBalanceIfNotExists_WhenBalanceNotExists()
     @Test
     public void findBalanceByMemberIdWithCreateZeroBalanceIfNotExists_WhenBalanceNotExists() {
         // Setup
@@ -266,7 +279,8 @@ class BalanceServiceTest {
         StepVerifier.create(
                 balanceService.findBalanceByMemberIdWithCreateZeroBalanceIfNotExists(memberIn.getMemberId(), now))
         // Assertion
-                .consumeNextWith(result -> listResult.add(result))
+                .recordWith(() -> listResult)
+                .expectNextCount(1)
                 .verifyComplete(); // Проверяет получение Mono с пустым значением.
 
         Balance balanceOut = listResult.get(0);
@@ -278,6 +292,5 @@ class BalanceServiceTest {
                 .usingRecursiveComparison()
                 .isEqualTo(expectedBalance);
     }
-
 
 }

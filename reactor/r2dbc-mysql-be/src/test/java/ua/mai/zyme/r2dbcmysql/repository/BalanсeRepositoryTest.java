@@ -61,6 +61,7 @@ class BalanсeRepositoryTest {
     }
 
 
+    // ------------------------------------ insert() -------------------------------------------------------------------
     @Test
     public void insert() {
         // Setup
@@ -84,6 +85,8 @@ class BalanсeRepositoryTest {
                 .isEqualTo(balance_Db);
     }
 
+
+    // ------------------------------------ saveAsUpdate(balance) ------------------------------------------------------
     @Test
     public void saveAsUpdate() {
         // Setup
@@ -98,7 +101,8 @@ class BalanсeRepositoryTest {
         StepVerifier.create(
                 balanceRepository.save(balanceIn))
         // Assertion
-                    .consumeNextWith(result -> listResult.add(result))
+                    .recordWith(() -> listResult)
+                    .expectNextCount(1)
                     .verifyComplete();
 
         Balance balance_Db = tu.findBalanceByMemberId(member.getMemberId());
@@ -129,6 +133,8 @@ class BalanсeRepositoryTest {
 //    Assertions.assertThat(listIn).containsExactlyInAnyOrderElementsOf(listOut);
 //  }
 
+
+    // ------------------------------------ deleteById(memberId) -------------------------------------------------------
     @Test
     public void deleteById() {
         // Setup
@@ -152,6 +158,8 @@ class BalanсeRepositoryTest {
         assertNull(balance_Db);
     }
 
+
+    // ------------------------------------ deleteAllById(listMemberId) ------------------------------------------------
     @Test
     public void deleteAllById() {
         // Setup
@@ -173,6 +181,7 @@ class BalanсeRepositoryTest {
     }
 
 
+    // ------------------------------------ findByMemberId(memberId) ---------------------------------------------------
     @Test
     public void findByMemberId() {
         // Setup
@@ -186,7 +195,8 @@ class BalanсeRepositoryTest {
         StepVerifier.create(
                 balanceRepository.findByMemberId(memberIn.getMemberId()))
         // Assertion
-                    .consumeNextWith(result -> listResult.add(result))
+                    .recordWith(() -> listResult)
+                    .expectNextCount(1)
                     .verifyComplete();
 
         Balance balanceOut = listResult.get(0);
@@ -208,6 +218,8 @@ class BalanсeRepositoryTest {
                     .verifyComplete(); // Проверяет получение Mono с пустым значением.
     }
 
+
+    // ------------------------------------ findAllById(listMemberId) --------------------------------------------------
     @Test
     public void findAllById() throws InterruptedException {
         // Setup
@@ -228,14 +240,15 @@ class BalanсeRepositoryTest {
         StepVerifier.create(
                 balanceRepository.findAllById(listIdForCheck))
         // Assertion
-                    .consumeNextWith(listResult::add)
-                    .consumeNextWith(listResult::add)
+                    .recordWith(() -> listResult)
+                    .expectNextCount(2)
                     .verifyComplete();
 
         Assertions.assertThat(listForCheck).containsExactlyInAnyOrderElementsOf(listResult);
     }
 
 
+    // ------------------------------------ findByAmountIsBetween(minAmount, maxAmount) --------------------------------
     @Test
     public void findByAmountIsBetween() throws InterruptedException {
         // Setup
@@ -255,10 +268,10 @@ class BalanсeRepositoryTest {
 
         // Execution
         StepVerifier.create(
-                         balanceRepository.findByAmountIsBetween(70L, 80L))
+                balanceRepository.findByAmountIsBetween(70L, 80L))
         // Assertion
-                    .consumeNextWith(listResult::add)
-                    .consumeNextWith(listResult::add)
+                    .recordWith(() -> listResult)
+                    .expectNextCount(2)
                     .verifyComplete();
 
         Assertions.assertThat(listForCheck).containsExactlyInAnyOrderElementsOf(listResult);

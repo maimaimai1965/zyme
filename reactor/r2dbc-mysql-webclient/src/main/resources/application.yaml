@@ -2,9 +2,15 @@ logging:
   level:
     ROOT: INFO
 
-# ---------- Настройка логирования request-ов и response-ов (и ошибок) REST сервиса ------------------------------------
-    ua.mai.zyme.r2dbcmysql.webclient.log: DEBUG
-    reactor.netty.http.client: DEBUG
+# ---------- Настройка логирования request-ов и response-ов (и ошибок) WebClient-а к REST сервису ----------------------
+    # Jetty Client
+    # Вывод request-ов и response-ов (ERROR,WARN - ничего кроме ошибок, INFO - request/response без body;
+    #                                 DEBUG - request/response + body)
+    ua.mai.zyme.r2dbcmysql.webclient.log.LogService: DEBUG
+
+#    # Netty Client
+#    ua.mai.zyme.r2dbcmysql.webclient.log: DEBUG
+#    reactor.netty.http.client: DEBUG
 # ----------------------------------------------------------------------------------------------------------------------
 
 spring:
@@ -15,5 +21,6 @@ spring:
 zyme:
   r2dbc-mysql:
     webclient:
+      target-service-name: r2dbc-mysql
       base-url: http://localhost:8080
       connect-timeout: 1000

@@ -19,7 +19,8 @@ class LogServerHttpRequestDecorator extends ServerHttpRequestDecorator implement
     private final Flux<DataBuffer> decoratedBody;
     private final ServerHttpResponse response;
 
-    LogServerHttpRequestDecorator(ServerHttpRequest delegate, ServerHttpResponse response, Logger logger, MediaTypeFilter mediaTypeFilter, LogMessageFormatter formatter) {
+    LogServerHttpRequestDecorator(ServerHttpRequest delegate, ServerHttpResponse response, Logger logger,
+                                  MediaTypeFilter mediaTypeFilter, LogMessageFormatter formatter) {
         super(delegate);
         this.logger = logger;
         this.mediaTypeFilter = mediaTypeFilter;

@@ -50,5 +50,6 @@ spring:
 zyme:
   r2dbc-mysql:
     webclient:
+      target-service-name: r2dbc-mysql
       base-url: http://localhost:8080
       connect-timeout: 1000

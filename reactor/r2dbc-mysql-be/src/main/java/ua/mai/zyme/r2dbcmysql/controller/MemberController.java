@@ -27,6 +27,11 @@ public class MemberController {
         return memberService.insertMember(member);
     }
 
+    @PostMapping("/flux")
+    public Flux<Member> insertMembers(@RequestBody Flux<Member> fluxMember) {
+        return memberService.insertMembers(fluxMember);
+    }
+
 //  @PostMapping(value = "/{number}")
 //  public Flux<Member> insertRandomMembers(@PathVariable int number) {
 //    return generateRandomMember(number).subscribeOn(Schedulers.boundedElastic());

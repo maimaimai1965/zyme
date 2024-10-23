@@ -2,7 +2,9 @@ package ua.mai.zyme.r2dbcmysql.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import lombok.val;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import ua.mai.zyme.r2dbcmysql.entity.Member;
 import ua.mai.zyme.r2dbcmysql.exception.AppFaultInfo;
@@ -22,6 +24,11 @@ public class MemberService {
             return Mono.error(new FaultException(AppFaultInfo.NEW_MEMBER_ID_MUST_BE_NULL));
         }
         return memberRepository.save(member);
+    }
+
+    public Flux<Member> insertMembers(Flux<Member> fluxMembers) {
+        Flux<Member> result = fluxMembers.flatMap(this::insertMember);
+        return result;
     }
 
     public Mono<Member> updateMember(Member member) {

@@ -91,7 +91,8 @@ class MemberRepositoryTest {
         StepVerifier.create(
                 memberRepository.save(memberIn))
         // Assertion
-                    .consumeNextWith(result -> listResult.add(result))
+                    .recordWith(() -> listResult)
+                    .expectNextCount(1)
                     .verifyComplete();
 
         Member memberOut = listResult.get(0);
@@ -113,7 +114,8 @@ class MemberRepositoryTest {
         StepVerifier.create(
                 memberRepository.save(memberIn))
         // Assertion
-                    .consumeNextWith(result -> listResult.add(result))
+                    .recordWith(() -> listResult)
+                    .expectNextCount(1)
                     .verifyComplete();
 
         Member memberOut = listResult.get(0);
@@ -140,9 +142,8 @@ class MemberRepositoryTest {
         StepVerifier.create(
                 memberRepository.saveAll(listIn))
         // Assertion
-                    .consumeNextWith(result -> listResult.add(result))
-                    .consumeNextWith(result -> listResult.add(result))
-                    .consumeNextWith(result -> listResult.add(result))
+                    .recordWith(() -> listResult)
+                    .expectNextCount(3)
                     .verifyComplete();
 
         assertTrue(listResult.size() == 3);
@@ -172,8 +173,8 @@ class MemberRepositoryTest {
         StepVerifier.create(
                 memberRepository.saveAll(listIn))
         // Assertion
-                    .consumeNextWith(result -> listResult.add(result))
-                    .consumeNextWith(result -> listResult.add(result))
+                    .recordWith(() -> listResult)
+                    .expectNextCount(2)
                     .verifyComplete();
 
         assertTrue(listResult.size() == 2);
@@ -241,7 +242,8 @@ class MemberRepositoryTest {
         StepVerifier.create(
                 memberRepository.findById(memberIn.getMemberId()))
         // Assertion
-                    .consumeNextWith(result -> listResult.add(result))
+                    .recordWith(() -> listResult)
+                    .expectNextCount(1)
                     .verifyComplete();
 
         Member memberOut = listResult.get(0);
@@ -258,7 +260,8 @@ class MemberRepositoryTest {
         StepVerifier.create(
                 memberRepository.findByName(memberIn.getName()))
         // Assertion
-                    .consumeNextWith(result -> listResult.add(result))
+                    .recordWith(() -> listResult)
+                    .expectNextCount(1)
                     .verifyComplete();
 
         Member memberOut = listResult.get(0);
@@ -293,10 +296,8 @@ class MemberRepositoryTest {
                 memberRepository.findAll()                                           // Вычитываем все данные.
                                 .filter(member -> TestUtil.isMemberForTest(member))) // Проверяем только на тестируемых данных.
         // Assertion
-                    .consumeNextWith(result -> listResult.add(result))
-                    .consumeNextWith(result -> listResult.add(result))
-                    .consumeNextWith(result -> listResult.add(result))
-                    .consumeNextWith(result -> listResult.add(result))
+                    .recordWith(() -> listResult)
+                    .expectNextCount(4)
                     .verifyComplete();
 
         Assertions.assertThat(listResult)
@@ -322,8 +323,8 @@ class MemberRepositoryTest {
         StepVerifier.create(
                 memberRepository.findAllById(listIdForCheck))
         // Assertion
-                    .consumeNextWith(result -> listResult.add(result))
-                    .consumeNextWith(result -> listResult.add(result))
+                    .recordWith(() -> listResult)
+                    .expectNextCount(2)
                     .verifyComplete();
 
         // Assertion
@@ -348,8 +349,8 @@ class MemberRepositoryTest {
         StepVerifier.create(
                 memberRepository.findByNameLike("%r%"))
         // Assertion
-                    .consumeNextWith(result -> listResult.add(result))
-                    .consumeNextWith(result -> listResult.add(result))
+                    .recordWith(() -> listResult)
+                    .expectNextCount(2)
                     .verifyComplete();
 
         Assertions.assertThat(listResult).containsExactlyInAnyOrderElementsOf(listForCheck);
@@ -373,8 +374,8 @@ class MemberRepositoryTest {
         StepVerifier.create(
                 memberRepository.findByNameLengthLE(7))
         // Assertion
-                    .consumeNextWith(result -> listResult.add(result))
-                    .consumeNextWith(result -> listResult.add(result))
+                    .recordWith(() -> listResult)
+                    .expectNextCount(2)
                     .verifyComplete();
 
         Assertions.assertThat(listResult).containsExactlyInAnyOrderElementsOf(listForCheck);
