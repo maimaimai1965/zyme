@@ -109,6 +109,22 @@ public class R2dbsMysqlWebClientForMemberControllerTests {
         Assertions.assertThat(listResult).containsExactlyInAnyOrderElementsOf(list_Db);
     }
 
+    @Test
+    public void insertMembers_ERR101_NotNullNewMemberId() {
+        // Setup
+        Member memberIn1 = TestUtil.newMember("mikeTest");
+        Member memberIn2 = TestUtil.newMember("rikTest");
+        memberIn2.setMemberId(-1);
+
+        AppClientError error = assertThrows(AppClientError.class, () -> {
+        // Execution
+            mysqlWebClient.insertMembers(Flux.just(memberIn1, memberIn2)).toStream().toList();
+        });
+        // Assertion
+        assertEquals("500", error.getClientFaultInfo().getStatus());
+        assertEquals(AppFaultInfo.NEW_MEMBER_ID_MUST_BE_NULL.code(), error.getClientFaultInfo().getErrorCd());
+    }
+
 
     // ------------------------------------ updateMember(monoMember) ---------------------------------------------------
     @Test

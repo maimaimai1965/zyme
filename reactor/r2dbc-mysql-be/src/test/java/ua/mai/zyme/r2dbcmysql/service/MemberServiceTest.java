@@ -108,7 +108,7 @@ class MemberServiceTest {
     }
 
 
-    // ------------------------------------ insertMembers(fluxMember) <- /api/members/flux -----------------------------
+    // ------------------------------------ insertMembers(fluxMember) --------------------------------------------------
     @Test
     public void insertMembers() {
         // Setup
@@ -131,6 +131,25 @@ class MemberServiceTest {
         List<Member> list_Db = List.of(tu.findMemberByMemberId(memberOut1.getMemberId()),
                                        tu.findMemberByMemberId(memberOut2.getMemberId()));
         Assertions.assertThat(listResult).containsExactlyInAnyOrderElementsOf(list_Db);
+    }
+
+    @Test
+    public void insertMembers_Fault_WhenNewMemberHasMemberId() {
+        // Setup
+        Member memberIn1 = TestUtil.newMember("mikeTest");
+        Member memberIn2 = TestUtil.newMember("rikTest");
+        memberIn2.setMemberId(-1);
+
+        // Execution
+        StepVerifier.create(
+                memberService.insertMembers(Flux.just(memberIn1, memberIn2)))
+        // Assertion
+                    .consumeErrorWith(error -> {
+                        assertThat(error).isInstanceOf(FaultException.class);
+                        FaultException fault = (FaultException) error;
+                        assertThat(fault.getCode()).isEqualTo(AppFaultInfo.NEW_MEMBER_ID_MUST_BE_NULL.code());
+                     })
+                    .verify();
     }
 
 

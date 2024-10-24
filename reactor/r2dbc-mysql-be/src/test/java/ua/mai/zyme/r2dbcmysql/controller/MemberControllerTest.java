@@ -148,6 +148,29 @@ class MemberControllerTest {
         Assertions.assertThat(listResult).containsExactlyInAnyOrderElementsOf(list_Db);
     }
 
+    @Test
+    public void insertMembers_Fault_WhenNewMemberHasMemberId() {
+        // Setup
+        Member memberIn1 = TestUtil.newMember("mikeTest");
+        Member memberIn2 = TestUtil.newMember("rikTest");
+        memberIn2.setMemberId(-1);
+
+        // Execution
+        webTestClient
+                .post()
+                .uri("/api/members/flux")
+                .accept(MediaType.APPLICATION_JSON)
+                .body(Flux.just(memberIn1, memberIn2), Member.class)
+                .exchange()
+        // Assertion
+                .expectStatus().value(status -> assertEquals("500", status.toString()))
+                .expectBody()
+                .consumeWith(response -> {
+                    String body = new String(response.getResponseBody());
+                    assertTrue(body.contains(AppFaultInfo.NEW_MEMBER_ID_MUST_BE_NULL.code()));
+                 });
+    }
+
 
     // ------------------------------------ updateMember(member) <- /api/members ---------------------------------------
     @Test

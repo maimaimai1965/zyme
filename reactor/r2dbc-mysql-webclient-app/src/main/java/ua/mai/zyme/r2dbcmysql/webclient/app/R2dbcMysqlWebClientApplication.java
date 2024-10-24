@@ -47,46 +47,47 @@ public class R2dbcMysqlWebClientApplication {
 
         return args -> {
             // Выполняем действие при старте приложения
-            System.out.println("-------- Приложение запущено! Выполняются действия: ------------");
+            System.out.println("\n-------- Приложение запущено! Выполняются действия: ------------");
 
-//            insertMember();
-//            insertMember_ERR101_NotNullNewMemberId();
+            insertMember();
+            insertMember_ERR101_NotNullNewMemberId();
             findMembersByNameLike();
         };
     }
 
 
     private void insertMember() {
-        System.out.println("*** insertMember() ***");
+        System.out.println("\n*** insertMember() ***");
 
         Member memberIn = TestUtil.newMember("mikeTest");
 
         try {
             Member memberOut =  mysqlWebClient.insertMember(Mono.just(memberIn)).block();
-//            System.out.println("memberOut =" + memberOut);
+            System.out.println("-> " + memberOut);
         } catch (Exception ex) {
-//            System.out.println(ex.getMessage());
+            System.out.println("-> Exception: " + ex.getMessage());
 //            ex.printStackTrace();
         }
     }
 
     private void insertMember_ERR101_NotNullNewMemberId() {
-        System.out.println("*** insertMember_ERR101_NotNullNewMemberId() ***");
+        System.out.println("\n*** insertMember_ERR101_NotNullNewMemberId() ***");
 
         Member memberIn = TestUtil.newMember("mikeTest");
         memberIn.setMemberId(-1);
 
         try {
-            mysqlWebClient.insertMember(Mono.just(memberIn)).block();
+            Member memberOut = mysqlWebClient.insertMember(Mono.just(memberIn)).block();
+            System.out.println("-> " + memberOut);
         } catch (Exception ex) {
-//            System.out.println(ex.getMessage());
+            System.out.println("-> Exception: " + ex.getMessage());
 //            ex.printStackTrace();
         }
 
     }
 
     private void findMembersByNameLike() {
-        System.out.println("*** findMembersByNameLike() ***");
+        System.out.println("\n*** findMembersByNameLike() ***");
         try {
 //            mysqlWebClient.insertMember(Mono.just(TestUtil.newMember("vinsenTest"))).block();
 //            mysqlWebClient.insertMember(Mono.just(TestUtil.newMember("bearnTest"))).block();
@@ -95,8 +96,9 @@ public class R2dbcMysqlWebClientApplication {
 
             System.out.println("# findMembersByNameLike():");
             List<Member> members = mysqlWebClient.findMembersByNameLike("nTest").toStream().toList();
+            System.out.println("-> " + members);
         } catch (Exception ex) {
-//            System.out.println(ex.getMessage());
+            System.out.println("-> Exception: " + ex.getMessage());
 //            ex.printStackTrace();
         }
     }

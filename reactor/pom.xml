@@ -13,6 +13,7 @@
         <module>r2dbc-mysql-be</module>
         <module>r2dbc-mysql-app</module>
         <module>r2dbc-mysql-webclient</module>
+        <module>r2dbc-mysql-webclient-app</module>
     </modules>
 
 </project>
