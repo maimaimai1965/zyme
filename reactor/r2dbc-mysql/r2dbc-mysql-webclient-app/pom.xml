@@ -2,40 +2,24 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>ua.mai.zyme.reactor</groupId>
+        <artifactId>r2dbc-mysql</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
 
     <groupId>ua.mai.zyme.reactor</groupId>
     <artifactId>r2dbc-mysql-webclient-app</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>r2dbc-mysql-webclient</name>
-    <description>r2dbc-mysql-webclient</description>
-
-    <repositories>
-        <repository>
-            <id>central</id>
-            <name>Maven Central</name>
-            <url>https://repo1.maven.org/maven2/</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-        </repository>
-    </repositories>
-
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.3.4</version>
-        <relativePath/> <!-- lookup parent from repository -->
-    </parent>
-
-    <properties>
-        <java.version>21</java.version>
-    </properties>
+    <name>r2dbc-mysql-webclient-app</name>
+    <description>r2dbc-mysql-webclient-app</description>
 
     <dependencies>
         <dependency>
             <groupId>ua.mai.zyme.reactor</groupId>
             <artifactId>r2dbc-mysql-webclient</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
 
