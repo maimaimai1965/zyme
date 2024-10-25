@@ -10,26 +10,26 @@ import ua.mai.zyme.r2dbcmysql.util.SpringUtil;
 
 @SpringBootApplication
 //@EnableR2dbcAuditing
-public class R2dbcMysqlApplication {
+public class R2dbcMysqlBeApplication {
 
 //    public static void main(String[] args) {
-//        SpringApplication.run(R2dbcMysqlApplication.class, args);
+//        SpringApplication.run(R2dbcMysqlBeApplication.class, args);
 //
 //    }
 
-    private static final Logger log = LoggerFactory.getLogger(R2dbcMysqlApplication.class);
+    private static final Logger log = LoggerFactory.getLogger(R2dbcMysqlBeApplication.class);
 
     private final Environment env;
 
-    public R2dbcMysqlApplication(Environment env) {
+    public R2dbcMysqlBeApplication(Environment env) {
         this.env = env;
     }
 
     public static void main(String[] args) {
 //        System.getProperties().setProperty("spring.application.name", "r2dbc-mysql REST service");
-//        SpringApplication.run(R2dbcMysqlApplication.class, args);
+//        SpringApplication.run(R2dbcMysqlBeApplication.class, args);
 
-        SpringApplication app = new SpringApplication(R2dbcMysqlApplication.class);
+        SpringApplication app = new SpringApplication(R2dbcMysqlBeApplication.class);
         DefaultProfileUtil.addDefaultProfile(app);
         try {
             Environment env = app.run(args).getEnvironment();

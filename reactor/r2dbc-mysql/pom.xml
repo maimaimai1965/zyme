@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.3.4</version>
+        <version>3.3.5</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
@@ -30,7 +30,7 @@
 
     <modules>
         <module>r2dbc-mysql-be</module>
-        <module>r2dbc-mysql-app</module>
+        <module>r2dbc-mysql-be-app</module>
         <module>r2dbc-mysql-webclient</module>
         <module>r2dbc-mysql-webclient-app</module>
     </modules>
@@ -52,7 +52,7 @@
             </dependency>
             <dependency>
                 <groupId>ua.mai.zyme.reactor</groupId>
-                <artifactId>r2dbc-mysql-app</artifactId>
+                <artifactId>r2dbc-mysql-be-app</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
