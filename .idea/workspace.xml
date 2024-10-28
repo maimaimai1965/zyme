@@ -4,20 +4,95 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8f73b445-5201-4244-94c7-bed9e6b359c9" name="Changes" comment="structure r2dbc-mysql-* modules refactoring">
+    <list default="true" id="8f73b445-5201-4244-94c7-bed9e6b359c9" name="Changes" comment="changed spring-boot 3.3.4-&gt;3.3.5; renamed r2dbc-mysql-app-&gt;r2dbc-mysql-be-app, renamed R2dbcMysqlApplication -&gt; R2dbcMysqlBeApplication">
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-be-app/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-be-app/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-be-app/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-be-app/src/main/java/ua/mai/zyme/r2dbcmysql/R2dbcMysqlBeApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-be-app/src/test/java/ua/mai/zyme/r2dbcmysql/R2dbcMysqlApplicationTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-be-app/src/test/resources/application-test.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-be/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-be/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/controller/BalanceController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/controller/MemberController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/controller/TransferController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/dto/CreateBalanceRequest.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/dto/CreateTransferRequest.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/dto/IncreaseBalanceRequest.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/entity/Balance.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/entity/Member.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/entity/Transfer.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/exception/AppErrorAttributes.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/exception/AppErrorConfiguration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/exception/AppErrorWebExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/exception/AppFaultInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/exception/FaultDetails.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/exception/FaultException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/exception/FaultInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/log/LogServerHttpRequestDecorator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/log/LogServerHttpResponseDecorator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/log/RequestLogWebFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/log/ResponseLogWebFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/log/WithMemoizingFunction.kt_" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/repository/BalanceRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/repository/MemberRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/repository/TransferRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/service/BalanceService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/service/MemberService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/service/TransferService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/util/AppUtil.java_" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/util/AppUtil.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/util/DefaultProfileUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/util/SpringUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/util/TestUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-be/src/main/resources/schema.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/R2dbcMysqlApplicationTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/config/AppTestConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/controller/BalanceControllerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/controller/MemberControllerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/controller/TransferControllerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/repository/BalanсeRepositoryTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/repository/MemberRepositoryTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/repository/TransferRepositoryTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/service/BalanceServiceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/service/MemberServiceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/service/TransferServiceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-be/src/test/resources/application-test.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-webclient-app/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-webclient-app/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-webclient-app/src/main/java/ua/mai/zyme/r2dbcmysql/webclient/app/R2dbcMysqlWebClientApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-webclient-app/src/main/resources/application.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-webclient/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-webclient/hs_err_pid17424.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-webclient/hs_err_pid33716.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-webclient/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-webclient/pom.xml_old" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-webclient/src/main/java/com/web/client/demo/model/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-webclient/src/main/java/com/web/client/demo/service/UserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-webclient/src/main/java/ua/mai/zyme/r2dbcmysql/webclient/R2dbsMysqlWebClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-webclient/src/main/java/ua/mai/zyme/r2dbcmysql/webclient/exception/AppClientError.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-webclient/src/main/java/ua/mai/zyme/r2dbcmysql/webclient/exception/ClientFaultInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-webclient/src/main/java/ua/mai/zyme/r2dbcmysql/webclient/log/LogService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-webclient/src/main/java/ua/mai/zyme/r2dbcmysql/webclient/property/WebClientProperty.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-webclient/src/main/java/ua/mai/zyme/r2dbcmysql/webclient/property/ZymeR2dbcMysqlProperty.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-webclient/src/main/resources/application.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-webclient/src/test/java/com/web/client/demo/DemoApplicationTests.java_" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-webclient/src/test/java/com/web/client/demo/service/UserServiceMockWebServerTest.java_" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-webclient/src/test/java/com/web/client/demo/service/UserServiceMockitoTest.java_" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-webclient/src/test/java/ua/mai/zyme/r2dbcmysql/R2dbcMysqlApplicationTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-webclient/src/test/java/ua/mai/zyme/r2dbcmysql/config/AppTestConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-webclient/src/test/java/ua/mai/zyme/r2dbcmysql/webclient/R2dbsMysqlWebClientForBalanceControllerTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-webclient/src/test/java/ua/mai/zyme/r2dbcmysql/webclient/R2dbsMysqlWebClientForMemberControllerTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-webclient/src/test/java/ua/mai/zyme/r2dbcmysql/webclient/R2dbsMysqlWebClientForTransferControllerTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-webclient/src/test/resources/application-test.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kotlin/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-app/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-be-app/mvnw" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-app/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-be-app/mvnw.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-app/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-be-app/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-app/src/main/java/ua/mai/zyme/r2dbcmysql/R2dbcMysqlApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-be-app/src/main/java/ua/mai/zyme/r2dbcmysql/R2dbcMysqlBeApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-app/src/main/java/ua/mai/zyme/r2dbcmysql/config/AppConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-be-app/src/main/java/ua/mai/zyme/r2dbcmysql/config/AppConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-app/src/main/resources/application-prod.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-be-app/src/main/resources/application-prod.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-app/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-be-app/src/main/resources/application.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-app/src/main/resources/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-be-app/src/main/resources/schema.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-app/src/test/java/ua/mai/zyme/r2dbcmysql/R2dbcMysqlApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-be-app/src/test/java/ua/mai/zyme/r2dbcmysql/R2dbcMysqlApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-app/src/test/postman/9032 Zyme r2dbc-mysql.postman_collection.json" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-be-app/src/test/postman/9032 Zyme r2dbc-mysql.postman_collection.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-app/src/test/resources/application-test.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-be-app/src/test/resources/application-test.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kotlin/first-steps/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/kotlin/first-steps/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/config/AuditorAwareConfiguration.java_" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/entity/Provider.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/exception/FaultInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/exception/FaultInfo.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,11 +129,11 @@
       <list>
         <option value="Interface" />
         <option value="HTML File" />
-        <option value="Kotlin Interface" />
-        <option value="Kotlin Class" />
         <option value="Kotlin File" />
         <option value="Enum" />
         <option value="Class" />
+        <option value="Kotlin Interface" />
+        <option value="Kotlin Class" />
       </list>
     </option>
   </component>
@@ -135,320 +210,329 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "Application.MainJava21.executor": "Run",
-    "Application.MonoAndFlux.executor": "Run",
-    "Application.MonoFlux.executor": "Run",
-    "Application.Test.executor": "Run",
-    "DefaultHtmlFileTemplate": "HTML File",
-    "JUnit.BalanceControllerTest (1).executor": "Run",
-    "JUnit.BalanceControllerTest.executor": "Run",
-    "JUnit.BalanceControllerTest.findBalanceByMemberId.executor": "Run",
-    "JUnit.BalanceControllerTest.findBalancesByAmountIsBetween.executor": "Run",
-    "JUnit.BalanceControllerTest.findBalancesByMemberIds.executor": "Run",
-    "JUnit.BalanceControllerTest.findByMemberId.executor": "Run",
-    "JUnit.BalanceControllerTest.findByMemberIds.executor": "Debug",
-    "JUnit.BalanceServiceTest.executor": "Run",
-    "JUnit.BalanceServiceTest.findBalanceByMemberId.executor": "Run",
-    "JUnit.BalanceServiceTest.findBalanceByMemberIdWithCreateZeroBalanceIfNotExists.executor": "Run",
-    "JUnit.BalanceServiceTest.findBalanceByMemberIdWithCreateZeroBalanceIfNotExists_WhenBalanceNotExists.executor": "Run",
-    "JUnit.BalanceServiceTest.findBalanceByMemberIdWithFaultWhenBalanceNotExists.executor": "Run",
-    "JUnit.BalanceServiceTest.findBalanceByMemberIdWithFaultWhenBalanceNotExists_Fault_WhenBalanceNotExists.executor": "Run",
-    "JUnit.BalanceServiceTest.findBalanceByMemberIdWithFaultWhenBalanceNotExists_Fault_WhenNotExists.executor": "Run",
-    "JUnit.BalanceServiceTest.findByMemberId.executor": "Run",
-    "JUnit.BalanceServiceTest.findByMemberId_WhenNotExists.executor": "Run",
-    "JUnit.BalanceServiceTest.insertBalance.executor": "Run",
-    "JUnit.BalanceServiceTest.insertBalance_Error.executor": "Debug",
-    "JUnit.BalanceServiceTest.insertBalance_Error_.executor": "Debug",
-    "JUnit.BalanceServiceTest.insertBalance_Error_WhenMemberNotExists.executor": "Run",
-    "JUnit.BalanceServiceTest.insertBalance_Fault_WhenMemberNotExists.executor": "Debug",
-    "JUnit.BalanceServiceTest.insertBalance_Fault_WhenNegativeAmount.executor": "Run",
-    "JUnit.BalanceServiceTest.insertZeroBalance.executor": "Run",
-    "JUnit.BalanсeRepositoryTest.deleteAllById.executor": "Run",
-    "JUnit.BalanсeRepositoryTest.deleteById.executor": "Run",
-    "JUnit.BalanсeRepositoryTest.executor": "Run",
-    "JUnit.BalanсeRepositoryTest.findAllById.executor": "Run",
-    "JUnit.BalanсeRepositoryTest.findByAmountIsBetween.executor": "Run",
-    "JUnit.BalanсeRepositoryTest.findByIdWhenNotExists.executor": "Run",
-    "JUnit.BalanсeRepositoryTest.findByMemberId.executor": "Run",
-    "JUnit.BalanсeRepositoryTest.insert.executor": "Run",
-    "JUnit.BalanсeRepositoryTest.saveAsInsert.executor": "Debug",
-    "JUnit.BalanсeRepositoryTest.saveAsUpdate.executor": "Run",
-    "JUnit.MemberControllerTest.badUrl.executor": "Run",
-    "JUnit.MemberControllerTest.createMember.executor": "Run",
-    "JUnit.MemberControllerTest.deleteMember.executor": "Run",
-    "JUnit.MemberControllerTest.deleteMemberById.executor": "Run",
-    "JUnit.MemberControllerTest.deleteMemberById_WhenMemberNotExists.executor": "Run",
-    "JUnit.MemberControllerTest.executor": "Run",
-    "JUnit.MemberControllerTest.findAll.executor": "Run",
-    "JUnit.MemberControllerTest.findById.executor": "Run",
-    "JUnit.MemberControllerTest.findByMemberId.executor": "Run",
-    "JUnit.MemberControllerTest.findByMemberId_ERR001_BadMemberId.executor": "Run",
-    "JUnit.MemberControllerTest.findByMemberId_ERR001_MethodNotAllowed.executor": "Run",
-    "JUnit.MemberControllerTest.findByMemberId_ERR001_NoStaticResource.executor": "Run",
-    "JUnit.MemberControllerTest.findByMemberId_ERR002_MemberNotExists.executor": "Run",
-    "JUnit.MemberControllerTest.findByMemberId_ERR002_MemberNotFound.executor": "Run",
-    "JUnit.MemberControllerTest.findByMemberId_Error_BadMemberId.executor": "Run",
-    "JUnit.MemberControllerTest.findByName.executor": "Run",
-    "JUnit.MemberControllerTest.findByNameLike.executor": "Run",
-    "JUnit.MemberControllerTest.findByNameLike_ERR001_BadRequest_400.executor": "Run",
-    "JUnit.MemberControllerTest.findByNameLike_ERR002_MemberNotFound.executor": "Run",
-    "JUnit.MemberControllerTest.findByNameLike_EmptyList.executor": "Run",
-    "JUnit.MemberControllerTest.findByName_ERR002_MemberNotFound.executor": "Run",
-    "JUnit.MemberControllerTest.findMemberByMemberId_ERR002_MemberNotFound.executor": "Run",
-    "JUnit.MemberControllerTest.getAll.executor": "Run",
-    "JUnit.MemberControllerTest.getOne.executor": "Run",
-    "JUnit.MemberControllerTest.insertMember.executor": "Run",
-    "JUnit.MemberControllerTest.insertMember_.executor": "Run",
-    "JUnit.MemberControllerTest.insertMember_Fault_.executor": "Run",
-    "JUnit.MemberControllerTest.insertMembers.executor": "Run",
-    "JUnit.MemberControllerTest.insertMembers_Fault_WhenNewMemberHasMemberId.executor": "Debug",
-    "JUnit.MemberControllerTest.save.executor": "Debug",
-    "JUnit.MemberControllerTest.updateMember.executor": "Run",
-    "JUnit.MemberControllerTest.updateMemberWhenMemberNotExists.executor": "Debug",
-    "JUnit.MemberRepositoryTest (1).executor": "Run",
-    "JUnit.MemberRepositoryTest.deleteAllById.executor": "Run",
-    "JUnit.MemberRepositoryTest.deleteById.executor": "Run",
-    "JUnit.MemberRepositoryTest.deleteThroughSql.executor": "Run",
-    "JUnit.MemberRepositoryTest.executor": "Run",
-    "JUnit.MemberRepositoryTest.findAll.executor": "Run",
-    "JUnit.MemberRepositoryTest.findAll2.executor": "Debug",
-    "JUnit.MemberRepositoryTest.findAllById.executor": "Run",
-    "JUnit.MemberRepositoryTest.findById.executor": "Run",
-    "JUnit.MemberRepositoryTest.findByIdWhenNotExists.executor": "Run",
-    "JUnit.MemberRepositoryTest.findByName.executor": "Run",
-    "JUnit.MemberRepositoryTest.findByNameLengthLE.executor": "Run",
-    "JUnit.MemberRepositoryTest.findByNameLike.executor": "Run",
-    "JUnit.MemberRepositoryTest.insertThroughSql.executor": "Run",
-    "JUnit.MemberRepositoryTest.save.executor": "Run",
-    "JUnit.MemberRepositoryTest.saveAll.executor": "Run",
-    "JUnit.MemberRepositoryTest.saveAllAsInsert.executor": "Run",
-    "JUnit.MemberRepositoryTest.saveAllAsInsertAndUpdate.executor": "Run",
-    "JUnit.MemberRepositoryTest.saveAsInsert.executor": "Run",
-    "JUnit.MemberRepositoryTest.saveAsUpdate.executor": "Run",
-    "JUnit.MemberRepositoryTest.testInsert.executor": "Debug",
-    "JUnit.MemberRepositoryTest.updateThroughSql.executor": "Run",
-    "JUnit.MemberServiceTest.executor": "Run",
-    "JUnit.MemberServiceTest.findById.executor": "Run",
-    "JUnit.MemberServiceTest.findMemberByMemberId.executor": "Run",
-    "JUnit.MemberServiceTest.findMemberByMemberIdWithFaultWhenNotExists.executor": "Run",
-    "JUnit.MemberServiceTest.findMemberByMemberIdWithFaultWhenNotExists_Fault_MemberNotExists.executor": "Run",
-    "JUnit.MemberServiceTest.findMemberByMemberId_WhenMemberNotExists.executor": "Run",
-    "JUnit.MemberServiceTest.insertMember.executor": "Run",
-    "JUnit.MemberServiceTest.insertMember_Fault_NewMemberHasMemberId.executor": "Run",
-    "JUnit.MemberServiceTest.insertMembers.executor": "Debug",
-    "JUnit.MemberServiceTest.insertMembers_.executor": "Debug",
-    "JUnit.MemberServiceTest.updateMember.executor": "Run",
-    "JUnit.MemberServiceTest.updateMember_Fault_WhenUpdatedMemberDasNotHaveMemberId.executor": "Run",
-    "JUnit.ProviderControllerTest.getAll.executor": "Run",
-    "JUnit.ProviderRepositoryTest.findAll.executor": "Debug",
-    "JUnit.R2dbcMysqlApplicationTests (1).executor": "Run",
-    "JUnit.R2dbcMysqlApplicationTests.contextLoads.executor": "Run",
-    "JUnit.R2dbcMysqlApplicationTests.executor": "Run",
-    "JUnit.R2dbcMysqlTestApplication.executor": "Run",
-    "JUnit.R2dbcMysqlWebClientApplicationTest.executor": "Run",
-    "JUnit.R2dbsMysqlWebClientForBalanceControllerTests.executor": "Run",
-    "JUnit.R2dbsMysqlWebClientForBalanceControllerTests.findBalanceByMemberId.executor": "Run",
-    "JUnit.R2dbsMysqlWebClientForBalanceControllerTests.findBalanceByMemberId_WhenBalanceNotFound.executor": "Debug",
-    "JUnit.R2dbsMysqlWebClientForBalanceControllerTests.findBalancesByAmountIsBetween.executor": "Run",
-    "JUnit.R2dbsMysqlWebClientForBalanceControllerTests.findBalancesByMemberIds.executor": "Run",
-    "JUnit.R2dbsMysqlWebClientForBalanceControllerTests.findBalancesByMemberIds_WhenBalancesNotFound.executor": "Run",
-    "JUnit.R2dbsMysqlWebClientForBalanceControllerTests.findMembersAll.executor": "Run",
-    "JUnit.R2dbsMysqlWebClientForMemberControllerTests.executor": "Run",
-    "JUnit.R2dbsMysqlWebClientForMemberControllerTests.findMemberByMemberId.executor": "Debug",
-    "JUnit.R2dbsMysqlWebClientForMemberControllerTests.findMembersAll.executor": "Run",
-    "JUnit.R2dbsMysqlWebClientForMemberControllerTests.insertMember.executor": "Run",
-    "JUnit.R2dbsMysqlWebClientForMemberControllerTests.insertMember_ERR101_NotNullNewMemberId.executor": "Run",
-    "JUnit.R2dbsMysqlWebClientForMemberControllerTests.insertMembers.executor": "Run",
-    "JUnit.R2dbsMysqlWebClientForMemberControllerTests.insertMembers_ERR101_NotNullNewMemberId.executor": "Run",
-    "JUnit.R2dbsMysqlWebClientForMemberControllerTests.updateMember.executor": "Run",
-    "JUnit.R2dbsMysqlWebClientForTransferControllerTests.doTransfer.executor": "Run",
-    "JUnit.R2dbsMysqlWebClientForTransferControllerTests.doTransfer_ERR303_BalanceFromNotEnough.executor": "Run",
-    "JUnit.R2dbsMysqlWebClientForTransferControllerTests.doTransfer_Fault_WhenBalanceFromNotExists.executor": "Run",
-    "JUnit.R2dbsMysqlWebClientForTransferControllerTests.doTransfer_Fault_WhenMemberFromNotExists.executor": "Debug",
-    "JUnit.R2dbsMysqlWebClientForTransferControllerTests.doTransfer_Fault_WhenZeroTransferAmount.executor": "Run",
-    "JUnit.R2dbsMysqlWebClientForTransferControllerTests.doTransfer_WhenToMemberBalanceNotExists.executor": "Run",
-    "JUnit.R2dbsMysqlWebClientForTransferControllerTests.executor": "Run",
-    "JUnit.R2dbsMysqlWebClientForTransferControllerTests.findTransfer.executor": "Run",
-    "JUnit.R2dbsMysqlWebClientForTransferControllerTests.findTransfer_WhenNotExists.executor": "Run",
-    "JUnit.R2dbsMysqlWebClientForTransferControllerTests.findTransfersByFromMemberId.executor": "Debug",
-    "JUnit.R2dbsMysqlWebClientForTransferControllerTests.findTransfersByToMemberId.executor": "Run",
-    "JUnit.R2dbsMysqlWebClientTest.deleteMemberById.executor": "Run",
-    "JUnit.R2dbsMysqlWebClientTest.deleteMemberById_WhenMemberNotExists.executor": "Run",
-    "JUnit.R2dbsMysqlWebClientTest.executor": "Run",
-    "JUnit.R2dbsMysqlWebClientTest.findAll.executor": "Debug",
-    "JUnit.R2dbsMysqlWebClientTest.findMemberByMemberId.executor": "Run",
-    "JUnit.R2dbsMysqlWebClientTest.findMemberByMemberId_ERR002_MemberNotFound.executor": "Debug",
-    "JUnit.R2dbsMysqlWebClientTest.findMemberByName.executor": "Debug",
-    "JUnit.R2dbsMysqlWebClientTest.findMemberByName_ERR002_MemberNotFound.executor": "Run",
-    "JUnit.R2dbsMysqlWebClientTest.findMembersByNameLike.executor": "Run",
-    "JUnit.R2dbsMysqlWebClientTest.findMembersByNameLike_WhenEmptyList.executor": "Run",
-    "JUnit.R2dbsMysqlWebClientTest.insertMember.executor": "Debug",
-    "JUnit.R2dbsMysqlWebClientTest.insertMember_ERR101_NotNullNewMemberId.executor": "Debug",
-    "JUnit.R2dbsMysqlWebClientTest.updateMember.executor": "Debug",
-    "JUnit.TransferControllerTest.doTransfer.executor": "Run",
-    "JUnit.TransferControllerTest.doTransfer_.executor": "Debug",
-    "JUnit.TransferControllerTest.doTransfer_Fault_WhenBalanceFromNotExists.executor": "Run",
-    "JUnit.TransferControllerTest.doTransfer_Fault_WhenMemberFromNotExists.executor": "Run",
-    "JUnit.TransferControllerTest.doTransfer_Fault_WhenZeroTransferAmount.executor": "Run",
-    "JUnit.TransferControllerTest.doTransfer_WhenToMemberBalanceNotExists.executor": "Debug",
-    "JUnit.TransferControllerTest.doTransfer__BalanceFromNotEnough.executor": "Run",
-    "JUnit.TransferControllerTest.executor": "Run",
-    "JUnit.TransferControllerTest.findBalanceByMemberId.executor": "Debug",
-    "JUnit.TransferControllerTest.findTransfer.executor": "Debug",
-    "JUnit.TransferControllerTest.findTransfer_Fault_WhenBadTransferId.executor": "Debug",
-    "JUnit.TransferControllerTest.findTransfer_Fault_WhenNotExists.executor": "Debug",
-    "JUnit.TransferControllerTest.findTransfer_WhenNotExists.executor": "Run",
-    "JUnit.TransferControllerTest.findTransfersByFromMemberId.executor": "Debug",
-    "JUnit.TransferControllerTest.findTransfersByToMemberId.executor": "Debug",
-    "JUnit.TransferRepositoryTest.deleteAllById.executor": "Run",
-    "JUnit.TransferRepositoryTest.deleteById.executor": "Run",
-    "JUnit.TransferRepositoryTest.executor": "Run",
-    "JUnit.TransferRepositoryTest.findAllById.executor": "Run",
-    "JUnit.TransferRepositoryTest.findById.executor": "Run",
-    "JUnit.TransferRepositoryTest.findByIdWhenNotExists.executor": "Run",
-    "JUnit.TransferRepositoryTest.findByToMemberId.executor": "Run",
-    "JUnit.TransferRepositoryTest.save.executor": "Run",
-    "JUnit.TransferRepositoryTest.saveAll.executor": "Run",
-    "JUnit.TransferServiceTest.doTransfer.executor": "Run",
-    "JUnit.TransferServiceTest.doTransferNot.executor": "Debug",
-    "JUnit.TransferServiceTest.doTransferWhenBalancesExist.executor": "Run",
-    "JUnit.TransferServiceTest.doTransferWhenBalancesExist_BalanceToNotExists.executor": "Run",
-    "JUnit.TransferServiceTest.doTransferWhenBalancesExist_Fault_BalanceFromNotExists.executor": "Run",
-    "JUnit.TransferServiceTest.doTransferWhenBalancesExist_Fault_BalanceToNotExists.executor": "Debug",
-    "JUnit.TransferServiceTest.doTransferWhenBalancesExist_Fault_MemberFromNotExists.executor": "Run",
-    "JUnit.TransferServiceTest.doTransferWhenBalancesExist_Fault_MemberToNotExists.executor": "Debug",
-    "JUnit.TransferServiceTest.doTransferWhenBalancesExist_Fault_Not.executor": "Run",
-    "JUnit.TransferServiceTest.doTransferWhenBalancesExist_MemberToNotExists.executor": "Run",
-    "JUnit.TransferServiceTest.doTransferWhenMemberToNotExists.executor": "Debug",
-    "JUnit.TransferServiceTest.doTransferWhenmemberToNotExists.executor": "Debug",
-    "JUnit.TransferServiceTest.doTransfer_Falt_WhenBalanceFromNotExists.executor": "Debug",
-    "JUnit.TransferServiceTest.doTransfer_Fault_WhenBalanceAmountNotEnough.executor": "Run",
-    "JUnit.TransferServiceTest.doTransfer_Fault_WhenBalanceFromNotExists.executor": "Debug",
-    "JUnit.TransferServiceTest.doTransfer_Fault_WhenMemberToNotExists.executor": "Debug",
-    "JUnit.TransferServiceTest.doTransfer_Fault_WhenMemberToNotFound.executor": "Debug",
-    "JUnit.TransferServiceTest.doTransfer_Fault_WhenTransferAmountNotPositive.executor": "Run",
-    "JUnit.TransferServiceTest.doTransfer_WhenToMemberBalanceNotExists.executor": "Run",
-    "JUnit.TransferServiceTest.executor": "Run",
-    "JUnit.TransferServiceTest.save.executor": "Debug",
-    "JUnit.controller in r2dbc-mysql-app.executor": "Run",
-    "JUnit.controller in r2dbc-mysql-be.executor": "Run",
-    "JUnit.r2dbcmysql in r2dbc-mysql-app.executor": "Run",
-    "JUnit.r2dbcmysql in r2dbc-mysql-be (1).executor": "Run",
-    "JUnit.r2dbcmysql in r2dbc-mysql-be.executor": "Run",
-    "JUnit.r2dbcmysql in r2dbc-mysql-webclient.executor": "Run",
-    "JUnit.r2dbcmysql in r2dbc-mysql.executor": "Run",
-    "JUnit.repository in r2dbc-mysql-app.executor": "Run",
-    "JUnit.service in r2dbc-mysql-app.executor": "Run",
-    "JUnit.service in r2dbc-mysql-be.executor": "Run",
-    "JUnit.ua.mai.zyme.r2dbcmysql in r2dbc-mysql.executor": "Run",
-    "JUnit.ua.mai.zyme.r2dbcmysql.webclient in r2dbc-mysql-webclient.executor": "Run",
-    "JUnit.webclient in r2dbc-mysql-webclient.executor": "Run",
-    "Kotlin.CreatureKt.executor": "Run",
-    "Kotlin.ExtensionsKt.executor": "Run",
-    "Kotlin.GameKt.executor": "Run",
-    "Kotlin.NoClassForStartKt.executor": "Run",
-    "Kotlin.NoClassForStartWithArgsKt.executor": "Run",
-    "Kotlin.NoClassMainKt.executor": "Run",
-    "Kotlin.PlayerKt.executor": "Run",
-    "Kotlin.TavernKt.executor": "Run",
-    "Maven.app-payment [clean,install].executor": "Run",
-    "Maven.core [clean,install].executor": "Run",
-    "Maven.first-steps [clean,install].executor": "Run",
-    "Maven.graphql [clean,install].executor": "Run",
-    "Maven.graphql-common [clean,install].executor": "Run",
-    "Maven.graphql-learn [clean,install].executor": "Run",
-    "Maven.java21 [clean,install].executor": "Run",
-    "Maven.java21 [compile].executor": "Run",
-    "Maven.java21 [validate].executor": "Run",
-    "Maven.library [clean,install].executor": "Run",
-    "Maven.r2dbc-mysql [clean,install].executor": "Run",
-    "Maven.r2dbc-mysql [clean].executor": "Run",
-    "Maven.r2dbc-mysql [compile].executor": "Run",
-    "Maven.r2dbc-mysql [install].executor": "Run",
-    "Maven.r2dbc-mysql [validate].executor": "Run",
-    "Maven.r2dbc-mysql-app [clean,install].executor": "Run",
-    "Maven.r2dbc-mysql-app [clean].executor": "Run",
-    "Maven.r2dbc-mysql-be [clean,install].executor": "Run",
-    "Maven.r2dbc-mysql-be-app [clean].executor": "Run",
-    "Maven.r2dbc-mysql-webclient [clean,install].executor": "Run",
-    "Maven.r2dbc-mysql-webclient [clean].executor": "Run",
-    "Maven.r2dbc-mysql-webclient [compile].executor": "Run",
-    "Maven.r2dbc-mysql-webclient-app [clean,install].executor": "Run",
-    "Maven.reactive-postgres [clean,install].executor": "Run",
-    "Maven.reactor [clean,install].executor": "Run",
-    "Maven.reactor-learn [clean,install].executor": "Run",
-    "Maven.security [clean,install].executor": "Run",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "Spring Boot.DbH2JdbcTemplateApplication (dev 8102).executor": "Debug",
-    "Spring Boot.DbJdbcTemplateApplication (dev 8101).executor": "Debug",
-    "Spring Boot.DbJooqApplication (dev 8101).executor": "Debug",
-    "Spring Boot.DbTransactionApplication (dev 8101).executor": "Debug",
-    "Spring Boot.DemoApplication.executor": "Debug",
-    "Spring Boot.GraphQLLearnApplication (dev 8203).executor": "Debug",
-    "Spring Boot.GraphQLLearnApplication.executor": "Debug",
-    "Spring Boot.GraphqlLearnApplication (1).executor": "Debug",
-    "Spring Boot.GraphqlLearnApplication (8203).executor": "Debug",
-    "Spring Boot.GraphqlLearnApplication (dev 8202).executor": "Debug",
-    "Spring Boot.GraphqlLearnApplication (dev 8203).executor": "Debug",
-    "Spring Boot.GraphqlLearnApplication.executor": "Debug",
-    "Spring Boot.GraphqlZooApplication (dev 8201).executor": "Debug",
-    "Spring Boot.GraphqlZooApplication.executor": "Debug",
-    "Spring Boot.R2dbcMysqlApplication (dev).executor": "Run",
-    "Spring Boot.R2dbcMysqlApplication (prod).executor": "Debug",
-    "Spring Boot.R2dbcMysqlApplication.executor": "Run",
-    "Spring Boot.R2dbcMysqlBeApplication (dev).executor": "Run",
-    "Spring Boot.R2dbcMysqlWebClientApplication (dev).executor": "Debug",
-    "Spring Boot.R2dbcMysqlWebClientApplication.executor": "Run",
-    "Spring Boot.ReactivePostgresApplication.executor": "Debug",
-    "Spring Boot.ReactiveWebServiceApplication.executor": "Debug",
-    "Spring Boot.RestZooApplication (dev 8105).executor": "Debug",
-    "Spring Boot.SecurityBasicOrKeyApplication (dev 8110).executor": "Debug",
-    "Spring Boot.SecurityCsrfApplication (dev 8112).executor": "Debug",
-    "Spring Boot.SecurityGwtCodeApplication (dev 8115).executor": "Debug",
-    "Spring Boot.SecurityJwtBasicApplication (dev 8114).executor": "Debug",
-    "Spring Boot.SecurityLoginApplication (dev 8111).executor": "Debug",
-    "Spring Boot.SpringReactorLearnApplication.executor": "Debug",
-    "Spring Boot.Vaadin23SimpleApplication (dev 8080).executor": "Debug",
-    "Spring Boot.Vaadin23SimpleApplication.executor": "Debug",
-    "Spring Boot.Vaadin8SimpleApplication (dev 8088).executor": "Debug",
-    "Spring Boot.VaadinSimpleApplication (dev 8103).executor": "Debug",
-    "StatusDashboardGroupingRule": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "jdk.selected.JAVA_MODULE": "temurin-21",
-    "kotlin-language-version-configured": "true",
-    "last_directory_selection": "C:/work/idea_home/zyme/goals/db/modules/transaction/src/main/java/ua/mai/zyme/db/transaction",
-    "last_opened_file_path": "C:/work/idea_home/zyme/gradle/r2dbc-mysql/r2dbc-mysql-be/src/main/java",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "onboarding.tips.debug.path": "C:/work/idea_home/zyme/reactor/app-payment/src/main/java/ua/mai/zyme/Main.java",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.26035503",
-    "run.configurations.included.in.services": "true",
-    "settings.editor.selected.configurable": "MavenSettings",
-    "spring.configuration.checksum": "11c74592a7cb64b5a61826c5c9ca31d3",
-    "ts.external.directory.path": "C:\\work\\idea_home\\zyme\\vaadin23\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.MainJava21.executor&quot;: &quot;Run&quot;,
+    &quot;Application.MonoAndFlux.executor&quot;: &quot;Run&quot;,
+    &quot;Application.MonoFlux.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Test.executor&quot;: &quot;Run&quot;,
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;JUnit.BalanceControllerTest (1).executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.BalanceControllerTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.BalanceControllerTest.findBalanceByMemberId.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.BalanceControllerTest.findBalancesByAmountIsBetween.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.BalanceControllerTest.findBalancesByMemberIds.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.BalanceControllerTest.findByMemberId.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.BalanceControllerTest.findByMemberIds.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.BalanceServiceTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.BalanceServiceTest.findBalanceByMemberId.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.BalanceServiceTest.findBalanceByMemberIdWithCreateZeroBalanceIfNotExists.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.BalanceServiceTest.findBalanceByMemberIdWithCreateZeroBalanceIfNotExists_WhenBalanceNotExists.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.BalanceServiceTest.findBalanceByMemberIdWithFaultWhenBalanceNotExists.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.BalanceServiceTest.findBalanceByMemberIdWithFaultWhenBalanceNotExists_Fault_WhenBalanceNotExists.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.BalanceServiceTest.findBalanceByMemberIdWithFaultWhenBalanceNotExists_Fault_WhenNotExists.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.BalanceServiceTest.findByMemberId.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.BalanceServiceTest.findByMemberId_WhenNotExists.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.BalanceServiceTest.insertBalance.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.BalanceServiceTest.insertBalance_Error.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.BalanceServiceTest.insertBalance_Error_.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.BalanceServiceTest.insertBalance_Error_WhenMemberNotExists.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.BalanceServiceTest.insertBalance_Fault_WhenMemberNotExists.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.BalanceServiceTest.insertBalance_Fault_WhenNegativeAmount.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.BalanceServiceTest.insertZeroBalance.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.BalanсeRepositoryTest.deleteAllById.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.BalanсeRepositoryTest.deleteById.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.BalanсeRepositoryTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.BalanсeRepositoryTest.findAllById.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.BalanсeRepositoryTest.findByAmountIsBetween.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.BalanсeRepositoryTest.findByIdWhenNotExists.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.BalanсeRepositoryTest.findByMemberId.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.BalanсeRepositoryTest.insert.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.BalanсeRepositoryTest.saveAsInsert.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.BalanсeRepositoryTest.saveAsUpdate.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.FirstStepsApplicationTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MemberControllerTest.badUrl.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MemberControllerTest.createMember.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MemberControllerTest.deleteMember.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MemberControllerTest.deleteMemberById.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MemberControllerTest.deleteMemberById_WhenMemberNotExists.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MemberControllerTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MemberControllerTest.findAll.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MemberControllerTest.findById.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MemberControllerTest.findByMemberId.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MemberControllerTest.findByMemberId_ERR001_BadMemberId.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MemberControllerTest.findByMemberId_ERR001_MethodNotAllowed.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MemberControllerTest.findByMemberId_ERR001_NoStaticResource.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MemberControllerTest.findByMemberId_ERR002_MemberNotExists.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MemberControllerTest.findByMemberId_ERR002_MemberNotFound.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MemberControllerTest.findByMemberId_Error_BadMemberId.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MemberControllerTest.findByName.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MemberControllerTest.findByNameLike.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MemberControllerTest.findByNameLike_ERR001_BadRequest_400.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MemberControllerTest.findByNameLike_ERR002_MemberNotFound.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MemberControllerTest.findByNameLike_EmptyList.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MemberControllerTest.findByName_ERR002_MemberNotFound.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MemberControllerTest.findMemberByMemberId_ERR002_MemberNotFound.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MemberControllerTest.getAll.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MemberControllerTest.getOne.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MemberControllerTest.insertMember.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MemberControllerTest.insertMember_.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MemberControllerTest.insertMember_Fault_.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MemberControllerTest.insertMembers.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MemberControllerTest.insertMembers_Fault_WhenNewMemberHasMemberId.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.MemberControllerTest.save.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.MemberControllerTest.updateMember.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MemberControllerTest.updateMemberWhenMemberNotExists.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.MemberRepositoryTest (1).executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MemberRepositoryTest.deleteAllById.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MemberRepositoryTest.deleteById.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MemberRepositoryTest.deleteThroughSql.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MemberRepositoryTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MemberRepositoryTest.findAll.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MemberRepositoryTest.findAll2.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.MemberRepositoryTest.findAllById.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MemberRepositoryTest.findById.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MemberRepositoryTest.findByIdWhenNotExists.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MemberRepositoryTest.findByName.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MemberRepositoryTest.findByNameLengthLE.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MemberRepositoryTest.findByNameLike.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MemberRepositoryTest.insertThroughSql.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MemberRepositoryTest.save.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MemberRepositoryTest.saveAll.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MemberRepositoryTest.saveAllAsInsert.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MemberRepositoryTest.saveAllAsInsertAndUpdate.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MemberRepositoryTest.saveAsInsert.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MemberRepositoryTest.saveAsUpdate.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MemberRepositoryTest.testInsert.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.MemberRepositoryTest.updateThroughSql.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MemberServiceTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MemberServiceTest.findById.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MemberServiceTest.findMemberByMemberId.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MemberServiceTest.findMemberByMemberIdWithFaultWhenNotExists.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MemberServiceTest.findMemberByMemberIdWithFaultWhenNotExists_Fault_MemberNotExists.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MemberServiceTest.findMemberByMemberId_WhenMemberNotExists.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MemberServiceTest.insertMember.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MemberServiceTest.insertMember_Fault_NewMemberHasMemberId.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MemberServiceTest.insertMembers.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.MemberServiceTest.insertMembers_.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.MemberServiceTest.updateMember.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.MemberServiceTest.updateMember_Fault_WhenUpdatedMemberDasNotHaveMemberId.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ProviderControllerTest.getAll.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ProviderRepositoryTest.findAll.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.R2dbcMysqlApplicationTests (1).executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.R2dbcMysqlApplicationTests.contextLoads.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.R2dbcMysqlApplicationTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.R2dbcMysqlTestApplication.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.R2dbcMysqlWebClientApplicationTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.R2dbsMysqlWebClientForBalanceControllerTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.R2dbsMysqlWebClientForBalanceControllerTests.findBalanceByMemberId.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.R2dbsMysqlWebClientForBalanceControllerTests.findBalanceByMemberId_WhenBalanceNotFound.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.R2dbsMysqlWebClientForBalanceControllerTests.findBalancesByAmountIsBetween.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.R2dbsMysqlWebClientForBalanceControllerTests.findBalancesByMemberIds.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.R2dbsMysqlWebClientForBalanceControllerTests.findBalancesByMemberIds_WhenBalancesNotFound.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.R2dbsMysqlWebClientForBalanceControllerTests.findMembersAll.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.R2dbsMysqlWebClientForMemberControllerTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.R2dbsMysqlWebClientForMemberControllerTests.findMemberByMemberId.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.R2dbsMysqlWebClientForMemberControllerTests.findMembersAll.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.R2dbsMysqlWebClientForMemberControllerTests.insertMember.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.R2dbsMysqlWebClientForMemberControllerTests.insertMember_ERR101_NotNullNewMemberId.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.R2dbsMysqlWebClientForMemberControllerTests.insertMembers.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.R2dbsMysqlWebClientForMemberControllerTests.insertMembers_ERR101_NotNullNewMemberId.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.R2dbsMysqlWebClientForMemberControllerTests.updateMember.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.R2dbsMysqlWebClientForTransferControllerTests.doTransfer.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.R2dbsMysqlWebClientForTransferControllerTests.doTransfer_ERR303_BalanceFromNotEnough.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.R2dbsMysqlWebClientForTransferControllerTests.doTransfer_Fault_WhenBalanceFromNotExists.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.R2dbsMysqlWebClientForTransferControllerTests.doTransfer_Fault_WhenMemberFromNotExists.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.R2dbsMysqlWebClientForTransferControllerTests.doTransfer_Fault_WhenZeroTransferAmount.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.R2dbsMysqlWebClientForTransferControllerTests.doTransfer_WhenToMemberBalanceNotExists.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.R2dbsMysqlWebClientForTransferControllerTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.R2dbsMysqlWebClientForTransferControllerTests.findTransfer.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.R2dbsMysqlWebClientForTransferControllerTests.findTransfer_WhenNotExists.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.R2dbsMysqlWebClientForTransferControllerTests.findTransfersByFromMemberId.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.R2dbsMysqlWebClientForTransferControllerTests.findTransfersByToMemberId.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.R2dbsMysqlWebClientTest.deleteMemberById.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.R2dbsMysqlWebClientTest.deleteMemberById_WhenMemberNotExists.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.R2dbsMysqlWebClientTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.R2dbsMysqlWebClientTest.findAll.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.R2dbsMysqlWebClientTest.findMemberByMemberId.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.R2dbsMysqlWebClientTest.findMemberByMemberId_ERR002_MemberNotFound.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.R2dbsMysqlWebClientTest.findMemberByName.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.R2dbsMysqlWebClientTest.findMemberByName_ERR002_MemberNotFound.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.R2dbsMysqlWebClientTest.findMembersByNameLike.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.R2dbsMysqlWebClientTest.findMembersByNameLike_WhenEmptyList.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.R2dbsMysqlWebClientTest.insertMember.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.R2dbsMysqlWebClientTest.insertMember_ERR101_NotNullNewMemberId.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.R2dbsMysqlWebClientTest.updateMember.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.TransferControllerTest.doTransfer.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TransferControllerTest.doTransfer_.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.TransferControllerTest.doTransfer_Fault_WhenBalanceFromNotExists.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TransferControllerTest.doTransfer_Fault_WhenMemberFromNotExists.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TransferControllerTest.doTransfer_Fault_WhenZeroTransferAmount.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TransferControllerTest.doTransfer_WhenToMemberBalanceNotExists.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.TransferControllerTest.doTransfer__BalanceFromNotEnough.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TransferControllerTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TransferControllerTest.findBalanceByMemberId.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.TransferControllerTest.findTransfer.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.TransferControllerTest.findTransfer_Fault_WhenBadTransferId.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.TransferControllerTest.findTransfer_Fault_WhenNotExists.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.TransferControllerTest.findTransfer_WhenNotExists.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TransferControllerTest.findTransfersByFromMemberId.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.TransferControllerTest.findTransfersByToMemberId.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.TransferRepositoryTest.deleteAllById.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TransferRepositoryTest.deleteById.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TransferRepositoryTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TransferRepositoryTest.findAllById.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TransferRepositoryTest.findById.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TransferRepositoryTest.findByIdWhenNotExists.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TransferRepositoryTest.findByToMemberId.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TransferRepositoryTest.save.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TransferRepositoryTest.saveAll.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TransferServiceTest.doTransfer.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TransferServiceTest.doTransferNot.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.TransferServiceTest.doTransferWhenBalancesExist.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TransferServiceTest.doTransferWhenBalancesExist_BalanceToNotExists.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TransferServiceTest.doTransferWhenBalancesExist_Fault_BalanceFromNotExists.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TransferServiceTest.doTransferWhenBalancesExist_Fault_BalanceToNotExists.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.TransferServiceTest.doTransferWhenBalancesExist_Fault_MemberFromNotExists.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TransferServiceTest.doTransferWhenBalancesExist_Fault_MemberToNotExists.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.TransferServiceTest.doTransferWhenBalancesExist_Fault_Not.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TransferServiceTest.doTransferWhenBalancesExist_MemberToNotExists.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TransferServiceTest.doTransferWhenMemberToNotExists.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.TransferServiceTest.doTransferWhenmemberToNotExists.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.TransferServiceTest.doTransfer_Falt_WhenBalanceFromNotExists.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.TransferServiceTest.doTransfer_Fault_WhenBalanceAmountNotEnough.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TransferServiceTest.doTransfer_Fault_WhenBalanceFromNotExists.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.TransferServiceTest.doTransfer_Fault_WhenMemberToNotExists.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.TransferServiceTest.doTransfer_Fault_WhenMemberToNotFound.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.TransferServiceTest.doTransfer_Fault_WhenTransferAmountNotPositive.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TransferServiceTest.doTransfer_WhenToMemberBalanceNotExists.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TransferServiceTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TransferServiceTest.save.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.controller in r2dbc-mysql-app.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.controller in r2dbc-mysql-be.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.r2dbcmysql in kotlin-r2dbc-mysql-be.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.r2dbcmysql in r2dbc-mysql-app.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.r2dbcmysql in r2dbc-mysql-be (1).executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.r2dbcmysql in r2dbc-mysql-be.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.r2dbcmysql in r2dbc-mysql-webclient.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.r2dbcmysql in r2dbc-mysql.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.repository in r2dbc-mysql-app.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.service in r2dbc-mysql-app.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.service in r2dbc-mysql-be.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ua.mai.zyme.r2dbcmysql in r2dbc-mysql.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ua.mai.zyme.r2dbcmysql.webclient in r2dbc-mysql-webclient.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.webclient in r2dbc-mysql-webclient.executor&quot;: &quot;Run&quot;,
+    &quot;Kotlin.CreatureKt.executor&quot;: &quot;Run&quot;,
+    &quot;Kotlin.ExtensionsKt.executor&quot;: &quot;Run&quot;,
+    &quot;Kotlin.GameKt.executor&quot;: &quot;Run&quot;,
+    &quot;Kotlin.NoClassForStartKt.executor&quot;: &quot;Run&quot;,
+    &quot;Kotlin.NoClassForStartWithArgsKt.executor&quot;: &quot;Run&quot;,
+    &quot;Kotlin.NoClassMainKt.executor&quot;: &quot;Run&quot;,
+    &quot;Kotlin.PlayerKt.executor&quot;: &quot;Run&quot;,
+    &quot;Kotlin.TavernKt.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.app-payment [clean,install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.core [clean,install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.first-steps [clean,install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.graphql [clean,install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.graphql-common [clean,install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.graphql-learn [clean,install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.java21 [clean,install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.java21 [compile].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.java21 [validate].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.kotlin-r2dbc-mysql [clean,install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.kotlin-r2dbc-mysql-be [clean,install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.kotlin-r2dbc-mysql-be-app [clean,install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.library [clean,install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.r2dbc-mysql [clean,install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.r2dbc-mysql [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.r2dbc-mysql [compile].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.r2dbc-mysql [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.r2dbc-mysql [validate].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.r2dbc-mysql-app [clean,install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.r2dbc-mysql-app [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.r2dbc-mysql-be [clean,install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.r2dbc-mysql-be [compile].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.r2dbc-mysql-be-app [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.r2dbc-mysql-webclient [clean,install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.r2dbc-mysql-webclient [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.r2dbc-mysql-webclient [compile].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.r2dbc-mysql-webclient-app [clean,install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.reactive-postgres [clean,install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.reactor [clean,install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.reactor-learn [clean,install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.security [clean,install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.zyme [clean,install].executor&quot;: &quot;Run&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;Spring Boot.DbH2JdbcTemplateApplication (dev 8102).executor&quot;: &quot;Debug&quot;,
+    &quot;Spring Boot.DbJdbcTemplateApplication (dev 8101).executor&quot;: &quot;Debug&quot;,
+    &quot;Spring Boot.DbJooqApplication (dev 8101).executor&quot;: &quot;Debug&quot;,
+    &quot;Spring Boot.DbTransactionApplication (dev 8101).executor&quot;: &quot;Debug&quot;,
+    &quot;Spring Boot.DemoApplication.executor&quot;: &quot;Debug&quot;,
+    &quot;Spring Boot.GraphQLLearnApplication (dev 8203).executor&quot;: &quot;Debug&quot;,
+    &quot;Spring Boot.GraphQLLearnApplication.executor&quot;: &quot;Debug&quot;,
+    &quot;Spring Boot.GraphqlLearnApplication (1).executor&quot;: &quot;Debug&quot;,
+    &quot;Spring Boot.GraphqlLearnApplication (8203).executor&quot;: &quot;Debug&quot;,
+    &quot;Spring Boot.GraphqlLearnApplication (dev 8202).executor&quot;: &quot;Debug&quot;,
+    &quot;Spring Boot.GraphqlLearnApplication (dev 8203).executor&quot;: &quot;Debug&quot;,
+    &quot;Spring Boot.GraphqlLearnApplication.executor&quot;: &quot;Debug&quot;,
+    &quot;Spring Boot.GraphqlZooApplication (dev 8201).executor&quot;: &quot;Debug&quot;,
+    &quot;Spring Boot.GraphqlZooApplication.executor&quot;: &quot;Debug&quot;,
+    &quot;Spring Boot.Kotlin: R2dbcMysqlBeApplication.executor&quot;: &quot;Debug&quot;,
+    &quot;Spring Boot.R2dbcMysqlApplication (dev).executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.R2dbcMysqlApplication (prod).executor&quot;: &quot;Debug&quot;,
+    &quot;Spring Boot.R2dbcMysqlApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.R2dbcMysqlBeApplication (dev).executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.R2dbcMysqlBeApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.R2dbcMysqlWebClientApplication (dev).executor&quot;: &quot;Debug&quot;,
+    &quot;Spring Boot.R2dbcMysqlWebClientApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.ReactivePostgresApplication.executor&quot;: &quot;Debug&quot;,
+    &quot;Spring Boot.ReactiveWebServiceApplication.executor&quot;: &quot;Debug&quot;,
+    &quot;Spring Boot.RestZooApplication (dev 8105).executor&quot;: &quot;Debug&quot;,
+    &quot;Spring Boot.SecurityBasicOrKeyApplication (dev 8110).executor&quot;: &quot;Debug&quot;,
+    &quot;Spring Boot.SecurityCsrfApplication (dev 8112).executor&quot;: &quot;Debug&quot;,
+    &quot;Spring Boot.SecurityGwtCodeApplication (dev 8115).executor&quot;: &quot;Debug&quot;,
+    &quot;Spring Boot.SecurityJwtBasicApplication (dev 8114).executor&quot;: &quot;Debug&quot;,
+    &quot;Spring Boot.SecurityLoginApplication (dev 8111).executor&quot;: &quot;Debug&quot;,
+    &quot;Spring Boot.SpringReactorLearnApplication.executor&quot;: &quot;Debug&quot;,
+    &quot;Spring Boot.Vaadin23SimpleApplication (dev 8080).executor&quot;: &quot;Debug&quot;,
+    &quot;Spring Boot.Vaadin23SimpleApplication.executor&quot;: &quot;Debug&quot;,
+    &quot;Spring Boot.Vaadin8SimpleApplication (dev 8088).executor&quot;: &quot;Debug&quot;,
+    &quot;Spring Boot.VaadinSimpleApplication (dev 8103).executor&quot;: &quot;Debug&quot;,
+    &quot;StatusDashboardGroupingRule&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;temurin-21&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_directory_selection&quot;: &quot;C:/work/idea_home/zyme/goals/db/modules/transaction/src/main/java/ua/mai/zyme/db/transaction&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/work/idea_home/zyme/kotlin&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;C:/work/idea_home/zyme/reactor/app-payment/src/main/java/ua/mai/zyme/Main.java&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.26035503&quot;,
+    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;11c74592a7cb64b5a61826c5c9ca31d3&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\work\\idea_home\\zyme\\vaadin23\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
@@ -458,11 +542,11 @@
       <recent name="ua.mai.zyme.security.config" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\work\idea_home\zyme\kotlin" />
       <recent name="C:\work\idea_home\zyme\gradle\r2dbc-mysql\r2dbc-mysql-be\src\main\java" />
       <recent name="C:\work\idea_home\zyme\gradle\r2dbc-mysql" />
       <recent name="C:\work\idea_home\zyme\gradle\r2dbc-mysql\r2dbc-mysql-be" />
       <recent name="C:\work\idea_home\zyme\gradle" />
-      <recent name="C:\work\idea_home\zyme\reactor\r2dbc-mysql" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\work\idea_home\zyme\gradle\r2dbc-mysql" />
@@ -496,58 +580,64 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.r2dbcmysql in r2dbc-mysql-webclient">
-    <configuration name="R2dbcMysqlApplicationTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="r2dbc-mysql-be-app" />
+  <component name="RunManager" selected="JUnit.r2dbcmysql in kotlin-r2dbc-mysql-be">
+    <configuration name="FirstStepsApplicationTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="first-steps" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ua.mai.zyme.r2dbcmysql.*" />
+          <option name="PATTERN" value="ua.mai.zyme.kotlin.firststeps.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="ua.mai.zyme.r2dbcmysql" />
-      <option name="MAIN_CLASS_NAME" value="ua.mai.zyme.r2dbcmysql.R2dbcMysqlApplicationTests" />
-      <option name="METHOD_NAME" value="" />
+      <option name="PACKAGE_NAME" value="ua.mai.zyme.kotlin.firststeps" />
+      <option name="MAIN_CLASS_NAME" value="ua.mai.zyme.kotlin.firststeps.FirstStepsApplicationTests" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="R2dbcMysqlWebClientApplicationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="r2dbc-mysql-webclient-app" />
+    <configuration name="MemberRepositoryTest.findByNameLengthLE" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="kotlin-r2dbc-mysql-be" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ua.mai.zyme.r2dbcmysql.*" />
+          <option name="PATTERN" value="ua.mai.zyme.r2dbcmysql.repository.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="ua.mai.zyme.r2dbcmysql" />
-      <option name="MAIN_CLASS_NAME" value="ua.mai.zyme.r2dbcmysql.R2dbcMysqlWebClientApplicationTest" />
+      <option name="PACKAGE_NAME" value="ua.mai.zyme.r2dbcmysql.repository" />
+      <option name="MAIN_CLASS_NAME" value="ua.mai.zyme.r2dbcmysql.repository.MemberRepositoryTest" />
+      <option name="METHOD_NAME" value="findByNameLengthLE" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TransferControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="kotlin-r2dbc-mysql-be" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ua.mai.zyme.r2dbcmysql.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ua.mai.zyme.r2dbcmysql.controller" />
+      <option name="MAIN_CLASS_NAME" value="ua.mai.zyme.r2dbcmysql.controller.TransferControllerTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="r2dbcmysql in r2dbc-mysql-be" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="r2dbc-mysql-be" />
+    <configuration name="r2dbcmysql in kotlin-r2dbc-mysql-be" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="kotlin-r2dbc-mysql-be" />
       <option name="TEST_OBJECT" value="directory" />
-      <dir value="$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql" />
+      <dir value="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="r2dbcmysql in r2dbc-mysql-webclient" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="r2dbc-mysql-webclient" />
-      <option name="TEST_OBJECT" value="directory" />
-      <dir value="$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-webclient/src/test/java/ua/mai/zyme/r2dbcmysql" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="webclient in r2dbc-mysql-webclient" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="r2dbc-mysql-webclient" />
-      <option name="TEST_OBJECT" value="directory" />
-      <dir value="$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-webclient/src/test/java/ua/mai/zyme/r2dbcmysql/webclient" />
+    <configuration name="NoClassForStartKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ua.mai.zyme.kotlin.firststeps.intro.NoClassForStartKt" />
+      <module name="first-steps" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -662,6 +752,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Kotlin: R2dbcMysqlBeApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" folderName="kotlin">
+      <module name="kotlin-r2dbc-mysql-be-app" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="ua.mai.zyme.r2dbcmysql.R2dbcMysqlBeApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="R2dbcMysqlApplication (dev)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" folderName="reactor">
       <option name="ACTIVE_PROFILES" value="dev" />
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
@@ -685,6 +782,27 @@
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
       <module name="r2dbc-mysql-be-app" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="ua.mai.zyme.r2dbcmysql.R2dbcMysqlBeApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="R2dbcMysqlWebClientApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="r2dbc-mysql-webclient-app" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="ua.mai.zyme.r2dbcmysql.webclient.app.R2dbcMysqlWebClientApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="R2dbcMysqlWebClientApplication (2)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="kotlin-r2dbc-mysql-webclient-app" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="ua.mai.zyme.r2dbcmysql.webclient.app.R2dbcMysqlWebClientApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="R2dbcMysqlWebClientApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="r2dbc-mysql-webclient-app" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="ua.mai.zyme.r2dbcmysql.webclient.app.R2dbcMysqlWebClientApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -799,11 +917,11 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="JUnit.r2dbcmysql in r2dbc-mysql-webclient" />
-      <item itemvalue="JUnit.webclient in r2dbc-mysql-webclient" />
-      <item itemvalue="JUnit.R2dbcMysqlApplicationTests" />
-      <item itemvalue="JUnit.R2dbcMysqlWebClientApplicationTest" />
-      <item itemvalue="JUnit.r2dbcmysql in r2dbc-mysql-be" />
+      <item itemvalue="JUnit.MemberRepositoryTest.findByNameLengthLE" />
+      <item itemvalue="JUnit.TransferControllerTest" />
+      <item itemvalue="JUnit.FirstStepsApplicationTests" />
+      <item itemvalue="JUnit.r2dbcmysql in kotlin-r2dbc-mysql-be" />
+      <item itemvalue="Kotlin.NoClassForStartKt" />
       <item itemvalue="Spring Boot.DbH2JdbcTemplateApplication (dev 8102)" />
       <item itemvalue="Spring Boot.DbJdbcTemplateApplication (dev 8101)" />
       <item itemvalue="Spring Boot.DbJooqApplication (dev 8101)" />
@@ -814,6 +932,8 @@
       <item itemvalue="Spring Boot.GraphqlLearnApplication" />
       <item itemvalue="Spring Boot.GraphqlZooApplication (dev 8201)" />
       <item itemvalue="Spring Boot.GraphqlZooApplication" />
+      <item itemvalue="Spring Boot.Kotlin: R2dbcMysqlBeApplication" />
+      <item itemvalue="Spring Boot.R2dbcMysqlApplication (dev)" />
       <item itemvalue="Spring Boot.R2dbcMysqlBeApplication (dev)" />
       <item itemvalue="Spring Boot.R2dbcMysqlBeApplication (prod)" />
       <item itemvalue="Spring Boot.RestZooApplication (dev 8105)" />
@@ -824,6 +944,9 @@
       <item itemvalue="Spring Boot.SecurityLoginApplication (dev 8111)" />
       <item itemvalue="Spring Boot.Vaadin23SimpleApplication (dev 8080)" />
       <item itemvalue="Spring Boot.Vaadin8SimpleApplication (dev 8088)" />
+      <item itemvalue="Spring Boot.R2dbcMysqlWebClientApplication (2)" />
+      <item itemvalue="Spring Boot.R2dbcMysqlWebClientApplication (1)" />
+      <item itemvalue="Spring Boot.R2dbcMysqlWebClientApplication" />
       <item itemvalue="Spring Boot.DemoApplication (1)" />
       <item itemvalue="Spring Boot.DemoApplication" />
       <item itemvalue="Spring Boot.SoapZooApplication (dev 8105)" />
@@ -833,11 +956,11 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.r2dbcmysql in r2dbc-mysql-webclient" />
-        <item itemvalue="JUnit.r2dbcmysql in r2dbc-mysql-be" />
-        <item itemvalue="JUnit.R2dbcMysqlApplicationTests" />
-        <item itemvalue="JUnit.webclient in r2dbc-mysql-webclient" />
-        <item itemvalue="JUnit.R2dbcMysqlWebClientApplicationTest" />
+        <item itemvalue="JUnit.r2dbcmysql in kotlin-r2dbc-mysql-be" />
+        <item itemvalue="JUnit.TransferControllerTest" />
+        <item itemvalue="JUnit.MemberRepositoryTest.findByNameLengthLE" />
+        <item itemvalue="Kotlin.NoClassForStartKt" />
+        <item itemvalue="JUnit.FirstStepsApplicationTests" />
       </list>
     </recent_temporary>
   </component>
@@ -1216,14 +1339,6 @@
       <option name="project" value="LOCAL" />
       <updated>1686316009587</updated>
     </task>
-    <task id="LOCAL-00047" summary="add reactor module">
-      <option name="closed" value="true" />
-      <created>1708629146214</created>
-      <option name="number" value="00047" />
-      <option name="presentableId" value="LOCAL-00047" />
-      <option name="project" value="LOCAL" />
-      <updated>1708629146214</updated>
-    </task>
     <task id="LOCAL-00048" summary="add module java21">
       <option name="closed" value="true" />
       <created>1713002916868</created>
@@ -1360,7 +1475,15 @@
       <option name="project" value="LOCAL" />
       <updated>1729763740162</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary="changed spring-boot 3.3.4-&gt;3.3.5; renamed r2dbc-mysql-app-&gt;r2dbc-mysql-be-app, renamed R2dbcMysqlApplication -&gt; R2dbcMysqlBeApplication">
+      <option name="closed" value="true" />
+      <created>1729842563269</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1729842563269</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1399,7 +1522,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="initial commit" />
     <MESSAGE value="add mysql8 in docker, refactoring database_zyme" />
     <MESSAGE value="add module graphql-learn" />
     <MESSAGE value="add mutation bookCreate" />
@@ -1424,7 +1546,8 @@
     <MESSAGE value="develop modules r2dbc-mysql-*" />
     <MESSAGE value="R2dbcMysqlWebClientApplication moved to new module r2dbc-mysql-webclient-app" />
     <MESSAGE value="structure r2dbc-mysql-* modules refactoring" />
-    <option name="LAST_COMMIT_MESSAGE" value="structure r2dbc-mysql-* modules refactoring" />
+    <MESSAGE value="changed spring-boot 3.3.4-&gt;3.3.5; renamed r2dbc-mysql-app-&gt;r2dbc-mysql-be-app, renamed R2dbcMysqlApplication -&gt; R2dbcMysqlBeApplication" />
+    <option name="LAST_COMMIT_MESSAGE" value="changed spring-boot 3.3.4-&gt;3.3.5; renamed r2dbc-mysql-app-&gt;r2dbc-mysql-be-app, renamed R2dbcMysqlApplication -&gt; R2dbcMysqlBeApplication" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -3435,6 +3558,19 @@
             <option name="lambda-ordinal" value="0" />
           </properties>
           <option name="timeStamp" value="1303" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/repository/MemberRepositoryTest.java</url>
+          <line>380</line>
+          <option name="timeStamp" value="1304" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/repository/MemberRepositoryTest.java</url>
+          <line>376</line>
+          <properties>
+            <option name="lambda-ordinal" value="0" />
+          </properties>
+          <option name="timeStamp" value="1306" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-field">
           <url>file://$PROJECT_DIR$/goals/graphql/graphql-modules/graphql-zoo/src/main/java/ua/mai/zyme/graphql/zoo/controllers/BookController.java</url>

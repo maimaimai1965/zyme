@@ -5,6 +5,9 @@ import org.springframework.http.HttpStatus;
 import java.text.MessageFormat;
 import java.util.function.Supplier;
 
+/**
+ * Created by IPotapchuk, 2/13/2018 12:26 PM
+ */
 public interface FaultInfo extends Supplier<FaultException> {
 
     HttpStatus DEFAUILT_SERVICE_FAULT_ERROR_HTTPSTATUS =  HttpStatus.INTERNAL_SERVER_ERROR;  // 500

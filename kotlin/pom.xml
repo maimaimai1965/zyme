@@ -2,13 +2,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>ua.mai.zyme</groupId>
-    <artifactId>zyme</artifactId>
+    <artifactId>kotlin</artifactId>
     <version>0.0.1.001-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <name>zyme</name>
-    <description>zyme project</description>
+    <name>kotlin</name>
+    <description>kotlin projects</description>
     <modules>
-        <module>kotlin</module>
-        <module>reactor/app-payment</module>
+        <module>kotlin-r2dbc-mysql</module>
     </modules>
 </project>
