@@ -20,22 +20,19 @@ public class MemberService {
     private final MemberRepository memberRepository;
 
     public Mono<Member> insertMember(Member member) {
-        if (member.getMemberId() != null) {
-            return Mono.error(new FaultException(AppFaultInfo.NEW_MEMBER_ID_MUST_BE_NULL));
-        }
-        return memberRepository.save(member);
+        return (member.getMemberId() != null)
+            ? Mono.error(new FaultException(AppFaultInfo.NEW_MEMBER_ID_MUST_BE_NULL))
+            : memberRepository.save(member);
     }
 
     public Flux<Member> insertMembers(Flux<Member> fluxMembers) {
-        Flux<Member> result = fluxMembers.flatMap(this::insertMember);
-        return result;
+        return fluxMembers.flatMap(this::insertMember);
     }
 
     public Mono<Member> updateMember(Member member) {
-        if (member.getMemberId() == null) {
-            return Mono.error(new FaultException(AppFaultInfo.UPDATED_MEMBER_ID_MUST_NOT_BE_NULL));
-        }
-        return memberRepository.save(member);
+        return  (member.getMemberId() == null)
+            ? Mono.error(new FaultException(AppFaultInfo.UPDATED_MEMBER_ID_MUST_NOT_BE_NULL))
+            : memberRepository.save(member);
     }
 
     public Mono<Member> findMemberByMemberId(Integer memberId) {

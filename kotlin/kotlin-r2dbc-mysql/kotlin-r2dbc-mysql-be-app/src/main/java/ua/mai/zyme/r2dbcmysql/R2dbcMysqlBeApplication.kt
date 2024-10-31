@@ -1,41 +1,32 @@
-package ua.mai.zyme.r2dbcmysql;
+package ua.mai.zyme.r2dbcmysql
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.core.env.Environment;
-import ua.mai.zyme.r2dbcmysql.util.DefaultProfileUtil;
-import ua.mai.zyme.r2dbcmysql.util.SpringUtil;
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
+import org.springframework.boot.SpringApplication
+import org.springframework.boot.autoconfigure.SpringBootApplication
+import org.springframework.core.env.Environment
+import ua.mai.zyme.r2dbcmysql.util.DefaultProfileUtil
+import ua.mai.zyme.r2dbcmysql.util.SpringUtil
 
 @SpringBootApplication
 //@EnableR2dbcAuditing
-public class R2dbcMysqlBeApplication {
+open class R2dbcMysqlBeApplication(private val env: Environment) {
 
-//    public static void main(String[] args) {
-//        SpringApplication.run(R2dbcMysqlBeApplication.class, args);
-//
-//    }
+    companion object {
+        private val log: Logger = LoggerFactory.getLogger(R2dbcMysqlBeApplication::class.java)
 
-    private static final Logger log = LoggerFactory.getLogger(R2dbcMysqlBeApplication.class);
+        @JvmStatic
+        fun main(args: Array<String>) {
+//            System.setProperty("spring.application.name", "r2dbc-mysql REST service")
 
-    private final Environment env;
-
-    public R2dbcMysqlBeApplication(Environment env) {
-        this.env = env;
-    }
-
-    public static void main(String[] args) {
-//        System.getProperties().setProperty("spring.application.name", "r2dbc-mysql REST service");
-//        SpringApplication.run(R2dbcMysqlBeApplication.class, args);
-
-        SpringApplication app = new SpringApplication(R2dbcMysqlBeApplication.class);
-        DefaultProfileUtil.addDefaultProfile(app);
-        try {
-            Environment env = app.run(args).getEnvironment();
-            SpringUtil.logApplicationStartup(log, env);
-        } catch (Exception e) {
-            e.printStackTrace();
+            val app = SpringApplication(R2dbcMysqlBeApplication::class.java)
+            DefaultProfileUtil.addDefaultProfile(app)
+            try {
+                val env = app.run(*args).environment
+                SpringUtil.logApplicationStartup(log, env)
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
         }
     }
 

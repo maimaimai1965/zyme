@@ -79,11 +79,8 @@ public class R2dbsMysqlWebClientForTransferControllerTests {
         Member memberFrom = tu.insertMemberWithBalance("benTest", 40L, TestUtil.now());
         Member memberTo = tu.insertMemberWithBalance("annaTest", 70L, TestUtil.now());
         Thread.sleep(1000);  // Чтобы дата создания transfer отличалась от даты создания memberFrom и memberTo.
-        CreateTransferRequest transferRequest = CreateTransferRequest.builder()
-                .fromMemberId(memberFrom.getMemberId())
-                .toMemberId(memberTo.getMemberId())
-                .amount(20L)
-                .build();
+        CreateTransferRequest transferRequest =
+                new CreateTransferRequest(memberFrom.getMemberId(), memberTo.getMemberId(), 20L);
 
         // Execution
         Transfer transferOut = mysqlWebClient.doTransfer(transferRequest).block();
@@ -100,11 +97,8 @@ public class R2dbsMysqlWebClientForTransferControllerTests {
         Member memberFrom = tu.insertMemberWithBalance("benTest", 40L, TestUtil.now());
         Member memberTo = tu.insertMember("annaTest");
         Thread.sleep(1000);  // Чтобы дата создания transfer отличалась от даты создания memberFrom и memberTo.
-        CreateTransferRequest transferRequest = CreateTransferRequest.builder()
-                .fromMemberId(memberFrom.getMemberId())
-                .toMemberId(memberTo.getMemberId())
-                .amount(20L)
-                .build();
+        CreateTransferRequest transferRequest =
+                new CreateTransferRequest(memberFrom.getMemberId(), memberTo.getMemberId(), 20L);
 
         // Execution
         Transfer transferOut = mysqlWebClient.doTransfer(transferRequest).block();
@@ -121,11 +115,8 @@ public class R2dbsMysqlWebClientForTransferControllerTests {
         // Setup
         Member memberFrom = tu.insertMemberWithBalance("benTest", 40L, TestUtil.now());
         Member memberTo = tu.insertMemberWithBalance("annaTest", 70L, TestUtil.now());
-        CreateTransferRequest transferRequest = CreateTransferRequest.builder()
-                .fromMemberId(memberFrom.getMemberId())
-                .toMemberId(memberTo.getMemberId())
-                .amount(50L)
-                .build();
+        CreateTransferRequest transferRequest =
+                new CreateTransferRequest(memberFrom.getMemberId(), memberTo.getMemberId(), 50L);
 
         AppClientError error = assertThrows(AppClientError.class, () -> {
         // Execution
@@ -141,12 +132,9 @@ public class R2dbsMysqlWebClientForTransferControllerTests {
     public void doTransfer_ERR300_WhenMemberFromNotExists() throws InterruptedException {
         // Setup
         Integer memberFromIdNotExists = -1;
-        Integer memberTo = -2;
-        CreateTransferRequest transferRequest = CreateTransferRequest.builder()
-                .fromMemberId(memberFromIdNotExists)
-                .toMemberId(memberTo)
-                .amount(20L)
-                .build();
+        Integer memberToId = -2;
+        CreateTransferRequest transferRequest =
+                new CreateTransferRequest(memberFromIdNotExists, memberToId, 20L);
 
         AppClientError error = assertThrows(AppClientError.class, () -> {
         // Execution
@@ -164,11 +152,8 @@ public class R2dbsMysqlWebClientForTransferControllerTests {
         Member memberFrom = tu.insertMember("benTest");
         Member memberTo = tu.insertMemberWithBalance("rikTest", 70L, TestUtil.now());
         Thread.sleep(1000);  // Чтобы дата создания transfer отличалась от даты создания memberFrom и memberTo.
-        CreateTransferRequest transferRequest = CreateTransferRequest.builder()
-                .fromMemberId(memberFrom.getMemberId())
-                .toMemberId(memberTo.getMemberId())
-                .amount(20L)
-                .build();
+        CreateTransferRequest transferRequest =
+                new CreateTransferRequest(memberFrom.getMemberId(), memberTo.getMemberId(), 20L);
 
         AppClientError error = assertThrows(AppClientError.class, () -> {
         // Execution
@@ -186,11 +171,8 @@ public class R2dbsMysqlWebClientForTransferControllerTests {
         Member memberFrom = tu.insertMemberWithBalance("stanislavTest", 100L, TestUtil.now());
         Member memberTo = tu.insertMemberWithBalance("rikTest", 70L, TestUtil.now());
         Thread.sleep(1000);  // Чтобы дата создания transfer отличалась от даты создания memberFrom и memberTo.
-        CreateTransferRequest transferRequest = CreateTransferRequest.builder()
-                .fromMemberId(memberFrom.getMemberId())
-                .toMemberId(memberTo.getMemberId())
-                .amount(0L)
-                .build();
+        CreateTransferRequest transferRequest =
+                new CreateTransferRequest(memberFrom.getMemberId(), memberTo.getMemberId(), 0L);
 
         AppClientError error = assertThrows(AppClientError.class, () -> {
         // Execution

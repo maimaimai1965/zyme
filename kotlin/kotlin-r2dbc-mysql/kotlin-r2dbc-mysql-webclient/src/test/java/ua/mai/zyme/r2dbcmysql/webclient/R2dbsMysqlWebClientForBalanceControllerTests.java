@@ -70,18 +70,10 @@ public class R2dbsMysqlWebClientForBalanceControllerTests {
         Member member1 = tu.insertMember("member1Test");
         Member member2 = tu.insertMember("member2Test");
 
-        Balance balance1 = tu.insertBalance(Balance.builder()
-                .memberId(member1.getMemberId())
-                .amount(70L)
-                .createdDate(TestUtil.now())
-                .lastModifiedDate(TestUtil.now())
-                .build());
-        Balance balance2 = tu.insertBalance(Balance.builder()
-                .memberId(member2.getMemberId())
-                .amount(10L)
-                .createdDate(TestUtil.now())
-                .lastModifiedDate(TestUtil.now())
-                .build());
+        Balance balance1 = tu.insertBalance(
+                new Balance(member1.getMemberId(), 70L, TestUtil.now(), TestUtil.now()));
+        Balance balance2 = tu.insertBalance(
+                new Balance(member2.getMemberId(), 10L, TestUtil.now(), TestUtil.now()));
 
         // Execution
         Balance balanceOut1 = mysqlWebClient.findBalanceByMemberId(member1.getMemberId()).block();
@@ -109,24 +101,12 @@ public class R2dbsMysqlWebClientForBalanceControllerTests {
         Member member2 = tu.insertMember("member2Test");
         Member member3 = tu.insertMember("member3Test");
 
-        Balance balance1 = tu.insertBalance(Balance.builder()
-                .memberId(member1.getMemberId())
-                .amount(70L)
-                .createdDate(TestUtil.now())
-                .lastModifiedDate(TestUtil.now())
-                .build());
-        Balance balance2 = tu.insertBalance(Balance.builder()
-                .memberId(member2.getMemberId())
-                .amount(10L)
-                .createdDate(TestUtil.now())
-                .lastModifiedDate(TestUtil.now())
-                .build());
-        Balance balance3 = tu.insertBalance(Balance.builder()
-                .memberId(member3.getMemberId())
-                .amount(80L)
-                .createdDate(TestUtil.now())
-                .lastModifiedDate(TestUtil.now())
-                .build());
+        Balance balance1 = tu.insertBalance(
+                new Balance(member1.getMemberId(), 70L, TestUtil.now(), TestUtil.now()));
+        Balance balance2 = tu.insertBalance(
+                new Balance(member2.getMemberId(), 10L, TestUtil.now(), TestUtil.now()));
+        Balance balance3 = tu.insertBalance(
+                new Balance(member3.getMemberId(), 80L, TestUtil.now(), TestUtil.now()));
 
         List<Balance> listForCheck = List.of(balance1, balance3);
 
@@ -158,24 +138,12 @@ public class R2dbsMysqlWebClientForBalanceControllerTests {
         Member member2 = tu.insertMember("member2Test");
         Member member3 = tu.insertMember("member3Test");
 
-        Balance balance1 = tu.insertBalance(Balance.builder()
-                .memberId(member1.getMemberId())
-                .amount(70L)
-                .createdDate(TestUtil.now())
-                .lastModifiedDate(TestUtil.now())
-                .build());
-        Balance balance2 = tu.insertBalance(Balance.builder()
-                .memberId(member2.getMemberId())
-                .amount(10L)
-                .createdDate(TestUtil.now())
-                .lastModifiedDate(TestUtil.now())
-                .build());
-        Balance balance3 = tu.insertBalance(Balance.builder()
-                .memberId(member3.getMemberId())
-                .amount(80L)
-                .createdDate(TestUtil.now())
-                .lastModifiedDate(TestUtil.now())
-                .build());
+        Balance balance1 = tu.insertBalance(
+                new Balance(member1.getMemberId(), 70L, TestUtil.now(), TestUtil.now()));
+        Balance balance2 = tu.insertBalance(
+                new Balance(member2.getMemberId(), 10L, TestUtil.now(), TestUtil.now()));
+        Balance balance3 = tu.insertBalance(
+                new Balance(member3.getMemberId(), 80L, TestUtil.now(), TestUtil.now()));
 
         List<Balance> listForCheck = List.of(balance1, balance3);
 
@@ -186,6 +154,5 @@ public class R2dbsMysqlWebClientForBalanceControllerTests {
         // Assertion
         Assertions.assertThat(listOut).containsExactlyInAnyOrderElementsOf(listForCheck);
     }
-
 
 }

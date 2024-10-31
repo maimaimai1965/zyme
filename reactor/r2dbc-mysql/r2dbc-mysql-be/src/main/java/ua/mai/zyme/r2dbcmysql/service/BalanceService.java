@@ -23,10 +23,9 @@ public class BalanceService {
 
     @Transactional
     public Mono<Balance> insertBalance(Integer memberId, Long amount, LocalDateTime createdDate, LocalDateTime lastModifiedDate) {
-        if (amount < 0) {
-            return Mono.error(new FaultException(AppFaultInfo.BALANCE_AMOUNT_CANNOT_BE_NEGATIVE));
-        }
-        return balanceRepository.insert(memberId, amount, createdDate, lastModifiedDate)
+        return (amount < 0)
+            ? Mono.error(new FaultException(AppFaultInfo.BALANCE_AMOUNT_CANNOT_BE_NEGATIVE))
+            : balanceRepository.insert(memberId, amount, createdDate, lastModifiedDate)
                 .onErrorMap(error ->
                         new FaultException(error, AppFaultInfo.BALANCE_NOT_CREATED, memberId, amount))
                 .then(findBalanceByMemberId(memberId));
