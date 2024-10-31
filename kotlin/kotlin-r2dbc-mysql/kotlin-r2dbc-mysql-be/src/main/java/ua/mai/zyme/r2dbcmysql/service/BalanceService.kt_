@@ -1,0 +1,69 @@
+package ua.mai.zyme.r2dbcmysql.service
+
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.dao.DataIntegrityViolationException
+import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
+import reactor.core.publisher.Mono
+import ua.mai.zyme.r2dbcmysql.entity.Balance
+import ua.mai.zyme.r2dbcmysql.exception.AppFaultInfo
+import ua.mai.zyme.r2dbcmysql.exception.FaultException
+import ua.mai.zyme.r2dbcmysql.repository.BalanceRepository
+import java.time.LocalDateTime
+
+@Service
+open class BalanceService(
+
+    private val balanceRepository: BalanceRepository
+//    @Autowired initBalanceRepository: BalanceRepository
+
+) {
+
+//    private val balanceRepository: BalanceRepository = initBalanceRepository
+//        get() {
+//            return field
+//        }
+//        @Autowired
+//        set(value) {
+//            field = value
+//        }
+
+    @Transactional
+    open fun insertBalance(memberId: Int, amount: Long, createdDate: LocalDateTime, lastModifiedDate: LocalDateTime): Mono<Balance> {
+        return if (amount < 0) {
+            Mono.error(FaultException(AppFaultInfo.BALANCE_AMOUNT_CANNOT_BE_NEGATIVE))
+        } else {
+            balanceRepository.insert(memberId, amount, createdDate, lastModifiedDate)
+                .onErrorMap { error ->
+                    FaultException(error, AppFaultInfo.BALANCE_NOT_CREATED, memberId, amount)
+                }
+                .then(findBalanceByMemberId(memberId))
+        }
+    }
+
+    fun insertZeroBalance(memberId: Int, createdDate: LocalDateTime): Mono<Balance> {
+        return balanceRepository.insert(memberId, 0L, createdDate, createdDate)
+            .onErrorMap { error ->
+                when (error) {
+                    is DataIntegrityViolationException -> FaultException(error, AppFaultInfo.MEMBER_NOT_FOUND, memberId)
+                    else -> FaultException(error, AppFaultInfo.BALANCE_NOT_CREATED, memberId, 0)
+                }
+            }
+            .then(findBalanceByMemberId(memberId))
+    }
+
+    fun findBalanceByMemberId(memberId: Int): Mono<Balance> {
+        return balanceRepository.findById(memberId)
+    }
+
+    fun findBalanceByMemberIdWithFaultWhenBalanceNotExists(memberId: Int): Mono<Balance> {
+        return findBalanceByMemberId(memberId)
+            .switchIfEmpty(Mono.error(FaultException(AppFaultInfo.BALANCE_FOR_MEMBER_NOT_FOUND, memberId)))
+    }
+
+    fun findBalanceByMemberIdWithCreateZeroBalanceIfNotExists(memberId: Int, createdDate: LocalDateTime): Mono<Balance> {
+        return findBalanceByMemberId(memberId)
+            .switchIfEmpty(insertZeroBalance(memberId, createdDate))
+    }
+
+}

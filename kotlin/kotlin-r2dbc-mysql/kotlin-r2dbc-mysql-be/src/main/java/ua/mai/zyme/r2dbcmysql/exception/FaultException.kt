@@ -1,61 +1,45 @@
-package ua.mai.zyme.r2dbcmysql.exception;
+package ua.mai.zyme.r2dbcmysql.exception
 
-import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatus
 
-import java.util.List;
+class FaultException : RuntimeException {
 
-public class FaultException extends RuntimeException {
+    private val faultDetails: FaultDetails
 
-    private FaultDetails faultDetails;
-
-    public FaultException(FaultInfo faultInfo) {
-        this(faultInfo, List.of());
+    constructor(faultInfo: FaultInfo, vararg errorParameters: Any?) : super() {
+        this.faultDetails = FaultDetails(faultInfo, errorParameters.toList())
     }
 
-    public FaultException(FaultInfo faultInfo, Object...errorParameters ) {
-        this(null, faultInfo, errorParameters);
+    constructor(cause: Throwable?, faultInfo: FaultInfo, vararg errorParameters: Any?) : super(cause) {
+        this.faultDetails = FaultDetails(faultInfo, errorParameters.toList())
     }
 
-    public FaultException(Throwable cause, FaultInfo faultInfo, Object...errorParameters) {
-        super(cause);
-        faultDetails = new FaultDetails(faultInfo, errorParameters);
+    constructor(cause: Throwable?) : super(cause) {
+        this.faultDetails = FaultDetails(AppFaultInfo.UNEXPECTED_ERROR, cause?.message)
     }
 
-    public FaultException(Throwable cause) {
-        super(cause);
-        faultDetails = new FaultDetails(AppFaultInfo.UNEXPECTED_ERROR, cause.getMessage());
-    }
+    val code: String
+        get() = faultDetails.faultInfo.code()
 
+    override val message: String
+        get() = faultMessage
 
-    public String getCode() {
-        return faultDetails.faultInfo.code();
-    }
+    val httpStatus: HttpStatus
+        get() = faultDetails.faultInfo.httpStatus()
 
-    public String getMessage() {
-        return getFaultMessage();
-    }
+    val faultMessage: String
+        get() = faultDetails.getMessage()
 
-    public HttpStatus getHttpStatus() {
-        return faultDetails.faultInfo.httpStatus();
-    }
+    val causeMessage: String?
+        get() = cause?.message
 
-    public String getFaultMessage() {
-        return faultDetails.getMessage();
-    }
+    val errorParameters: List<Any?>
+        get() = faultDetails.errorParameters
 
-    public String getCauseMessage() {
-        return getCause() != null ? getCause().getMessage() : null;
-    }
-
-    public List<Object> getErrorParameters() {
-        return faultDetails.errorParameters;
-    }
-
-    public String toString() {
-        return "Code=" + getCode() +
-               ", Message=\"" + getFaultMessage() + "\"" +
-                (getCause() != null ? (", Details=" + getCause()) : "") +
-               ", HttpStatus=" + getHttpStatus();
+    override fun toString(): String {
+        return "Code=$code, Message=\"$faultMessage\"" +
+                (cause?.let { ", Details=$it" } ?: "") +
+                ", HttpStatus=$httpStatus"
     }
 
 }

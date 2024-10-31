@@ -1,0 +1,222 @@
+package ua.mai.zyme.r2dbcmysql.util
+
+import io.r2dbc.spi.ConnectionFactory
+import org.springframework.data.r2dbc.core.R2dbcEntityTemplate
+import ua.mai.zyme.r2dbcmysql.entity.Balance
+import ua.mai.zyme.r2dbcmysql.entity.Member
+import ua.mai.zyme.r2dbcmysql.entity.Transfer
+import ua.mai.zyme.r2dbcmysql.repository.BalanceRepository
+import ua.mai.zyme.r2dbcmysql.repository.MemberRepository
+import ua.mai.zyme.r2dbcmysql.repository.TransferRepository
+import java.time.LocalDateTime
+
+class TestUtil {
+
+    var connectionFactory: ConnectionFactory? = null
+    var memberRepository: MemberRepository? = null
+    var balanceRepository: BalanceRepository? = null
+    var transferRepository: TransferRepository? = null
+
+    fun createR2dbcEntityTemplate(): R2dbcEntityTemplate = createR2dbcEntityTemplate(connectionFactory!!)
+
+    companion object {
+        private const val ASSERTION_MESSAGE_NAME_NOT_FOR_TEST = "Member name is not for test!"
+        private const val ASSERTION_MESSAGE_FOR_NEW_MEMBER_ID_MUST_BE_NULL = "For a new member the memberId must be null"
+        private const val ASSERTION_MESSAGE_FOR_NEW_TRANSFER_ID_MUST_BE_NULL = "For a new transfer the transferId must be null"
+
+        fun createR2dbcEntityTemplate(connectionFactory: ConnectionFactory): R2dbcEntityTemplate =
+            R2dbcEntityTemplate(connectionFactory)
+
+        fun runSql(connectionFactory: ConnectionFactory, sql: String) =
+            runSql(createR2dbcEntityTemplate(connectionFactory), sql)
+
+        fun runSql(template: R2dbcEntityTemplate, sql: String) =
+            template.databaseClient.sql(sql).fetch().rowsUpdated().block()
+
+        fun now(): LocalDateTime =
+            AppUtil.now()
+
+        fun roundLocalDateTime(dateTime: LocalDateTime): LocalDateTime =
+            AppUtil.roundLocalDateTime(dateTime)
+
+
+        /* -- Methods used for Member testing ------------------------------------------------------------------------------*/
+
+        private const val sqlDeleteMembersTestData =
+            "DELETE FROM member WHERE ucase(name) LIKE '%TEST%'"
+
+        fun deleteMembersTestData(connectionFactory: ConnectionFactory) =
+            runSql(connectionFactory, sqlDeleteMembersTestData)
+
+        fun isMemberForTest(member: Member): Boolean =
+            member.name?.uppercase()?.contains("TEST") ?: false
+
+        fun newMember(name: String): Member {
+            val member = Member(null, name)
+            assertTrue(isMemberForTest(member), ASSERTION_MESSAGE_NAME_NOT_FOR_TEST)
+            return member
+        }
+
+        fun insertMember(memberRepository: MemberRepository, member: Member): Member {
+            assertTrue(isMemberForTest(member), ASSERTION_MESSAGE_NAME_NOT_FOR_TEST)
+            assertNull(member.memberId, ASSERTION_MESSAGE_FOR_NEW_MEMBER_ID_MUST_BE_NULL)
+            return memberRepository.save(member).block()!!
+        }
+
+        fun insertMember(memberRepository: MemberRepository, name: String): Member =
+            insertMember(memberRepository, newMember(name))
+
+        fun insertMemberWithBalance(memberRepository: MemberRepository, balanceRepository: BalanceRepository,
+                                    name: String, amount: Long, dateTime: LocalDateTime): Member {
+            val member = insertMember(memberRepository, name);
+            val balanceToIn = insertBalance(balanceRepository, Balance(member.memberId, amount, dateTime, dateTime));
+            return member;
+        }
+
+        fun deleteMember(memberRepository: MemberRepository, memberId: Int) {
+            memberRepository.deleteById(memberId).block()
+        }
+
+        fun deleteMember(memberRepository: MemberRepository, member: Member) {
+            assertTrue(isMemberForTest(member), ASSERTION_MESSAGE_NAME_NOT_FOR_TEST)
+            memberRepository.deleteById(member.memberId!!).block()
+        }
+
+        fun findMemberByMemberId(memberRepository: MemberRepository, memberId: Int): Member? = memberRepository.findById(memberId).block()
+
+
+        /* -- Methods used for Transfer testing ------------------------------------------------------------------------------*/
+
+        private const val sqlDeleteTransfersTestData = """
+            DELETE FROM transfer t
+            WHERE t.to_member_id IN (SELECT member_id FROM member WHERE ucase(name) LIKE '%TEST%')
+               OR t.from_member_id IN (SELECT member_id FROM member WHERE ucase(name) LIKE '%TEST%')
+        """
+
+        fun deleteTransfersTestData(connectionFactory: ConnectionFactory) = runSql(connectionFactory, sqlDeleteTransfersTestData)
+
+        fun newTransfer(fromMemberId: Int, toMemberId: Int, amount: Long, createdDate: LocalDateTime = now()): Transfer =
+            Transfer(null, fromMemberId, toMemberId, amount, createdDate)
+
+        fun insertTransfer(transferRepository: TransferRepository, transfer: Transfer): Transfer {
+            assertNull(transfer.transferId, ASSERTION_MESSAGE_FOR_NEW_TRANSFER_ID_MUST_BE_NULL)
+            return transferRepository.save(transfer).block()!!
+        }
+
+        fun insertTransfer(transferRepository: TransferRepository, fromMemberId: Int, toMemberId: Int, amount: Long): Transfer =
+            insertTransfer(transferRepository, newTransfer(fromMemberId, toMemberId, amount))
+
+        fun deleteTransfer(transferRepository: TransferRepository, transferId: Long) {
+            transferRepository.deleteById(transferId).block()
+        }
+
+        fun deleteTransfer(transferRepository: TransferRepository, transfer: Transfer) {
+            transferRepository.deleteById(transfer.transferId!!).block()
+        }
+
+        fun findTransferByTransferId(transferRepository: TransferRepository, transferId: Long): Transfer? = transferRepository.findById(transferId).block()
+
+
+        /* -- Methods used for Balance testing ------------------------------------------------------------------------------*/
+
+        private const val sqlDeleteBalancesTestData = """
+            DELETE FROM balance b
+            WHERE b.member_id IN (SELECT member_id FROM member WHERE ucase(name) LIKE '%TEST%')
+        """
+
+        fun deleteBalancesTestData(connectionFactory: ConnectionFactory) =
+            runSql(connectionFactory, sqlDeleteBalancesTestData)
+
+        fun newBalance(memberId: Int?, amount: Long?, createdDate: LocalDateTime?, lastModifiedDate: LocalDateTime?): Balance =
+            Balance(memberId, amount, createdDate, lastModifiedDate)
+
+        fun insertBalance(balanceRepository: BalanceRepository, balance: Balance): Balance {
+            return insertBalance(balanceRepository, balance.memberId, balance.amount,
+                                 balance.createdDate, balance.lastModifiedDate)
+        }
+
+        fun insertBalance(balanceRepository: BalanceRepository, memberId: Int?, amount: Long?,
+                          createdDate: LocalDateTime?, lastModifiedDate: LocalDateTime): Balance {
+            balanceRepository.insert(memberId, amount, createdDate, lastModifiedDate).block()
+            return newBalance(memberId, amount, createdDate, lastModifiedDate)
+        }
+
+        fun deleteBalance(balanceRepository: BalanceRepository, memberId: Int) {
+            balanceRepository.deleteById(memberId).block()
+        }
+
+        fun deleteBalance(balanceRepository: BalanceRepository, balance: Balance) {
+            balanceRepository.deleteById(balance.memberId!!).block()
+        }
+
+        fun findBalanceByMemberId(balanceRepository: BalanceRepository, memberId: Int): Balance? =
+            balanceRepository.findById(memberId).block()
+
+
+        class SimpleAssertionError(
+            message: String
+        ) : RuntimeException(message)
+
+        private fun assertTrue(condition: Boolean, errorMessage: String) {
+            if (!condition) throw SimpleAssertionError(errorMessage)
+        }
+
+        private fun assertNull(obj: Any?, errorMessage: String) {
+            if (obj != null) throw SimpleAssertionError(errorMessage)
+        }
+    }
+
+    fun runSql(sql: String) =
+        runSql(connectionFactory!!, sql)
+
+
+    /* -- Methods used for Member testing ------------------------------------------------------------------------------*/
+    fun deleteMembersTestData() =
+        deleteMembersTestData(connectionFactory!!)
+
+    fun insertMember(member: Member): Member =
+        insertMember(memberRepository!!, member)
+
+    fun insertMember(name: String): Member =
+        insertMember(memberRepository!!, name)
+
+    fun insertMemberWithBalance(name: String, amount: Long, dateTime: LocalDateTime): Member =
+        insertMemberWithBalance(memberRepository!!, balanceRepository!!, name, amount, dateTime)
+
+    fun deleteMember(memberId: Int) = deleteMember(memberRepository!!, memberId)
+
+    fun deleteMember(member: Member) = deleteMember(memberRepository!!, member)
+
+    fun findMemberByMemberId(memberId: Int): Member? = findMemberByMemberId(memberRepository!!, memberId)
+
+
+    /* -- Methods used for Transfer testing --------------------------------------------------------------------------*/
+    fun insertTransfer(transfer: Transfer): Transfer = insertTransfer(transferRepository!!, transfer)
+
+    fun insertTransfer(fromMemberId: Int, toMemberId: Int, amount: Long): Transfer =
+        insertTransfer(transferRepository!!, fromMemberId, toMemberId, amount)
+
+    fun insertTransfer(fromMemberId: Int, toMemberId: Int, amount: Long, createdDate: LocalDateTime): Transfer =
+        insertTransfer(transferRepository!!, fromMemberId, toMemberId, amount, createdDate)
+
+    fun deleteTransfer(transferId: Long) = deleteTransfer(transferRepository!!, transferId)
+
+    fun deleteTransfer(transfer: Transfer) = deleteTransfer(transferRepository!!, transfer)
+
+    fun findTransferByTransferId(transferId: Long): Transfer? = findTransferByTransferId(transferRepository!!, transferId)
+
+    fun deleteBalancesTestData() = deleteBalancesTestData(connectionFactory!!)
+
+
+    /* -- Methods used for Balance testing ---------------------------------------------------------------------------*/
+    fun insertBalance(balance: Balance): Balance = insertBalance(balanceRepository!!, balance)
+
+    fun insertBalance(memberId: Int, amount: Long, createdDate: LocalDateTime, lastModifiedDate: LocalDateTime): Balance =
+        insertBalance(balanceRepository!!, memberId, amount, createdDate, lastModifiedDate)
+
+    fun deleteBalance(memberId: Int) = deleteBalance(balanceRepository!!, memberId)
+
+    fun deleteBalance(balance: Balance) = deleteBalance(balanceRepository!!, balance)
+
+    fun findBalanceByMemberId(memberId: Int): Balance? = findBalanceByMemberId(balanceRepository!!, memberId)
+}

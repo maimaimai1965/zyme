@@ -1,0 +1,11 @@
+package ua.mai.zyme.r2dbcmysql.log
+
+import org.springframework.http.MediaType
+
+interface MediaTypeFilter {
+
+    fun logged(mediaType: MediaType): Boolean {
+        return true
+    }
+
+}

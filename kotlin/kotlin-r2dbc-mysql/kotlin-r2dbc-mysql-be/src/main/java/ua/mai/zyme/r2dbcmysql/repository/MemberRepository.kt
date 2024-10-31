@@ -1,27 +1,26 @@
-package ua.mai.zyme.r2dbcmysql.repository;
+package ua.mai.zyme.r2dbcmysql.repository
 
-import org.springframework.data.r2dbc.repository.Query;
-import reactor.core.publisher.Flux;
-import ua.mai.zyme.r2dbcmysql.entity.Member;
-import org.springframework.data.r2dbc.repository.R2dbcRepository;
-import reactor.core.publisher.Mono;
+import org.springframework.data.r2dbc.repository.Query
+import org.springframework.data.r2dbc.repository.R2dbcRepository
+import reactor.core.publisher.Flux
+import reactor.core.publisher.Mono
+import ua.mai.zyme.r2dbcmysql.entity.Member
 
-public interface MemberRepository extends R2dbcRepository<Member, Integer> {
+interface MemberRepository : R2dbcRepository<Member, Int> {
 
-  Mono<Member> findByName(String name);
+    fun findByName(name: String): Mono<Member>
 
-  Flux<Member> findByNameLike(String str);
+    fun findByNameLike(str: String): Flux<Member>
 
-  @Query("SELECT * FROM member WHERE CHAR_LENGTH(name) <= :length")
-  Flux<Member> findByNameLengthLE(int length);
+    @Query("SELECT * FROM member WHERE CHAR_LENGTH(name) <= :length")
+    fun findByNameLengthLE(length: Int): Flux<Member>
 
-  @Query("INSERT INTO member (name) VALUES (:name)")
-  Mono<Void> insertThroughSql(String name);
+    @Query("INSERT INTO member (name) VALUES (:name)")
+    fun insertThroughSql(name: String): Mono<Void>
 
-  @Query("UPDATE member SET name = :name WHERE member_id = :member_id")
-  Mono<Void> updateThroughSql(int member_id, String name);
+    @Query("UPDATE member SET name = :name WHERE member_id = :member_id")
+    fun updateThroughSql(member_id: Int, name: String): Mono<Void>
 
-  @Query("DELETE FROM member WHERE member_id = :member_id")
-  Mono<Void> deleteThroughSql(int member_id);
-
+    @Query("DELETE FROM member WHERE member_id = :member_id")
+    fun deleteThroughSql(member_id: Int): Mono<Void>
 }

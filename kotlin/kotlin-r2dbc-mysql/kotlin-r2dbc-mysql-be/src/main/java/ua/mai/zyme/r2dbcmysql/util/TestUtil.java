@@ -11,7 +11,6 @@ import ua.mai.zyme.r2dbcmysql.repository.TransferRepository;
 
 import java.time.LocalDateTime;
 
-
 public class TestUtil {
 
     private ConnectionFactory connectionFactory;

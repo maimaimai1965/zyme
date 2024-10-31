@@ -1,0 +1,46 @@
+package ua.mai.zyme.r2dbcmysql.controller
+
+import org.springframework.web.bind.annotation.*
+import reactor.core.publisher.Flux
+import reactor.core.publisher.Mono
+import ua.mai.zyme.r2dbcmysql.util.AppUtil
+import ua.mai.zyme.r2dbcmysql.dto.CreateTransferRequest
+import ua.mai.zyme.r2dbcmysql.entity.Transfer
+import ua.mai.zyme.r2dbcmysql.repository.TransferRepository
+import ua.mai.zyme.r2dbcmysql.service.TransferService
+import org.springframework.transaction.annotation.Transactional
+
+@RestController
+@RequestMapping("/api/transfers")
+open class TransferController(
+    private val transferService: TransferService,
+    private val transferRepository: TransferRepository
+) {
+
+    @PostMapping
+    @Transactional
+    open fun doTransfer(@RequestBody transferRequest: CreateTransferRequest): Mono<Transfer> {
+        return transferService.doTransfer(
+            transferRequest.fromMemberId,
+            transferRequest.toMemberId,
+            transferRequest.amount,
+            AppUtil.now()
+        )
+    }
+
+    @GetMapping("/{transferId}")
+    fun findTransferByTransferId(@PathVariable transferId: Long): Mono<Transfer> {
+        return transferRepository.findById(transferId)
+    }
+
+    @GetMapping(params = ["fromMemberId"])
+    fun findTransfersByFromMemberId(@RequestParam fromMemberId: Int): Flux<Transfer> {
+        return transferRepository.findByFromMemberId(fromMemberId)
+    }
+
+    @GetMapping(params = ["toMemberId"])
+    fun findTransfersByToMemberId(@RequestParam toMemberId: Int): Flux<Transfer> {
+        return transferRepository.findByToMemberId(toMemberId)
+    }
+
+}

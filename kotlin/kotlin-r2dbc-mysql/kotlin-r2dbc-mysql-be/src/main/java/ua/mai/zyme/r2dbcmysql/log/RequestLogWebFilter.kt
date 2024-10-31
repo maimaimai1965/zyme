@@ -1,81 +1,53 @@
-package ua.mai.zyme.r2dbcmysql.log;
+package ua.mai.zyme.r2dbcmysql.log
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.core.Ordered;
-import org.springframework.core.annotation.Order;
-import org.springframework.http.server.reactive.ServerHttpRequest;
-import org.springframework.stereotype.Component;
-import org.springframework.web.server.ServerWebExchange;
-import org.springframework.web.server.ServerWebExchangeDecorator;
-import org.springframework.web.server.WebFilter;
-import org.springframework.web.server.WebFilterChain;
-import reactor.core.publisher.Mono;
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
+import org.springframework.core.Ordered
+import org.springframework.core.annotation.Order
+import org.springframework.http.MediaType
+import org.springframework.http.server.reactive.ServerHttpRequest
+import org.springframework.stereotype.Component
+import org.springframework.web.server.ServerWebExchange
+import org.springframework.web.server.ServerWebExchangeDecorator
+import org.springframework.web.server.WebFilter
+import org.springframework.web.server.WebFilterChain
+import reactor.core.publisher.Mono
 
 @Order(Ordered.HIGHEST_PRECEDENCE)
 @Component
-public class RequestLogWebFilter implements WebFilter {
+class RequestLogWebFilter : WebFilter {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(RequestLogWebFilter.class);
+    private val logger: Logger = LoggerFactory.getLogger(RequestLogWebFilter::class.java)
+    private var mediaTypeFilter: MediaTypeFilter = DEFAULT_MEDIA_FILTER
+    private var logMessageFormatter: LogMessageFormatter = DEFAULT_LOG_MESSAGE_FORMATTER
 
-    private static final MediaTypeFilter DEFAULT_MEDIA_FILTER = new MediaTypeFilter() {};
-    private static final LogMessageFormatter DEFAULT_LOG_MESSAGE_FORMATTER = new LogServerHttpRequestDecorator.DefaultLogMessageFormatter();
-
-    private Logger logger;
-
-    private MediaTypeFilter mediaTypeFilter;
-
-    private LogMessageFormatter logMessageFormatter;
-
-    public RequestLogWebFilter() {
-        this.logger = LOGGER;
-        this.mediaTypeFilter = DEFAULT_MEDIA_FILTER;
-        this.logMessageFormatter = DEFAULT_LOG_MESSAGE_FORMATTER;
+    companion object {
+        private val DEFAULT_MEDIA_FILTER: MediaTypeFilter = object : MediaTypeFilter {}
+        private val DEFAULT_LOG_MESSAGE_FORMATTER: LogMessageFormatter = LogServerHttpRequestDecorator.DefaultLogMessageFormatter()
     }
 
-    public MediaTypeFilter getMediaTypeFilter() {
-        return mediaTypeFilter;
-    }
-
-    public void setMediaTypeFilter(MediaTypeFilter mediaTypeFilter) {
-        this.mediaTypeFilter = mediaTypeFilter;
-    }
-
-    public LogMessageFormatter getLogMessageFormatter() {
-        return logMessageFormatter;
-    }
-
-    public void setLogMessageFormatter(LogMessageFormatter logMessageFormatter) {
-        this.logMessageFormatter = logMessageFormatter;
-    }
-
-    @Override
-    public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
-        if (logger.isInfoEnabled()) {
-            return chain.filter(decorate(exchange));
+    override fun filter(exchange: ServerWebExchange, chain: WebFilterChain): Mono<Void> {
+        return if (logger.isInfoEnabled) {
+            chain.filter(decorate(exchange))
         } else {
-            return chain.filter(exchange);
+            chain.filter(exchange)
         }
     }
 
-    private ServerWebExchange decorate(ServerWebExchange exchange) {
+    private fun decorate(exchange: ServerWebExchange): ServerWebExchange {
+        val decoratedRequest = LogServerHttpRequestDecorator(
+            exchange.request,
+            exchange.response,
+            logger,
+            mediaTypeFilter,
+            LogServerHttpRequestDecorator.DefaultLogMessageFormatter()
+        )
 
-        final ServerHttpRequest decoratedRequest = new LogServerHttpRequestDecorator(
-                exchange.getRequest(),
-                exchange.getResponse(),
-                logger,
-                mediaTypeFilter,
-                new LogServerHttpRequestDecorator.DefaultLogMessageFormatter()
-        );
-
-        return new ServerWebExchangeDecorator(exchange) {
-
-            @Override
-            public ServerHttpRequest getRequest() {
-                return decoratedRequest;
+        return object : ServerWebExchangeDecorator(exchange) {
+            override fun getRequest(): ServerHttpRequest {
+                return decoratedRequest
             }
-
-        };
+        }
     }
 
 }

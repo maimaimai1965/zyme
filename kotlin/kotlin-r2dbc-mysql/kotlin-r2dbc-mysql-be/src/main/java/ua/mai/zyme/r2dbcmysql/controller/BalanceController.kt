@@ -1,39 +1,35 @@
-package ua.mai.zyme.r2dbcmysql.controller;
+package ua.mai.zyme.r2dbcmysql.controller
 
-import org.springframework.web.bind.annotation.*;
-import reactor.core.publisher.Flux;
-import ua.mai.zyme.r2dbcmysql.entity.Balance;
-import ua.mai.zyme.r2dbcmysql.repository.BalanceRepository;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import reactor.core.publisher.Mono;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.*
+import reactor.core.publisher.Flux
+import reactor.core.publisher.Mono
+import ua.mai.zyme.r2dbcmysql.entity.Balance
+import ua.mai.zyme.r2dbcmysql.repository.BalanceRepository
 
 @RestController
-@RequestMapping(value = "/api/balances")
-@RequiredArgsConstructor
-@Slf4j
-public class BalanceController {
+@RequestMapping("/api/balances")
+class BalanceController(
+    private val balanceRepository: BalanceRepository
+) {
 
-    private final BalanceRepository balanceRepository;
-
-    @GetMapping(value = "/{memberId}")
-    public Mono<Balance> findBalanceByMemberId(@PathVariable Integer memberId) {
-        return balanceRepository.findByMemberId(memberId);
+    @GetMapping("/{memberId}")
+    fun findBalanceByMemberId(@PathVariable memberId: Int): Mono<Balance> {
+        return balanceRepository.findByMemberId(memberId)
     }
 
-    // Пример url-а: /api/balances/?memberIds=521,523
-    @GetMapping(value = "")
-    public Flux<Balance> findBalancesByMemberIds(@RequestParam List<Integer> memberIds) {
-        return balanceRepository.findAllById(memberIds);
+    // Пример URL: /api/balances/?memberIds=521,523
+    @GetMapping
+    fun findBalancesByMemberIds(@RequestParam memberIds: List<Int>): Flux<Balance> {
+        return balanceRepository.findAllById(memberIds)
     }
 
-    // Пример url-а: /api/balances/?minAmount=70&maxAmount=80
-    @GetMapping(value = "", params = {"minAmount", "maxAmount"})
-    public Flux<Balance> findBalancesByAmountIsBetween(@RequestParam Long minAmount,
-                                                       @RequestParam Long maxAmount) {
-        return balanceRepository.findByAmountIsBetween(minAmount, maxAmount);
+    // Пример URL: /api/balances/?minAmount=70&maxAmount=80
+    @GetMapping(params = ["minAmount", "maxAmount"])
+    fun findBalancesByAmountIsBetween(
+        @RequestParam minAmount: Long,
+        @RequestParam maxAmount: Long
+    ): Flux<Balance> {
+        return balanceRepository.findByAmountIsBetween(minAmount, maxAmount)
     }
 
 }

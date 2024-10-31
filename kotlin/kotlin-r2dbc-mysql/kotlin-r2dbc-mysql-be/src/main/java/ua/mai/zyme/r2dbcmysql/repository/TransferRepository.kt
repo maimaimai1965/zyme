@@ -1,18 +1,18 @@
-package ua.mai.zyme.r2dbcmysql.repository;
+package ua.mai.zyme.r2dbcmysql.repository
 
-import org.springframework.data.r2dbc.repository.R2dbcRepository;
-import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
-import ua.mai.zyme.r2dbcmysql.entity.Transfer;
+import org.springframework.data.r2dbc.repository.R2dbcRepository
+import reactor.core.publisher.Flux
+import reactor.core.publisher.Mono
+import ua.mai.zyme.r2dbcmysql.entity.Transfer
 
-public interface TransferRepository extends R2dbcRepository<Transfer, Long> {
+interface TransferRepository : R2dbcRepository<Transfer, Long> {
 
-  Mono<Transfer> findByTransferId(Long transferId);
+    fun findByTransferId(transferId: Long): Mono<Transfer>
 
-  Flux<Transfer> findByFromMemberId(Integer fromMemberId);
+    fun findByFromMemberId(fromMemberId: Int): Flux<Transfer>
 
-  Flux<Transfer> findByToMemberId(Integer toMemberId);
+    fun findByToMemberId(toMemberId: Int): Flux<Transfer>
 
-  Flux<Transfer> findByFromMemberIdAndToMemberId(Integer fromMemberId, Integer toMemberId);
+    fun findByFromMemberIdAndToMemberId(fromMemberId: Int, toMemberId: Int): Flux<Transfer>
 
 }

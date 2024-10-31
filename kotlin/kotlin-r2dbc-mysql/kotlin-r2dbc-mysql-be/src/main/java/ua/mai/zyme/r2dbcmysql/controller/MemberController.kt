@@ -1,85 +1,81 @@
-package ua.mai.zyme.r2dbcmysql.controller;
+package ua.mai.zyme.r2dbcmysql.controller
 
-import org.springframework.web.bind.annotation.*;
-import ua.mai.zyme.r2dbcmysql.entity.Member;
-import ua.mai.zyme.r2dbcmysql.exception.AppFaultInfo;
-import ua.mai.zyme.r2dbcmysql.exception.FaultException;
-import ua.mai.zyme.r2dbcmysql.exception.FaultInfo;
-import ua.mai.zyme.r2dbcmysql.repository.MemberRepository;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.RandomStringUtils;
-import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
-import ua.mai.zyme.r2dbcmysql.service.MemberService;
+import org.springframework.web.bind.annotation.*
+import ua.mai.zyme.r2dbcmysql.entity.Member
+import ua.mai.zyme.r2dbcmysql.exception.AppFaultInfo
+import ua.mai.zyme.r2dbcmysql.exception.FaultException
+import ua.mai.zyme.r2dbcmysql.exception.FaultInfo
+import ua.mai.zyme.r2dbcmysql.repository.MemberRepository
+import ua.mai.zyme.r2dbcmysql.service.MemberService
+import org.apache.commons.lang3.RandomStringUtils
+import reactor.core.publisher.Flux
+import reactor.core.publisher.Mono
 
 @RestController
-@RequestMapping(value = "/api/members")
-@RequiredArgsConstructor
-@Slf4j
-public class MemberController {
+@RequestMapping("/api/members")
+class MemberController(
+    private val memberRepository: MemberRepository,
+    private val memberService: MemberService
+) {
 
-    private final MemberRepository memberRepository;
-    private final MemberService memberService;
-
-    @PostMapping()
-    public Mono<Member> insertMember(@RequestBody Member member) {
-        return memberService.insertMember(member);
+    @PostMapping
+    fun insertMember(@RequestBody member: Member): Mono<Member> {
+        return memberService.insertMember(member)
     }
 
     @PostMapping("/flux")
-    public Flux<Member> insertMembers(@RequestBody Flux<Member> fluxMember) {
-        return memberService.insertMembers(fluxMember);
+    fun insertMembers(@RequestBody fluxMember: Flux<Member>): Flux<Member> {
+        return memberService.insertMembers(fluxMember)
     }
 
-//  @PostMapping(value = "/{number}")
-//  public Flux<Member> insertRandomMembers(@PathVariable int number) {
-//    return generateRandomMember(number).subscribeOn(Schedulers.boundedElastic());
-//  }
-
-    private Flux<Member> generateRandomMembers(int number) {
-        return Mono.fromSupplier(
-                        () -> new Member(null, RandomStringUtils.randomAlphabetic(5)))
-                .flatMap(memberService::insertMember)
-                .repeat(number);
+    private fun generateRandomMembers(number: Int): Flux<Member> {
+        return Mono.fromSupplier {
+            Member(null, RandomStringUtils.randomAlphabetic(5))
+        }.flatMap(memberService::insertMember)
+            .repeat(number.toLong())
     }
 
     @PutMapping
-    public Mono<Member> updateMember(@RequestBody Member member) {
-        return memberRepository
-                .findById(member.getMemberId())
-                .flatMap(memberResult -> memberService.updateMember(member));
+    fun updateMember(@RequestBody member: Member): Mono<Member> {
+        return memberRepository.findById(member.memberId!!)
+            .flatMap { memberService.updateMember(member) }
     }
 
-    @DeleteMapping(value = "/{id}")
-    public Mono<Void> deleteMemberById(@PathVariable Integer id) {
-        return memberRepository.deleteById(id);
+    @DeleteMapping("/{id}")
+    fun deleteMemberById(@PathVariable id: Int): Mono<Void> {
+        return memberRepository.deleteById(id)
     }
 
-    @GetMapping(value = "")
-    public Flux<Member> findAll() {
-        return memberRepository.findAll();
+    @GetMapping
+    fun findAll(): Flux<Member> {
+        return memberRepository.findAll()
     }
 
-    @GetMapping(value = "/{id}")
-    public Mono<Member> findMemberByMemberId(@PathVariable Integer id) {
+    @GetMapping("/{id}")
+    fun findMemberByMemberId(@PathVariable id: Int): Mono<Member> {
         return memberService.findMemberByMemberId(id)
-                .switchIfEmpty(Mono.error(
-                        new FaultException(AppFaultInfo.NOT_FOUND,
-                                FaultInfo.createParamFor_NOT_FOUND("Member", "memberId", id.toString()))));
+            .switchIfEmpty(Mono.error(
+                FaultException(
+                    AppFaultInfo.NOT_FOUND,
+                    FaultInfo.createParamFor_NOT_FOUND("Member", "memberId", id.toString())
+                )
+            ))
     }
 
-    @GetMapping(value = "", params = "name")
-    public Mono<Member> findMemberByName(@RequestParam String name) {
+    @GetMapping(params = ["name"])
+    fun findMemberByName(@RequestParam name: String): Mono<Member> {
         return memberRepository.findByName(name)
-                .switchIfEmpty(Mono.error(
-                        new FaultException(AppFaultInfo.NOT_FOUND,
-                                FaultInfo.createParamFor_NOT_FOUND("Member", "memberName", name))));
+            .switchIfEmpty(Mono.error(
+                FaultException(
+                    AppFaultInfo.NOT_FOUND,
+                    FaultInfo.createParamFor_NOT_FOUND("Member", "memberName", name)
+                )
+            ))
     }
 
-    @GetMapping(value = "", params = "nameLike")
-    public Flux<Member> findMembersByNameLike(@RequestParam String nameLike) {
-        return memberRepository.findByNameLike("%" + nameLike + "%");
+    @GetMapping(params = ["nameLike"])
+    fun findMembersByNameLike(@RequestParam nameLike: String): Flux<Member> {
+        return memberRepository.findByNameLike("%$nameLike%")
     }
 
 }

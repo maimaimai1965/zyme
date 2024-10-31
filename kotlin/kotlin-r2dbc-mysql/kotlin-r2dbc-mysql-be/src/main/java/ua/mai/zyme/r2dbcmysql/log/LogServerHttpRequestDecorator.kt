@@ -1,83 +1,75 @@
-package ua.mai.zyme.r2dbcmysql.log;
+package ua.mai.zyme.r2dbcmysql.log
 
-import org.slf4j.Logger;
-import org.springframework.core.io.buffer.DataBuffer;
-import org.springframework.http.MediaType;
-import org.springframework.http.server.reactive.ServerHttpRequest;
-import org.springframework.http.server.reactive.ServerHttpRequestDecorator;
-import org.springframework.http.server.reactive.ServerHttpResponse;
-import reactor.core.publisher.Flux;
+import org.slf4j.Logger
+import org.springframework.core.io.buffer.DataBuffer
+import org.springframework.http.server.reactive.ServerHttpRequest
+import org.springframework.http.server.reactive.ServerHttpRequestDecorator
+import org.springframework.http.server.reactive.ServerHttpResponse
+import reactor.core.publisher.Flux
+import java.io.ByteArrayOutputStream
 
-import java.io.ByteArrayOutputStream;
-import java.util.Optional;
+class LogServerHttpRequestDecorator(
 
-class LogServerHttpRequestDecorator extends ServerHttpRequestDecorator implements WithMemoizingFunction {
+    delegate: ServerHttpRequest,
+    private val response: ServerHttpResponse,
+    private val logger: Logger,
+    private val mediaTypeFilter: MediaTypeFilter,
+    private val formatter: LogMessageFormatter
 
-    private final Logger logger;
-    private final MediaTypeFilter mediaTypeFilter;
-    private final LogMessageFormatter formatter;
-    private final Flux<DataBuffer> decoratedBody;
-    private final ServerHttpResponse response;
+) : ServerHttpRequestDecorator(delegate), WithMemoizingFunction {
 
-    LogServerHttpRequestDecorator(ServerHttpRequest delegate, ServerHttpResponse response, Logger logger,
-                                  MediaTypeFilter mediaTypeFilter, LogMessageFormatter formatter) {
-        super(delegate);
-        this.logger = logger;
-        this.mediaTypeFilter = mediaTypeFilter;
-        this.formatter = formatter;
-        this.decoratedBody = decorateBody(delegate.getBody());
-        this.response = response;
-        flushLog(EMPTY_BYTE_ARRAY_OUTPUT_STREAM, true); // getBody() isn't called when controller doesn't need it.
+    private val decoratedBody: Flux<DataBuffer>
+
+    init {
+        this.decoratedBody = decorateBody(delegate.body)
+        flushLog(EMPTY_BYTE_ARRAY_OUTPUT_STREAM, true) // getBody() не вызывается, если контроллер не нуждается в нём.
     }
 
-    private Flux<DataBuffer> decorateBody(Flux<DataBuffer> body) {
-        MediaType mediaType = getHeaders().getContentType();
-        if (logger.isDebugEnabled() && mediaTypeFilter.logged(mediaType)) {
-            final ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            return body.map(memoizingFunction(baos)).doOnComplete(() -> flushLog(baos, false));
+    private fun decorateBody(body: Flux<DataBuffer>): Flux<DataBuffer> {
+        val mediaType = headers.contentType
+        return if (logger.isDebugEnabled && mediaTypeFilter.logged(mediaType)) {
+            val baos = ByteArrayOutputStream()
+            body.map(memoizingFunction(baos)).doOnComplete { flushLog(baos, false) }
         } else {
-            return body.doOnComplete(() -> flushLog(EMPTY_BYTE_ARRAY_OUTPUT_STREAM, false));
+            body.doOnComplete { flushLog(EMPTY_BYTE_ARRAY_OUTPUT_STREAM, false) }
         }
     }
 
-    @Override
-    public Flux<DataBuffer> getBody() {
-        return this.decoratedBody;
-    }
+    override fun getBody(): Flux<DataBuffer> = decoratedBody
 
-    private void flushLog(ByteArrayOutputStream baos, boolean onCreate) {
-        if (logger.isInfoEnabled()) {
-            if (logger.isDebugEnabled()) {
-                if (mediaTypeFilter.logged(getHeaders().getContentType())) {
-                    logger.debug(formatter.format(getDelegate(), this.response, onCreate ? null : baos.toByteArray()));
+    private fun flushLog(baos: ByteArrayOutputStream, onCreate: Boolean) {
+        if (logger.isInfoEnabled) {
+            if (logger.isDebugEnabled) {
+                if (mediaTypeFilter.logged(headers.contentType)) {
+                    logger.debug(formatter.format(delegate, response, if (onCreate) null else baos.toByteArray()))
                 } else {
-                    logger.debug(formatter.format(getDelegate(), this.response, null));
+                    logger.debug(formatter.format(delegate, response, null))
                 }
             } else if (onCreate) {
-                logger.info(formatter.format(getDelegate(), this.response, null));
+                logger.info(formatter.format(delegate, response, null))
             }
         }
     }
 
-    @Override
-    public Logger getLogger() {
-        return this.logger;
+    override fun getLogger(): Logger = logger
+
+    class DefaultLogMessageFormatter : LogMessageFormatter {
+        override fun format(request: ServerHttpRequest, response: ServerHttpResponse, payload: ByteArray?): String {
+            return buildString {
+                if (payload == null) {
+                    append("REQ IN [${request.id}]")
+                    append("\n  Address: ${request.uri}")
+                    append("\n  HttpMethod: ${request.method}")
+                    append("\n  Headers: ${request.headers}")
+                } else {
+                    append("\n  Payload IN: \n${String(payload)}")
+                }
+            }
+        }
     }
 
-    static final class DefaultLogMessageFormatter implements LogMessageFormatter {
-
-        @Override
-        public String format(ServerHttpRequest request, ServerHttpResponse response, byte[] payload) {
-            StringBuilder data = new StringBuilder();
-            if (payload == null)
-                data.append("REQ IN [").append(request.getId())
-                    .append("]\n  Address: ").append(request.getURI())
-                    .append("\n  HttpMethod: ").append(request.getMethod())
-                    .append("\n  Headers: ").append(request.getHeaders());
-            else
-                data.append("\n  Payload IN: ").append(payload != null ? ("\n"+ new String(payload)) : "");
-            return data.toString();
-        }
+    companion object {
+        private val EMPTY_BYTE_ARRAY_OUTPUT_STREAM = ByteArrayOutputStream()
     }
 
 }

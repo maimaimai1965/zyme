@@ -1,20 +1,19 @@
-package ua.mai.zyme.r2dbcmysql.exception;
+package ua.mai.zyme.r2dbcmysql.exception
 
-import java.text.MessageFormat;
-import java.util.Arrays;
-import java.util.List;
+import java.text.MessageFormat
+import java.util.*
 
-public class FaultDetails {
-    FaultInfo faultInfo;
-    List<Object> errorParameters;
 
-    public FaultDetails(FaultInfo faultInfo, Object...errorParameters) {
-        this.faultInfo = faultInfo;
-        this.errorParameters = (errorParameters != null) ? Arrays.stream(errorParameters).toList() : List.of();
-    }
+open class FaultDetails(
+    val faultInfo: FaultInfo,
+    val errorParameters: List<Any?>
+) {
 
-    public String getMessage() {
-        return MessageFormat.format(faultInfo.messageTemplate(), errorParameters.toArray());
+    constructor (faultInfo: FaultInfo, vararg errorParameters: Any?) :
+      this (faultInfo, listOf(*errorParameters))
+
+    fun getMessage(): String {
+        return MessageFormat.format(faultInfo.messageTemplate(), *errorParameters.toTypedArray())
     }
 
 }
