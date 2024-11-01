@@ -8,5 +8,5 @@ data class Member @JvmOverloads constructor(
     @Column("member_id")
     var memberId: Int? = null,
 
-    var name: String? = null
+    var name: String
 )

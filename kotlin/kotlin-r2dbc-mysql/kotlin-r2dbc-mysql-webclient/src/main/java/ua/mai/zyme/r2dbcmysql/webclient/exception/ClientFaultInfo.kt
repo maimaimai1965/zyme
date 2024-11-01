@@ -1,20 +1,13 @@
-package ua.mai.zyme.r2dbcmysql.webclient.exception;
+package ua.mai.zyme.r2dbcmysql.webclient.exception
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import java.time.LocalDateTime
 
-import java.time.LocalDateTime;
-
-@NoArgsConstructor
-@Data
-public class ClientFaultInfo {
-
-//    private LocalDateTime timestamp;
-    private String path;
-    private String error;
-    private String requestId;
-    private String status;
-    private String errorCd;
-    private String errorMsg;
-
-}
+data class ClientFaultInfo(
+//    var timestamp: LocalDateTime? = null,
+    var path: String? = null,
+    var error: String? = null,
+    var requestId: String? = null,
+    var status: String? = null,
+    var errorCd: String? = null,
+    var errorMsg: String? = null
+)

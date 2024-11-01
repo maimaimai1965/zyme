@@ -1,16 +1,10 @@
-package ua.mai.zyme.r2dbcmysql.webclient.property;
+package ua.mai.zyme.r2dbcmysql.webclient.property
 
-import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.ConfigurationProperties
 
 @ConfigurationProperties("zyme.r2dbc-mysql")
-public class ZymeR2dbcMysqlProperty {
-    private WebClientProperty webclient;
+class ZymeR2dbcMysqlProperty {
 
-    public WebClientProperty getWebclient() {
-        return webclient;
-    }
+    var webclient: WebClientProperty? = null
 
-    public void setWebclient(WebClientProperty webclient) {
-        this.webclient = webclient;
-    }
 }

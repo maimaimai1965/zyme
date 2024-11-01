@@ -1,72 +1,54 @@
-package ua.mai.zyme.r2dbcmysql.webclient.exception;
+package ua.mai.zyme.r2dbcmysql.webclient.exception
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import org.springframework.web.reactive.function.client.ClientResponse;
+import com.fasterxml.jackson.core.JsonProcessingException
+import com.fasterxml.jackson.databind.DeserializationFeature
+import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
+import org.springframework.web.reactive.function.client.ClientResponse
 
-public class AppClientError extends RuntimeException {
+class AppClientError(
 
-    private ClientFaultInfo clientFaultInfo;
-    private String errorBody;
+    clientResponse: ClientResponse,
+    private val errorBody: String?
 
-    public ClientFaultInfo getClientFaultInfo() {
-        return clientFaultInfo;
-    }
+) : RuntimeException() {
 
-    public String getErrorBody() {
-        return errorBody;
-    }
+    val clientFaultInfo: ClientFaultInfo
 
-    //    public AppClientError(ClientFaultInfo clientFaultInfo) {
-//        this(clientFaultInfo, null);
-//    }
-//
-//    public AppClientError(Throwable cause) {
-//        super(cause);
-//    }
-
-    public AppClientError(ClientResponse clientResponse, String errBody) {
-        this.errorBody = errBody;
-        if (errorBody.contains("\"errorCd\"")) {
-            // Если это ошибка - FaultException.
-            ObjectMapper objectMapper = new ObjectMapper();
-            objectMapper.registerModule(new JavaTimeModule());
-            objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-            try {
-                this.clientFaultInfo = objectMapper.readValue(errorBody, ClientFaultInfo.class);
-            } catch (JsonProcessingException e) {
-                this.clientFaultInfo = new ClientFaultInfo();
-                this.clientFaultInfo.setPath(clientResponse.request().getURI().getPath());
-                this.clientFaultInfo.setStatus(String.valueOf(clientResponse.statusCode().value()));
-                this.clientFaultInfo.setErrorMsg(e.getMessage());
+    init {
+        clientFaultInfo = if (errorBody?.contains("\"errorCd\"") == true) {
+            val objectMapper = ObjectMapper().apply {
+                registerModule(JavaTimeModule())
+                configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
             }
-        }  else {
-            this.clientFaultInfo = new ClientFaultInfo();
-            this.clientFaultInfo.setPath(clientResponse.request().getURI().getPath());
-            this.clientFaultInfo.setStatus(String.valueOf(clientResponse.statusCode().value()));
+            try {
+                objectMapper.readValue(errorBody, ClientFaultInfo::class.java)
+            } catch (e: JsonProcessingException) {
+                ClientFaultInfo().apply {
+                    path = clientResponse.request().uri.path
+                    status = clientResponse.statusCode().value().toString()
+                    errorMsg = e.message
+                }
+            }
+        } else {
+            ClientFaultInfo().apply {
+                path = clientResponse.request().uri.path
+                status = clientResponse.statusCode().value().toString()
+            }
         }
     }
 
-    @Override
-    public String getMessage() {
-        return "AppClientError: " +
-                addStr("Code", clientFaultInfo.getErrorCd()) +
-                addStr("Message", clientFaultInfo.getErrorMsg()) +
-                addStr("Path", clientFaultInfo.getPath()) +
-                addStr("RequestId", clientFaultInfo.getRequestId());
-    }
+    override val message: String?
+        get() = "AppClientError: " +
+                addStr("Code", clientFaultInfo.errorCd) +
+                addStr("Message", clientFaultInfo.errorMsg) +
+                addStr("Path", clientFaultInfo.path) +
+                addStr("RequestId", clientFaultInfo.requestId)
 
-    private static String addStr(String name, Object value) {
-        return value != null && value.toString() != null
-                ? name + "=" + value + "; "
-                : name;
+    companion object {
+        private fun addStr(name: String, value: Any?): String {
+            return if (value != null && value.toString() != null) "$name=$value; " else "$name"
+        }
     }
-
-//    public AppClientError(ClientFaultInfo clientFaultInfo, Throwable cause) {
-//        super(cause);
-//        this.clientFaultInfo = clientFaultInfo;
-//    }
 
 }
