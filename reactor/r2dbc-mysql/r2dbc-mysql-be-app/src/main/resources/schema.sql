@@ -1,4 +1,6 @@
 
+create schema zyme;
+
 CREATE TABLE IF NOT EXISTS member (
     member_id int not null auto_increment,
     name varchar(64) not null,

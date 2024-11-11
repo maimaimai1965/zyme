@@ -4,28 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8f73b445-5201-4244-94c7-bed9e6b359c9" name="Changes" comment="modules kotlin-r2dbc-mysql-be, kotlin-r2dbc-mysql-be-app rewritten from java to kotlin">
-      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-webclient-app/src/main/java/ua/mai/zyme/r2dbcmysql/webclient/app/R2dbcMysqlWebClientApplication.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-webclient/src/main/java/ua/mai/zyme/r2dbcmysql/webclient/R2dbsMysqlWebClient.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-webclient/src/main/java/ua/mai/zyme/r2dbcmysql/webclient/exception/AppClientError.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-webclient/src/main/java/ua/mai/zyme/r2dbcmysql/webclient/exception/ClientFaultInfo.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-webclient/src/main/java/ua/mai/zyme/r2dbcmysql/webclient/log/LogService.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-webclient/src/main/java/ua/mai/zyme/r2dbcmysql/webclient/property/WebClientProperty.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-webclient/src/main/java/ua/mai/zyme/r2dbcmysql/webclient/property/ZymeR2dbcMysqlProperty.kt" afterDir="false" />
+    <list default="true" id="8f73b445-5201-4244-94c7-bed9e6b359c9" name="Changes" comment="modules kotlin-r2dbc-mysql-webclient, kotlin-r2dbc-mysql-webclient-app rewritten from java to kotlin">
+      <change afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-be-app/docker-compose.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-be-app/src/main/docker/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-be-app/src/main/docker/entrypoint.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/entity/Member.kt" beforeDir="false" afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/entity/Member.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-webclient-app/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-webclient-app/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-webclient-app/src/main/java/ua/mai/zyme/r2dbcmysql/webclient/app/R2dbcMysqlWebClientApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-webclient-app/src/main/java/ua/mai/zyme/r2dbcmysql/webclient/app/R2dbcMysqlWebClientApplication.java_" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-webclient/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-webclient/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-webclient/src/main/java/ua/mai/zyme/r2dbcmysql/webclient/R2dbsMysqlWebClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-webclient/src/main/java/ua/mai/zyme/r2dbcmysql/webclient/R2dbsMysqlWebClient.java_" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-webclient/src/main/java/ua/mai/zyme/r2dbcmysql/webclient/exception/AppClientError.java" beforeDir="false" afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-webclient/src/main/java/ua/mai/zyme/r2dbcmysql/webclient/exception/AppClientError.java_" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-webclient/src/main/java/ua/mai/zyme/r2dbcmysql/webclient/exception/ClientFaultInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-webclient/src/main/java/ua/mai/zyme/r2dbcmysql/webclient/exception/ClientFaultInfo.java_" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-webclient/src/main/java/ua/mai/zyme/r2dbcmysql/webclient/log/LogService.java" beforeDir="false" afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-webclient/src/main/java/ua/mai/zyme/r2dbcmysql/webclient/log/LogService.java_" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-webclient/src/main/java/ua/mai/zyme/r2dbcmysql/webclient/property/WebClientProperty.java" beforeDir="false" afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-webclient/src/main/java/ua/mai/zyme/r2dbcmysql/webclient/property/WebClientProperty.java_" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-webclient/src/main/java/ua/mai/zyme/r2dbcmysql/webclient/property/ZymeR2dbcMysqlProperty.java" beforeDir="false" afterPath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-webclient/src/main/java/ua/mai/zyme/r2dbcmysql/webclient/property/ZymeR2dbcMysqlProperty.java_" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-webclient/src/test/java/com/web/client/demo/DemoApplicationTests.java_" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-webclient/src/test/java/com/web/client/demo/service/UserServiceMockWebServerTest.java_" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-webclient/src/test/java/com/web/client/demo/service/UserServiceMockitoTest.java_" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactor/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-be-app/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-be-app/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-be-app/src/main/resources/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-be-app/src/main/resources/schema.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-be-app/src/test/resources/application-test.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-be-app/src/test/resources/application-test.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/config/AppConfig.java_" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/config/AppConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-be/src/test/resources/application-test.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-be/src/test/resources/application-test.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-webclient/src/test/resources/application-test.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-webclient/src/test/resources/application-test.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,6 +116,9 @@
       </MavenGeneralSettings>
     </option>
   </component>
+  <component name="MavenRunner">
+    <option name="skipTests" value="true" />
+  </component>
   <component name="PackageJsonUpdateNotifier">
     <dismissed value="$PROJECT_DIR$/package.json" />
   </component>
@@ -148,6 +142,10 @@
     "Application.MonoFlux.executor": "Run",
     "Application.Test.executor": "Run",
     "DefaultHtmlFileTemplate": "HTML File",
+    "Docker.docker/Dockerfile.executor": "Run",
+    "Docker.docker/docker-compose.yaml.r2dbc-mysql-be-app: Compose Deployment.executor": "Run",
+    "Docker.r2dbc-mysql-be-app/docker-compose.yaml.r2dbc-mysql-be-app: Compose Deployment.executor": "Run",
+    "Docker.r2dbc-mysql-be-app/docker-compose.yaml.zyme-r2dbc-mysql8: Compose Deployment.executor": "Run",
     "JUnit.BalanceControllerTest (1).executor": "Run",
     "JUnit.BalanceControllerTest.executor": "Run",
     "JUnit.BalanceControllerTest.findBalanceByMemberId.executor": "Debug",
@@ -264,6 +262,7 @@
     "JUnit.R2dbsMysqlWebClientForBalanceControllerTests.findMembersAll.executor": "Run",
     "JUnit.R2dbsMysqlWebClientForMemberControllerTests.executor": "Run",
     "JUnit.R2dbsMysqlWebClientForMemberControllerTests.findMemberByMemberId.executor": "Debug",
+    "JUnit.R2dbsMysqlWebClientForMemberControllerTests.findMemberByName.executor": "Run",
     "JUnit.R2dbsMysqlWebClientForMemberControllerTests.findMembersAll.executor": "Run",
     "JUnit.R2dbsMysqlWebClientForMemberControllerTests.insertMember.executor": "Run",
     "JUnit.R2dbsMysqlWebClientForMemberControllerTests.insertMember_ERR101_NotNullNewMemberId.executor": "Run",
@@ -431,13 +430,14 @@
     "Spring Boot.R2dbcMysqlApplication (prod).executor": "Debug",
     "Spring Boot.R2dbcMysqlApplication.executor": "Run",
     "Spring Boot.R2dbcMysqlBeApplication (dev).executor": "Run",
+    "Spring Boot.R2dbcMysqlBeApplication (prod).executor": "Run",
     "Spring Boot.R2dbcMysqlBeApplication.executor": "Run",
     "Spring Boot.R2dbcMysqlWebClientApplication (2).executor": "Run",
     "Spring Boot.R2dbcMysqlWebClientApplication (dev).executor": "Debug",
     "Spring Boot.R2dbcMysqlWebClientApplication.executor": "Run",
     "Spring Boot.ReactivePostgresApplication.executor": "Debug",
     "Spring Boot.ReactiveWebServiceApplication.executor": "Debug",
-    "Spring Boot.RestZooApplication (dev 8105).executor": "Debug",
+    "Spring Boot.RestZooApplication (dev 8105).executor": "Run",
     "Spring Boot.SecurityBasicOrKeyApplication (dev 8110).executor": "Debug",
     "Spring Boot.SecurityCsrfApplication (dev 8112).executor": "Debug",
     "Spring Boot.SecurityGwtCodeApplication (dev 8115).executor": "Debug",
@@ -455,7 +455,7 @@
     "jdk.selected.JAVA_MODULE": "temurin-21",
     "kotlin-language-version-configured": "true",
     "last_directory_selection": "C:/work/idea_home/zyme/goals/db/modules/transaction/src/main/java/ua/mai/zyme/db/transaction",
-    "last_opened_file_path": "C:/work/idea_home/zyme/kotlin",
+    "last_opened_file_path": "C:/work/idea_home/zyme/reactor/r2dbc-mysql",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -486,18 +486,18 @@
       <recent name="ua.mai.zyme.security.config" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\work\idea_home\zyme\reactor\r2dbc-mysql" />
+      <recent name="C:\work\idea_home\zyme\reactor\r2dbc-mysql\r2dbc-mysql-be-app\src\main\docker" />
+      <recent name="C:\work\idea_home\zyme\reactor\r2dbc-mysql\r2dbc-mysql-be-app\docker" />
+      <recent name="C:\work\idea_home\zyme\reactor\r2dbc-mysql\r2dbc-mysql-be\docker" />
       <recent name="C:\work\idea_home\zyme\kotlin" />
-      <recent name="C:\work\idea_home\zyme\gradle\r2dbc-mysql\r2dbc-mysql-be\src\main\java" />
-      <recent name="C:\work\idea_home\zyme\gradle\r2dbc-mysql" />
-      <recent name="C:\work\idea_home\zyme\gradle\r2dbc-mysql\r2dbc-mysql-be" />
-      <recent name="C:\work\idea_home\zyme\gradle" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\work\idea_home\zyme\gradle\r2dbc-mysql" />
+      <recent name="C:\work\idea_home\zyme\reactor\r2dbc-mysql\r2dbc-mysql-be-app" />
+      <recent name="C:\work\idea_home\zyme\reactor\r2dbc-mysql\r2dbc-mysql-be-app\src\main\docker" />
+      <recent name="C:\work\idea_home\zyme\reactor\r2dbc-mysql\r2dbc-mysql-be-app\src\main" />
+      <recent name="C:\work\idea_home\zyme\reactor\r2dbc-mysql\r2dbc-mysql-be" />
       <recent name="C:\work\idea_home\zyme\reactor\r2dbc-mysql" />
-      <recent name="C:\work\idea_home\zyme\reactor\r2dbc-mysql-be\src" />
-      <recent name="C:\work\idea_home\zyme\kotlin\first-steps\src\main\kotlin\ua\mai\zyme\kotlin\firststeps\intro" />
-      <recent name="C:\work\idea_home\zyme\kotlin\first-steps\src\main\resources" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="ua.mai.zyme.r2dbcmysql" />
@@ -524,59 +524,37 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.r2dbcmysql in kotlin-r2dbc-mysql-webclient">
-    <configuration name="BalanceControllerTest.findBalanceByMemberId" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="kotlin-r2dbc-mysql-be" />
+  <component name="RunManager" selected="Spring Boot.RestZooApplication (dev 8105)">
+    <configuration name="R2dbsMysqlWebClientForMemberControllerTests.findMemberByName" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="r2dbc-mysql-webclient" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ua.mai.zyme.r2dbcmysql.controller.*" />
+          <option name="PATTERN" value="ua.mai.zyme.r2dbcmysql.webclient.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="ua.mai.zyme.r2dbcmysql.controller" />
-      <option name="MAIN_CLASS_NAME" value="ua.mai.zyme.r2dbcmysql.controller.BalanceControllerTest" />
-      <option name="METHOD_NAME" value="findBalanceByMemberId" />
+      <option name="PACKAGE_NAME" value="ua.mai.zyme.r2dbcmysql.webclient" />
+      <option name="MAIN_CLASS_NAME" value="ua.mai.zyme.r2dbcmysql.webclient.R2dbsMysqlWebClientForMemberControllerTests" />
+      <option name="METHOD_NAME" value="findMemberByName" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="BalanceControllerTest.findBalancesByMemberIds" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="kotlin-r2dbc-mysql-be" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ua.mai.zyme.r2dbcmysql.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="ua.mai.zyme.r2dbcmysql.controller" />
-      <option name="MAIN_CLASS_NAME" value="ua.mai.zyme.r2dbcmysql.controller.BalanceControllerTest" />
-      <option name="METHOD_NAME" value="findBalancesByMemberIds" />
-      <option name="TEST_OBJECT" value="method" />
+    <configuration name="r2dbcmysql in r2dbc-mysql-be" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="r2dbc-mysql-be" />
+      <option name="MAIN_CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="directory" />
+      <dir value="$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="r2dbcmysql in kotlin-r2dbc-mysql-be-app" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="kotlin-r2dbc-mysql-be-app" />
+    <configuration name="webclient in r2dbc-mysql-webclient" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="r2dbc-mysql-webclient" />
       <option name="TEST_OBJECT" value="directory" />
-      <dir value="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-be-app/src/test/java/ua/mai/zyme/r2dbcmysql" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="r2dbcmysql in kotlin-r2dbc-mysql-webclient" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="kotlin-r2dbc-mysql-webclient" />
-      <option name="TEST_OBJECT" value="directory" />
-      <dir value="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-webclient/src/test/java/ua/mai/zyme/r2dbcmysql" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="webclient in kotlin-r2dbc-mysql-webclient" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="kotlin-r2dbc-mysql-webclient" />
-      <option name="TEST_OBJECT" value="directory" />
-      <dir value="$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-webclient/src/test/java/ua/mai/zyme/r2dbcmysql/webclient" />
+      <dir value="$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-webclient/src/test/java/ua/mai/zyme/r2dbcmysql/webclient" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -732,14 +710,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="R2dbcMysqlWebClientApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <module name="r2dbc-mysql-webclient-app" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="ua.mai.zyme.r2dbcmysql.webclient.app.R2dbcMysqlWebClientApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="R2dbcMysqlWebClientApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+    <configuration name="R2dbcMysqlWebClientApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" folderName="reactor" nameIsGenerated="true">
       <module name="r2dbc-mysql-webclient-app" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="ua.mai.zyme.r2dbcmysql.webclient.app.R2dbcMysqlWebClientApplication" />
       <method v="2">
@@ -855,12 +826,44 @@
       </deployment>
       <method v="2" />
     </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="dockerfile" temporary="true">
+      <deployment type="dockerfile">
+        <settings />
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="r2dbc-mysql-be-app/docker-compose.yaml.r2dbc-mysql-be-app: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="r2dbc-mysql-be-app" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="reactor/r2dbc-mysql/r2dbc-mysql-be-app/docker-compose.yaml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="r2dbc-mysql-be-app/docker-compose.yaml.zyme-r2dbc-mysql8: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="zyme-r2dbc-mysql8" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="reactor/r2dbc-mysql/r2dbc-mysql-be-app/docker-compose.yaml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
     <list>
-      <item itemvalue="JUnit.r2dbcmysql in kotlin-r2dbc-mysql-be-app" />
-      <item itemvalue="JUnit.webclient in kotlin-r2dbc-mysql-webclient" />
-      <item itemvalue="JUnit.BalanceControllerTest.findBalanceByMemberId" />
-      <item itemvalue="JUnit.BalanceControllerTest.findBalancesByMemberIds" />
-      <item itemvalue="JUnit.r2dbcmysql in kotlin-r2dbc-mysql-webclient" />
+      <item itemvalue="Docker.r2dbc-mysql-be-app/docker-compose.yaml.zyme-r2dbc-mysql8: Compose Deployment" />
+      <item itemvalue="Docker.r2dbc-mysql-be-app/docker-compose.yaml.r2dbc-mysql-be-app: Compose Deployment" />
+      <item itemvalue="JUnit.R2dbsMysqlWebClientForMemberControllerTests.findMemberByName" />
+      <item itemvalue="JUnit.r2dbcmysql in r2dbc-mysql-be" />
+      <item itemvalue="JUnit.webclient in r2dbc-mysql-webclient" />
       <item itemvalue="Spring Boot.DbH2JdbcTemplateApplication (dev 8102)" />
       <item itemvalue="Spring Boot.DbJdbcTemplateApplication (dev 8101)" />
       <item itemvalue="Spring Boot.DbJooqApplication (dev 8101)" />
@@ -876,6 +879,7 @@
       <item itemvalue="Spring Boot.R2dbcMysqlApplication (dev)" />
       <item itemvalue="Spring Boot.R2dbcMysqlBeApplication (dev)" />
       <item itemvalue="Spring Boot.R2dbcMysqlBeApplication (prod)" />
+      <item itemvalue="Spring Boot.R2dbcMysqlWebClientApplication" />
       <item itemvalue="Spring Boot.RestZooApplication (dev 8105)" />
       <item itemvalue="Spring Boot.SecurityBasicOrKeyApplication (dev 8110)" />
       <item itemvalue="Spring Boot.SecurityCsrfApplication (dev 8112)" />
@@ -884,8 +888,6 @@
       <item itemvalue="Spring Boot.SecurityLoginApplication (dev 8111)" />
       <item itemvalue="Spring Boot.Vaadin23SimpleApplication (dev 8080)" />
       <item itemvalue="Spring Boot.Vaadin8SimpleApplication (dev 8088)" />
-      <item itemvalue="Spring Boot.R2dbcMysqlWebClientApplication (1)" />
-      <item itemvalue="Spring Boot.R2dbcMysqlWebClientApplication" />
       <item itemvalue="Spring Boot.DemoApplication (1)" />
       <item itemvalue="Spring Boot.DemoApplication" />
       <item itemvalue="Spring Boot.SoapZooApplication (dev 8105)" />
@@ -895,11 +897,11 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.r2dbcmysql in kotlin-r2dbc-mysql-webclient" />
-        <item itemvalue="JUnit.r2dbcmysql in kotlin-r2dbc-mysql-be-app" />
-        <item itemvalue="JUnit.webclient in kotlin-r2dbc-mysql-webclient" />
-        <item itemvalue="JUnit.BalanceControllerTest.findBalanceByMemberId" />
-        <item itemvalue="JUnit.BalanceControllerTest.findBalancesByMemberIds" />
+        <item itemvalue="Docker.r2dbc-mysql-be-app/docker-compose.yaml.r2dbc-mysql-be-app: Compose Deployment" />
+        <item itemvalue="Docker.r2dbc-mysql-be-app/docker-compose.yaml.zyme-r2dbc-mysql8: Compose Deployment" />
+        <item itemvalue="JUnit.r2dbcmysql in r2dbc-mysql-be" />
+        <item itemvalue="JUnit.webclient in r2dbc-mysql-webclient" />
+        <item itemvalue="JUnit.R2dbsMysqlWebClientForMemberControllerTests.findMemberByName" />
       </list>
     </recent_temporary>
   </component>
@@ -1278,14 +1280,6 @@
       <option name="project" value="LOCAL" />
       <updated>1686316009587</updated>
     </task>
-    <task id="LOCAL-00051" summary="add r2dbc-mysql module">
-      <option name="closed" value="true" />
-      <created>1726585075589</created>
-      <option name="number" value="00051" />
-      <option name="presentableId" value="LOCAL-00051" />
-      <option name="project" value="LOCAL" />
-      <updated>1726585075589</updated>
-    </task>
     <task id="LOCAL-00052" summary="develop r2dbc-mysql module">
       <option name="closed" value="true" />
       <created>1727446361312</created>
@@ -1422,7 +1416,15 @@
       <option name="project" value="LOCAL" />
       <updated>1730370683337</updated>
     </task>
-    <option name="localTasksCounter" value="69" />
+    <task id="LOCAL-00069" summary="modules kotlin-r2dbc-mysql-webclient, kotlin-r2dbc-mysql-webclient-app rewritten from java to kotlin">
+      <option name="closed" value="true" />
+      <created>1730446104380</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1730446104381</updated>
+    </task>
+    <option name="localTasksCounter" value="70" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1461,7 +1463,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="add mutation bookCreate" />
     <MESSAGE value="add mutations, CustomExceptionResolver" />
     <MESSAGE value="before using module graphql-common" />
     <MESSAGE value="add module library" />
@@ -1486,7 +1487,8 @@
     <MESSAGE value="changed spring-boot 3.3.4-&gt;3.3.5; renamed r2dbc-mysql-app-&gt;r2dbc-mysql-be-app, renamed R2dbcMysqlApplication -&gt; R2dbcMysqlBeApplication" />
     <MESSAGE value="added kotlin-r2dbc-mysql* modules" />
     <MESSAGE value="modules kotlin-r2dbc-mysql-be, kotlin-r2dbc-mysql-be-app rewritten from java to kotlin" />
-    <option name="LAST_COMMIT_MESSAGE" value="modules kotlin-r2dbc-mysql-be, kotlin-r2dbc-mysql-be-app rewritten from java to kotlin" />
+    <MESSAGE value="modules kotlin-r2dbc-mysql-webclient, kotlin-r2dbc-mysql-webclient-app rewritten from java to kotlin" />
+    <option name="LAST_COMMIT_MESSAGE" value="modules kotlin-r2dbc-mysql-webclient, kotlin-r2dbc-mysql-webclient-app rewritten from java to kotlin" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -3672,93 +3674,6 @@
           <url>file://$PROJECT_DIR$/kotlin/first-steps/src/main/kotlin/ua/mai/zyme/kotlin/firststeps/intro/NoClassForStart.kt</url>
           <line>6</line>
           <option name="timeStamp" value="697" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/kotlin/first-steps/src/main/kotlin/ua/mai/zyme/kotlin/firststeps/intro/Player.kt</url>
-          <line>34</line>
-          <option name="timeStamp" value="703" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/kotlin/first-steps/src/main/kotlin/ua/mai/zyme/kotlin/firststeps/intro/Player.kt</url>
-          <line>24</line>
-          <properties>
-            <option name="lambda-ordinal" value="-1" />
-          </properties>
-          <option name="timeStamp" value="704" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/kotlin/first-steps/src/main/kotlin/ua/mai/zyme/kotlin/firststeps/intro/Player.kt</url>
-          <line>13</line>
-          <option name="timeStamp" value="705" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/kotlin/first-steps/src/main/kotlin/ua/mai/zyme/kotlin/firststeps/intro/Player.kt</url>
-          <line>10</line>
-          <option name="timeStamp" value="706" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/kotlin/first-steps/src/main/kotlin/ua/mai/zyme/kotlin/firststeps/intro/Player.kt</url>
-          <line>23</line>
-          <properties>
-            <option name="lambda-ordinal" value="-1" />
-          </properties>
-          <option name="timeStamp" value="707" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/kotlin/first-steps/src/main/kotlin/ua/mai/zyme/kotlin/firststeps/intro/Player.kt</url>
-          <line>23</line>
-          <properties>
-            <option name="lambda-ordinal" value="0" />
-          </properties>
-          <option name="timeStamp" value="708" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/kotlin/first-steps/src/main/kotlin/ua/mai/zyme/kotlin/firststeps/intro/Player.kt</url>
-          <line>24</line>
-          <properties>
-            <option name="lambda-ordinal" value="0" />
-          </properties>
-          <option name="timeStamp" value="709" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/kotlin/first-steps/src/main/kotlin/ua/mai/zyme/kotlin/firststeps/intro/Player.kt</url>
-          <line>8</line>
-          <option name="timeStamp" value="711" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/kotlin/first-steps/src/main/kotlin/ua/mai/zyme/kotlin/firststeps/intro/Player.kt</url>
-          <line>73</line>
-          <option name="timeStamp" value="712" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/kotlin/first-steps/src/main/kotlin/ua/mai/zyme/kotlin/firststeps/intro/Player.kt</url>
-          <line>78</line>
-          <option name="timeStamp" value="713" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/kotlin/first-steps/src/main/kotlin/ua/mai/zyme/kotlin/firststeps/intro/Player.kt</url>
-          <line>82</line>
-          <option name="timeStamp" value="714" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/kotlin/first-steps/src/main/kotlin/ua/mai/zyme/kotlin/firststeps/intro/Player.kt</url>
-          <line>84</line>
-          <option name="timeStamp" value="715" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/kotlin/first-steps/src/main/kotlin/ua/mai/zyme/kotlin/firststeps/intro/Player.kt</url>
-          <line>64</line>
-          <option name="timeStamp" value="716" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/kotlin/first-steps/src/main/kotlin/ua/mai/zyme/kotlin/firststeps/intro/Player.kt</url>
-          <line>74</line>
-          <option name="timeStamp" value="717" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/kotlin/first-steps/src/main/kotlin/ua/mai/zyme/kotlin/firststeps/intro/Player.kt</url>
-          <line>75</line>
-          <option name="timeStamp" value="718" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/kotlin/kotlin-r2dbc-mysql/kotlin-r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/service/MemberService.kt</url>

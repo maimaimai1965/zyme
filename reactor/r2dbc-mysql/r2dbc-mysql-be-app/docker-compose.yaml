@@ -1,0 +1,94 @@
+version: '3.7'
+
+# Need to create network for work docker stack:
+# $ docker network create --attachable --driver overlay zyme-net
+
+services:
+  r2dbc-mysql-be-app:
+    image: r2dbc-mysql-be-app #:-latest
+    build:
+#      context: ../bootstrap
+#      context: src/main/docker
+      dockerfile: src/main/docker/Dockerfile
+#      args:
+#        appVersion: ${APP_VERSION:-latest}
+#        gitcommithash: ${GIT_HASH:-latest}
+    ports:
+      - 8080:8080
+      - 5005:5005
+    networks:
+      - zyme-net
+    environment:
+      - TZ=Europe/Kiev
+      - APP_NAME=r2dbc-mysql-be
+      - JAVA_OPTS=-Xmx512m -Xms512m -XX:NewSize=412m -XX:MaxNewSize=412m -XX:SurvivorRatio=30 -XX:+UseThreadPriorities
+        -Duser.country=UA -Duser.language=uk -Duser.timezone=Europe/Kiev
+        -XX:+UseParallelGC -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false
+        -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005
+      - SPRING_PROFILES_ACTIVE=prod
+      - SERVER_PORT=8080
+      - SPRING_R2DBC_URL=r2dbc:mysql://zyme-r2dbc-mysql8:3306/zyme
+#      - SPRING_R2DBC_URL=jdbc:mysql://zyme-mysql8:3316/zyme?autoReconnect=true&maxReconnects=2&connectTimeout=100&serverTimezone=$${user.timezone}
+#      - TRT_DATASOURCE_RW_PASSWORD=root
+#      - TRT_DATASOURCE_RO_JDBC_URL=jdbc:mysql://trt-be-percona-cluster-node-mysql:3306/trt?autoReconnect=true&maxReconnects=2&connectTimeout=100&serverTimezone=$${user.timezone}
+#      - TRT_DATASOURCE_RO_JDBC_URL=jdbc:mysql://mysql:3306/trt?autoReconnect=true&maxReconnects=2&connectTimeout=100&serverTimezone=$${user.timezone}
+#      - TRT_DATASOURCE_RO_PASSWORD=root
+#      - SPRING_LDAP_URLS=ldap://hq.telesens.lan:389
+#      - SPRING_LDAP_BASE=DC=hq,DC=telesens,DC=lan
+#      - SPRING_LDAP_USERNAME=buildmaster@hq.telesens.lan
+#      - SPRING_LDAP_PASSWORD=qazwsx
+#      - TRT_CORE_WS_BSS_INTEGRATION_ADDRESS=http://trt-integration-bss:3001/services
+#      - LOGGING_LEVEL_ROOT=${LOGGING_LEVEL_ROOT:-INFO}
+#      - TRT_SMPPCLIENT_HOST=trt-smpp-sim
+#      - TRT_SMPPCLIENT_PORT=2775
+#      - TRT_SMPPCLIENT_LOCALHOST=trt-smpp-sim
+#      - TRT_CONTENT_SOURCE_PATH=/opt/trt/content/src
+#      - TRT_CONTENT_FE_PATH=/opt/trt/content/fe
+#      - TRT_CONTENT_IMG_PATH=/opt/trt/content/img
+#      - TRT_CONTENT_IVR_PATH=/opt/trt/content/ivr
+#      - TRT_CONTENT_PRE_PATH=/opt/trt/content/pre
+#      - TRT_CHARGE_EXPORT_DEST_PATH=/opt/charge/dest
+#      - TRT_CHARGE_EXPORT_TEMP_PATH=/opt/charge/temp
+#      - TRT_CHARGE_EXPORT_EXPORT_ZERO_AMOUNT=false
+#      - TRT_MEDIACONVERT_TEMP_FE=/opt/trt/content/tmp
+#      - TRT_MEDIACONVERT_TEMP_ERROR=/opt/trt/content/tmp
+#      - TRT_SAS_EXPORT_TEMP_PATH=/opt/trt/temp
+#      - TRT_SAS_EXPORT_ARCH_PATH=/opt/trt/arch
+#      - TRT_SAS_EXPORT_REMOTE_PATH=/rashwork/rbt
+#      - TRT_SAS_EXPORT_SFTP_HOST=hpsas-dwhcrm
+#      - TRT_SAS_EXPORT_SFTP_PORT=22
+#      - TRT_SAS_EXPORT_SFTP_USER=rbt
+#      - TRT_SAS_EXPORT_SFTP_PASSWORD=1
+#      - TRT_RSYNC_BE_HOSTS=
+#      - TRT_RSYNC_FE_HOSTS=trt-fe-rsyncd
+#      - TRT_RSYNC_USER=trtsync
+#      - TRT_RSYNC_PASSWORD=trtsync
+#      - TRT_RSYNC_ALLOW_DELETE=true
+#    volumes:
+#      - source-content:/opt/trt/content/src
+#      - fe-content:/opt/trt/content/fe
+#      - img-content:/opt/trt/content/img
+#      - ivr-content:/opt/trt/content/ivr
+#    depends_on:
+#      - zyme-r2dbc-mysql8
+
+  zyme-r2dbc-mysql8:
+    image: mysql:8
+    command: --default-authentication-plugin=mysql_native_password --secure-file-priv=/var/lib/mysql-files --lower-case-table-names=1 --binlog-expire-logs-seconds=86400
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - TZ=Europe/Kiev
+    volumes:
+      - zyme-r2dbc-mysql8-data:/var/lib/mysql
+#      - ./zyme-mysql8-files:/var/lib/mysql-files
+    restart: always
+    networks:
+      - zyme-net
+
+volumes:
+  zyme-r2dbc-mysql8-data:
+networks:
+  zyme-net:
+    external: true

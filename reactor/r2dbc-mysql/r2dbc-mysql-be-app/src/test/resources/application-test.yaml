@@ -26,7 +26,7 @@ spring:
     name: r2dbc-mysql
 
   r2dbc:
-    url: r2dbc:mysql://localhost:3306/trt
+    url: r2dbc:mysql://localhost:3306/zyme
     username: root
     password: root
 

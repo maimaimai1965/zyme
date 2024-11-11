@@ -53,8 +53,7 @@ spring:
     name: r2dbc-mysql REST service
 
   r2dbc:
-#    url=r2dbc:postgresql://postgres:password@localhost:5432/postgres
-    url: r2dbc:mysql://localhost:3306/trt
+    url: r2dbc:mysql://localhost:3306/zyme
     username: root
     password: root
 
