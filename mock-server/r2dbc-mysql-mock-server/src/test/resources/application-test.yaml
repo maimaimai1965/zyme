@@ -1,0 +1,55 @@
+logging:
+  level:
+    ROOT: INFO
+
+    #    org.springframework.r2dbc: DEBUG
+
+# ---------- Настройка логирования request-ов и response-ов (и ошибок) REST сервиса ------------------------------------
+    ua.mai.zyme.r2dbcmysql.webclient.log: DEBUG
+    reactor.netty.http.client.HttpClientConnect: DEBUG
+    reactor.netty.http.client.HttpClientOperations : DEBUG
+# ----------------------------------------------------------------------------------------------------------------------
+
+    # Вывод SQL в r2dbc:
+    org.springframework.r2dbc.core.DefaultDatabaseClient: DEBUG
+
+    # Для отладки транзакций:
+    org.springframework.jdbc.support.JdbcTransactionManager: DEBUG
+    com.zaxxer.hikari: DEBUG
+    org.springframework.transaction: TRACE
+
+    # Для отладки сервисов
+    ua.mai.zyme.db.transaction: DEBUG
+    ua.mai.zyme.db.jooq: DEBUG
+    ua.mai.zyme.db.jdbc: DEBUG
+
+    # Для отладки JdbcTemplate и NamedParameterJdbcTemplate (и логирование параметров операторов):
+    # logging statements:
+    org.springframework.jdbc.core.JdbcTemplate: TRACE
+    # log parameters of prepared statements:
+    org.springframework.jdbc.core.StatementCreatorUtils: TRACE
+    org.springframework.jdbc.support.JdbcAccessor: TRACE
+
+spring:
+  main.banner-mode: off
+  application:
+    name: r2dbc-mysql using WebClient Tests application
+
+  # Нужно для обращения к объектам БД напрямую (для тестов).
+  r2dbc:
+    url: r2dbc:mysql://localhost:3306/zyme
+    username: root
+    password: root
+
+    pool.enabled: true
+    pool.initial-size: 5
+    pool.max-size: 10
+
+  jackson.deserialization.fail-on-unknown-properties: true
+
+zyme:
+  r2dbc-mysql:
+    webclient:
+      target-service-name: r2dbc-mysql
+      base-url: http://localhost:8090
+      connect-timeout: 1000

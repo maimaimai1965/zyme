@@ -106,6 +106,13 @@ public class TestUtil {
         return member;
     }
 
+    static public Member copyMember(Member member, Integer memberId) {
+        assertTrue(isMemberForTest(member), ASSERTION_MESSAGE_NAME_NOT_FOR_TEST);
+        Member newMember = newMember(member.getName());
+        newMember.setMemberId(memberId);
+        return newMember;
+    }
+
     public Member insertMember(Member member) {
         return insertMember(memberRepository, member);
     }

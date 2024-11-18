@@ -1,0 +1,44 @@
+[
+  {
+    "httpRequest": {
+      "method": "POST",
+      "path": "/api/members",
+      "body":  {
+        "json": {
+          "memberId": null,
+          "name": "riddleTest"
+        }
+      }
+    },
+    "httpResponse": {
+      "statusCode": 200,
+      "body":  {
+        "json": {
+          "memberId": 900006,
+          "name": "riddleTest"
+        }
+      }
+    }
+  },
+  {
+    "httpRequest": {
+      "method": "GET",
+      "path": "/api/members/900004"
+    },
+    "httpResponse": {
+      "statusCode": 200,
+      "headers": [
+        {
+          "name": "Content-Type",
+          "values": [
+            "application/json"
+          ]
+        }
+      ],
+      "body": {
+        "memberId": 900004,
+        "name": "mikeTest"
+      }
+    }
+  }
+]

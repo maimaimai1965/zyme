@@ -1,0 +1,405 @@
+{
+	"info": {
+		"_postman_id": "9bbc86ff-b9a9-4a34-8369-138bd39afdf3",
+		"name": "9033 Zyme r2dbc-mysql-mock-server",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5994305"
+	},
+	"item": [
+		{
+			"name": "server ACTIVE_EXPECTATIONS",
+			"item": [
+				{
+					"name": "/api/members ACTIVE_EXPECTATIONS",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"path\": \"/api/members\",\r\n    \"method\": \"POST\"\r\n}    ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8090/mockserver/retrieve?type=ACTIVE_EXPECTATIONS",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8090",
+							"path": [
+								"mockserver",
+								"retrieve"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "ACTIVE_EXPECTATIONS"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "server REQUEST_RESPONSES",
+			"item": [
+				{
+					"name": "all REQUEST_RESPONS",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8090/mockserver/retrieve?type=REQUEST_RESPONSES",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8090",
+							"path": [
+								"mockserver",
+								"retrieve"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "REQUEST_RESPONSES"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "EXP: insertMember(member) <- POST /api/members",
+			"item": [
+				{
+					"name": "EXP:001 (new)",
+					"item": [
+						{
+							"name": "add EXP:001 insertMember(member) <- POST /api/members",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response has the required status\", function () {\r",
+											"    pm.response.to.have.status(201);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"httpRequest\": {\r\n    \"method\": \"POST\",\r\n    \"path\": \"/api/members\",\r\n    \"body\":  {\r\n        \"json\": {\r\n            \"memberId\": null,\r\n            \"name\": \"mashTest\"\r\n        }\r\n    }\r\n    // \"queryStringParameters\": {\r\n    //   \"status\": [\"active\"]\r\n    // }\r\n  },\r\n  \"httpResponse\": {\r\n    \"statusCode\": 200,\r\n    \"body\":  {\r\n        \"json\": {\r\n            \"memberId\": 300500,\r\n            \"name\": \"mashTest\"\r\n        }\r\n    }\r\n  }\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8090/mockserver/expectation",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8090",
+									"path": [
+										"mockserver",
+										"expectation"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "del EXP:001 insertMember(member) <- POST /api/members",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response has the required status\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{   // id нужно определить выполнив запрос '/api/members ACTIVE_EXPECTATIONS' (PUT запрос с url\r\n    // 'http://127.0.0.1:8090/mockserver/retrieve?type=ACTIVE_EXPECTATIONS' и с body\r\n    // '{ \"path\": \"/api/members\",\"method\": \"POST\" }'). В полученном ответе нужно найти EXPECTATIONS\r\n    // соответствующее нашему удаляемому запросу: body - '{ \"memberId\": null, \"name\": \"mashTest\" }'. \r\n    \"id\": \"6dcbc55f-79d3-4868-b347-c9d3830af856\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8090/mockserver/clear",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8090",
+									"path": [
+										"mockserver",
+										"clear"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "test EXP:001",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response has the required status\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Response has the required fields\", function () {\r",
+											"    const responseData = pm.response.json();\r",
+											"    pm.expect(responseData.memberId).to.eql(300500);\r",
+											"    pm.expect(responseData.name).to.eql(\"mashTest\");\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"memberId\":null,\r\n    \"name\":\"mashTest\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8090/api/members",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8090",
+									"path": [
+										"api",
+										"members"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "EXP: 002 (from ExpectationInitializer.java)",
+					"item": [
+						{
+							"name": "test EXP:002",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();\r",
+											"pm.expect(jsonData.memberId).to.eql(900000);\r",
+											"pm.expect(jsonData.name).to.eql(\"mikeTest\");\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"memberId\":null,\r\n    \"name\":\"mikeTest\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8090/api/members",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8090",
+									"path": [
+										"api",
+										"members"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "EXP: 003 (from initializerJson.json)",
+					"item": [
+						{
+							"name": "test EXP:003",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response has the required status\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Response has the required fields\", function () {\r",
+											"    const responseData = pm.response.json();\r",
+											"\r",
+											"    pm.expect(responseData.memberId).to.eql(900000);\r",
+											"    pm.expect(responseData.name).to.eql(\"mikeTest\");\r",
+											"});\r",
+											"\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"memberId\":null,\r\n    \"name\":\"mikeTest\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8090/api/members",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8090",
+									"path": [
+										"api",
+										"members"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "EXP: findByMemberId(id) <- GET /api/members/{id}",
+			"item": [
+				{
+					"name": "EXP: 040 (from initializerJson.json)",
+					"item": [
+						{
+							"name": "test EXP:003",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();\r",
+											"pm.expect(jsonData.memberId).to.eql(900004);\r",
+											"pm.expect(jsonData.name).to.eql(\"mikeTest\");\r",
+											"\r",
+											"pm.test(\"Response has the required status\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"pm.test(\"Response has the required fields\", function () {\r",
+											"    const responseData = pm.response.json();\r",
+											"\r",
+											"    pm.expect(responseData.memberId).to.eql(900004);\r",
+											"    pm.expect(responseData.name).to.eql(\"mikeTest\");\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8090/api/members/900004",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8090",
+									"path": [
+										"api",
+										"members",
+										"900004"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}

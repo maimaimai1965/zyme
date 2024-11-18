@@ -1,0 +1,22 @@
+version: '3.7'
+
+# Need to create network for work docker stack:
+# $ docker network create --attachable --driver overlay zyme-net
+
+services:
+  mock-server:
+    image: mock-server
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8095:3000
+    networks:
+      - zyme-net
+    environment:
+      - SERVER_PORT=3000
+      - MOCKSERVER_LOG_LEVEL=DEBUG
+      - MOCKSERVER_INITIALIZATION_JSON_PATH=/libs/initializerJson.json
+networks:
+  zyme-net:
+    external: true

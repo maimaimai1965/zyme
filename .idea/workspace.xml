@@ -5,18 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8f73b445-5201-4244-94c7-bed9e6b359c9" name="Changes" comment="modules kotlin-r2dbc-mysql-webclient, kotlin-r2dbc-mysql-webclient-app rewritten from java to kotlin">
-      <change afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-be-app/docker-compose.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-be-app/src/main/docker/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-be-app/src/main/docker/entrypoint.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mock-server/mock-server/docker/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mock-server/mock-server/docker/mock-server-compose.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mock-server/r2dbc-mysql-mock-server/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mock-server/r2dbc-mysql-mock-server/docker/mock-server-compose.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mock-server/r2dbc-mysql-mock-server/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mock-server/r2dbc-mysql-mock-server/src/main/docker/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mock-server/r2dbc-mysql-mock-server/src/main/java/ua/mai/zyme/mockserver/r2dbcmysql/ExpectationInitializerImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mock-server/r2dbc-mysql-mock-server/src/main/resources/initializerJson.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mock-server/r2dbc-mysql-mock-server/src/test/java/ua/mai/zyme/mockserver/R2dbcMysqlApplicationTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mock-server/r2dbc-mysql-mock-server/src/test/java/ua/mai/zyme/mockserver/r2dbcmysql/R2dbsMysqlMockServerForMemberControllerTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mock-server/r2dbc-mysql-mock-server/src/test/java/ua/mai/zyme/mockserver/r2dbcmysql/config/AppTestConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mock-server/r2dbc-mysql-mock-server/src/test/resources/application-test.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mock-server/r2dbc-mysql-mock-server/src/test/resources/postman/Zyme r2dbc-mysql-mock-server.postman_collection.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactor/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-be-app/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-be-app/src/main/resources/application.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-be-app/src/main/resources/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-be-app/src/main/resources/schema.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-be-app/src/test/resources/application-test.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-be-app/src/test/resources/application-test.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/config/AppConfig.java_" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/config/AppConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-be/src/test/resources/application-test.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-be/src/test/resources/application-test.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-webclient/src/test/resources/application-test.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-webclient/src/test/resources/application-test.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/util/TestUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-be/src/main/java/ua/mai/zyme/r2dbcmysql/util/TestUtil.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -144,6 +147,8 @@
     "DefaultHtmlFileTemplate": "HTML File",
     "Docker.docker/Dockerfile.executor": "Run",
     "Docker.docker/docker-compose.yaml.r2dbc-mysql-be-app: Compose Deployment.executor": "Run",
+    "Docker.docker/mock-server-compose.yaml.mock-server: Compose Deployment.executor": "Run",
+    "Docker.docker/mock-server-compose.yaml.r2dbc-mysql-mock-server: Compose Deployment.executor": "Run",
     "Docker.r2dbc-mysql-be-app/docker-compose.yaml.r2dbc-mysql-be-app: Compose Deployment.executor": "Run",
     "Docker.r2dbc-mysql-be-app/docker-compose.yaml.zyme-r2dbc-mysql8: Compose Deployment.executor": "Run",
     "JUnit.BalanceControllerTest (1).executor": "Run",
@@ -253,6 +258,12 @@
     "JUnit.R2dbcMysqlApplicationTests.executor": "Run",
     "JUnit.R2dbcMysqlTestApplication.executor": "Run",
     "JUnit.R2dbcMysqlWebClientApplicationTest.executor": "Run",
+    "JUnit.R2dbsMysqlMockServerForMemberControllerTests.executor": "Run",
+    "JUnit.R2dbsMysqlMockServerForMemberControllerTests.findMemberByMemberId.executor": "Run",
+    "JUnit.R2dbsMysqlMockServerForMemberControllerTests.insertMember.executor": "Run",
+    "JUnit.R2dbsMysqlMockServerForMemberControllerTests.insertMember_ERR101_NotNullNewMemberId.executor": "Run",
+    "JUnit.R2dbsMysqlMockServerForMemberControllerTests.insertMembers.executor": "Debug",
+    "JUnit.R2dbsMysqlMockServerForMemberControllerTests.updateMember.executor": "Debug",
     "JUnit.R2dbsMysqlWebClientForBalanceControllerTests.executor": "Run",
     "JUnit.R2dbsMysqlWebClientForBalanceControllerTests.findBalanceByMemberId.executor": "Run",
     "JUnit.R2dbsMysqlWebClientForBalanceControllerTests.findBalanceByMemberId_WhenBalanceNotFound.executor": "Debug",
@@ -261,14 +272,14 @@
     "JUnit.R2dbsMysqlWebClientForBalanceControllerTests.findBalancesByMemberIds_WhenBalancesNotFound.executor": "Run",
     "JUnit.R2dbsMysqlWebClientForBalanceControllerTests.findMembersAll.executor": "Run",
     "JUnit.R2dbsMysqlWebClientForMemberControllerTests.executor": "Run",
-    "JUnit.R2dbsMysqlWebClientForMemberControllerTests.findMemberByMemberId.executor": "Debug",
+    "JUnit.R2dbsMysqlWebClientForMemberControllerTests.findMemberByMemberId.executor": "Run",
     "JUnit.R2dbsMysqlWebClientForMemberControllerTests.findMemberByName.executor": "Run",
     "JUnit.R2dbsMysqlWebClientForMemberControllerTests.findMembersAll.executor": "Run",
     "JUnit.R2dbsMysqlWebClientForMemberControllerTests.insertMember.executor": "Run",
     "JUnit.R2dbsMysqlWebClientForMemberControllerTests.insertMember_ERR101_NotNullNewMemberId.executor": "Run",
     "JUnit.R2dbsMysqlWebClientForMemberControllerTests.insertMembers.executor": "Run",
     "JUnit.R2dbsMysqlWebClientForMemberControllerTests.insertMembers_ERR101_NotNullNewMemberId.executor": "Run",
-    "JUnit.R2dbsMysqlWebClientForMemberControllerTests.updateMember.executor": "Debug",
+    "JUnit.R2dbsMysqlWebClientForMemberControllerTests.updateMember.executor": "Run",
     "JUnit.R2dbsMysqlWebClientForTransferControllerTests.doTransfer.executor": "Run",
     "JUnit.R2dbsMysqlWebClientForTransferControllerTests.doTransfer_ERR303_BalanceFromNotEnough.executor": "Run",
     "JUnit.R2dbsMysqlWebClientForTransferControllerTests.doTransfer_Fault_WhenBalanceFromNotExists.executor": "Run",
@@ -395,6 +406,7 @@
     "Maven.r2dbc-mysql-be [clean,install].executor": "Run",
     "Maven.r2dbc-mysql-be [compile].executor": "Run",
     "Maven.r2dbc-mysql-be-app [clean].executor": "Run",
+    "Maven.r2dbc-mysql-mock-server [clean,install].executor": "Run",
     "Maven.r2dbc-mysql-webclient [clean,install].executor": "Run",
     "Maven.r2dbc-mysql-webclient [clean].executor": "Run",
     "Maven.r2dbc-mysql-webclient [compile].executor": "Run",
@@ -429,7 +441,7 @@
     "Spring Boot.R2dbcMysqlApplication (dev).executor": "Run",
     "Spring Boot.R2dbcMysqlApplication (prod).executor": "Debug",
     "Spring Boot.R2dbcMysqlApplication.executor": "Run",
-    "Spring Boot.R2dbcMysqlBeApplication (dev).executor": "Run",
+    "Spring Boot.R2dbcMysqlBeApplication (dev).executor": "Debug",
     "Spring Boot.R2dbcMysqlBeApplication (prod).executor": "Run",
     "Spring Boot.R2dbcMysqlBeApplication.executor": "Run",
     "Spring Boot.R2dbcMysqlWebClientApplication (2).executor": "Run",
@@ -455,7 +467,7 @@
     "jdk.selected.JAVA_MODULE": "temurin-21",
     "kotlin-language-version-configured": "true",
     "last_directory_selection": "C:/work/idea_home/zyme/goals/db/modules/transaction/src/main/java/ua/mai/zyme/db/transaction",
-    "last_opened_file_path": "C:/work/idea_home/zyme/reactor/r2dbc-mysql",
+    "last_opened_file_path": "C:/work/idea_home/zyme/mock-server/r2dbc-mysql-mock-server/docker",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -486,18 +498,18 @@
       <recent name="ua.mai.zyme.security.config" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\work\idea_home\zyme\mock-server\r2dbc-mysql-mock-server\docker" />
+      <recent name="C:\work\idea_home\zyme\mock-server\mock-server" />
+      <recent name="C:\work\idea_home\zyme\mock-server\r2dbc-mysql-mock-server" />
       <recent name="C:\work\idea_home\zyme\reactor\r2dbc-mysql" />
       <recent name="C:\work\idea_home\zyme\reactor\r2dbc-mysql\r2dbc-mysql-be-app\src\main\docker" />
-      <recent name="C:\work\idea_home\zyme\reactor\r2dbc-mysql\r2dbc-mysql-be-app\docker" />
-      <recent name="C:\work\idea_home\zyme\reactor\r2dbc-mysql\r2dbc-mysql-be\docker" />
-      <recent name="C:\work\idea_home\zyme\kotlin" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\work\idea_home\zyme\mock-server\mock-server\docker" />
+      <recent name="C:\work\idea_home\zyme\mock-server\r2dbc-mysql-mock-server\src\main\resources" />
       <recent name="C:\work\idea_home\zyme\reactor\r2dbc-mysql\r2dbc-mysql-be-app" />
       <recent name="C:\work\idea_home\zyme\reactor\r2dbc-mysql\r2dbc-mysql-be-app\src\main\docker" />
       <recent name="C:\work\idea_home\zyme\reactor\r2dbc-mysql\r2dbc-mysql-be-app\src\main" />
-      <recent name="C:\work\idea_home\zyme\reactor\r2dbc-mysql\r2dbc-mysql-be" />
-      <recent name="C:\work\idea_home\zyme\reactor\r2dbc-mysql" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="ua.mai.zyme.r2dbcmysql" />
@@ -524,8 +536,8 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.RestZooApplication (dev 8105)">
-    <configuration name="R2dbsMysqlWebClientForMemberControllerTests.findMemberByName" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Docker.r2dbc-mysql-be-app/docker-compose.yaml.zyme-r2dbc-mysql8: Compose Deployment">
+    <configuration name="R2dbsMysqlWebClientForMemberControllerTests.updateMember" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="r2dbc-mysql-webclient" />
       <extension name="coverage">
         <pattern>
@@ -535,26 +547,8 @@
       </extension>
       <option name="PACKAGE_NAME" value="ua.mai.zyme.r2dbcmysql.webclient" />
       <option name="MAIN_CLASS_NAME" value="ua.mai.zyme.r2dbcmysql.webclient.R2dbsMysqlWebClientForMemberControllerTests" />
-      <option name="METHOD_NAME" value="findMemberByName" />
+      <option name="METHOD_NAME" value="updateMember" />
       <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="r2dbcmysql in r2dbc-mysql-be" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="r2dbc-mysql-be" />
-      <option name="MAIN_CLASS_NAME" value="" />
-      <option name="METHOD_NAME" value="" />
-      <option name="TEST_OBJECT" value="directory" />
-      <dir value="$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="webclient in r2dbc-mysql-webclient" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="r2dbc-mysql-webclient" />
-      <option name="TEST_OBJECT" value="directory" />
-      <dir value="$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-webclient/src/test/java/ua/mai/zyme/r2dbcmysql/webclient" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -692,7 +686,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="R2dbcMysqlBeApplication (dev)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" folderName="reactor">
+    <configuration name="R2dbcMysqlBeApplication [dev local 8080]" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" folderName="reactor">
       <option name="ACTIVE_PROFILES" value="dev" />
       <option name="DEBUG_MODE" value="true" />
       <module name="r2dbc-mysql-be-app" />
@@ -832,6 +826,32 @@
       </deployment>
       <method v="2" />
     </configuration>
+    <configuration name="docker/mock-server-compose.yaml.mock-server: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="mock-server" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="mock-server/mock-server/docker/mock-server-compose.yaml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="docker/mock-server-compose.yaml.r2dbc-mysql-mock-server: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="r2dbc-mysql-mock-server" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="mock-server/r2dbc-mysql-mock-server/docker/mock-server-compose.yaml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
     <configuration name="r2dbc-mysql-be-app/docker-compose.yaml.r2dbc-mysql-be-app: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
       <deployment type="docker-compose.yml">
         <settings>
@@ -859,11 +879,11 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Docker.r2dbc-mysql-be-app/docker-compose.yaml.zyme-r2dbc-mysql8: Compose Deployment" />
+      <item itemvalue="Docker.docker/mock-server-compose.yaml.mock-server: Compose Deployment" />
       <item itemvalue="Docker.r2dbc-mysql-be-app/docker-compose.yaml.r2dbc-mysql-be-app: Compose Deployment" />
-      <item itemvalue="JUnit.R2dbsMysqlWebClientForMemberControllerTests.findMemberByName" />
-      <item itemvalue="JUnit.r2dbcmysql in r2dbc-mysql-be" />
-      <item itemvalue="JUnit.webclient in r2dbc-mysql-webclient" />
+      <item itemvalue="Docker.r2dbc-mysql-be-app/docker-compose.yaml.zyme-r2dbc-mysql8: Compose Deployment" />
+      <item itemvalue="Docker.docker/mock-server-compose.yaml.r2dbc-mysql-mock-server: Compose Deployment" />
+      <item itemvalue="JUnit.R2dbsMysqlWebClientForMemberControllerTests.updateMember" />
       <item itemvalue="Spring Boot.DbH2JdbcTemplateApplication (dev 8102)" />
       <item itemvalue="Spring Boot.DbJdbcTemplateApplication (dev 8101)" />
       <item itemvalue="Spring Boot.DbJooqApplication (dev 8101)" />
@@ -877,7 +897,7 @@
       <item itemvalue="Spring Boot.Kotlin: R2dbcMysqlBeApplication" />
       <item itemvalue="Spring Boot.Kotlin: R2dbcMysqlWebClientApplication" />
       <item itemvalue="Spring Boot.R2dbcMysqlApplication (dev)" />
-      <item itemvalue="Spring Boot.R2dbcMysqlBeApplication (dev)" />
+      <item itemvalue="Spring Boot.R2dbcMysqlBeApplication [dev local 8080]" />
       <item itemvalue="Spring Boot.R2dbcMysqlBeApplication (prod)" />
       <item itemvalue="Spring Boot.R2dbcMysqlWebClientApplication" />
       <item itemvalue="Spring Boot.RestZooApplication (dev 8105)" />
@@ -897,11 +917,11 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Docker.r2dbc-mysql-be-app/docker-compose.yaml.r2dbc-mysql-be-app: Compose Deployment" />
         <item itemvalue="Docker.r2dbc-mysql-be-app/docker-compose.yaml.zyme-r2dbc-mysql8: Compose Deployment" />
-        <item itemvalue="JUnit.r2dbcmysql in r2dbc-mysql-be" />
-        <item itemvalue="JUnit.webclient in r2dbc-mysql-webclient" />
-        <item itemvalue="JUnit.R2dbsMysqlWebClientForMemberControllerTests.findMemberByName" />
+        <item itemvalue="Docker.r2dbc-mysql-be-app/docker-compose.yaml.r2dbc-mysql-be-app: Compose Deployment" />
+        <item itemvalue="Docker.docker/mock-server-compose.yaml.r2dbc-mysql-mock-server: Compose Deployment" />
+        <item itemvalue="Docker.docker/mock-server-compose.yaml.mock-server: Compose Deployment" />
+        <item itemvalue="Docker.docker/mock-server-compose.yaml.r2dbc-mysql-mock-server: Compose Deployment" />
       </list>
     </recent_temporary>
   </component>
@@ -3328,11 +3348,6 @@
           <option name="timeStamp" value="1228" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-webclient/src/main/java/ua/mai/zyme/r2dbcmysql/webclient/log/LogService.java</url>
-          <line>49</line>
-          <option name="timeStamp" value="1232" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-webclient/src/main/java/ua/mai/zyme/r2dbcmysql/webclient/property/WebClientConfiguration.java_</url>
           <line>45</line>
           <option name="timeStamp" value="1237" />
@@ -3358,16 +3373,6 @@
           <option name="timeStamp" value="1241" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-webclient/src/main/java/ua/mai/zyme/r2dbcmysql/webclient/R2dbsMysqlWebClient.java</url>
-          <line>108</line>
-          <option name="timeStamp" value="1260" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-webclient/src/main/java/ua/mai/zyme/r2dbcmysql/webclient/log/LogService.java</url>
-          <line>131</line>
-          <option name="timeStamp" value="1263" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-webclient/src/main/java/ua/mai/zyme/r2dbcmysql/webclient/log/LogService.java</url>
           <line>56</line>
           <option name="timeStamp" value="1264" />
@@ -3376,16 +3381,6 @@
           <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-webclient/src/main/java/ua/mai/zyme/r2dbcmysql/webclient/app/R2dbcMysqlWebClientApplication.java_</url>
           <line>79</line>
           <option name="timeStamp" value="1265" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-webclient/src/main/java/ua/mai/zyme/r2dbcmysql/webclient/R2dbsMysqlWebClient.java</url>
-          <line>112</line>
-          <option name="timeStamp" value="1266" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-webclient/src/main/java/ua/mai/zyme/r2dbcmysql/webclient/exception/AppClientError.java</url>
-          <line>30</line>
-          <option name="timeStamp" value="1267" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-webclient/src/main/java/ua/mai/zyme/r2dbcmysql/webclient/app/R2dbcMysqlWebClientApplication.java_</url>
@@ -3403,44 +3398,9 @@
           <option name="timeStamp" value="1272" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-webclient/src/main/java/ua/mai/zyme/r2dbcmysql/webclient/exception/AppClientError.java</url>
-          <line>53</line>
-          <option name="timeStamp" value="1273" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-webclient/src/main/java/ua/mai/zyme/r2dbcmysql/webclient/app/R2dbcMysqlWebClientApplication.java_</url>
           <line>81</line>
           <option name="timeStamp" value="1274" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-webclient/src/main/java/ua/mai/zyme/r2dbcmysql/webclient/log/LogService.java</url>
-          <line>105</line>
-          <option name="timeStamp" value="1275" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-webclient/src/main/java/ua/mai/zyme/r2dbcmysql/webclient/log/LogService.java</url>
-          <line>130</line>
-          <option name="timeStamp" value="1276" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-webclient/src/main/java/ua/mai/zyme/r2dbcmysql/webclient/log/LogService.java</url>
-          <line>108</line>
-          <option name="timeStamp" value="1277" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-webclient/src/main/java/ua/mai/zyme/r2dbcmysql/webclient/log/LogService.java</url>
-          <line>110</line>
-          <option name="timeStamp" value="1278" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-webclient/src/main/java/ua/mai/zyme/r2dbcmysql/webclient/log/LogService.java</url>
-          <line>99</line>
-          <option name="timeStamp" value="1282" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-webclient/src/main/java/ua/mai/zyme/r2dbcmysql/webclient/log/LogService.java</url>
-          <line>95</line>
-          <option name="timeStamp" value="1283" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/reactor/r2dbc-mysql/r2dbc-mysql-be/src/test/java/ua/mai/zyme/r2dbcmysql/controller/MemberControllerTest.java</url>
@@ -3627,6 +3587,56 @@
           <url>jar://D:/JAVA/.m2/repository/org/springframework/spring-test/6.1.14/spring-test-6.1.14.jar!/org/springframework/test/web/reactive/server/DefaultWebTestClient.class</url>
           <line>505</line>
           <option name="timeStamp" value="1356" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/mock-server/r2dbc-mysql-mock-server/src/test/java/ua/mai/zyme/mockserver/r2dbcmysql/R2dbsMysqlMockServerForMemberControllerTests.java</url>
+          <line>48</line>
+          <option name="timeStamp" value="1357" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/mock-server/r2dbc-mysql-mock-server/src/test/java/ua/mai/zyme/mockserver/r2dbcmysql/R2dbsMysqlMockServerForMemberControllerTests.java</url>
+          <line>61</line>
+          <option name="timeStamp" value="1358" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/mock-server/r2dbc-mysql-mock-server/src/test/java/ua/mai/zyme/mockserver/r2dbcmysql/R2dbsMysqlMockServerForMemberControllerTests.java</url>
+          <line>63</line>
+          <option name="timeStamp" value="1359" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/mock-server/r2dbc-mysql-mock-server/src/test/java/ua/mai/zyme/mockserver/r2dbcmysql/R2dbsMysqlMockServerForMemberControllerTests.java</url>
+          <line>66</line>
+          <option name="timeStamp" value="1360" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/mock-server/r2dbc-mysql-mock-server/src/test/java/ua/mai/zyme/mockserver/r2dbcmysql/R2dbsMysqlMockServerForMemberControllerTests.java</url>
+          <line>81</line>
+          <option name="timeStamp" value="1361" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/mock-server/r2dbc-mysql-mock-server/src/test/java/ua/mai/zyme/mockserver/r2dbcmysql/R2dbsMysqlMockServerForMemberControllerTests.java</url>
+          <line>83</line>
+          <option name="timeStamp" value="1362" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/mock-server/r2dbc-mysql-mock-server/src/test/java/ua/mai/zyme/mockserver/r2dbcmysql/R2dbsMysqlMockServerForMemberControllerTests.java</url>
+          <line>163</line>
+          <option name="timeStamp" value="1363" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/mock-server/r2dbc-mysql-mock-server/src/test/java/ua/mai/zyme/mockserver/r2dbcmysql/R2dbsMysqlMockServerForMemberControllerTests.java</url>
+          <line>165</line>
+          <option name="timeStamp" value="1364" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/mock-server/r2dbc-mysql-mock-server/src/test/java/ua/mai/zyme/mockserver/r2dbcmysql/R2dbsMysqlMockServerForMemberControllerTests.java</url>
+          <line>109</line>
+          <option name="timeStamp" value="1365" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/mock-server/r2dbc-mysql-mock-server/src/test/java/ua/mai/zyme/mockserver/r2dbcmysql/R2dbsMysqlMockServerForMemberControllerTests.java</url>
+          <line>111</line>
+          <option name="timeStamp" value="1366" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-field">
           <url>file://$PROJECT_DIR$/goals/graphql/graphql-modules/graphql-zoo/src/main/java/ua/mai/zyme/graphql/zoo/controllers/BookController.java</url>
